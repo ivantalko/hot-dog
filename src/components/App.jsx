@@ -1,16 +1,28 @@
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './Layout/Layout';
+import { Notices } from './Notices/Notices';
+// import { CategoryName } from './Notices/Notices';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<>Home Page</>} />
+        <Route path="news" element={<>News Page</>} />
+        <Route path="notices" element={<Notices />}>
+          <Route path="notices/:CategoryName" element={<Notices />}>
+            <Route path="sell" element={<>sell page</>} />
+            <Route path="lost-found" element={<>lost-found page</>} />
+            <Route path="for-free" element={<>for-free page</>} />
+            <Route path="favorite" element={<>favorite page</>} />
+            <Route path="own" element={<>own page</>} />
+          </Route>
+        </Route>
+        <Route path="friends" element={<>friends Page</>} />
+        <Route path="login" element={<>login Page</>} />
+        <Route path="register" element={<>register Page</>} />
+        <Route path="user" element={<>user Page</>} />
+      </Route>
+    </Routes>
   );
 };
