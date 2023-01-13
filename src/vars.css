@@ -1,0 +1,15 @@
+:root {
+  --primary-bg-color: #fdf7f2;
+  --secondary-bg-color: #ffffff;
+  --white-text: #ffffff;
+  --black: #111111;
+  --orange: #ff6101;
+  --text-gray: #535353;
+
+  --transition-time: 250ms;
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --primary-font: 'Manrope', sans-serif;
+  --secondary-font: 'Montserrat', sans-serif;
+  --decor--font: 'Poppins';
+}
