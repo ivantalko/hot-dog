@@ -9,6 +9,7 @@
   --transition-time: 250ms;
   --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --primary-font: 'Raleway', sans-serif;
-  --secondary-font: 'Arimo', sans-serif;
+  --primary-font: 'Manrope', sans-serif;
+  --secondary-font: 'Montserrat', sans-serif;
+  --decor--font: 'Poppins';
 }
