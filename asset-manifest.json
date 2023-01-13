@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hot-dog/static/css/main.7acaea2f.css",
+    "main.js": "/hot-dog/static/js/main.72de461c.js",
+    "index.html": "/hot-dog/index.html",
+    "main.7acaea2f.css.map": "/hot-dog/static/css/main.7acaea2f.css.map",
+    "main.72de461c.js.map": "/hot-dog/static/js/main.72de461c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.72de461c.js"
+  ]
+}
