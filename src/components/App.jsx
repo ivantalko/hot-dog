@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { Notices } from './NoticesPage/NoticesPage';
+import { Notices } from '../pages/NoticesPage/NoticesPage';
 // import { CategoryName } from './Notices/Notices';
 // import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 

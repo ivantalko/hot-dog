@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
+import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import {
   Section,
   SectionTitle,
   SearchIcon,
   CloseIcon,
+  AddIcon,
   SearchInput,
   SearchForm,
   SearchButton,
-  NavList,
-  NavLinkStyled,
-  NavItem,
 } from './NoticesPage.styled';
 
 export const Notices = () => {
@@ -74,29 +73,11 @@ export const Notices = () => {
             {namePar ? <CloseIcon /> : <SearchIcon />}
           </SearchButton>
         </SearchForm>
-        <nav>
-          <NavList>
-            <NavItem>
-              <NavLinkStyled to="lost-found">lost/found</NavLinkStyled>
-            </NavItem>
-            <NavItem>
-              <NavLinkStyled to="for-free">in good hands</NavLinkStyled>
-            </NavItem>
-            <NavItem>
-              <NavLinkStyled to="sale">sell</NavLinkStyled>
-            </NavItem>
-            <NavItem>
-              <NavLinkStyled to="favorite">favorite ads</NavLinkStyled>
-            </NavItem>
-            <NavItem>
-              <NavLinkStyled to="own">my ads</NavLinkStyled>
-            </NavItem>
-          </NavList>
-        </nav>
+        <NoticesCategoriesNav />
         <div>
           <span>Add pet</span>
           <button onClick={handleModalOpen} type="button">
-            +
+            <AddIcon />
           </button>
         </div>
       </div>
@@ -118,13 +99,3 @@ export const Notices = () => {
     </Section>
   );
 };
-
-// export const CategoryName = () => {
-//   return (
-//     <>
-//       |CategoryName
-//       <></>
-//       <Outlet />
-//     </>
-//   );
-// };

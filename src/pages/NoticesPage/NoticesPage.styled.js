@@ -3,6 +3,7 @@ import { breakpoints } from 'helpers/breakpoints';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as SearchIconPrimal } from './img/searchIcon.svg';
 import { ReactComponent as CloseIconPrimal } from './img/closeIcon.svg';
+import { ReactComponent as AddIconPrimal } from './img/addIcon.svg';
 
 export const Section = styled.section`
   padding: 0px 20px 100px;
@@ -31,6 +32,10 @@ export const CloseIcon = styled(CloseIconPrimal)`
     color: inherit;
     fill: inherit;
   }
+`;
+
+export const AddIcon = styled(AddIconPrimal)`
+  height: 32px;
 `;
 
 export const SectionTitle = styled.h2`
@@ -113,12 +118,6 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const NavList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-`;
-
 export const NavItem = styled.li``;
 
 export const NavLinkStyled = styled(NavLink)`
@@ -138,6 +137,7 @@ export const NavLinkStyled = styled(NavLink)`
   padding: 10px 28px;
 
   &.active {
-    color: red;
+    background-color: #f59256;
+    color: white;
   }
 `;
