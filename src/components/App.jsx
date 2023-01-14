@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { Notices } from './Notices/Notices';
+import { Notices } from './NoticesPage/NoticesPage';
 // import { CategoryName } from './Notices/Notices';
-import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+// import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 
 export const App = () => {
   return (
