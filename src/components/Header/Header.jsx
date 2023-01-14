@@ -1,13 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NavLinkStyled = styled(NavLink)`
-  &:active {
-    text-decoration: none;
-    color: red;
-  }
-`;
-
 export const Header = () => {
   return (
     <>
