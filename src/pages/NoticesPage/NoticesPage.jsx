@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import {
   Section,
+  NavBox,
   SectionTitle,
   SearchIcon,
   CloseIcon,
@@ -10,6 +11,9 @@ import {
   SearchInput,
   SearchForm,
   SearchButton,
+  AddBtnBox,
+  AddBtnText,
+  AddBtn,
 } from './NoticesPage.styled';
 
 export const Notices = () => {
@@ -17,6 +21,7 @@ export const Notices = () => {
   const namePar = params.get('query');
   const [name, setName] = useState(namePar ?? '');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
 
   const handleSearchButton = e => {
     setParams({ query: name });
@@ -57,9 +62,11 @@ export const Notices = () => {
     }
   };
 
+  console.log(location);
+
   return (
     <Section>
-      <div>
+      <NavBox>
         <SectionTitle>Find your favorite pet</SectionTitle>
         <SearchForm>
           <SearchInput
@@ -73,14 +80,14 @@ export const Notices = () => {
             {namePar ? <CloseIcon /> : <SearchIcon />}
           </SearchButton>
         </SearchForm>
-        <NoticesCategoriesNav />
-        <div>
-          <span>Add pet</span>
-          <button onClick={handleModalOpen} type="button">
+        <NoticesCategoriesNav location={location} />
+        <AddBtnBox>
+          <AddBtnText>Add pet</AddBtnText>
+          <AddBtn onClick={handleModalOpen} type="button">
             <AddIcon />
-          </button>
-        </div>
-      </div>
+          </AddBtn>
+        </AddBtnBox>
+      </NavBox>
       <Outlet />
       {isModalOpen && (
         <div

@@ -34,8 +34,8 @@ export const CloseIcon = styled(CloseIconPrimal)`
   }
 `;
 
-export const AddIcon = styled(AddIconPrimal)`
-  height: 32px;
+export const NavBox = styled.div`
+  position: relative;
 `;
 
 export const SectionTitle = styled.h2`
@@ -139,5 +139,72 @@ export const NavLinkStyled = styled(NavLink)`
   &.active {
     background-color: #f59256;
     color: white;
+  }
+`;
+
+export const AddIcon = styled(AddIconPrimal)`
+  height: 32px;
+  width: 32px;
+  @media ${breakpoints.minTablet} {
+    height: 24px;
+    width: 24px;
+  }
+`;
+
+export const AddBtnBox = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  flex-direction: column-reverse;
+  background: #f59256;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 50%;
+
+  justify-content: center;
+  position: fixed;
+  bottom: 92px;
+  right: 15px;
+  @media ${breakpoints.minTablet} {
+    position: absolute;
+    flex-direction: row;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    right: 0px;
+    width: auto;
+    height: auto;
+    bottom: 98px;
+    transform: translateY(100%);
+  }
+  @media ${breakpoints.desktop} {
+    bottom: 0px;
+    transform: translateY(0);
+  }
+`;
+
+export const AddBtnText = styled.span`
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  @media ${breakpoints.minTablet} {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    color: #111111;
+  }
+`;
+
+export const AddBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  @media ${breakpoints.minTablet} {
+    margin-left: 12px;
+    width: 44px;
+    height: 44px;
+    background-color: #f59256;
+    border-radius: 50%;
   }
 `;

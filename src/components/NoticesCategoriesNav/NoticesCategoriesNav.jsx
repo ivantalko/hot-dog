@@ -8,6 +8,7 @@ export const NoticesCategoriesNav = () => {
         {NoticesPageData.map(({ id, to, text }) => {
           return (
             <NavItem key={id}>
+              {/* <NavLinkStyled end to={`${to}/${name}`}> */}
               <NavLinkStyled to={to}>{text}</NavLinkStyled>
             </NavItem>
           );

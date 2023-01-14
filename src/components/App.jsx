@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { Notices } from '../pages/NoticesPage/NoticesPage';
-// import { CategoryName } from './Notices/Notices';
-// import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 
 export const App = () => {
   return (
@@ -11,7 +10,7 @@ export const App = () => {
         <Route index element={<>Home Page</>} />
         <Route path="news" element={<>News Page</>} />
         <Route path="notices" element={<Notices />}>
-          <Route path=":CategoryName" element={<>NoticiesCategoriesList</>}>
+          <Route path=":CategoryName" element={<NoticiesCategoriesList />}>
             <Route index element={<>sale page</>} />
             <Route path="lost-found" element={<>lost-found page</>} />
             <Route path="for-free" element={<>for-free page</>} />
