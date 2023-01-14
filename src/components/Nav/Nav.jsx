@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { NavStyled } from './Nav.styled';
 
 export default function Nav() {
   return (
-    <nav>
+    <NavStyled>
       <NavLink to="/news">News</NavLink>
-      <NavLink to="/notices">Find Pet</NavLink>
+      <NavLink to="/notices/sell">Find Pet</NavLink>
       <NavLink to="/friends">Our friends</NavLink>
-    </nav>
+    </NavStyled>
   );
 }
