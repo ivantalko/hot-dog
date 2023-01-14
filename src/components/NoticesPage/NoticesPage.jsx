@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Outlet, NavLink, useSearchParams } from 'react-router-dom';
+import {
+  Section,
+  SectionTitle,
+  SearchIcon,
+  CloseIcon,
+  SearchInput,
+  SearchForm,
+  SearchButton,
+} from './NoticesPage.styled';
 
 export const Notices = () => {
   const [params, setParams] = useSearchParams();
@@ -47,21 +56,21 @@ export const Notices = () => {
   };
 
   return (
-    <section>
+    <Section>
       <div>
-        Find your favorite pet
-        <form>
-          <input
+        <SectionTitle>Find your favorite pet</SectionTitle>
+        <SearchForm>
+          <SearchInput
             value={name}
             onChange={handleInputChange}
             type="text"
             placeholder="Search"
           />
 
-          <button type="submit" onClick={handleSearchButton}>
-            {namePar ? <>X</> : <>0</>}
-          </button>
-        </form>
+          <SearchButton type="submit" onClick={handleSearchButton}>
+            {namePar ? <CloseIcon /> : <SearchIcon />}
+          </SearchButton>
+        </SearchForm>
         <nav>
           <ul>
             <li>
@@ -103,7 +112,7 @@ export const Notices = () => {
           <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>
         </div>
       )}
-    </section>
+    </Section>
   );
 };
 
