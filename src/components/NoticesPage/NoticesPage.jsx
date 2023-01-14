@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, NavLink, useSearchParams } from 'react-router-dom';
 
 export const Notices = () => {
@@ -22,7 +22,28 @@ export const Notices = () => {
   };
 
   const handleModalOpen = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyModalClose);
+    return () => {
+      window.removeEventListener('keydown', handleKeyModalClose);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleKeyModalClose = e => {
+    if (e.code === 'Escape') {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleBackdropClose = e => {
+    if (e.target === e.currentTarget) {
+      console.log('hi');
+      setIsModalOpen(false);
+    }
   };
 
   return (
@@ -68,7 +89,20 @@ export const Notices = () => {
         </div>
       </div>
       <Outlet />
-      {isModalOpen && <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>}
+      {isModalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            top: '0',
+            left: '0',
+          }}
+          onClick={handleBackdropClose}
+        >
+          <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>
+        </div>
+      )}
     </section>
   );
 };
