@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // import { useEffect } from 'react';
 
 export const Notices = () => {
@@ -10,17 +10,12 @@ export const Notices = () => {
   const handleSearchButton = e => {
     setName(value);
     e.preventDefault();
-    if (name !== '') {
-      setValue('');
-    }
   };
 
   const handleInputChange = e => {
     setValue(e.target.value);
     e.preventDefault();
   };
-
-  console.log(name);
 
   return (
     <section>
@@ -34,40 +29,24 @@ export const Notices = () => {
             placeholder="Search"
           />
 
-          <button type="submit" onClick={handleSearchButton}>
-            {name === '' ? (
-              <>
-                <Link to={`${value}`}>0_0</Link>
-              </>
-            ) : (
-              <>
-                <Link to={`${value}`}>X_X</Link>
-              </>
-            )}
-          </button>
+          <button type="submit" onClick={handleSearchButton}></button>
         </form>
         <nav>
           <ul>
             <li>
-              <NavLink to={name === '' ? 'sell' : `${name}/sell`}>sell</NavLink>
+              <NavLink to="sale">sell</NavLink>
             </li>
             <li>
-              <NavLink to={name === '' ? 'lost-found' : `${name}/lost-found`}>
-                lost/found
-              </NavLink>
+              <NavLink to="lost-found">lost/found</NavLink>
             </li>
             <li>
-              <NavLink to={name === '' ? 'for-free' : `${name}/for-free`}>
-                in good hands
-              </NavLink>
+              <NavLink to="for-free">in good hands</NavLink>
             </li>
             <li>
-              <NavLink to={name === '' ? 'favorite' : `${name}/favorite`}>
-                favorite ads
-              </NavLink>
+              <NavLink to="favorite">favorite ads</NavLink>
             </li>
             <li>
-              <NavLink to={name === '' ? 'own' : `${name}/own`}>my ads</NavLink>
+              <NavLink to="own">my ads</NavLink>
             </li>
           </ul>
         </nav>
