@@ -10,6 +10,7 @@ import {
   SearchButton,
   NavList,
   NavLinkStyled,
+  NavItem,
 } from './NoticesPage.styled';
 
 export const Notices = () => {
@@ -75,21 +76,21 @@ export const Notices = () => {
         </SearchForm>
         <nav>
           <NavList>
-            <li>
-              <NavLinkStyled to="sale">sell</NavLinkStyled>
-            </li>
-            <li>
+            <NavItem>
               <NavLinkStyled to="lost-found">lost/found</NavLinkStyled>
-            </li>
-            <li>
+            </NavItem>
+            <NavItem>
               <NavLinkStyled to="for-free">in good hands</NavLinkStyled>
-            </li>
-            <li>
+            </NavItem>
+            <NavItem>
+              <NavLinkStyled to="sale">sell</NavLinkStyled>
+            </NavItem>
+            <NavItem>
               <NavLinkStyled to="favorite">favorite ads</NavLinkStyled>
-            </li>
-            <li>
+            </NavItem>
+            <NavItem>
               <NavLinkStyled to="own">my ads</NavLinkStyled>
-            </li>
+            </NavItem>
           </NavList>
         </nav>
         <div>
