@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, NavLink, useSearchParams } from 'react-router-dom';
 
 export const Notices = () => {
   const [params, setParams] = useSearchParams();
   const namePar = params.get('query');
   const [name, setName] = useState(namePar ?? '');
-  // const [value, setValue] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchButton = e => {
     setParams({ query: name });
     e.preventDefault();
+    if (namePar !== '') {
+      setParams({ query: '' });
+      setName('');
+    }
   };
 
   const handleInputChange = e => {
@@ -17,8 +21,30 @@ export const Notices = () => {
     e.preventDefault();
   };
 
-  console.log(name);
-  console.log(namePar);
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyModalClose);
+    return () => {
+      window.removeEventListener('keydown', handleKeyModalClose);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleKeyModalClose = e => {
+    if (e.code === 'Escape') {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleBackdropClose = e => {
+    if (e.target === e.currentTarget) {
+      console.log('hi');
+      setIsModalOpen(false);
+    }
+  };
 
   return (
     <section>
@@ -31,15 +57,10 @@ export const Notices = () => {
             type="text"
             placeholder="Search"
           />
-          {namePar ? (
-            <button type="submit" onClick={handleSearchButton}>
-              X
-            </button>
-          ) : (
-            <button type="submit" onClick={handleSearchButton}>
-              0
-            </button>
-          )}
+
+          <button type="submit" onClick={handleSearchButton}>
+            {namePar ? <>X</> : <>0</>}
+          </button>
         </form>
         <nav>
           <ul>
@@ -62,10 +83,26 @@ export const Notices = () => {
         </nav>
         <div>
           <span>Add pet</span>
-          <button type="button">+</button>
+          <button onClick={handleModalOpen} type="button">
+            +
+          </button>
         </div>
       </div>
       <Outlet />
+      {isModalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            top: '0',
+            left: '0',
+          }}
+          onClick={handleBackdropClose}
+        >
+          <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>
+        </div>
+      )}
     </section>
   );
 };
