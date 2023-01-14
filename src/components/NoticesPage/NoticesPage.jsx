@@ -5,11 +5,15 @@ export const Notices = () => {
   const [params, setParams] = useSearchParams();
   const namePar = params.get('query');
   const [name, setName] = useState(namePar ?? '');
-  // const [value, setValue] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchButton = e => {
     setParams({ query: name });
     e.preventDefault();
+    if (namePar !== '') {
+      setParams({ query: '' });
+      setName('');
+    }
   };
 
   const handleInputChange = e => {
@@ -17,8 +21,9 @@ export const Notices = () => {
     e.preventDefault();
   };
 
-  console.log(name);
-  console.log(namePar);
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <section>
@@ -31,15 +36,10 @@ export const Notices = () => {
             type="text"
             placeholder="Search"
           />
-          {namePar ? (
-            <button type="submit" onClick={handleSearchButton}>
-              X
-            </button>
-          ) : (
-            <button type="submit" onClick={handleSearchButton}>
-              0
-            </button>
-          )}
+
+          <button type="submit" onClick={handleSearchButton}>
+            {namePar ? <>X</> : <>0</>}
+          </button>
         </form>
         <nav>
           <ul>
@@ -62,10 +62,13 @@ export const Notices = () => {
         </nav>
         <div>
           <span>Add pet</span>
-          <button type="button">+</button>
+          <button onClick={handleModalOpen} type="button">
+            +
+          </button>
         </div>
       </div>
       <Outlet />
+      {isModalOpen && <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>}
     </section>
   );
 };
