@@ -35,16 +35,16 @@ export default function BurgerBtn({ onClick, isOpen }) {
           <path
             d="M30 10L10 30"
             stroke="#212121"
-            stroke-width="4"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M10 10L30 30"
             stroke="#212121"
-            stroke-width="4"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )}
