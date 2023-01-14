@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, NavLink, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import {
   Section,
   SectionTitle,
@@ -8,6 +8,8 @@ import {
   SearchInput,
   SearchForm,
   SearchButton,
+  NavList,
+  NavLinkStyled,
 } from './NoticesPage.styled';
 
 export const Notices = () => {
@@ -72,23 +74,23 @@ export const Notices = () => {
           </SearchButton>
         </SearchForm>
         <nav>
-          <ul>
+          <NavList>
             <li>
-              <NavLink to="sale">sell</NavLink>
+              <NavLinkStyled to="sale">sell</NavLinkStyled>
             </li>
             <li>
-              <NavLink to="lost-found">lost/found</NavLink>
+              <NavLinkStyled to="lost-found">lost/found</NavLinkStyled>
             </li>
             <li>
-              <NavLink to="for-free">in good hands</NavLink>
+              <NavLinkStyled to="for-free">in good hands</NavLinkStyled>
             </li>
             <li>
-              <NavLink to="favorite">favorite ads</NavLink>
+              <NavLinkStyled to="favorite">favorite ads</NavLinkStyled>
             </li>
             <li>
-              <NavLink to="own">my ads</NavLink>
+              <NavLinkStyled to="own">my ads</NavLinkStyled>
             </li>
-          </ul>
+          </NavList>
         </nav>
         <div>
           <span>Add pet</span>

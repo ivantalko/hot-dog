@@ -7,7 +7,7 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
+  background-color: #fdf7f2;
 }
 
 code {
@@ -40,4 +40,12 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
