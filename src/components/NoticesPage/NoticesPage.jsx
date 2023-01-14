@@ -1,21 +1,24 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-// import { useEffect } from 'react';
+import { Outlet, NavLink, useSearchParams } from 'react-router-dom';
 
 export const Notices = () => {
-  const [value, setValue] = useState('');
-  const [name, setName] = useState('');
+  const [params, setParams] = useSearchParams();
+  const namePar = params.get('query');
+  const [name, setName] = useState(namePar ?? '');
+  // const [value, setValue] = useState('');
 
   const handleSearchButton = e => {
-    setName(value);
+    setParams({ query: name });
     e.preventDefault();
   };
 
   const handleInputChange = e => {
-    setValue(e.target.value);
+    setName(e.target.value);
     e.preventDefault();
   };
+
+  console.log(name);
+  console.log(namePar);
 
   return (
     <section>
@@ -23,13 +26,20 @@ export const Notices = () => {
         Find your favorite pet
         <form>
           <input
-            value={value}
+            value={name}
             onChange={handleInputChange}
             type="text"
             placeholder="Search"
           />
-
-          <button type="submit" onClick={handleSearchButton}></button>
+          {namePar ? (
+            <button type="submit" onClick={handleSearchButton}>
+              X
+            </button>
+          ) : (
+            <button type="submit" onClick={handleSearchButton}>
+              0
+            </button>
+          )}
         </form>
         <nav>
           <ul>
