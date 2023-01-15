@@ -3,6 +3,7 @@ import { Layout } from './Layout/Layout';
 import { Notices } from './NoticesPage/NoticesPage';
 // import { CategoryName } from './Notices/Notices';
 // import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+import OurFriends from '../pages/OurFriends/OurFriends'
 
 export const App = () => {
   return (
@@ -20,7 +21,7 @@ export const App = () => {
           </Route>
         </Route>
 
-        <Route path="friends" element={<>friends Page</>} />
+        <Route path="friends" element={<OurFriends/>} />
         <Route path="login" element={<>login Page</>} />
         <Route path="register" element={<>register Page</>} />
         <Route path="user" element={<>user Page</>} />
