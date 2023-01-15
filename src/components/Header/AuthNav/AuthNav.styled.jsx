@@ -63,8 +63,8 @@ export const RegisterStyled = styled(NavLink)`
   height: 35px;
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   padding-left: 28px;
   padding-right: 28px;
 
@@ -83,8 +83,8 @@ export const RegisterStyled = styled(NavLink)`
   @media ${breakpoints.minTablet} {
     width: 181px;
     height: 44px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     font-size: 20px;
     line-height: 27px;
   }
