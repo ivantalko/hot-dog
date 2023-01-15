@@ -1,9 +1,9 @@
 export const UserForm = () => {
     return (
-        <User>
-            <UserForm>
+        <div>
+            <div>
                 
-            </UserForm>
-        </User>
+            </div>
+        </div>
     )
 }

@@ -1,3 +1,4 @@
+import UserPage from 'pages/UserPage/UserPage';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { Notices } from './NoticesPage/NoticesPage';
@@ -23,7 +24,7 @@ export const App = () => {
         <Route path="friends" element={<>friends Page</>} />
         <Route path="login" element={<>login Page</>} />
         <Route path="register" element={<>register Page</>} />
-        <Route path="user" element={<>user Page</>} />
+        <Route path="user" element={<UserPage/>} />
       </Route>
     </Routes>
   );
