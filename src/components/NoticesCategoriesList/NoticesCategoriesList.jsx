@@ -1,19 +1,32 @@
-import { useLocation } from 'react-router-dom';
 import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
+import {
+  Section,
+  NoticesList,
+  NoticesItem,
+} from './NoticesCategoriesList.styled';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
-  const location = useLocation();
-  const pathName = location.pathname;
-  const pathSlice = pathName.slice(9);
-
-  console.log(FakeNoticesCardData[1].category[1]);
+  console.log(searchQuery);
 
   return (
-    <div>
-      <div>
-        <img src={FakeNoticesCardData[0].src} alt="" />
-        {searchQuery}'s {pathSlice}
-      </div>
-    </div>
+    <Section>
+      <NoticesList>
+        {FakeNoticesCardData.map(item => {
+          return (
+            <NoticesItem key={item.id}>
+              {/* <span>{item.category}</span>
+              <button>fav</button> */}
+              <img src={item.src} alt={item.title} />
+              <h3>{item.title}</h3>
+              <p>{item.breed}</p>
+              <p>{item.place}</p>
+              <p>{item.age}</p>
+              <button>Learn more</button>
+              <button>Delete</button>
+            </NoticesItem>
+          );
+        })}
+      </NoticesList>
+    </Section>
   );
 };
