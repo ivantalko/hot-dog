@@ -1,10 +1,15 @@
-import { Outlet } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
-export const NoticiesCategoriesList = () => {
+export const NoticiesCategoriesList = ({ searchQuery }) => {
+  const location = useLocation();
+  const pathName = location.pathname;
+  const pathSlice = pathName.slice(9);
+
   return (
     <div>
-      <div>Noticies Categories List</div>
-      <Outlet />
+      <div>
+        {searchQuery}'s {pathSlice}
+      </div>
     </div>
   );
 };

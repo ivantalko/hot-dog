@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import {
   Section,
@@ -16,20 +16,32 @@ import {
   AddBtn,
 } from './NoticesPage.styled';
 
-export const Notices = () => {
-  const [params, setParams] = useSearchParams();
-  const namePar = params.get('query');
-  const [name, setName] = useState(namePar ?? '');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export const Notices = ({ setSearchQuery }) => {
   const location = useLocation();
+  const [params, setParams] = useSearchParams();
+  const query = params.get('query');
+  const [name, setName] = useState(query ?? '');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchButton = e => {
     setParams({ query: name });
+    setSearchQuery(name);
     e.preventDefault();
-    if (namePar !== '') {
-      setParams({ query: '' });
-      setName('');
+  };
+
+  useEffect(() => {
+    if (name === '') {
+      setParams('');
     }
+    setSearchQuery(name);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSearchClear = e => {
+    e.preventDefault();
+    setParams({ query: '' });
+    setName('');
   };
 
   const handleInputChange = e => {
@@ -57,12 +69,9 @@ export const Notices = () => {
 
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
-      console.log('hi');
       setIsModalOpen(false);
     }
   };
-
-  console.log(location);
 
   return (
     <Section>
@@ -75,10 +84,15 @@ export const Notices = () => {
             type="text"
             placeholder="Search"
           />
-
-          <SearchButton type="submit" onClick={handleSearchButton}>
-            {namePar ? <CloseIcon /> : <SearchIcon />}
-          </SearchButton>
+          {query !== '' && query !== null ? (
+            <SearchButton type="submit" onClick={handleSearchClear}>
+              <CloseIcon />
+            </SearchButton>
+          ) : (
+            <SearchButton type="submit" onClick={handleSearchButton}>
+              <SearchIcon />
+            </SearchButton>
+          )}
         </SearchForm>
         <NoticesCategoriesNav location={location} />
         <AddBtnBox>
@@ -88,7 +102,6 @@ export const Notices = () => {
           </AddBtn>
         </AddBtnBox>
       </NavBox>
-      <Outlet />
       {isModalOpen && (
         <div
           style={{
