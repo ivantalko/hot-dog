@@ -6,6 +6,7 @@ export const AccountStyled = styled(NavLink)`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   width: 164px;
   height: 35px;
@@ -32,7 +33,26 @@ export const AccountStyled = styled(NavLink)`
   background-color: #f59256;
 
   @media ${breakpoints.minTablet} {
+    height: 44px;
+    font-size: 16px;
+    line-height: 22px;
+
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 28px;
+    padding-right: 28px;
+
     margin-bottom: 0;
     margin-top: 0;
+  }
+`;
+
+export const SvgAccount = styled.svg`
+  width: 20px;
+  height: 20px;
+
+  @media ${breakpoints.minTablet} {
+    width: 28px;
+    height: 28px;
   }
 `;
