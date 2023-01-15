@@ -11,9 +11,6 @@ export const BurgerOverlay = styled.div`
   min-height: 100vh;
   background: #fdf7f2;
   text-align: center;
-  @media ${breakpoints.minTablet} {
-    top: 60px;
-  }
 `;
 
 export const AuthNavStyled = styled.div`

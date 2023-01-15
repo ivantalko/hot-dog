@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <HeaderStyled>
       <Logo />
-      <Navigation />
+      {!burgerMenu && <Navigation />}
       <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
       {burgerMenu && <BurgerMenu onClick={handleCloseBurger} />}
     </HeaderStyled>

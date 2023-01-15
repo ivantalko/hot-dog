@@ -11,6 +11,7 @@ export const AuthNavStyled = styled.nav`
   @media ${breakpoints.minTablet} {
     margin-bottom: 0;
     margin-top: 0;
+    margin-left: 246px;
   }
 `;
 
