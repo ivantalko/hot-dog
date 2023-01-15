@@ -16,11 +16,11 @@ import {
   AddBtn,
 } from './NoticesPage.styled';
 
-export const Notices = ({ setSearchQuery }) => {
+export const Notices = ({ searchQuery, setSearchQuery }) => {
   const location = useLocation();
   const [params, setParams] = useSearchParams();
   const query = params.get('query');
-  const [name, setName] = useState(query ?? '');
+  const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchButton = e => {
@@ -30,11 +30,15 @@ export const Notices = ({ setSearchQuery }) => {
   };
 
   useEffect(() => {
-    if (name === '') {
-      setParams('');
+    if (query !== null) {
+      setSearchQuery(query);
     }
-    setSearchQuery(name);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
+
+  useEffect(() => {
+    setParams({ query: name });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -84,7 +88,7 @@ export const Notices = ({ setSearchQuery }) => {
             type="text"
             placeholder="Search"
           />
-          {query !== '' && query !== null ? (
+          {query !== '' || query === null ? (
             <SearchButton type="submit" onClick={handleSearchClear}>
               <CloseIcon />
             </SearchButton>

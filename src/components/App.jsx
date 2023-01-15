@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 export const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -14,7 +13,12 @@ export const App = () => {
         <Route path="news" element={<>News Page</>} />
         <Route
           path="notices"
-          element={<Notices setSearchQuery={setSearchQuery} />}
+          element={
+            <Notices
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          }
         >
           <Route
             path="sale"

@@ -148,6 +148,8 @@ export const AddIcon = styled(AddIconPrimal)`
   @media ${breakpoints.minTablet} {
     height: 24px;
     width: 24px;
+    display: flex;
+    margin: auto;
   }
 `;
 
