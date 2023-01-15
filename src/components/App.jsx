@@ -3,6 +3,8 @@ import { Layout } from './Layout/Layout';
 import { Notices } from './NoticesPage/NoticesPage';
 // import { CategoryName } from './Notices/Notices';
 // import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+import RegisterPage from 'pages/RegisterPage';
+import LoginPage from 'pages/LoginPage';
 
 export const App = () => {
   return (
@@ -21,8 +23,8 @@ export const App = () => {
         </Route>
 
         <Route path="friends" element={<>friends Page</>} />
-        <Route path="login" element={<>login Page</>} />
-        <Route path="register" element={<>register Page</>} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="user" element={<>user Page</>} />
       </Route>
     </Routes>
