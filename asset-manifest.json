@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hot-dog/static/css/main.1d59d08f.css",
-    "main.js": "/hot-dog/static/js/main.b91ee252.js",
+    "main.js": "/hot-dog/static/js/main.bdd9ccbe.js",
     "index.html": "/hot-dog/index.html",
     "main.1d59d08f.css.map": "/hot-dog/static/css/main.1d59d08f.css.map",
-    "main.b91ee252.js.map": "/hot-dog/static/js/main.b91ee252.js.map"
+    "main.bdd9ccbe.js.map": "/hot-dog/static/js/main.bdd9ccbe.js.map"
   },
   "entrypoints": [
     "static/css/main.1d59d08f.css",
-    "static/js/main.b91ee252.js"
+    "static/js/main.bdd9ccbe.js"
   ]
 }
