@@ -1,10 +1,10 @@
 import React from 'react';
-import logoComp1 from '../../helpers/images/logo/petlylogo-comp-1x.png';
-import logoComp2 from '../../helpers/images/logo/petlylogo-comp-2x.png';
-import logoTab1 from '../../helpers/images/logo/petlylogo-tab-1x.png';
-import logoTab2 from '../../helpers/images/logo/petlylogo-tab-2x.png';
-import logoMob1 from '../../helpers/images/logo/petlylogo-mob-1x.png';
-import logoMob2 from '../../helpers/images/logo/petlylogo-mob-2x.png';
+import logoComp1 from '../../../helpers/images/logo/petlylogo-comp-1x.png';
+import logoComp2 from '../../../helpers/images/logo/petlylogo-comp-2x.png';
+import logoTab1 from '../../../helpers/images/logo/petlylogo-tab-1x.png';
+import logoTab2 from '../../../helpers/images/logo/petlylogo-tab-2x.png';
+import logoMob1 from '../../../helpers/images/logo/petlylogo-mob-1x.png';
+import logoMob2 from '../../../helpers/images/logo/petlylogo-mob-2x.png';
 
 export default function Logo() {
   return (

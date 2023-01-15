@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { breakpoints } from '../../helpers/breakpoints';
+import { breakpoints } from '../../../helpers/breakpoints';
 
 export const NavStyled = styled.nav`
   display: flex;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../helpers/breakpoints';
+import { breakpoints } from '../../../helpers/breakpoints';
 
 export const NavigationStyled = styled.div`
   display: none;
