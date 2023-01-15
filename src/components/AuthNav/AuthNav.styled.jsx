@@ -13,6 +13,9 @@ export const AuthNavStyled = styled.nav`
     margin-top: 0;
     margin-left: 246px;
   }
+  @media ${breakpoints.desktop} {
+    margin-left: 351px;
+  }
 `;
 
 export const LoginStyled = styled(NavLink)`
@@ -48,6 +51,9 @@ export const LoginStyled = styled(NavLink)`
     font-size: 20px;
     line-height: 27px;
   }
+  @media ${breakpoints.desktop} {
+    height: 47px;
+  }
 `;
 
 export const RegisterStyled = styled(NavLink)`
@@ -81,5 +87,8 @@ export const RegisterStyled = styled(NavLink)`
     padding-bottom: 10px;
     font-size: 20px;
     line-height: 27px;
+  }
+  @media ${breakpoints.desktop} {
+    height: 47px;
   }
 `;

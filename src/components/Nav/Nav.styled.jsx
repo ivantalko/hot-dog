@@ -12,6 +12,10 @@ export const NavStyled = styled.nav`
   }
 
   @media ${breakpoints.desktop} {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    margin-top: 0;
   }
 `;
 
@@ -38,5 +42,10 @@ export const NavLinkStyled = styled(NavLink)`
   @media ${breakpoints.minTablet} {
     font-size: 48px;
     line-height: 66px;
+  }
+
+  @media ${breakpoints.desktop} {
+    font-size: 20px;
+    line-height: 27px;
   }
 `;

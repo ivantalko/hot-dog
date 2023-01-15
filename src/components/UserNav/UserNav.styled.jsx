@@ -46,6 +46,9 @@ export const AccountStyled = styled(NavLink)`
     margin-top: 0;
     margin-left: 386px;
   }
+  @media ${breakpoints.desktop} {
+    margin-left: 501px;
+  }
 `;
 
 export const SvgAccount = styled.svg`
