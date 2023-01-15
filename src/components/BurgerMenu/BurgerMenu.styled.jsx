@@ -1,3 +1,4 @@
+import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
 
 export const BurgerOverlay = styled.div`
@@ -10,4 +11,13 @@ export const BurgerOverlay = styled.div`
   min-height: 100vh;
   background: #fdf7f2;
   text-align: center;
+  @media ${breakpoints.minTablet} {
+    top: 60px;
+  }
+`;
+
+export const AuthNavStyled = styled.div`
+  @media ${breakpoints.minTablet} {
+    display: none;
+  }
 `;

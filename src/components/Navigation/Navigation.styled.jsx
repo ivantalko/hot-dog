@@ -5,8 +5,12 @@ export const NavigationStyled = styled.div`
   display: none;
 
   @media ${breakpoints.minTablet} {
+    display: flex;
   }
+`;
 
-  @media ${breakpoints.desktop} {
+export const NavStyled = styled.div`
+  @media ${breakpoints.minTablet} {
+    display: none;
   }
 `;

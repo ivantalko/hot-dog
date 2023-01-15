@@ -8,6 +8,7 @@ export const NavStyled = styled.nav`
   gap: 40px;
 
   @media ${breakpoints.minTablet} {
+    margin-top: 88px;
   }
 
   @media ${breakpoints.desktop} {
@@ -32,5 +33,10 @@ export const NavLinkStyled = styled(NavLink)`
     font-weight: 700;
     color: #f59256;
     text-decoration: underline;
+  }
+
+  @media ${breakpoints.minTablet} {
+    font-size: 48px;
+    line-height: 66px;
   }
 `;

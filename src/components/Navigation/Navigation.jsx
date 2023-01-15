@@ -4,14 +4,16 @@ import UserNav from 'components/UserNav/UserNav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
 import { getToken } from 'redux/Auth/auth-selectors';
-import { NavigationStyled } from './Navigation.styled';
+import { NavigationStyled, NavStyled } from './Navigation.styled';
 
 export default function Navigation() {
   const token = useSelector(getToken);
 
   return (
     <NavigationStyled>
-      <Nav />
+      <NavStyled>
+        <Nav />
+      </NavStyled>
       {token ? <UserNav /> : <AuthNav />}
     </NavigationStyled>
   );

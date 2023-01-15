@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { breakpoints } from '../../helpers/breakpoints';
 
 export const AuthNavStyled = styled.nav`
+  display: flex;
+  justify-content: center;
   margin-bottom: 60px;
   margin-top: 46px;
 
@@ -36,6 +38,15 @@ export const LoginStyled = styled(NavLink)`
 
   color: #ffffff;
   background-color: #f59256;
+
+  @media ${breakpoints.minTablet} {
+    width: 111px;
+    height: 44px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    line-height: 27px;
+  }
 `;
 
 export const RegisterStyled = styled(NavLink)`
@@ -61,4 +72,13 @@ export const RegisterStyled = styled(NavLink)`
 
   color: #111111;
   background: #ffffff;
+
+  @media ${breakpoints.minTablet} {
+    width: 181px;
+    height: 44px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    line-height: 27px;
+  }
 `;
