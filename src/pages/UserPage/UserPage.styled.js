@@ -1,7 +1,18 @@
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
+export const Container = styled.div`
+    margin: 0px auto;
+    padding: 30px 0;
+    
+    @media ${breakpoints.tablet} {
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+`
 
 export const Wrapper = styled.div`
     margin-bottom: 47px;

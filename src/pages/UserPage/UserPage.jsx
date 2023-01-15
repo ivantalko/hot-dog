@@ -1,8 +1,7 @@
 import { Title } from 'components/User/Title/Title';
 import { UserForm } from 'components/User/UserCard/UserForm';
-import { Container } from 'components/Container/Container';
 
-import { Wrapper, TitleBox } from './UserPage.styled';
+import { Wrapper, TitleBox, Container } from './UserPage.styled';
 
 
 const UserPage = () => {

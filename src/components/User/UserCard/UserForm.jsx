@@ -1,9 +1,11 @@
+import { Wrapper, UserData } from "./UserForm.styled"
+
 export const UserForm = () => {
     return (
-        <div>
-            <div>
+        <Wrapper>
+            <UserData>
                 
-            </div>
-        </div>
+            </UserData>
+        </Wrapper>
     )
 }
