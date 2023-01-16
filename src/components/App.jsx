@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { Notices } from './NoticesPage/NoticesPage';
+import { Home } from './Home/Home';
 // import { CategoryName } from './Notices/Notices';
 // import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 
@@ -8,7 +9,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<>Home Page</>} />
+        <Route index element={<Home />} />
         <Route path="news" element={<>News Page</>} />
         <Route path="notices" element={<Notices />}>
           <Route path=":CategoryName" element={<>NoticiesCategoriesList</>}>
