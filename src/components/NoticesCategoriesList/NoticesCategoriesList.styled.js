@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 import { ReactComponent as heartPrimal } from './img/heartPrimal.svg';
 // import
@@ -52,11 +52,22 @@ export const PetCategory = styled.span`
 `;
 
 export const FavoriteBtn = styled.button`
+  cursor: pointer;
   position: absolute;
   border: none;
   background-color: transparent;
   color: transparent;
   fill: transparent;
+  transition: 250ms;
+  width: 44px;
+  height: 44px;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+  color: white;
+  fill: white;
   &:hover,
   &:focus {
     color: #f59256;
@@ -65,6 +76,8 @@ export const FavoriteBtn = styled.button`
 `;
 
 export const HeartIconPrimal = styled(heartPrimal)`
+  height: 28px;
+  width: 28px;
   color: inherit;
   fill: inherit;
   * {
