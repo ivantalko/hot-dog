@@ -126,7 +126,7 @@ export const NavLinkStyled = styled(NavLink)`
   line-height: 19px;
   display: inline-flex;
   align-items: center;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.04em;F
   color: #111111;
   flex: none;
   order: 0;
@@ -177,11 +177,13 @@ export const AddBtnBox = styled.div`
     right: 0px;
     width: auto;
     height: auto;
-    bottom: 98px;
+    bottom: auto;
+    top: 140px;
     transform: translateY(100%);
   }
   @media ${breakpoints.desktop} {
-    bottom: 0px;
+    top: 185px;
+    bottom: auto;
     transform: translateY(0);
   }
 `;

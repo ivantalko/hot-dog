@@ -21,7 +21,7 @@ export const App = () => {
           }
         >
           <Route
-            path="sale"
+            path="sell"
             element={<NoticiesCategoriesList searchQuery={searchQuery} />}
           />
           <Route
