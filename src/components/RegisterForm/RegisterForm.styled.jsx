@@ -106,6 +106,7 @@ export const RegisterButton = styled.button`
     border: 2px solid #f59256;
     color: #000000;
   }
+  cursor: pointer;
 `;
 export const ButtonsContainer = styled.div`
   display: flex;
@@ -113,6 +114,7 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 16px;
+  cursor: pointer;
 `;
 // export const LoginForma = styled.form`
 //   input:nth-last-child(even) {

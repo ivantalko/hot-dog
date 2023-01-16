@@ -1,6 +1,10 @@
 import Background from 'components/Background';
 import BaseButton from 'components/BaseButton';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { login } from 'services/API';
 // import { NavLink } from 'react-router-dom';
 import {
   FormList,
@@ -14,7 +18,9 @@ import {
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const notifySuccess = () => toast('Are you logined!');
 
   const input = {
     email: setEmail,
@@ -32,8 +38,8 @@ const LoginForm = () => {
       password,
     };
     console.log(userInfo);
-    //   dispatch(login({ email, password }));
-    //   notifySuccess();
+    dispatch(login({ email, password }));
+    notifySuccess();
     setEmail('');
     setPassword('');
   };
@@ -74,6 +80,7 @@ const LoginForm = () => {
           </div>
         </LoginForma>
       </FormList>
+      <ToastContainer autoClose={2000} />
     </Background>
   );
 };

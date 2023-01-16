@@ -1,6 +1,10 @@
 import Background from 'components/Background';
 import BaseButton from 'components/BaseButton';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { postLogin, postRegistartionUser } from 'services/API';
 
 import {
   ButtonsContainer,
@@ -17,12 +21,14 @@ export default function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  //   const dispatch = useDispatch();
   const [page1, setPage1] = useState(true);
   const [page2, setPage2] = useState(false);
   const [next, setNext] = useState(true);
   const [location, setCity] = useState('');
   const [phone, setPhone] = useState('');
+  const dispatch = useDispatch();
+
+  const notifySuccess = () => toast('Are you registered!');
 
   const inputs = {
     email: setEmail,
@@ -46,6 +52,15 @@ export default function RegistrationForm() {
     }
     return setNext(true);
   };
+
+  //   const isDisabled = () => {
+  //     if (!next) {
+  //       return false;
+  //     }
+  //     if (email.trim() !== '') {
+  //       return false;
+  //     }
+  //   };
   const handleInput = e => {
     inputs[e.target.name](e.target.value.trim());
   };
@@ -60,13 +75,14 @@ export default function RegistrationForm() {
       phone,
     };
     console.log(userInfo);
-    // dispatch(register(userInfo))
-    //   .unwrap()
-    //   .then(() => {
-    //     dispatch(login({ email, password }));
-    //     notifySuccess();
-    //   })
-    // .catch(error => console.error(error));
+    dispatch(postRegistartionUser(userInfo))
+      .unwrap()
+      .then(() => {
+        dispatch(postLogin({ email, password }));
+        notifySuccess();
+      })
+      .catch(error => console.error(error));
+
     setEmail('');
     setPassword('');
     setCity('');
@@ -107,7 +123,11 @@ export default function RegistrationForm() {
                 onChange={isCorrectpassword}
               />
 
-              <BaseButton disabled={next} onClick={nextClickButton}>
+              <BaseButton
+                type="button"
+                disabled={next}
+                onClick={nextClickButton}
+              >
                 Next
               </BaseButton>
             </>
@@ -156,6 +176,10 @@ export default function RegistrationForm() {
           </TextRegisterForm>
         </RegisterForma>
       </RegisterContainer>
+      <ToastContainer autoClose={2000} />
     </Background>
   );
 }
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2M1MWM1ZWZjOWIyZjliZTgxYTg2ZTEiLCJpYXQiOjE2NzM4NjIyMzgsImV4cCI6MTY3Mzk0ODYzOH0.5BkX5afn_sp4cKw_93E-PpM8NKGAbYEGZJ1hFb17yPM
+// 63c51c5efc9b2f9be81a86e1
