@@ -31,6 +31,45 @@ export const NoticesItem = styled.li`
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
+  padding-bottom: 12px;
+`;
+
+export const NoticesItemImg = styled.img`
+  margin-bottom: 20px;
+`;
+
+export const ItemTitle = styled.h3`
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  color: #111111;
+  padding 0px 20px;
+  margin-bottom: 20px;
+`;
+
+export const ParametersList = styled.ul`
+  list-style: none;
+  padding: 0px 20px;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+`;
+
+export const ParametersItemText = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #111111;
+`;
+
+export const ParametersName = styled.span`
+  width: 50px;
+  margin-right: 40px;
+  display: flex;
 `;
 
 export const PetCategory = styled.span`
@@ -52,6 +91,9 @@ export const PetCategory = styled.span`
 `;
 
 export const FavoriteBtn = styled.button`
+  align-items: center;
+  justify-content: center;
+  display: flex;
   cursor: pointer;
   position: absolute;
   border: none;
@@ -68,6 +110,7 @@ export const FavoriteBtn = styled.button`
   border-radius: 50%;
   color: white;
   fill: white;
+
   &:hover,
   &:focus {
     color: #f59256;
@@ -84,4 +127,34 @@ export const HeartIconPrimal = styled(heartPrimal)`
     color: inherit;
     fill: inherit;
   }
+`;
+
+export const ButtonsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const LearnMoreBtn = styled.button`
+  display: flex;
+  margin: auto;
+  width: 248px;
+  height: 38px;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  margin-bottom: 20px;
+`;
+export const DeleteBtn = styled.button`
+  display: flex;
+  margin: auto;
+  width: 248px;
+  height: 38px;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  margin-top: -8px;
 `;

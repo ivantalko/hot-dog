@@ -167,7 +167,7 @@ export const AddBtnBox = styled.div`
   justify-content: center;
   position: fixed;
   bottom: 92px;
-  right: 15px;
+  right: 20px;
   @media ${breakpoints.minTablet} {
     position: absolute;
     flex-direction: row;
