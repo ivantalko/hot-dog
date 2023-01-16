@@ -1,8 +1,12 @@
 import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
+import { useState } from 'react';
 import {
   Section,
   NoticesList,
   NoticesItem,
+  FavoriteBtn,
+  HeartIconPrimal,
+  PetCategory,
 } from './NoticesCategoriesList.styled';
 import { useLocation } from 'react-router-dom';
 
@@ -10,59 +14,50 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const currentPath = pathname.slice(9);
-  console.log(currentPath);
-  console.log(searchQuery);
+  const [favotire, setFavorite] = useState(false);
 
-  const filterFoCategory = FakeNoticesCardData.filter(
-    item => item.category === `${currentPath}`
-  );
+  const handleClickToFavorite = () => {
+    setFavorite(!favotire);
+  };
 
-  console.log(filterFoCategory);
-  const filteredForPet = filterFoCategory.filter(
-    item => item.pet === `${searchQuery}`
-  );
-
-  console.log(filteredForPet);
+  const filteredPets = () => {
+    const filterFoCategory = FakeNoticesCardData.filter(
+      item => item.category === `${currentPath}`
+    );
+    const filteredForPet = filterFoCategory.filter(
+      item => item.pet === `${searchQuery}`
+    );
+    if (searchQuery === '') {
+      return filterFoCategory;
+    }
+    return filteredForPet;
+  };
 
   return (
     <Section>
-      {searchQuery === '' ? (
-        <NoticesList>
-          {filterFoCategory.map(item => {
-            return (
-              <NoticesItem key={item.id}>
-                {/* <span>{item.category}</span>
-              <button>fav</button> */}
-                <img src={item.src} alt={item.title} />
-                <h3>{item.title}</h3>
-                <p>{item.breed}</p>
-                <p>{item.place}</p>
-                <p>{item.age}</p>
-                <button>Learn more</button>
-                <button>Delete</button>
-              </NoticesItem>
-            );
-          })}
-        </NoticesList>
-      ) : (
-        <NoticesList>
-          {filteredForPet.map(item => {
-            return (
-              <NoticesItem key={item.id}>
-                {/* <span>{item.category}</span>
-              <button>fav</button> */}
-                <img src={item.src} alt={item.title} />
-                <h3>{item.title}</h3>
-                <p>{item.breed}</p>
-                <p>{item.place}</p>
-                <p>{item.age}</p>
-                <button>Learn more</button>
-                <button>Delete</button>
-              </NoticesItem>
-            );
-          })}
-        </NoticesList>
-      )}
+      <NoticesList>
+        {filteredPets().map(item => {
+          return (
+            <NoticesItem key={item.id}>
+              <PetCategory>{item.category}</PetCategory>
+              <FavoriteBtn onClick={handleClickToFavorite}>
+                {favotire ? (
+                  <HeartIconPrimal id="toFavoriteInList" active="true" />
+                ) : (
+                  <HeartIconPrimal id="toFavoriteInList" active="false" />
+                )}
+              </FavoriteBtn>
+              <img loading="lazy" src={item.src} alt={item.title} />
+              <h3>{item.title}</h3>
+              <p>{item.breed}</p>
+              <p>{item.place}</p>
+              <p>{item.age}</p>
+              <button>Learn more</button>
+              <button>Delete</button>
+            </NoticesItem>
+          );
+        })}
+      </NoticesList>
     </Section>
   );
 };
