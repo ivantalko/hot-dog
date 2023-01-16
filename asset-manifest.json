@@ -1,13 +1,25 @@
 {
   "files": {
-    "main.css": "/hot-dog/static/css/main.1d59d08f.css",
-    "main.js": "/hot-dog/static/js/main.dbd28a66.js",
+    "main.css": "/hot-dog/static/css/main.3bcfe459.css",
+    "main.js": "/hot-dog/static/js/main.0a18e6f1.js",
+    "static/media/dog.jpg": "/hot-dog/static/media/dog.9de095e924ecf1e0370a.jpg",
+    "static/media/cat4.jpg": "/hot-dog/static/media/cat4.01de2aba8e9a0ed38ff5.jpg",
+    "static/media/dog3.jpg": "/hot-dog/static/media/dog3.97b665528d7ce31bfae3.jpg",
+    "static/media/dog4.jpg": "/hot-dog/static/media/dog4.52b2674a59cbae703a7c.jpg",
+    "static/media/cat1.jpg": "/hot-dog/static/media/cat1.2c272656c0d354f1341a.jpg",
+    "static/media/cat3.jpg": "/hot-dog/static/media/cat3.9f32b2824f845bf9a28d.jpg",
+    "static/media/dog2.jpg": "/hot-dog/static/media/dog2.fd34ad6a366daf6bdd66.jpg",
+    "static/media/cat2.jpg": "/hot-dog/static/media/cat2.b6c089938b2ff9ad44a4.jpg",
+    "static/media/heartPrimal.svg": "/hot-dog/static/media/heartPrimal.c02df80a0976e3d3eb9b90bca8b65324.svg",
+    "static/media/closeIcon.svg": "/hot-dog/static/media/closeIcon.23852fe74b2b18a2a5c5bd438051a9bf.svg",
     "index.html": "/hot-dog/index.html",
-    "main.1d59d08f.css.map": "/hot-dog/static/css/main.1d59d08f.css.map",
-    "main.dbd28a66.js.map": "/hot-dog/static/js/main.dbd28a66.js.map"
+    "static/media/searchIcon.svg": "/hot-dog/static/media/searchIcon.9d722035f6aa77807b8795374f208b55.svg",
+    "static/media/addIcon.svg": "/hot-dog/static/media/addIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
+    "main.3bcfe459.css.map": "/hot-dog/static/css/main.3bcfe459.css.map",
+    "main.0a18e6f1.js.map": "/hot-dog/static/js/main.0a18e6f1.js.map"
   },
   "entrypoints": [
-    "static/css/main.1d59d08f.css",
-    "static/js/main.dbd28a66.js"
+    "static/css/main.3bcfe459.css",
+    "static/js/main.0a18e6f1.js"
   ]
 }
