@@ -1,14 +1,27 @@
-import { NavLink } from 'react-router-dom';
+import Logo from 'components/Header/Logo/Logo';
+import React, { useState } from 'react';
+import Navigation from 'components/Header/Navigation/Navigation';
+import { HeaderStyled } from './Header.styled';
+import BurgerBtn from 'components/Header/BurgerBtn/BurgerBtn';
+import BurgerMenu from 'components/Header/BurgerMenu/BurgerMenu';
 
-export const Header = () => {
+export default function Header() {
+  const [burgerMenu, setBurgerMenu] = useState(false);
+
+  const handTogleBurger = () => {
+    setBurgerMenu(!burgerMenu);
+  };
+
+  const handleCloseBurger = () => {
+    setBurgerMenu(false);
+  };
+
   return (
-    <>
-      Logo
-      <NavLink to="news">___News___</NavLink>
-      <NavLink to="notices/sell">___Find Pet___</NavLink>
-      <NavLink to="friends">___Our friend___</NavLink>
-      <NavLink to="login">Login</NavLink>
-      <NavLink to="register">___Registration___</NavLink>
-    </>
+    <HeaderStyled>
+      <Logo />
+      {!burgerMenu && <Navigation />}
+      <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
+      {burgerMenu && <BurgerMenu onClick={handleCloseBurger} />}
+    </HeaderStyled>
   );
-};
+}

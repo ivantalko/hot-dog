@@ -3,6 +3,7 @@ import { StatusForAll } from '../status';
 import { loginUserOperation, logoutUserOperation } from './auth-operations';
 
 const initialState = {
+  name: '',
   _id: null,
   accessToken: null,
   status: StatusForAll.init,
@@ -16,11 +17,13 @@ const authSlice = createSlice({
     },
     [loginUserOperation.fulfilled](state, action) {
       state.status = StatusForAll.success;
+      state.name = action.payload.name;
       state._id = action.payload._id;
       state.accessToken = action.payload.accessToken;
     },
     [loginUserOperation.rejected](state) {
       state.status = StatusForAll.error;
+      state.name = '';
       state._id = null;
       state.accessToken = null;
     },
