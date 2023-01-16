@@ -6,6 +6,8 @@ import { ReactComponent as CloseIconPrimal } from './img/closeIcon.svg';
 import { ReactComponent as AddIconPrimal } from './img/addIcon.svg';
 
 export const Section = styled.section`
+  max-width: 1280px;
+  margin: auto;
   padding: 0px 20px 100px;
   @media ${breakpoints.minTablet} {
     padding: 0px 32px 100px;
@@ -143,6 +145,8 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const AddIcon = styled(AddIconPrimal)`
+  color: inherit;
+  fill: inherit;
   height: 32px;
   width: 32px;
   @media ${breakpoints.minTablet} {
@@ -150,6 +154,10 @@ export const AddIcon = styled(AddIconPrimal)`
     width: 24px;
     display: flex;
     margin: auto;
+  }
+  * {
+    color: inherit;
+    fill: inherit;
   }
 `;
 
@@ -168,6 +176,8 @@ export const AddBtnBox = styled.div`
   position: fixed;
   bottom: 92px;
   right: 20px;
+  cursor: pointer;
+  transition: 250ms;
   @media ${breakpoints.minTablet} {
     position: absolute;
     flex-direction: row;
@@ -180,11 +190,18 @@ export const AddBtnBox = styled.div`
     bottom: auto;
     top: 140px;
     transform: translateY(100%);
+    cursor: default;
   }
   @media ${breakpoints.desktop} {
     top: 185px;
     bottom: auto;
     transform: translateY(0);
+  }
+  &:hover,
+  &:focus {
+    @media ${breakpoints.maxMobile}  {
+      box-shadow: 0px 0px 4px black;
+     
   }
 `;
 
@@ -202,8 +219,12 @@ export const AddBtnText = styled.span`
 `;
 
 export const AddBtn = styled.button`
+  color: white;
+  fill: white;
+  cursor: pointer;
   border: none;
   background-color: transparent;
+  transition: 250ms;
   @media ${breakpoints.minTablet} {
     margin-left: 12px;
     width: 44px;

@@ -4,7 +4,10 @@ import { ReactComponent as heartPrimal } from './img/heartPrimal.svg';
 // import
 
 export const Section = styled.section`
+  max-width: 1280px;
+  margin: auto;
   margin-top: 30px;
+
   @media ${breakpoints.minTablet} {
     margin-top: 57px;
   }
@@ -15,8 +18,14 @@ export const Section = styled.section`
 
 export const NoticesList = styled.ul`
   display: grid;
+
   grid-template-columns: repeat(1, 4fr);
   gap: 32px;
+  max-width: 450px;
+  margin: auto;
+  @media screen and (min-width: 450px) {
+    max-width: initial;
+  }
   @media ${breakpoints.minTablet} {
     grid-template-columns: repeat(2, 4fr);
   }
@@ -145,6 +154,20 @@ export const LearnMoreBtn = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: #f59256;
+    cursor: pointer;
+  transition: 250ms;
+  color: #f59256;
+  &:hover,
+  &:focus {
+    background: #f59256;
+    color: white;
 `;
 export const DeleteBtn = styled.button`
   display: flex;
@@ -157,4 +180,18 @@ export const DeleteBtn = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   margin-top: -8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: 250ms;
+  color: #f59256;
+  &:hover,
+  &:focus {
+    background: #f59256;
+    color: white;
+  }
 `;
