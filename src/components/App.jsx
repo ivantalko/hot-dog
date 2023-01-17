@@ -1,24 +1,45 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { Notices } from './NoticesPage/NoticesPage';
+import { Notices } from '../pages/NoticesPage/NoticesPage';
+import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+import { useState } from 'react';
 import { Home } from './Home/Home';
-// import { CategoryName } from './Notices/Notices';
-// import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
-
 export const App = () => {
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="news" element={<>News Page</>} />
-        <Route path="notices" element={<Notices />}>
-          <Route path=":CategoryName" element={<>NoticiesCategoriesList</>}>
-            <Route path="sell" element={<>sell page</>} />
-            <Route path="lost-found" element={<>lost-found page</>} />
-            <Route path="for-free" element={<>for-free page</>} />
-            <Route path="favorite" element={<>favorite page</>} />
-            <Route path="own" element={<>own page</>} />
-          </Route>
+        <Route
+          path="notices"
+          element={
+            <Notices
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          }
+        >
+          <Route
+            path="sell"
+            element={<NoticiesCategoriesList searchQuery={searchQuery} />}
+          />
+          <Route
+            path="lost-found"
+            element={<NoticiesCategoriesList searchQuery={searchQuery} />}
+          />
+          <Route
+            path="for-free"
+            element={<NoticiesCategoriesList searchQuery={searchQuery} />}
+          />
+          <Route
+            path="favorite"
+            element={<NoticiesCategoriesList searchQuery={searchQuery} />}
+          />
+          <Route
+            path="own"
+            element={<NoticiesCategoriesList searchQuery={searchQuery} />}
+          />
         </Route>
 
         <Route path="friends" element={<>friends Page</>} />
