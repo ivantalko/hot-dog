@@ -1,8 +1,4 @@
-import {
-  StyledFrameImage,
-  FlexContainer,
-  StyledTitle,
-} from './style/StyledHome';
+import { StyledFrameImage, StyledTitle } from './style/StyledHome';
 
 import { Container } from 'components/Container/Container';
 
@@ -11,7 +7,6 @@ export const Home = () => {
     <Container>
       <StyledTitle>Take good care of your small pets</StyledTitle>
       <StyledFrameImage />
-      <FlexContainer></FlexContainer>
     </Container>
   );
 };
