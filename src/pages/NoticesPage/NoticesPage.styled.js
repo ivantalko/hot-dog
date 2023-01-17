@@ -120,7 +120,12 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const NavItem = styled.li``;
+export const NavItem = styled.li`
+  &:focus,
+  &:hover {
+    box-shadow: 0px 0px 4px black;
+  }
+`;
 
 export const NavLinkStyled = styled(NavLink)`
   font-weight: 500;
@@ -142,6 +147,7 @@ export const NavLinkStyled = styled(NavLink)`
     background-color: #f59256;
     color: white;
   }
+
 `;
 
 export const AddIcon = styled(AddIconPrimal)`
@@ -231,5 +237,9 @@ export const AddBtn = styled.button`
     height: 44px;
     background-color: #f59256;
     border-radius: 50%;
+    &:hover,
+    &:focus {
+      box-shadow: 0px 0px 4px grey;
+    }
   }
 `;
