@@ -11,6 +11,13 @@ import { nanoid } from '@reduxjs/toolkit';
 export const FakeNoticesCardData = [
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -21,6 +28,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -31,6 +45,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -41,6 +62,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -51,6 +79,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -61,6 +96,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -71,6 +113,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -81,6 +130,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -91,6 +147,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -101,6 +164,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -111,6 +181,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -121,6 +198,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -131,6 +215,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -141,6 +232,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -151,6 +249,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -161,6 +266,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -171,6 +283,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -181,6 +300,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -191,6 +317,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -201,6 +334,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -211,6 +351,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -221,6 +368,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -231,6 +385,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -241,6 +402,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -251,6 +419,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -261,6 +436,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -271,6 +453,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -281,6 +470,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -291,6 +487,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -301,6 +504,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -311,6 +521,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -321,6 +538,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -331,6 +555,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -341,6 +572,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -351,6 +589,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -361,6 +606,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -371,6 +623,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -381,6 +640,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -391,6 +657,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -401,6 +674,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -411,6 +691,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -421,6 +708,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -431,6 +725,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -441,6 +742,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -451,6 +759,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -461,6 +776,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -471,6 +793,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -481,6 +810,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -491,6 +827,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -501,6 +844,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -511,6 +861,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -521,6 +878,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -531,6 +895,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -541,6 +912,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -551,6 +929,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -561,6 +946,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -571,6 +963,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -581,6 +980,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -591,6 +997,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -601,6 +1014,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -611,6 +1031,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -621,6 +1048,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -631,6 +1065,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -641,6 +1082,13 @@ export const FakeNoticesCardData = [
   },
   {
     id: nanoid(),
+    name: 'Vova',
+    birthday: '21.09.2020',
+    location: 'swamp is moscow',
+    sex: 'male',
+    email: 'bundernuyDid@mol.net',
+    phone: '000-00-01',
+    comments: 'lorem ipsum dolor'
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
