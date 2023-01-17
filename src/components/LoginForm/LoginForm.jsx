@@ -1,11 +1,13 @@
 import Background from 'components/Background';
 import BaseButton from 'components/BaseButton';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { login } from 'services/API';
-// import { NavLink } from 'react-router-dom';
+import { loginUserOperation } from 'redux/Auth/auth-operations';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
+
 import {
   FormList,
   InputLoginForm,
@@ -19,8 +21,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
-  const notifySuccess = () => toast('Are you logined!');
+  const navigate = useNavigate();
+  let logined = useSelector(getIsLogin);
 
   const input = {
     email: setEmail,
@@ -31,18 +33,23 @@ const LoginForm = () => {
     input[evt.target.name](evt.target.value.trim());
   };
 
-  const onSubmit = evt => {
+  const onSubmit = async evt => {
     evt.preventDefault();
     const userInfo = {
       email,
       password,
     };
     console.log(userInfo);
-    dispatch(login({ email, password }));
-    notifySuccess();
-    setEmail('');
-    setPassword('');
+    dispatch(loginUserOperation({ email, password }));
   };
+  useEffect(() => {
+    if (logined) {
+      navigate(`/user`);
+      setEmail('');
+      setPassword('');
+      return;
+    }
+  }, [logined, navigate]);
 
   return (
     <Background>
@@ -64,6 +71,7 @@ const LoginForm = () => {
             minLength={7}
             maxLength={32}
             required
+            autoComplete="true"
             onChange={onInput}
             name="password"
             value={password}

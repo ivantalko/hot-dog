@@ -8,7 +8,6 @@ import { NavigationStyled, NavStyled } from './Navigation.styled';
 
 export default function Navigation() {
   const token = useSelector(getToken);
-
   return (
     <NavigationStyled>
       <NavStyled>

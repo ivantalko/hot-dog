@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const RegisterContainer = styled.div`
+  position: relative;
   width: 618px;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -38,6 +39,7 @@ export const InputRegisterForm = styled.input`
   &:focus {
     color: #ff6101;
     outline: 1px solid #ff6101;
+    background: #fdf7f2;
   }
 `;
 
@@ -47,11 +49,25 @@ export const RegisterForma = styled.form`
   flex-direction: column;
 
   gap: 16px;
-
-  input:nth-child(3) {
-    margin-bottom: 40px;
-  }
 `;
+export const InputRegisterFormConfirm = styled.input`
+  width: 458px;
+  height: 52px;
+  padding-left: 32px;
+
+  background: #fdf7f2;
+
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  color: rgba(17, 17, 17, 0.6);
+  &:hover,
+  &:focus {
+    color: #ff6101;
+    outline: 1px solid #ff6101;
+  }
+  margin-bottom: 40px;
+`;
+
 export const TextRegisterForm = styled.p`
   display: flex;
   justify-content: center;
@@ -86,7 +102,6 @@ export const RegisterButton = styled.button`
 
   padding: 10px 28px;
 
-  background: #f59256;
   border-radius: 40px;
   border: 1px solid rgba(245, 146, 86, 0.5);
 
@@ -98,8 +113,9 @@ export const RegisterButton = styled.button`
   display: flex;
   justify-content: center;
   letter-spacing: 0.04em;
+  color: ${({ disabled }) => (disabled ? '#0c0c0c' : '#ffffff')};
+  background: ${({ disabled }) => (disabled ? '#ffffff' : '#f59256')};
 
-  color: #ffffff;
   &:hover,
   &:focus {
     background: #ffffff;
@@ -115,6 +131,86 @@ export const ButtonsContainer = styled.div`
   flex-direction: column;
   gap: 16px;
   cursor: pointer;
+`;
+
+export const ValidationContainerPassword = styled.div`
+  padding: 10px;
+  position: absolute;
+  transform: translate(100px, -130px);
+  background-color: #ffffffff;
+
+  border: 1px solid red;
+  border-radius: 40px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.33;
+`;
+export const ValidationContainerEmail = styled.div`
+  background-color: #ffffffff;
+  padding: 10px;
+  position: absolute;
+  transform: translate(140px, -198px);
+  border: 1px solid red;
+  border-radius: 40px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.33;
+`;
+export const ValidationContainerPhone = styled.div`
+  background-color: #ffffffff;
+  padding: 10px;
+  position: absolute;
+  transform: translate(89px, -75px);
+  border: 1px solid red;
+  border-radius: 40px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.33;
+`;
+export const RegisterLocationContainer = styled.ul`
+  position: absolute;
+  transform: translate(8px, -40px);
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+
+  width: 444px;
+  height: 69px;
+  overflow: scroll;
+`;
+export const RegisterButtonLocation = styled.button`
+  border: none;
+  padding: 5px;
+
+  cursor: pointer;
+  background-color: #ffffff;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33;
+  width: 100%;
+  &:hover,
+  &:focus {
+    background-color: #fdf7f2;
+    color: #f59256;
+  }
 `;
 // export const LoginForma = styled.form`
 //   input:nth-last-child(even) {

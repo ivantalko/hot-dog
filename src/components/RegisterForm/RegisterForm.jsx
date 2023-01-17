@@ -1,20 +1,33 @@
+// import axios from 'axios';
+import axios from 'axios';
 import Background from 'components/Background';
 import BaseButton from 'components/BaseButton';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { postLogin, postRegistartionUser } from 'services/API';
+import {
+  loginUserOperation,
+  registerUserOperation,
+} from 'redux/Auth/auth-operations';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
 
 import {
   ButtonsContainer,
   InputRegisterForm,
+  InputRegisterFormConfirm,
   LinkRegisterForm,
   RegisterButton,
+  RegisterButtonLocation,
   RegisterContainer,
   RegisterForma,
+  RegisterLocationContainer,
   TextRegisterForm,
   TitleRegisterForm,
+  ValidationContainerEmail,
+  ValidationContainerPassword,
+  ValidationContainerPhone,
 } from './RegisterForm.styled';
 
 export default function RegistrationForm() {
@@ -24,16 +37,27 @@ export default function RegistrationForm() {
   const [page1, setPage1] = useState(true);
   const [page2, setPage2] = useState(false);
   const [next, setNext] = useState(true);
-  const [location, setCity] = useState('');
   const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [emailDirty, setEmailDirty] = useState(false);
+  const [passwordDirty, setpasswordDirty] = useState(false);
+  const [emailErorr, setEmailError] = useState('Email cannot be emty');
+  const [passwordError, setpasswordError] = useState('Password cannot be emty');
+  const [phoneError, setphoneError] = useState('Phone cannot be emty');
+  const [phoneDirty, setphoneDirty] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  //
+  const [arrayLocation, setArrayLocation] = useState([]);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const notifySuccess = () => toast('Are you registered!');
-
+  let logined = useSelector(getIsLogin);
   const inputs = {
     email: setEmail,
     password: setPassword,
-    location: setCity,
+    location: setLocation,
     name: setName,
     phone: setPhone,
   };
@@ -48,20 +72,56 @@ export default function RegistrationForm() {
   const isCorrectpassword = e => {
     if (e.target.value.trim() === password) {
       setNext(false);
-      return;
+      setConfirmPassword(e.target.value);
+    } else {
+      setNext(true);
+      setConfirmPassword(e.target.value);
     }
-    return setNext(true);
   };
 
-  //   const isDisabled = () => {
-  //     if (!next) {
-  //       return false;
-  //     }
-  //     if (email.trim() !== '') {
-  //       return false;
-  //     }
-  //   };
   const handleInput = e => {
+    switch (e.target.name) {
+      case 'email':
+        if (e.target.value === '') {
+          setEmailDirty(true);
+          setEmailError('Wrong cannot be empty');
+        } else {
+          setEmailDirty(false);
+        }
+        let re = /\S+@\S+\.\S+/;
+        if (!re.test(String(e.target.value).toLocaleLowerCase())) {
+          setEmailError('Wrong email, exemple: lovepets@ukr.net');
+          setEmailDirty(true);
+        } else {
+          setEmailError('');
+          setEmailDirty(false);
+        }
+        break;
+      case 'password':
+        if (e.target.value.length < 7 || e.target.value.length > 32) {
+          setpasswordError(
+            'Passsword  should be more than 7 characters and least 32 characters'
+          );
+          setpasswordDirty(true);
+        } else {
+          setpasswordError('');
+          setpasswordDirty(false);
+        }
+        break;
+      case 'phone':
+        let regex = /^\+?3?8?(0\d{9})$/;
+        if (!regex.test(String(e.target.value).toLocaleLowerCase())) {
+          setphoneError(
+            'Wrong mobile: use + and 12 numbers , number, example: +380930000000'
+          );
+          setphoneDirty(true);
+        } else {
+          setphoneError('');
+          setphoneDirty(false);
+        }
+        break;
+      default:
+    }
     inputs[e.target.name](e.target.value.trim());
   };
 
@@ -75,57 +135,122 @@ export default function RegistrationForm() {
       phone,
     };
     console.log(userInfo);
-    dispatch(postRegistartionUser(userInfo))
+    dispatch(registerUserOperation(userInfo))
       .unwrap()
       .then(() => {
-        dispatch(postLogin({ email, password }));
-        notifySuccess();
+        dispatch(loginUserOperation({ email, password }));
       })
       .catch(error => console.error(error));
 
     setEmail('');
     setPassword('');
-    setCity('');
+    setLocation('');
     setName('');
     setPhone('');
   };
+  useEffect(() => {
+    if (logined) {
+      navigate(`/user`);
+      setEmail('');
+      setPassword('');
+      return;
+    }
+  }, [logined, navigate]);
+  //
+  const fetchProducts = useMemo(
+    () => async search => {
+      if (!search) return;
+      try {
+        const response = await axios.get(
+          `https://petssupportapi.onrender.com/location?city=${search}`
+        );
+        console.log(response?.data?.cities);
+        console.log(arrayLocation);
+        setArrayLocation(response?.data?.cities);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    [arrayLocation]
+  );
 
+  const handelChangeLocation = e => {
+    setLocation(e.target.value);
+    setIsOpen(true);
+    fetchProducts(e.target.value.trim());
+    if (!location) return setArrayLocation([]);
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
+
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      setIsOpen(false);
+    }
+  };
+  const handleButtonClick = e => {
+    setLocation(e.currentTarget.innerText);
+    setIsOpen(false);
+  };
+  //
   return (
     <Background>
       <RegisterContainer>
         <TitleRegisterForm>Registration</TitleRegisterForm>
+
         <RegisterForma onSubmit={handleFormSubmit}>
           {page1 && (
             <>
+              {emailDirty && (
+                <ValidationContainerEmail>
+                  {emailErorr}
+                </ValidationContainerEmail>
+              )}
               <InputRegisterForm
                 placeholder="Email"
                 label="Email"
                 type="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}"
                 required
-                onChange={handleInput}
                 name="email"
+                onChange={handleInput}
                 value={email}
+                onBlur={handleInput}
               />
+              {passwordDirty && (
+                <ValidationContainerPassword>
+                  {passwordError}
+                </ValidationContainerPassword>
+              )}
               <InputRegisterForm
                 label="Password"
                 type="password"
                 placeholder="Password"
                 required
-                onChange={handleInput}
+                minLength={7}
+                maxLength={32}
                 name="password"
+                onChange={handleInput}
                 value={password}
+                onBlur={handleInput}
               />
-              <InputRegisterForm
+              <InputRegisterFormConfirm
+                label="ConfirmPassword"
                 type="password"
                 autoComplete="true"
                 required
                 placeholder="Confirm Password"
                 onChange={isCorrectpassword}
+                value={confirmPassword}
+                name="confirmPassword"
               />
-
               <BaseButton
                 type="button"
-                disabled={next}
+                disabled={next || emailErorr !== '' || passwordError !== ''}
                 onClick={nextClickButton}
               >
                 Next
@@ -148,10 +273,15 @@ export default function RegistrationForm() {
                 type="text"
                 placeholder="City, region"
                 required
-                onChange={handleInput}
+                onChange={handelChangeLocation}
                 name="location"
                 value={location}
               />
+              {phoneDirty && (
+                <ValidationContainerPhone>
+                  {phoneError}
+                </ValidationContainerPhone>
+              )}
               <InputRegisterForm
                 label="Phone"
                 type="tel"
@@ -162,12 +292,30 @@ export default function RegistrationForm() {
                 value={phone}
               />
               <ButtonsContainer>
-                <RegisterButton type="submit">Register</RegisterButton>
+                <RegisterButton
+                  type="submit"
+                  disabled={!name || !location || phoneError !== ''}
+                >
+                  Register
+                </RegisterButton>
 
                 <BaseButton type="button" onClick={backClickButton}>
                   Back
                 </BaseButton>
               </ButtonsContainer>
+              {arrayLocation && isOpen && (
+                <RegisterLocationContainer>
+                  {arrayLocation.map(locate => (
+                    <li key={location.name}>
+                      <RegisterButtonLocation onClick={handleButtonClick}>
+                        <span>{locate.name}</span>
+                        {'  '}
+                        <span>{locate.regionArea}</span>
+                      </RegisterButtonLocation>
+                    </li>
+                  ))}
+                </RegisterLocationContainer>
+              )}
             </>
           )}
           <TextRegisterForm>
@@ -176,10 +324,7 @@ export default function RegistrationForm() {
           </TextRegisterForm>
         </RegisterForma>
       </RegisterContainer>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={3000} />
     </Background>
   );
 }
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2M1MWM1ZWZjOWIyZjliZTgxYTg2ZTEiLCJpYXQiOjE2NzM4NjIyMzgsImV4cCI6MTY3Mzk0ODYzOH0.5BkX5afn_sp4cKw_93E-PpM8NKGAbYEGZJ1hFb17yPM
-// 63c51c5efc9b2f9be81a86e1

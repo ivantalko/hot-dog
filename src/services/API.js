@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'https://petssupportapi.onrender.com';
 
@@ -14,15 +12,12 @@ export const token = {
   },
 };
 
-// register
 export async function postRegistartionUser(user) {
   try {
     const { data } = await axios.post('/auth/registration/', user);
     return data;
   } catch (e) {
-    toast.error(e.response.data.message, {
-      position: 'top-right',
-    });
+    console.log(e);
   }
 }
 
@@ -38,61 +33,14 @@ export const register = createAsyncThunk(
   }
 );
 
-// login
-
-// const handlesetDataToApiWithId = createAsyncThunk(
-//   'user/daily-rate-id',
-//   async ({ body, userid }, { getState, rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.post('/daily-rate/' + userid, body);
-
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export async function postLogin(body) {
   try {
     const { data } = await axios.post('/auth/login/', body);
     return data;
   } catch (e) {
-    toast.error(e.response.data.message, {
-      position: 'top-right',
-    });
+    console.log(e);
   }
 }
-
-export const login = createAsyncThunk(
-  '/auth/login',
-  async (data, { getState, dispatch, rejectWithValue }) => {
-    // const userData = getState().user.userData;
-    try {
-      const response = await postLogin(data);
-      console.log(data);
-      // token.set(response.accessToken);
-      // const isUserDataFilled =
-      //   userData.weight &&
-      //   userData.height &&
-      //   userData.age &&
-      //   userData.bloodType;
-
-      // if (!response.dailyRate && isUserDataFilled) {
-      //   dispatch(
-      //     handlesetDataToApiWithId({
-      //       body: omit(userData, 'notAllowedProducts', 'dailyRate'),
-      //       userid: response.user.id,
-      //     })
-      //   );
-      // }
-      return response;
-    } catch (e) {
-      return rejectWithValue(e.message);
-    }
-  }
-);
-//
 
 export async function postLogout() {
   const { data } = await axios.post('/auth/logout/');
