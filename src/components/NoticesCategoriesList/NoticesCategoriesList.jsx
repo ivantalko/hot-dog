@@ -26,6 +26,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const currentPath = pathname.slice(9);
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
+  const [itemId, setItemId] = useState('');
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
@@ -74,7 +75,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       <NoticesList>
         {filteredPets().map(item => {
           return (
-            <NoticesItem key={item.id}>
+            <NoticesItem id={item.id} key={item.id}>
               <PetCategory>{item.category}</PetCategory>
               <FavoriteBtn onClick={handleClickToFavorite}>
                 {favotire ? (
@@ -114,12 +115,26 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
               <ButtonsList>
                 <li>
-                  <LearnMoreBtn onClick={handleMoreInfoVisible}>
+                  <LearnMoreBtn
+                    id={item.id}
+                    onClick={() => {
+                      setItemId(item.id);
+                      handleMoreInfoVisible();
+                    }}
+                    // onClick={handleMoreInfoVisible}
+                  >
                     Learn more
                   </LearnMoreBtn>
                 </li>
                 <li>
-                  <DeleteBtn>Delete</DeleteBtn>
+                  <DeleteBtn
+                    id={item.id}
+                    onClick={() => {
+                      console.log('delete btn');
+                    }}
+                  >
+                    Delete
+                  </DeleteBtn>
                 </li>
               </ButtonsList>
             </NoticesItem>
@@ -127,7 +142,11 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
         })}
       </NoticesList>
       {moreInfoVisible && (
-        <ModalNotice handleBackdropClose={handleBackdropClose} />
+        <ModalNotice
+          itemId={itemId}
+          setMoreInfoVisible={setMoreInfoVisible}
+          handleBackdropClose={handleBackdropClose}
+        />
       )}
     </Section>
   );
