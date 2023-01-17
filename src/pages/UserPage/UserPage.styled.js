@@ -1,57 +1,75 @@
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
-export const Container = styled.div`
-    margin: 0px auto;
-    padding: 30px 0;
+export const Container = styled.section`
+    background-color: #fdf7f2;
+    height: 100%;
+    width: 100%;
+    padding: 0 0 50px;
     
     @media ${breakpoints.tablet} {
+        padding: 0 0 100px;
+    }
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+    @media ${breakpoints.desktop} {
+        padding: 0 0 100px;
     }
 `
 
 export const Wrapper = styled.div`
-    margin-bottom: 47px;
+    display: flex;
 
-    @media ${breakpoints.tablet} {
-        margin-bottom: 44px;
+    @media ${breakpoints.maxTablet} {
+        flex-direction: column;
     }
+`;
 
-    @media ${breakpoints.desktop} {
-        margin-bottom: 0px;
-    }
+export const UserDiv = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 
-export const TitleBox = styled.div`
-    width: 320px;
-    margin-bottom: 18px;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-
-    padding: 0px 20px;
+export const Title = styled.h2`
 
     font-weight: 500;
-    line-height: 1.35;
+    line-height: 27px;
     font-size: 20px;
     letter-spacing: 0.04em;
     color: #000000;
 
+    @media ${breakpoints.maxMobile} {
+        padding-left: 20px;
+    }
+
     @media ${breakpoints.tablet} {
-        margin-left: 0px;
-        margin-bottom: 40px;
         font-size: 28px;
         line-height: 1.35;
 
-        padding: 0px 0px;
+        padding-left: 32px;
     }
 
     @media ${breakpoints.desktop} {
-        padding: 0px 16px;
-        margin-bottom: 24px;
+        padding-left: 16px;
+    }
+`
+
+export const InfoUser = styled.div`
+    background: #ffffff;
+    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+    border-radius: 0 40px 40px 0;
+    height: 537px;
+    padding: 20px 23px;
+    margin-top: 18px;
+
+    @media ${breakpoints.minTablet} {
+        height: 311px;
+        padding: 24px 40px 24px 32px;
+        margin-top: 40px;
+    }
+
+    @media ${breakpoints.desktop} {
+        height: 541px;
+        margin-top: 24px;
+        padding: 20px 16px;
     }
 `

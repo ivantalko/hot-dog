@@ -1,21 +1,22 @@
-import { Title } from 'components/User/Title/Title';
-import { UserForm } from 'components/User/UserCard/UserForm';
+import UserPhoto from "components/User/UserCard/UserPhoto/UserPhoto";
+import { Container, InfoUser, Title, UserDiv, Wrapper } from "./UserPage.styled";
 
-import { Wrapper, TitleBox, Container } from './UserPage.styled';
 
 
 const UserPage = () => {
-
-
     return (
+        <>
         <Container>
             <Wrapper>
-                <TitleBox>
-                <Title title="My information:" />
-                </TitleBox>
-                <UserForm/>
+                <UserDiv>
+                        <Title>My information:</Title>
+                        <InfoUser>
+                            <UserPhoto />
+                        </InfoUser>
+                </UserDiv>
             </Wrapper>
         </Container>
+        </>
     )
 }
 
