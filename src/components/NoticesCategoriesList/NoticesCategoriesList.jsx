@@ -1,4 +1,5 @@
 import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import {
   Section,
@@ -17,12 +18,14 @@ import {
   DeleteBtn,
 } from './NoticesCategoriesList.styled';
 import { useLocation } from 'react-router-dom';
+import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const currentPath = pathname.slice(9);
   const [favotire, setFavorite] = useState(false);
+  const [moreInfoVisible, setMoreInfoVisible] = useState(false);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
@@ -40,6 +43,30 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     }
 
     return filteredForPet;
+  };
+
+  const handleMoreInfoVisible = () => {
+    setMoreInfoVisible(true);
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyModalClose);
+    return () => {
+      window.removeEventListener('keydown', handleKeyModalClose);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleKeyModalClose = e => {
+    if (e.code === 'Escape') {
+      setMoreInfoVisible(false);
+    }
+  };
+
+  const handleBackdropClose = e => {
+    if (e.target === e.currentTarget) {
+      setMoreInfoVisible(false);
+    }
   };
 
   return (
@@ -87,7 +114,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
               <ButtonsList>
                 <li>
-                  <LearnMoreBtn>Learn more</LearnMoreBtn>
+                  <LearnMoreBtn onClick={handleMoreInfoVisible}>
+                    Learn more
+                  </LearnMoreBtn>
                 </li>
                 <li>
                   <DeleteBtn>Delete</DeleteBtn>
@@ -97,6 +126,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           );
         })}
       </NoticesList>
+      {moreInfoVisible && (
+        <ModalNotice handleBackdropClose={handleBackdropClose} />
+      )}
     </Section>
   );
 };
