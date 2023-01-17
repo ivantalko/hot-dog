@@ -30,6 +30,21 @@ export const StyledTitle = styled('h1')`
 
 export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 320px) {
+    max-width: 424px;
+    height: 456px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(${FrameImageM});
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${FrameImageMX});
+    }
+  }
+
+  @media screen and (min-width: 425px) {
     max-width: 767px;
     height: 550px;
     background-size: cover;
