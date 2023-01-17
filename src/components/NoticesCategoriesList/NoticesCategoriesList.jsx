@@ -38,6 +38,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     if (searchQuery === '') {
       return filterFoCategory;
     }
+
     return filteredForPet;
   };
 
@@ -55,7 +56,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                   <HeartIconPrimal id="toFavoriteInList" active="false" />
                 )}
               </FavoriteBtn>
-              <NoticesItemImg loading="lazy" src={item.src} alt={item.title} />
+              <NoticesItemImg
+                height="288px"
+                loading="lazy"
+                src={item.src}
+                alt={item.title}
+              />
               <ItemTitle>{item.title}</ItemTitle>
 
               <ParametersList>

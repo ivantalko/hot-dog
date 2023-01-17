@@ -206,7 +206,8 @@ export const AddBtnBox = styled.div`
   &:hover,
   &:focus {
     @media ${breakpoints.maxMobile}  {
-      box-shadow: 0px 0px 4px black;
+      // box-shadow: 0px 0px 1px black;
+      background-color: #f59256a8;
      
   }
 `;

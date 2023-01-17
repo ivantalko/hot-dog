@@ -4,15 +4,17 @@ import { ReactComponent as heartPrimal } from './img/heartPrimal.svg';
 // import
 
 export const Section = styled.section`
-  max-width: 1280px;
   margin: auto;
   margin-top: 30px;
+  max-width: 450px;
 
   @media ${breakpoints.minTablet} {
+    max-width: 900px;
     margin-top: 57px;
   }
-  @media ${breakpoints.minTablet} {
+  @media ${breakpoints.desktop} {
     margin-top: 60px;
+    max-width: 1280px;
   }
 `;
 
@@ -35,6 +37,7 @@ export const NoticesList = styled.ul`
 `;
 
 export const NoticesItem = styled.li`
+  height: 100%;
   position: relative;
   margin: auto;
   background: #ffffff;

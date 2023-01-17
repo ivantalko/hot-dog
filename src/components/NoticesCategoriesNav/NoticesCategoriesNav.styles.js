@@ -34,6 +34,10 @@ export const NavLinkStyled = styled(NavLink)`
     background-color: #f59256;
     color: white;
   }
+  &:hover,
+  &:focus {
+    background-color: #f59256a8;
+  }
 `;
 
 export const NavItem = styled.li``;
