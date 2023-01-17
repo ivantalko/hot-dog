@@ -19,3 +19,9 @@ export async function getUserdata() {
   const { data } = await axios.get('/auth/current/');
   return data;
 }
+
+export const getServices = async () => {
+  const { data } = await axios.get(`/services`);
+  return data;
+};
+

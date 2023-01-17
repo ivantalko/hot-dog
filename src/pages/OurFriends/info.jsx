@@ -3,10 +3,7 @@
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 
-// export const getContacts = async () => {
-//   const { data } = await axios.get(`/contacts`);
-//   return data;
-// };
+
 
 
 // апи используется в операции

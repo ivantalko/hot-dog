@@ -4,18 +4,19 @@ import { breakpoints } from 'helpers/breakpoints';
 
 export const OurFriendsContainer = styled.div`
 background-color: #fdf7f2;
-min-height: 100vh;
-min-width: 100vw;
+height: 100%;
+width: 100%;
+display:flex;
 `
 
 export const OurFriendsBox = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #fdf7f2;
+  /* background-color: #fdf7f2; */
 
 
   font-family: 'Manrope';
-  width: 100%;
+  /* width: 100%; */
   margin: 0 auto;
   padding: 42px 20px 100px;
   min-width: 320px;
@@ -23,11 +24,11 @@ export const OurFriendsBox = styled.div`
 
   @media ${breakpoints.minTablet} {
     padding: 88px 32px 100px;
-  }
+  };
 
   @media ${breakpoints.desktop} {
     padding: 61px 16px 100px;
-  } ;
+  };
 `;
 
 export const OurFriendsBoxTitle = styled.h2`
@@ -54,7 +55,13 @@ export const OurFriendsCards = styled.div`
   border-radius: 20px;
 `;
 
-export const OurFriendsCardSecondTitle = styled.h3`
+export const OurFriendsCard = styled.div`
+display:block;
+ font-weight: 500;
+ box-shadow:(7px 4px 14px rgba(49, 21, 4, 0.07));
+`
+
+export const OurFriendsCardSecondTitle = styled.a`
   font-weight: 700;
   
   text-align: center;
@@ -63,16 +70,19 @@ export const OurFriendsCardSecondTitle = styled.h3`
   margin: 12px auto;
 `;
 
-export const OurFriendsCard = styled.div`
- font-weight: 500;
- box-shadow:(7px 4px 14px rgba(49, 21, 4, 0.07));
-`
+export const OurFriendsLogo = styled.img`
 
-export const OurFriendsTimeWork = styled.p``;
+`;
+
+export const OurFriandsInfo = styled.ul`
+
+`;
+
+export const OurFriendsTimeWork = styled.li``;
 
 
-export const OurFriendsAdress = styled.p``;
+export const OurFriendsAdress = styled.li``;
 
-export const OurFriendseEmail = styled.p``;
+export const OurFriendseEmail = styled.li``;
 
-export const OurFriendsPhone = styled.p``;
+export const OurFriendsPhone = styled.li``;
