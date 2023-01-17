@@ -3,8 +3,8 @@ import FrameImage from 'helpers/images/home/home-frame-1x.png';
 import FrameImageX from 'helpers/images/home/home-frame-2x.png';
 import FrameImageT from 'helpers/images/home/home-frame-1xt.png';
 import FrameImageTX from 'helpers/images/home/home-frame-2xt.png';
-import FrameImageM from 'helpers/images/home/home-frame-1xt.png';
-import FrameImageMX from 'helpers/images/home/home-frame-2xt.png';
+import FrameImageM from 'helpers/images/home/home-frame-1xm.png';
+import FrameImageMX from 'helpers/images/home/home-frame-2xm.png';
 
 export const StyledTitle = styled('h1')`
   @media screen and (min-width: 320px) {
@@ -31,7 +31,7 @@ export const StyledTitle = styled('h1')`
 export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 320px) {
     max-width: 767px;
-    height: 456px;
+    height: 550px;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${FrameImageM});
@@ -72,9 +72,4 @@ export const StyledFrameImage = styled('div')`
       background-image: url(${FrameImageX});
     }
   }
-`;
-
-export const FlexContainer = styled('div')`
-  display: flex;
-  justify-content: center;
 `;
