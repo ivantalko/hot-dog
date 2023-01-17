@@ -1,11 +1,17 @@
-import { ModalNoticeBackdrop } from './ModalNotice.js';
-
 export const ModalNotice = ({ handleBackdropClose }) => {
   return (
-    <ModalNoticeBackdrop handleBackdropClose onClick={handleBackdropClose}>
+    <div handleBackdropClose onClick={handleBackdropClose}>
       <button>X</button>
-      <span>category</span>
+      <span>In good hands</span>
       <img src="" alt="" />
-    </ModalNoticeBackdrop>
+      <h3>title</h3>
+      <ul>
+        <li>
+          <p>
+            <span></span>
+          </p>
+        </li>
+      </ul>
+    </div>
   );
 };

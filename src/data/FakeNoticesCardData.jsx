@@ -17,7 +17,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -34,7 +35,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -51,7 +53,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -68,7 +71,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -85,7 +89,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -102,7 +107,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -119,7 +125,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -136,7 +143,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -153,7 +161,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -170,7 +179,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -187,7 +197,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -204,7 +215,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -221,7 +233,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -238,7 +251,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -255,7 +269,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -272,7 +287,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -289,7 +305,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -306,7 +323,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -323,7 +341,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -340,7 +359,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -357,7 +377,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -374,7 +395,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -391,7 +413,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -408,7 +431,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -425,7 +449,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -442,7 +467,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -459,7 +485,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -476,7 +503,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -493,7 +521,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -510,7 +539,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -527,7 +557,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -544,7 +575,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -561,7 +593,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -578,7 +611,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -595,7 +629,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -612,7 +647,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -629,7 +665,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -646,7 +683,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -663,7 +701,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -680,7 +719,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -697,7 +737,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -714,7 +755,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -731,7 +773,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -748,7 +791,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -765,7 +809,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -782,7 +827,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -799,7 +845,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -816,7 +863,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -833,7 +881,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -850,7 +899,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -867,7 +917,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -884,7 +935,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -901,7 +953,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -918,7 +971,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -935,7 +989,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -952,7 +1007,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -969,7 +1025,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -986,7 +1043,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -1003,7 +1061,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -1020,7 +1079,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -1037,7 +1097,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'for-free',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -1054,7 +1115,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -1071,7 +1133,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'sell',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -1088,7 +1151,8 @@ export const FakeNoticesCardData = [
     sex: 'male',
     email: 'bundernuyDid@mol.net',
     phone: '000-00-01',
-    comments: 'lorem ipsum dolor'
+    comments:
+      'lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem.',
     category: 'lost-found',
     breed: 'Pomeranian',
     place: 'Lviv',
