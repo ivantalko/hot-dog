@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { postLogin, postLogout } from '../../services/API';
+import { postLogout } from '../../services/API';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,29 +17,15 @@ export const loginUserOperation = createAsyncThunk(
   'auth/login',
   async (body, thunkAPI) => {
     try {
-      const response = await postLogin(body);
+      const response = await axios.post('/auth/login/', body);
       token.set(response.token);
-      console.log(response);
       return response;
     } catch (error) {
-      if (error.response.status === 403 || error.response.status === 401) {
+      if (error.response.status === 401) {
         toast.error('Email doesn`t exist or Password is wrong', {
           position: 'top-right',
         });
       }
-
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-export const logoutUserOperation = createAsyncThunk(
-  'auth/logout',
-  async (_, thunkAPI) => {
-    try {
-      const response = await postLogout();
-      token.unset(response.accessToken);
-      return response;
-    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -65,6 +51,19 @@ export const registerUserOperation = createAsyncThunk(
           position: 'top-right',
         });
       }
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logoutUserOperation = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      const response = await postLogout();
+      token.unset(response.accessToken);
+      return response;
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }

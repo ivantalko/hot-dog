@@ -10,18 +10,20 @@ import {
   loginUserOperation,
   registerUserOperation,
 } from 'redux/Auth/auth-operations';
-import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { getToken } from 'redux/Auth/auth-selectors';
 
 import {
   ButtonsContainer,
   InputRegisterForm,
   InputRegisterFormConfirm,
   LinkRegisterForm,
+  NotSeePassword,
   RegisterButton,
   RegisterButtonLocation,
   RegisterContainer,
   RegisterForma,
   RegisterLocationContainer,
+  SeePassword,
   TextRegisterForm,
   TitleRegisterForm,
   ValidationContainerEmail,
@@ -47,13 +49,14 @@ export default function RegistrationForm() {
   const [phoneDirty, setphoneDirty] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [notFoundCity, setNotFoundCity] = useState(false);
+  const [type, setType] = useState('password');
   //
   const [arrayLocation, setArrayLocation] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let logined = useSelector(getIsLogin);
+  let logined = useSelector(getToken);
   const inputs = {
     email: setEmail,
     password: setPassword,
@@ -113,10 +116,10 @@ export default function RegistrationForm() {
         }
         break;
       case 'phone':
-        let regex = /^\+?3?8?(0\d{9})$/;
+        let regex = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
         if (!regex.test(String(e.target.value).toLocaleLowerCase())) {
           setphoneError(
-            'Wrong mobile: use + and 12 numbers , number, example: +380930000000'
+            'Wrong mobile: use +380 , number, example: +380930000000'
           );
           setphoneDirty(true);
         } else {
@@ -211,7 +214,15 @@ export default function RegistrationForm() {
     setLocation(e.currentTarget.innerText);
     setIsOpen(false);
   };
-
+  const ToogleClassImg = e => {
+    if (type === 'password') {
+      setType('text');
+      e.target.classList.add('active');
+    } else {
+      setType('password');
+      e.target.classList.remove('active');
+    }
+  };
   return (
     <Background>
       <RegisterContainer>
@@ -243,7 +254,7 @@ export default function RegistrationForm() {
               )}
               <InputRegisterForm
                 label="Password"
-                type="password"
+                type={type}
                 placeholder="Password"
                 required
                 minLength={7}
@@ -253,9 +264,11 @@ export default function RegistrationForm() {
                 value={password}
                 onBlur={handleInput}
               />
+              <NotSeePassword onClick={ToogleClassImg}></NotSeePassword>
+              <SeePassword onClick={ToogleClassImg}></SeePassword>
               <InputRegisterFormConfirm
                 label="ConfirmPassword"
-                type="password"
+                type={type}
                 autoComplete="true"
                 required
                 placeholder="Confirm Password"

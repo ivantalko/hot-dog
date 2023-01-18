@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
+import password from 'helpers/logAndReg/password.png';
+import see from 'helpers/logAndReg/see.png';
 
 export const RegisterContainer = styled.div`
   @media ${breakpoints.minTablet} {
@@ -113,9 +115,11 @@ export const InputRegisterFormConfirm = styled.input`
     outline: 1px solid #ff6101;
     background: #fdf7f2;
   }
+
   @media ${breakpoints.minTablet} {
     width: 448px;
     height: 52px;
+    font-size: 18px;
 
     padding-left: 32px;
   }
@@ -212,12 +216,12 @@ export const ValidationContainerPassword = styled.div`
   border: 1px solid red;
   border-radius: 40px;
   @media ${breakpoints.minTablet} {
-    transform: translate(90px, -128px);
+    transform: translate(90px, -123px);
     paddding: 10px;
   }
 
   @media ${breakpoints.desktop} {
-    transform: translate(91px, -130px);
+    transform: translate(90px, -126px);
   }
 `;
 export const ValidationContainerEmail = styled.div`
@@ -236,7 +240,7 @@ export const ValidationContainerEmail = styled.div`
   background-color: #ffffffff;
   padding: 10px;
   @media ${breakpoints.minTablet} {
-    transform: translate(129px, -198px);
+    transform: translate(128px, -196px);
   }
   @media ${breakpoints.desktop} {
     transform: translate(140px, -198px);
@@ -244,7 +248,7 @@ export const ValidationContainerEmail = styled.div`
 `;
 export const ValidationContainerPhone = styled.div`
   position: absolute;
-  transform: translate(-8px, -72px);
+  transform: translate(19px, -72px);
 
   font-family: 'Manrope';
   font-style: normal;
@@ -258,7 +262,7 @@ export const ValidationContainerPhone = styled.div`
   border: 1px solid red;
   border-radius: 40px;
   @media ${breakpoints.minTablet} {
-    transform: translate(77px, -69px);
+    transform: translate(94px, -69px);
     padding: 10px;
   }
 
@@ -316,5 +320,41 @@ export const RegisterButtonLocation = styled.button`
   }
   @media ${breakpoints.minTablet} {
     padding: 2px;
+  }
+`;
+export const NotSeePassword = styled.div`
+  position: absolute;
+  transform: translate(234px, -86px);
+  width: 17px;
+  height: 17px;
+
+  background-image: url(${password});
+  background-size: cover;
+  opacity: 1;
+  &.active {
+    opacity: 1;
+  }
+  @media ${breakpoints.minTablet} {
+    transform: translate(389px, -87px);
+    width: 25px;
+    height: 25px;
+  }
+`;
+export const SeePassword = styled.div`
+  position: absolute;
+  transform: translate(234px, -86px);
+  width: 17px;
+  height: 17px;
+
+  background-image: url(${see});
+  background-size: cover;
+  opacity: 0;
+  &.active {
+    opacity: 1;
+  }
+  @media ${breakpoints.minTablet} {
+    transform: translate(389px, -87px);
+    width: 25px;
+    height: 25px;
   }
 `;

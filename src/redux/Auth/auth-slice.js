@@ -24,7 +24,7 @@ const authSlice = createSlice({
       state.status = StatusForAll.success;
       state.name = action.payload.name;
       state._id = action.payload._id;
-      state.accessToken = action.payload.token;
+      state.accessToken = action.payload.data.token;
       state.isLogin = true;
     },
     [loginUserOperation.rejected](state) {

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginUserOperation } from 'redux/Auth/auth-operations';
-import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { getToken } from 'redux/Auth/auth-selectors';
 
 import {
   FormList,
@@ -23,7 +23,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let logined = useSelector(getIsLogin);
+  let logined = useSelector(getToken);
 
   const input = {
     email: setEmail,
@@ -36,11 +36,6 @@ const LoginForm = () => {
 
   const onSubmit = async evt => {
     evt.preventDefault();
-    const userInfo = {
-      email,
-      password,
-    };
-    console.log(userInfo);
     dispatch(loginUserOperation({ email, password }));
   };
   useEffect(() => {
@@ -92,9 +87,8 @@ const LoginForm = () => {
             </LoginForma>
           </div>
         </FormList>
-
-        <ToastContainer autoClose={2000} />
       </MobileContainer>
+      <ToastContainer autoClose={3000} />
     </Background>
   );
 };
