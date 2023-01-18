@@ -84,3 +84,7 @@ export const ReadMoreLink = styled.a`
 export const Time = styled.p`
   color: rgba(17, 17, 17, 0.6);
 `;
+
+export const EmptyTime = styled.p`
+  color: rgba(17, 17, 17, 0.6);
+`;
