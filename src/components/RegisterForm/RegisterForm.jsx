@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import axios from 'axios';
 import Background from 'components/Background';
 import BaseButton from 'components/BaseButton';
@@ -47,8 +46,9 @@ export default function RegistrationForm() {
   const [phoneError, setphoneError] = useState('Phone cannot be emty');
   const [phoneDirty, setphoneDirty] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [notFoundCity, setNotFoundCity] = useState(false);
   //
-  const [arrayLocation, setArrayLocation] = useState([]);
+  const [arrayLocation, setArrayLocation] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -88,8 +88,12 @@ export default function RegistrationForm() {
         } else {
           setEmailDirty(false);
         }
-        let re = /\S+@\S+\.\S+/;
-        if (!re.test(String(e.target.value).toLocaleLowerCase())) {
+
+        let re = /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{3,4}/;
+        if (
+          !re.test(String(e.target.value).toLocaleLowerCase()) ||
+          e.target.value.length > 36
+        ) {
           setEmailError('Wrong email, exemple: lovepets@ukr.net');
           setEmailDirty(true);
         } else {
@@ -134,7 +138,6 @@ export default function RegistrationForm() {
       name,
       phone,
     };
-    console.log(userInfo);
     dispatch(registerUserOperation(userInfo))
       .unwrap()
       .then(() => {
@@ -164,13 +167,19 @@ export default function RegistrationForm() {
         const response = await axios.get(
           `https://petssupportapi.onrender.com/location?city=${search}`
         );
-        console.log(response?.data?.cities);
-        console.log(arrayLocation);
+        if (response?.data?.cities.length === 0) {
+          setNotFoundCity(true);
+          setArrayLocation(false);
+          return;
+        }
+
         setArrayLocation(response?.data?.cities);
+        setNotFoundCity(false);
       } catch (error) {
         console.log(error.message);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [arrayLocation]
   );
 
@@ -178,8 +187,13 @@ export default function RegistrationForm() {
     setLocation(e.target.value);
     setIsOpen(true);
     fetchProducts(e.target.value.trim());
-    if (!location) return setArrayLocation([]);
+    if (!location) {
+      setArrayLocation(false);
+      setNotFoundCity(true);
+      return;
+    }
   };
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -190,13 +204,14 @@ export default function RegistrationForm() {
   const handleKeyDown = e => {
     if (e.code === 'Escape') {
       setIsOpen(false);
+      setNotFoundCity(false);
     }
   };
   const handleButtonClick = e => {
     setLocation(e.currentTarget.innerText);
     setIsOpen(false);
   };
-  //
+
   return (
     <Background>
       <RegisterContainer>
@@ -305,8 +320,8 @@ export default function RegistrationForm() {
               </ButtonsContainer>
               {arrayLocation && isOpen && (
                 <RegisterLocationContainer>
-                  {arrayLocation.map(locate => (
-                    <li key={location.name}>
+                  {arrayLocation?.map((locate, index) => (
+                    <li key={index}>
                       <RegisterButtonLocation onClick={handleButtonClick}>
                         <span>{locate.name}</span>
                         {'  '}
@@ -314,6 +329,15 @@ export default function RegistrationForm() {
                       </RegisterButtonLocation>
                     </li>
                   ))}
+                </RegisterLocationContainer>
+              )}{' '}
+              {notFoundCity && !arrayLocation && (
+                <RegisterLocationContainer>
+                  <li>
+                    <RegisterButtonLocation>
+                      There is no such city, try another
+                    </RegisterButtonLocation>
+                  </li>
                 </RegisterLocationContainer>
               )}
             </>
