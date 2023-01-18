@@ -11,7 +11,7 @@ export const UserPhoto = () => {
     const onChangePhoto = e => {
         const formData = new FormData();
         formData.append('avatar', e.target.files[0]);
-        // dispatch(updateUserAvatar(formData));
+        dispatch(selectAvatarURL(formData));
     }
     return (
         <Container>

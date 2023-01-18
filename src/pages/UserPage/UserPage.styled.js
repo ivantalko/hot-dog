@@ -73,3 +73,11 @@ export const InfoUser = styled.div`
         padding: 20px 16px;
     }
 `
+
+export const LogoutBox = styled.div`
+    @media ${breakpoints.maxMobile} {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+`
