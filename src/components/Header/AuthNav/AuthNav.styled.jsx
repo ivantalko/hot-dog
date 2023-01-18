@@ -24,8 +24,9 @@ export const LoginStyled = styled(NavLink)`
   width: 95px;
   height: 35px;
   border-radius: 40px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  border: 2px solid #f59256;
+  padding-top: 6px;
+  padding-bottom: 6px;
   padding-left: 28px;
   padding-right: 28px;
 
@@ -40,13 +41,23 @@ export const LoginStyled = styled(NavLink)`
   letter-spacing: 0.04em;
   text-decoration: none;
 
-  color: #ffffff;
-  background-color: #f59256;
+  color: #111111;
+  background: #ffffff;
+
+  :hover,
+  :focus,
+  &.active {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 0px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #f59256;
+  }
 
   @media ${breakpoints.minTablet} {
     width: 111px;
     height: 44px;
-    padding-top: 10px;
     padding-bottom: 10px;
     font-size: 20px;
     line-height: 27px;
@@ -79,6 +90,17 @@ export const RegisterStyled = styled(NavLink)`
 
   color: #111111;
   background: #ffffff;
+
+  :hover,
+  :focus,
+  &.active {
+    border: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #f59256;
+  }
 
   @media ${breakpoints.minTablet} {
     width: 181px;

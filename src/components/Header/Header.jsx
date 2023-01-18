@@ -12,16 +12,12 @@ export default function Header() {
     setBurgerMenu(!burgerMenu);
   };
 
-  const handleCloseBurger = () => {
-    setBurgerMenu(false);
-  };
-
   return (
     <HeaderStyled>
       <Logo />
-      {!burgerMenu && <Navigation />}
+      {!burgerMenu && <Navigation setBurgerMenu={setBurgerMenu} />}
       <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
-      {burgerMenu && <BurgerMenu onClick={handleCloseBurger} />}
+      {burgerMenu && <BurgerMenu />}
     </HeaderStyled>
   );
 }

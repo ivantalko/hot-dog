@@ -120,7 +120,12 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const NavItem = styled.li``;
+export const NavItem = styled.li`
+  &:focus,
+  &:hover {
+    box-shadow: 0px 0px 4px black;
+  }
+`;
 
 export const NavLinkStyled = styled(NavLink)`
   font-weight: 500;
@@ -142,6 +147,7 @@ export const NavLinkStyled = styled(NavLink)`
     background-color: #f59256;
     color: white;
   }
+
 `;
 
 export const AddIcon = styled(AddIconPrimal)`
@@ -200,7 +206,8 @@ export const AddBtnBox = styled.div`
   &:hover,
   &:focus {
     @media ${breakpoints.maxMobile}  {
-      box-shadow: 0px 0px 4px black;
+      // box-shadow: 0px 0px 1px black;
+      background-color: #f59256a8;
      
   }
 `;
@@ -225,11 +232,17 @@ export const AddBtn = styled.button`
   border: none;
   background-color: transparent;
   transition: 250ms;
+  border: 2px solid #f59256;
   @media ${breakpoints.minTablet} {
     margin-left: 12px;
     width: 44px;
     height: 44px;
     background-color: #f59256;
     border-radius: 50%;
+    &:hover,
+    &:focus {
+      box-shadow: 0px 0px 4px grey;
+      background-color: #f59256a8;
+    }
   }
 `;

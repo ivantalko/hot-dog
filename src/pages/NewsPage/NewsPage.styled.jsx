@@ -20,6 +20,7 @@ export const Title = styled.h2`
   color: #111111;
   margin-bottom: 28px;
   text-align: center;
+
   @media ${breakpoints.minTablet} {
     font-size: 48px;
     margin-bottom: 40px;
