@@ -3,14 +3,15 @@ import { Layout } from './Layout/Layout';
 import { Notices } from '../pages/NoticesPage/NoticesPage';
 import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { useState } from 'react';
-
+import { Home } from './Home/Home';
+import { NewsPage } from 'pages/NewsPage/NewsPage';
 export const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<>Home Page</>} />
-        <Route path="news" element={<>News Page</>} />
+        <Route index element={<Home />} />
+        <Route path="news" element={<NewsPage />} />
         <Route
           path="notices"
           element={
