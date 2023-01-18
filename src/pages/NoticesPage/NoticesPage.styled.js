@@ -232,6 +232,7 @@ export const AddBtn = styled.button`
   border: none;
   background-color: transparent;
   transition: 250ms;
+  border: 2px solid #f59256;
   @media ${breakpoints.minTablet} {
     margin-left: 12px;
     width: 44px;
@@ -241,6 +242,7 @@ export const AddBtn = styled.button`
     &:hover,
     &:focus {
       box-shadow: 0px 0px 4px grey;
+      background-color: #f59256a8;
     }
   }
 `;

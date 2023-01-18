@@ -1,3 +1,4 @@
+import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
 import { ReactComponent as IconBtnPrimal } from '../../pages/NoticesPage/img/closeIcon.svg';
 
@@ -15,7 +16,10 @@ export const ModalNoticeBackdrop = styled.div`
 `;
 
 export const ModalBox = styled.div`
-  max-width: 450px;
+  max-width: 400px;
+  @media ${breakpoints.minTablet} {
+    max-width: 100%;
+  }
   padding: 60px 20px 40px;
   background-color: white;
   border-radius: 20px;
@@ -36,6 +40,7 @@ export const ModalCLoseBtn = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
+  transition: 250ms;
   &:hover,
   &:focus {
     color: #f59256;
@@ -62,11 +67,16 @@ export const CatagoryName = styled.span`
 
 export const NoticesInfoImg = styled.img`
   margin-bottom: 16px;
-  fill: red;
-  color: red;
-  * {
-    fill: red;
-    color: red;
+  @media ${breakpoints.minTablet} {
+    height: 328px;
+    width: 288px;
+    object-fit: cover;
+  }
+`;
+
+export const TopBoxStyled = styled.div`
+  @media ${breakpoints.minTablet} {
+    display: flex;
   }
 `;
 
@@ -107,7 +117,14 @@ export const ParametersValue = styled.span`
   color: #000000;
 `;
 
-export const CloseBtn = styled(IconBtnPrimal)``;
+export const CloseBtn = styled(IconBtnPrimal)`
+  color: inherit;
+  fill: inherit;
+  * {
+    color: inherit;
+    fill: inherit;
+  }
+`;
 
 export const CommentsText = styled.p`
   font-weight: 600;
@@ -126,7 +143,8 @@ export const BtnList = styled.ul`
   gap: 12px;
 `;
 
-export const ContactBtn = styled.button`
+export const ContactBtn = styled.a`
+  text-decoration: none;
   cursor: pointer;
   font-weight: 500;
   font-size: 16px;
@@ -136,15 +154,19 @@ export const ContactBtn = styled.button`
   letter-spacing: 0.04em;
   color: #ffffff;
   padding: 9px 27px;
-  background-color: #f59256;
+  border: 2px solid #f59256;
+  background-color: transparent;
+  color: #f59256;
+
   border-radius: 40px;
-  border: none;
+
   width: 100%;
   justify-content: center;
   transition: 250ms;
   &:hover,
   &:focus {
-    background-color: #f59256a8;
+    background-color: #f59256;
+    color: white;
   }
 `;
 
@@ -160,12 +182,15 @@ export const AddToBtn = styled.button`
   padding: 9px 27px;
   background-color: #f59256;
   border-radius: 40px;
-  border: none;
+  border: 2px solid #f59256;
+  background-color: transparent;
+  color: #f59256;
   width: 100%;
   justify-content: center;
   transition: 250ms;
   &:hover,
   &:focus {
-    background-color: #f59256a8;
+    background-color: #f59256;
+    color: white;
   }
 `;

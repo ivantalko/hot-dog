@@ -16,6 +16,7 @@ import {
   ButtonsList,
   LearnMoreBtn,
   DeleteBtn,
+  DeleteIcon,
 } from './NoticesCategoriesList.styled';
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -48,6 +49,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   const handleMoreInfoVisible = () => {
     setMoreInfoVisible(true);
+    document.querySelector('body').classList.add('modal');
   };
 
   useEffect(() => {
@@ -61,12 +63,14 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setMoreInfoVisible(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setMoreInfoVisible(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
@@ -133,7 +137,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                       console.log('delete btn');
                     }}
                   >
-                    Delete
+                    Delete <DeleteIcon />
                   </DeleteBtn>
                 </li>
               </ButtonsList>
