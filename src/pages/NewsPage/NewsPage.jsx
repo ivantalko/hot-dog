@@ -3,12 +3,12 @@ import { Title } from './NewsPage.styled';
 import { NewsSearchForm } from '../../components/News/NewsSearch/NewsSearchForm';
 import { NewsList } from 'components/News/NewsList/NewsList';
 import { useState, useEffect } from 'react';
-import { StatusForAll } from '../../redux/status';
+// import { StatusForAll } from '../../redux/status';
 import { getAllNews } from 'services/API';
 
 export const NewsPage = () => {
   const [news, setNews] = useState([]);
-  const [status, setStatus] = useState(StatusForAll.init);
+  // const [status, setStatus] = useState(StatusForAll.init);
   // const [page, setPage] = useState(1);
   const [closeBtn, setCloseBtn] = useState(false);
   const [value, setValue] = useState('');
@@ -25,10 +25,11 @@ export const NewsPage = () => {
       try {
         const data = await getAllNews();
         setNews(data.reverse());
-        setStatus(StatusForAll.success);
+        // setStatus(StatusForAll.success);
         // setPage(prev => prev.page + 1);
       } catch {
-        setStatus(StatusForAll.error);
+        // setStatus(StatusForAll.error);
+        console.log('first');
       }
     }
     getData();
@@ -36,7 +37,7 @@ export const NewsPage = () => {
   };
 
   useEffect(() => {
-    setStatus(StatusForAll.loading);
+    // setStatus(StatusForAll.loading);
     getNews();
   }, []);
 
