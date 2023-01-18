@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as IconBtnPrimal } from '../../pages/NoticesPage/img/closeIcon.svg';
 
 export const ModalNoticeBackdrop = styled.div`
+  z-index: 1;
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   position: fixed;
@@ -27,11 +28,19 @@ export const ModalBox = styled.div`
 `;
 
 export const ModalCLoseBtn = styled.button`
+  color: black;
+  fill: black;
+  cursor: pointer;
   background: transparent;
   border: none;
   position: absolute;
   top: 20px;
   right: 20px;
+  &:hover,
+  &:focus {
+    color: #f59256;
+    fill: #f59256;
+  }
 `;
 
 export const CatagoryName = styled.span`
@@ -53,6 +62,12 @@ export const CatagoryName = styled.span`
 
 export const NoticesInfoImg = styled.img`
   margin-bottom: 16px;
+  fill: red;
+  color: red;
+  * {
+    fill: red;
+    color: red;
+  }
 `;
 
 export const NoticesInfoTitle = styled.h3`
@@ -104,4 +119,53 @@ export const CommentsText = styled.p`
 
 export const CommentsTextStrong = styled.span`
   font-weight: 700;
+`;
+
+export const BtnList = styled.ul`
+  display: grid;
+  gap: 12px;
+`;
+
+export const ContactBtn = styled.button`
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  padding: 9px 27px;
+  background-color: #f59256;
+  border-radius: 40px;
+  border: none;
+  width: 100%;
+  justify-content: center;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    background-color: #f59256a8;
+  }
+`;
+
+export const AddToBtn = styled.button`
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  padding: 9px 27px;
+  background-color: #f59256;
+  border-radius: 40px;
+  border: none;
+  width: 100%;
+  justify-content: center;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    background-color: #f59256a8;
+  }
 `;

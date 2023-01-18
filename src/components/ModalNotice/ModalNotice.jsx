@@ -13,6 +13,9 @@ import {
   ParametersValue,
   CommentsText,
   CommentsTextStrong,
+  BtnList,
+  ContactBtn,
+  AddToBtn,
 } from './ModalNotice.styled';
 
 export const ModalNotice = ({
@@ -83,6 +86,14 @@ export const ModalNotice = ({
           <CommentsTextStrong>Comments: </CommentsTextStrong>
           {NoticeMoreInfo.comments}
         </CommentsText>
+        <BtnList>
+          <li>
+            <ContactBtn>Contact</ContactBtn>
+          </li>
+          <li>
+            <AddToBtn>Add to</AddToBtn>
+          </li>
+        </BtnList>
       </ModalBox>
     </ModalNoticeBackdrop>
   );
