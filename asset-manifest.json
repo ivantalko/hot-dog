@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hot-dog/static/css/main.4e79fc92.css",
-    "main.js": "/hot-dog/static/js/main.9dd0f81f.js",
+    "main.js": "/hot-dog/static/js/main.0dd3a29b.js",
     "static/media/home-frame-2xt.png": "/hot-dog/static/media/home-frame-2xt.2a1ed50f7d8610defc33.png",
     "static/media/home-frame-2x.png": "/hot-dog/static/media/home-frame-2x.df49186e2106d553ff19.png",
     "static/media/home-frame-1xt.png": "/hot-dog/static/media/home-frame-1xt.78f92ebf775faac6e642.png",
@@ -24,10 +24,10 @@
     "static/media/searchIcon.svg": "/hot-dog/static/media/searchIcon.9d722035f6aa77807b8795374f208b55.svg",
     "static/media/addIcon.svg": "/hot-dog/static/media/addIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.4e79fc92.css.map": "/hot-dog/static/css/main.4e79fc92.css.map",
-    "main.9dd0f81f.js.map": "/hot-dog/static/js/main.9dd0f81f.js.map"
+    "main.0dd3a29b.js.map": "/hot-dog/static/js/main.0dd3a29b.js.map"
   },
   "entrypoints": [
     "static/css/main.4e79fc92.css",
-    "static/js/main.9dd0f81f.js"
+    "static/js/main.0dd3a29b.js"
   ]
 }
