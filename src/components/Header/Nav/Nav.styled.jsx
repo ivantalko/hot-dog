@@ -33,7 +33,7 @@ export const NavLinkStyled = styled(NavLink)`
 
   :hover,
   :focus,
-  :active {
+  &.active {
     font-weight: 700;
     color: #f59256;
     text-decoration: underline;
