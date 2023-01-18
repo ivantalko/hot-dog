@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 import { ReactComponent as heartPrimal } from './img/heartPrimal.svg';
-// import
+import { ReactComponent as deleteIconPrimal } from './img/deleteIcon.svg';
 
 export const Section = styled.section`
-  max-width: 1280px;
   margin: auto;
   margin-top: 30px;
+  max-width: 450px;
 
   @media ${breakpoints.minTablet} {
+    max-width: 900px;
     margin-top: 57px;
   }
-  @media ${breakpoints.minTablet} {
+  @media ${breakpoints.desktop} {
     margin-top: 60px;
+    max-width: 1280px;
   }
 `;
 
@@ -35,16 +37,25 @@ export const NoticesList = styled.ul`
 `;
 
 export const NoticesItem = styled.li`
+  display: grid;
+  align-items: end;
+  height: 100%;
   position: relative;
   margin: auto;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
   padding-bottom: 12px;
+  display: grid;
+  align-items: end;
 `;
 
 export const NoticesItemImg = styled.img`
   margin-bottom: 20px;
+  @media ${breakpoints.minTablet} {
+    min-height: 346px;
+    object-fit: cover;
+  }
 `;
 
 export const ItemTitle = styled.h3`
@@ -55,6 +66,7 @@ export const ItemTitle = styled.h3`
   color: #111111;
   padding 0px 20px;
   margin-bottom: 20px;
+  height: 76px;
 `;
 
 export const ParametersList = styled.ul`
@@ -96,7 +108,7 @@ export const PetCategory = styled.span`
   padding 6px 53px 6px 20px;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
-  margin-top: 20px;
+top: 20px;
 `;
 
 export const FavoriteBtn = styled.button`
@@ -177,7 +189,7 @@ export const DeleteBtn = styled.button`
   justify-content: center;
   align-items: center;
   background: #ffffff;
-  border: 2px solid #f59256;
+  border: 2px solid #ff6101;
   border-radius: 40px;
   margin-top: -8px;
   font-weight: 500;
@@ -188,10 +200,31 @@ export const DeleteBtn = styled.button`
   letter-spacing: 0.04em;
   cursor: pointer;
   transition: 250ms;
-  color: #f59256;
+  color: #ff6101;
+  fill: #ff6101;
   &:hover,
   &:focus {
     background: #f59256;
     color: white;
+    fill: white;
+  }
+`;
+
+export const ModalNoticeBackdrop = styled.div`
+  background-color: #0000001f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+`;
+
+export const DeleteIcon = styled(deleteIconPrimal)`
+  margin-left: 13px;
+  color: inherit;
+  fill: inherit;
+  * {
+    color: inherit;
+    fill: inherit;
   }
 `;

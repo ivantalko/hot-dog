@@ -29,10 +29,14 @@ export const NavLinkStyled = styled(NavLink)`
   border: 2px solid #f59256;
   border-radius: 40px;
   padding: 10px 28px;
-
+  transition: 250ms;
   &.active {
     background-color: #f59256;
     color: white;
+  }
+  &:hover,
+  &:focus {
+    background-color: #f59256a8;
   }
 `;
 
