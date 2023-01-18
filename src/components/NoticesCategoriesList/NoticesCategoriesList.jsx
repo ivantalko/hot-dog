@@ -1,10 +1,157 @@
-import { Outlet } from 'react-router';
+import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import {
+  Section,
+  NoticesList,
+  NoticesItem,
+  FavoriteBtn,
+  HeartIconPrimal,
+  PetCategory,
+  NoticesItemImg,
+  ItemTitle,
+  ParametersList,
+  ParametersItemText,
+  ParametersName,
+  ButtonsList,
+  LearnMoreBtn,
+  DeleteBtn,
+  DeleteIcon,
+} from './NoticesCategoriesList.styled';
+import { useLocation } from 'react-router-dom';
+import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
-export const NoticiesCategoriesList = () => {
+export const NoticiesCategoriesList = ({ searchQuery }) => {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const currentPath = pathname.slice(9);
+  const [favotire, setFavorite] = useState(false);
+  const [moreInfoVisible, setMoreInfoVisible] = useState(false);
+  const [itemId, setItemId] = useState('');
+
+  const handleClickToFavorite = () => {
+    setFavorite(!favotire);
+  };
+
+  const filteredPets = () => {
+    const filterFoCategory = FakeNoticesCardData.filter(
+      item => item.category === `${currentPath}`
+    );
+    const filteredForPet = filterFoCategory.filter(item =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    if (searchQuery === '') {
+      return filterFoCategory;
+    }
+
+    return filteredForPet;
+  };
+
+  const handleMoreInfoVisible = () => {
+    setMoreInfoVisible(true);
+    document.querySelector('body').classList.add('modal');
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyModalClose);
+    return () => {
+      window.removeEventListener('keydown', handleKeyModalClose);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleKeyModalClose = e => {
+    if (e.code === 'Escape') {
+      setMoreInfoVisible(false);
+      document.querySelector('body').classList.remove('modal');
+    }
+  };
+
+  const handleBackdropClose = e => {
+    if (e.target === e.currentTarget) {
+      setMoreInfoVisible(false);
+      document.querySelector('body').classList.remove('modal');
+    }
+  };
+
   return (
-    <div>
-      <div>Noticies Categories List</div>
-      <Outlet />
-    </div>
+    <Section>
+      <NoticesList>
+        {filteredPets().map(item => {
+          return (
+            <NoticesItem id={item.id} key={item.id}>
+              <PetCategory>{item.category}</PetCategory>
+              <FavoriteBtn onClick={handleClickToFavorite}>
+                {favotire ? (
+                  <HeartIconPrimal id="toFavoriteInList" active="true" />
+                ) : (
+                  <HeartIconPrimal id="toFavoriteInList" active="false" />
+                )}
+              </FavoriteBtn>
+              <NoticesItemImg
+                height="288px"
+                loading="lazy"
+                src={item.src}
+                alt={item.title}
+              />
+              <ItemTitle>{item.title}</ItemTitle>
+
+              <ParametersList>
+                <li>
+                  <ParametersItemText>
+                    <ParametersName>Breed:</ParametersName>
+                    {item.breed}
+                  </ParametersItemText>
+                </li>
+                <li>
+                  <ParametersItemText>
+                    <ParametersName>Place:</ParametersName>
+                    {item.place}
+                  </ParametersItemText>
+                </li>
+                <li>
+                  <ParametersItemText>
+                    <ParametersName>Age:</ParametersName>
+                    {item.age}
+                  </ParametersItemText>
+                </li>
+              </ParametersList>
+
+              <ButtonsList>
+                <li>
+                  <LearnMoreBtn
+                    id={item.id}
+                    onClick={() => {
+                      setItemId(item.id);
+                      handleMoreInfoVisible();
+                    }}
+                    // onClick={handleMoreInfoVisible}
+                  >
+                    Learn more
+                  </LearnMoreBtn>
+                </li>
+                <li>
+                  <DeleteBtn
+                    id={item.id}
+                    onClick={() => {
+                      console.log('delete btn');
+                    }}
+                  >
+                    Delete <DeleteIcon />
+                  </DeleteBtn>
+                </li>
+              </ButtonsList>
+            </NoticesItem>
+          );
+        })}
+      </NoticesList>
+      {moreInfoVisible && (
+        <ModalNotice
+          itemId={itemId}
+          setMoreInfoVisible={setMoreInfoVisible}
+          handleBackdropClose={handleBackdropClose}
+        />
+      )}
+    </Section>
   );
 };

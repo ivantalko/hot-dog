@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 import { getToken } from 'redux/Auth/auth-selectors';
 import { NavigationStyled, NavStyled } from './Navigation.styled';
 
-export default function Navigation() {
+export default function Navigation({ setBurgerMenu }) {
   const token = useSelector(getToken);
   return (
     <NavigationStyled>
       <NavStyled>
-        <Nav />
+        <Nav setBurgerMenu={setBurgerMenu} />
       </NavStyled>
       {token ? <UserNav /> : <AuthNav />}
     </NavigationStyled>
