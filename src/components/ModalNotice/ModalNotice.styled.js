@@ -1,6 +1,7 @@
 import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
 import { ReactComponent as IconBtnPrimal } from '../../pages/NoticesPage/img/closeIcon.svg';
+import { ReactComponent as HeartIconPrimal } from '../../components/NoticesCategoriesList/img/heartIcon.svg';
 
 export const ModalNoticeBackdrop = styled.div`
   z-index: 1;
@@ -18,7 +19,8 @@ export const ModalNoticeBackdrop = styled.div`
 export const ModalBox = styled.div`
   max-width: 400px;
   @media ${breakpoints.minTablet} {
-    max-width: 100%;
+    max-width: 800px;
+    padding: 32px 40px 32px 20px;
   }
   padding: 60px 20px 40px;
   background-color: white;
@@ -71,6 +73,7 @@ export const NoticesInfoImg = styled.img`
     height: 328px;
     width: 288px;
     object-fit: cover;
+    border-radius: 0px 0px 40px 40px;
   }
 `;
 
@@ -80,6 +83,10 @@ export const TopBoxStyled = styled.div`
   }
 `;
 
+export const ParametersBox = styled.div`
+  margin-left: 20px;
+`;
+
 export const NoticesInfoTitle = styled.h3`
   font-weight: 700;
   font-size: 24px;
@@ -87,6 +94,17 @@ export const NoticesInfoTitle = styled.h3`
   letter-spacing: -0.01em;
   color: #000000;
   margin-bottom: 16px;
+  @media ${breakpoints.minTablet} {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: -0.01em;
+    width: 226px;
+    color: #000000;
+  }
+  @media screen and (min-width: 840px) {
+    width: auto;
+  }
 `;
 
 export const NoticesInfoParameters = styled.p`
@@ -98,6 +116,10 @@ export const NoticesInfoParameters = styled.p`
   align-items: center;
   text-align: center;
   color: #000000;
+  @media ${breakpoints.minTablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const ParametersList = styled.ul`
@@ -115,6 +137,10 @@ export const ParametersValue = styled.span`
   display: flex;
   align-items: center;
   color: #000000;
+  @media ${breakpoints.minTablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const CloseBtn = styled(IconBtnPrimal)`
@@ -132,6 +158,10 @@ export const CommentsText = styled.p`
   line-height: 19px;
   color: #000000;
   margin-bottom: 40px;
+  @media ${breakpoints.minTablet} {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 export const CommentsTextStrong = styled.span`
@@ -141,6 +171,11 @@ export const CommentsTextStrong = styled.span`
 export const BtnList = styled.ul`
   display: grid;
   gap: 12px;
+  @media ${breakpoints.minTablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+  }
 `;
 
 export const ContactBtn = styled.a`
@@ -168,6 +203,10 @@ export const ContactBtn = styled.a`
     background-color: #f59256;
     color: white;
   }
+  @media ${breakpoints.minTablet} {
+    width: 160px;
+    height: 40px;
+  }
 `;
 
 export const AddToBtn = styled.button`
@@ -188,9 +227,28 @@ export const AddToBtn = styled.button`
   width: 100%;
   justify-content: center;
   transition: 250ms;
+  fill: white;
   &:hover,
   &:focus {
     background-color: #f59256;
     color: white;
+  }
+  @media ${breakpoints.minTablet} {
+    width: 160px;
+    height: 40px;
+  }
+`;
+
+export const HeartIcon = styled(HeartIconPrimal)`
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+
+  color: inherit;
+  fill: inherit;
+
+  * {
+    color: inherit;
+    fill: inherit;
   }
 `;

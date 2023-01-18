@@ -17,6 +17,8 @@ import {
   ContactBtn,
   AddToBtn,
   TopBoxStyled,
+  ParametersBox,
+  HeartIcon,
 } from './ModalNotice.styled';
 
 export const ModalNotice = ({
@@ -41,7 +43,7 @@ export const ModalNotice = ({
           <CatagoryName>{NoticeMoreInfo.category}</CatagoryName>
           <NoticesInfoImg src={NoticeMoreInfo.src} alt={NoticeMoreInfo.pet} />
 
-          <div>
+          <ParametersBox>
             <NoticesInfoTitle>{NoticeMoreInfo.title}</NoticesInfoTitle>
             <ParametersList>
               <li>
@@ -87,7 +89,7 @@ export const ModalNotice = ({
                 </NoticesInfoParameters>
               </li>
             </ParametersList>
-          </div>
+          </ParametersBox>
         </TopBoxStyled>
         <div>
           <CommentsText>
@@ -101,7 +103,9 @@ export const ModalNotice = ({
               </ContactBtn>
             </li>
             <li>
-              <AddToBtn>Add to</AddToBtn>
+              <AddToBtn>
+                Add to <HeartIcon />
+              </AddToBtn>
             </li>
           </BtnList>
         </div>
