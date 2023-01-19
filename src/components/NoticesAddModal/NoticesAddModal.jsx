@@ -1,16 +1,21 @@
-export const NoticesAddModal = ({ handleBackdropClose }) => {
+import {
+  Backdrop,
+  Modal,
+  MaleIcon,
+  FemaleIcon,
+  IconPlus,
+  IconClose,
+} from './NoticesAddModal.styled';
+
+export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
+  const handleBtnCLoseModal = () => {
+    setIsModalOpen(false);
+    document.querySelector('body').classList.remove('modal');
+  };
+
   return (
-    <div
-      style={{
-        position: 'fixed',
-        width: '100%',
-        height: '100%',
-        top: '0',
-        left: '0',
-      }}
-      onClick={handleBackdropClose}
-    >
-      <div style={{ backgroundColor: 'grey' }}>MODAL FORM</div>
-    </div>
+    <Backdrop onClick={handleBackdropClose}>
+      <Modal>MODAL FORM</Modal>
+    </Backdrop>
   );
 };

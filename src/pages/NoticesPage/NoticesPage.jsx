@@ -56,6 +56,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
+    document.querySelector('body').classList.add('modal');
   };
 
   useEffect(() => {
@@ -69,12 +70,14 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setIsModalOpen(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
@@ -108,7 +111,10 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
         </AddBtnBox>
       </NavBox>
       {isModalOpen && (
-        <NoticesAddModal handleBackdropClose={handleBackdropClose} />
+        <NoticesAddModal
+          setIsModalOpen={setIsModalOpen}
+          handleBackdropClose={handleBackdropClose}
+        />
       )}
     </Section>
   );
