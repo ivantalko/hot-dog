@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
-import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/User/user-selectors';
+
 import {
   Section,
   NavBox,
@@ -25,7 +24,6 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const query = params.get('query');
   const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const Token = useSelector(selectToken);
 
   const [pet, setPet] = useState({
     title: '',
@@ -38,8 +36,6 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     category: '',
     comments: '',
   });
-
-  console.log(Token);
 
   const handleSearchButton = e => {
     setParams({ query: name });
