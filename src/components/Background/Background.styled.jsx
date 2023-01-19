@@ -27,6 +27,7 @@ export const BackgroundAuthorize = styled.div`
 
     background-image: url(${tablet});
     background-position: bottom;
+    background-size: 768px;
   }
   @media ${breakpoints.desktop} {
     background-image: url(${second}), url(${first});
