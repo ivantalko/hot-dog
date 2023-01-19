@@ -47,9 +47,6 @@ export const LoginStyled = styled(NavLink)`
   :hover,
   :focus,
   &.active {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border: 0px;
     text-align: center;
     color: #ffffff;
     background-color: #f59256;
@@ -58,12 +55,15 @@ export const LoginStyled = styled(NavLink)`
   @media ${breakpoints.minTablet} {
     width: 111px;
     height: 44px;
-    padding-bottom: 10px;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
     font-size: 20px;
     line-height: 27px;
   }
   @media ${breakpoints.desktop} {
     height: 47px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 `;
 
@@ -94,9 +94,6 @@ export const RegisterStyled = styled(NavLink)`
   :hover,
   :focus,
   &.active {
-    border: 0px;
-    padding-top: 8px;
-    padding-bottom: 8px;
     text-align: center;
     color: #ffffff;
     background-color: #f59256;
@@ -105,12 +102,14 @@ export const RegisterStyled = styled(NavLink)`
   @media ${breakpoints.minTablet} {
     width: 181px;
     height: 44px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
     font-size: 20px;
     line-height: 27px;
   }
   @media ${breakpoints.desktop} {
     height: 47px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 `;
