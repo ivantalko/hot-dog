@@ -8,7 +8,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+.artifactignore
 # testing
 /coverage
 
