@@ -2,9 +2,7 @@ import { useState } from 'react';
 import {
   Backdrop,
   Modal,
-  // MaleIcon,
-  // FemaleIcon,
-  // IconPlus,
+  IconPlus,
   IconClose,
   ModalTitle,
   ModalTitleInfo,
@@ -16,14 +14,27 @@ import {
   ControlsBtnList,
   ControlsBtn,
   NextPageModal,
+  SexInput,
+  MaleIcon,
+  FemaleIcon,
+  SexItem,
+  SexText,
+  SexList,
+  SecondPageParameterInput,
+  SecondPageParameterList,
+  ParameterItem,
+  TextArea,
+  AvatarInputBox,
+  AvatarInput,
 } from './NoticesAddModal.styled';
 
 export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
   const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
   const [name, setName] = useState('');
-  const [birth, setBirth] = useState('');
+  const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
+  const [sex, setSex] = useState('');
 
   const [nextPageOpen, setNextPageOpen] = useState(false);
 
@@ -31,9 +42,24 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
     category: '',
     title: '',
     name: '',
-    birth: '',
+    birthday: '',
     breed: '',
   });
+
+  const handleSexChoose = e => {
+    if (e.target.id === 'sexInputMale') {
+      setSex('male');
+      document.querySelector('#SexMaleActive').classList.add('active');
+      document.querySelector('#SexFemaleActive').classList.remove('active');
+      document.querySelector('#sexInputFemale').checked = false;
+    } else if (e.target.id === 'sexInputFemale') {
+      setSex('female');
+      document.querySelector('#SexMaleActive').classList.remove('active');
+      document.querySelector('#SexFemaleActive').classList.add('active');
+      document.querySelector('#sexInputMale').checked = false;
+    }
+    e.target.checked = true;
+  };
 
   const handleChangeParameter = e => {
     if (e.target.id === 'titleInput') {
@@ -43,7 +69,7 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
       setName(e.target.value);
     }
     if (e.target.id === 'birthInput') {
-      setBirth(e.target.value);
+      setBirthday(e.target.value);
     }
     if (e.target.id === 'breedInput') {
       setBreed(e.target.value);
@@ -51,8 +77,18 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
   };
 
   const handleChoiseCategory = e => {
-    setCategory(e.target.textContent);
+    if (e.target.textContent === 'lost/found') {
+      setCategory('lostFound');
+    }
+    if (e.target.textContent === 'in good hands') {
+      setCategory('inGoodHands');
+    }
+    if (e.target.textContent === 'sell') {
+      setCategory('sell');
+    }
   };
+
+  console.log(pet);
 
   const handleBtnCLoseModal = () => {
     setIsModalOpen(false);
@@ -64,14 +100,14 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
       category !== '' &&
       title !== '' &&
       name !== '' &&
-      birth !== '' &&
+      birthday !== '' &&
       breed !== ''
     ) {
       setPet({
         category: category,
         title: title,
         name: name,
-        birth: birth,
+        birthday: birthday,
         breed: breed,
       });
       setNextPageOpen(true);
@@ -79,12 +115,16 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
       category === '' ||
       title === '' ||
       name === '' ||
-      birth === '' ||
+      birthday === '' ||
       breed === ''
     ) {
       console.log('all parameters must be set');
     }
     console.log(pet);
+  };
+
+  const handleToBackPage = () => {
+    setNextPageOpen(false);
   };
 
   return (
@@ -175,60 +215,76 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
         <NextPageModal id="secondPageModal">
           <ModalTitle>Add pet</ModalTitle>
           <IconClose onClick={handleBtnCLoseModal} />
-          <ul>
+          <SecondPageParameterList>
             <li>
               <ParameterTitle>
                 The sex<span style={{ color: '#F59256' }}>*</span>:
               </ParameterTitle>
-              <ul style={{ display: 'flex' }}>
-                <li>
-                  <input type="radio" name="sexMale" id="sexInputMale" />
-                  <p>Male</p>
-                </li>
-                <li>
-                  <input type="radio" name="sexFemle" id="sexInputFemale" />
-                  <p>Female</p>
-                </li>
-              </ul>
+              <SexList style={{ display: 'flex' }}>
+                <SexItem>
+                  <MaleIcon />
+                  <SexInput
+                    onClick={handleSexChoose}
+                    type="checkbox"
+                    name="sexMale"
+                    id="sexInputMale"
+                  />
+                  <SexText id="SexMaleActive">Male</SexText>
+                </SexItem>
+                <SexItem>
+                  <FemaleIcon />
+                  <SexInput
+                    onClick={handleSexChoose}
+                    type="checkbox"
+                    name="sexFemle"
+                    id="sexInputFemale"
+                  />
+                  <SexText id="SexFemaleActive">Female</SexText>
+                </SexItem>
+              </SexList>
             </li>
-            <li>
+            <ParameterItem>
               <ParameterTitle>
                 Location<span style={{ color: '#F59256' }}>*</span>:
               </ParameterTitle>
-              <input
+              <SecondPageParameterInput
                 type="text"
                 name="locationInput"
                 id="locationInput"
                 placeholder="Type pet location"
               />
-            </li>
-            <li>
+            </ParameterItem>
+            <ParameterItem>
               <ParameterTitle>
                 Price<span style={{ color: '#F59256' }}>*</span>:
               </ParameterTitle>
-              <input
+              <SecondPageParameterInput
                 type="number"
                 name="priceInput"
                 id="priceInput"
                 placeholder="Type pet price"
               />
-            </li>
-            <li>
+            </ParameterItem>
+            <ParameterItem>
               <ParameterTitle>Load the pet’s image</ParameterTitle>
-              <input type="file" name="fileInput" id="fileInput" />
-            </li>
-            <li>
+              <AvatarInputBox>
+                <IconPlus />
+                <AvatarInput type="file" name="fileInput" id="fileInput" />
+              </AvatarInputBox>
+            </ParameterItem>
+            <ParameterItem>
               <ParameterTitle>Comments</ParameterTitle>
-              <textarea name="" id="" cols="30" rows="10"></textarea>
-            </li>
-          </ul>
+              <TextArea name="" id="" cols="30" rows="10"></TextArea>
+            </ParameterItem>
+          </SecondPageParameterList>
+
           <ControlsBtnList>
-            <li>
-              <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
-            </li>
-            <li>
-              <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
-            </li>
+            <ParameterItem>
+              <ControlsBtn>Done</ControlsBtn>
+            </ParameterItem>
+            <ParameterItem>
+              <ControlsBtn onClick={handleToBackPage}>Back</ControlsBtn>
+            </ParameterItem>
           </ControlsBtnList>
         </NextPageModal>
       )}

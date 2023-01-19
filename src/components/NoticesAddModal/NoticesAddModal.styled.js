@@ -5,9 +5,14 @@ import { ReactComponent as iconPlusPrimal } from './img/iconPlus.svg';
 import { ReactComponent as iconClosePrimal } from './img/closeIcon.svg';
 import { breakpoints } from 'helpers/breakpoints';
 
-export const MaleIcon = styled(maleIconPrimal)``;
-export const FemaleIcon = styled(femaleIconPrimal)``;
-export const IconPlus = styled(iconPlusPrimal)``;
+export const MaleIcon = styled(maleIconPrimal)`
+  width: 40px;
+  height: 40px;
+`;
+export const FemaleIcon = styled(femaleIconPrimal)`
+  height: 40px;
+  width: 40px;
+`;
 
 export const Backdrop = styled.div`
   z-index: 1;
@@ -64,7 +69,7 @@ export const NextPageModal = styled.div`
   border-radius: 20px;
   width: calc(100% - 40px);
   margin: auto;
-  position: absolute;
+  position: relative;
   padding: 20px 20px 40px 20px;
 `;
 
@@ -200,4 +205,131 @@ export const ControlsBtn = styled.button`
   }
 `;
 
-export const maleInput = styled.input``;
+export const SecondPageParameterList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+`;
+
+export const SexList = styled.ul`
+  display: flex;
+  gap: 40px;
+  margin-bottom: 16px;
+`;
+
+export const TextArea = styled.textarea`
+  cursor: pointer;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  height: 40px;
+  padding: 12px 14px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: rgba(27, 27, 27, 0.6);
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    border: 1px solid #f59256;
+    color: #f59256;
+    box-shadow: inset 0px 0px 4px #f59256;
+  }
+`;
+
+export const SexText = styled.p`
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  &.active {
+    color: #f59256;
+  }
+`;
+
+export const SexItem = styled.li`
+  position: relative;
+  cursor: pointer;
+`;
+
+export const SexInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  left: 0;
+  background-color: red;
+  cursor: pointer;
+`;
+
+export const SecondPageParameterInput = styled.input`
+  cursor: pointer;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  height: 40px;
+  padding: 12px 14px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: rgba(27, 27, 27, 0.6);
+  transition: 250ms;
+  &::placeholder {
+    color: rgba(27, 27, 27, 0.6);
+  }
+  &:hover,
+  &:focus {
+    border: 1px solid #f59256;
+    color: #f59256;
+    box-shadow: inset 0px 0px 4px #f59256;
+    &::placeholder {
+      color: #f59256;
+    }
+  }
+`;
+
+export const AvatarInputBox = styled.div`
+  display: inline-flex;
+  background: #fdf7f2;
+  border-radius: 20px;
+  position: relative;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 4px #f59256;
+  }
+`;
+
+export const AvatarInput = styled.input`
+  cursor: pointer;
+    width: 116px;
+    height: 116px;
+    background-color: red;
+    opacity: 0;
+    border-radius: 20px;
+
+}`;
+
+export const IconPlus = styled(iconPlusPrimal)`
+  position: absolute;
+  top 50%;
+  left 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const ParameterItem = styled.li`
+  &:nth-child(5) {
+    margin-top: 12px;
+  }
+`;
