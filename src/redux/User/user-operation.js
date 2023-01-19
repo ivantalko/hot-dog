@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../Auth/auth-operations';
 import { getUserdata, updateUser } from '../../services/API';
-
 export const getUserOperation = createAsyncThunk(
   'auth/getUser',
   async (_, thunkAPI) => {
