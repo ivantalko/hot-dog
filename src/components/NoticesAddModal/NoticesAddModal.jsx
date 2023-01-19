@@ -46,6 +46,8 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
     breed: '',
   });
 
+  console.log(sex);
+
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
       setSex('male');
