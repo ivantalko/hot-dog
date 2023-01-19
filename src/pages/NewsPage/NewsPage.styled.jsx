@@ -26,3 +26,8 @@ export const Title = styled.h2`
     margin-bottom: 40px;
   }
 `;
+
+export const Wrapper = styled.div`
+  margin: 0;
+  padding: 0;
+`;

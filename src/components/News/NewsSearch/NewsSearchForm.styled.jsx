@@ -15,7 +15,7 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 9px 50px 20px 12px;
+  padding: 9px 50px 10px 12px;
   margin-bottom: 40px;
   border-radius: 20px;
   border: none;
@@ -28,7 +28,7 @@ export const Input = styled.input`
   color: #535353;
 
   @media ${breakpoints.minTablet} {
-    padding: 9px 50px 9px 20px;
+    padding: 10px 50px 10px 20px;
     font-size: 20px;
   }
 
@@ -43,9 +43,13 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   position: absolute;
-  bottom: 8px;
+  bottom: 9px;
   right: 15px;
   border: none;
   background-color: transparent;
   cursor: pointer;
+
+  @media ${breakpoints.minTablet} {
+    bottom: 7px;
+  }
 `;
