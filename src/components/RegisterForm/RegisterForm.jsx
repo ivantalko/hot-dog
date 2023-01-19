@@ -92,12 +92,12 @@ export default function RegistrationForm() {
           setEmailDirty(false);
         }
 
-        let re = /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{3,4}/;
+        let re = /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}/;
         if (
           !re.test(String(e.target.value).toLocaleLowerCase()) ||
           e.target.value.length > 36
         ) {
-          setEmailError('Wrong email, exemple: lovepets@ukr.net');
+          setEmailError('Wrong email, exemple: lovepets@ukr.ua');
           setEmailDirty(true);
         } else {
           setEmailError('');

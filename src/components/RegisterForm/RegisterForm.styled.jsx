@@ -330,6 +330,7 @@ export const NotSeePassword = styled.div`
 
   background-image: url(${password});
   background-size: cover;
+  transition: all 300ms linear;
   opacity: 1;
   &.active {
     opacity: 1;
@@ -348,6 +349,7 @@ export const SeePassword = styled.div`
 
   background-image: url(${see});
   background-size: cover;
+  transition: all 300ms linear;
   opacity: 0;
   &.active {
     opacity: 1;

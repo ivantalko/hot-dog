@@ -18,8 +18,8 @@ export const BackgroundAuthorize = styled.div`
   padding-right: 20px;
   background-image: url(${mobile});
   background-repeat: no-repeat;
-  background-position: bottom 98px center;
-
+  background-position: bottom center;
+  background-size: 479px;
   @media ${breakpoints.minTablet} {
     align-items: center;
 
