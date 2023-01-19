@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
 import {
   Section,
   NavBox,
@@ -55,6 +56,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
+    document.querySelector('body').classList.add('modal');
   };
 
   useEffect(() => {
@@ -68,12 +70,14 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setIsModalOpen(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
@@ -107,18 +111,10 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
         </AddBtnBox>
       </NavBox>
       {isModalOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            width: '100%',
-            height: '100%',
-            top: '0',
-            left: '0',
-          }}
-          onClick={handleBackdropClose}
-        >
-          <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>
-        </div>
+        <NoticesAddModal
+          setIsModalOpen={setIsModalOpen}
+          handleBackdropClose={handleBackdropClose}
+        />
       )}
     </Section>
   );
