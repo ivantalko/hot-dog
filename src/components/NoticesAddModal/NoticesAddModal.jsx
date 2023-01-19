@@ -1,10 +1,12 @@
 import {
   Backdrop,
   Modal,
-  MaleIcon,
-  FemaleIcon,
-  IconPlus,
+  // MaleIcon,
+  // FemaleIcon,
+  // IconPlus,
   IconClose,
+  ModalTitle,
+  ModalTitleInfo,
 } from './NoticesAddModal.styled';
 
 export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
@@ -15,7 +17,25 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
 
   return (
     <Backdrop onClick={handleBackdropClose}>
-      <Modal>MODAL FORM</Modal>
+      <Modal>
+        <IconClose onClick={handleBtnCLoseModal} />
+        <ModalTitle>Add pet</ModalTitle>
+        <ModalTitleInfo>
+          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+          consectetur{' '}
+        </ModalTitleInfo>
+        <ul>
+          <li>
+            <button type="button">lost/found</button>
+          </li>
+          <li>
+            <button type="button">in good hands</button>
+          </li>
+          <li>
+            <button type="button">sell</button>
+          </li>
+        </ul>
+      </Modal>
     </Backdrop>
   );
 };
