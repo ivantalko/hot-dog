@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
 
 export const NewsCard = styled.li`
   margin-bottom: 40px;
-  width: 280px;
+  min-width: 280px;
 
   @media ${breakpoints.minTablet} {
     width: 335px;
@@ -55,6 +55,7 @@ export const OverLine = styled.div`
   margin-bottom: 4px;
   border-radius: 40px;
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+
   @media ${breakpoints.minTablet} {
     width: 280px;
     height: 8px;
