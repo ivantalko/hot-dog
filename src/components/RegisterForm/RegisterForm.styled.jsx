@@ -8,6 +8,7 @@ export const RegisterContainer = styled.div`
   @media ${breakpoints.minTablet} {
     position: relative;
     width: 608px;
+    height: 566px;
     padding: 60px 80px 40px 80px;
 
     background: #ffffff;
@@ -16,8 +17,9 @@ export const RegisterContainer = styled.div`
     border-radius: 40px;
   }
   @media ${breakpoints.desktop} {
-    width: 618px;
     padding: 60px 80px;
+    width: 618px;
+    height: 562px;
   }
 `;
 export const TitleRegisterForm = styled.title`
@@ -330,7 +332,7 @@ export const NotSeePassword = styled.div`
 
   background-image: url(${password});
   background-size: cover;
-  transition: all 300ms linear;
+  transition: opacity 300ms linear;
   opacity: 1;
   &.active {
     opacity: 1;
@@ -349,7 +351,7 @@ export const SeePassword = styled.div`
 
   background-image: url(${see});
   background-size: cover;
-  transition: all 300ms linear;
+  transition: opacity 300ms linear;
   opacity: 0;
   &.active {
     opacity: 1;
