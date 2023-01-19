@@ -1,11 +1,13 @@
 import UserPage from 'pages/UserPage/UserPage';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { Notices } from '../pages/NoticesPage/NoticesPage';
+import RegisterPage from 'pages/RegisterPage';
+import LoginPage from 'pages/LoginPage';
 import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { useState } from 'react';
 import { Home } from './Home/Home';
 import { NewsPage } from 'pages/NewsPage/NewsPage';
+import { Notices } from 'pages/NoticesPage/NoticesPage';
 export const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   return (
@@ -45,9 +47,9 @@ export const App = () => {
         </Route>
 
         <Route path="friends" element={<>friends Page</>} />
-        <Route path="login" element={<>login Page</>} />
-        <Route path="register" element={<>register Page</>} />
-        <Route path="user" element={<UserPage/>} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="user" element={<UserPage />} />
       </Route>
     </Routes>
   );
