@@ -125,7 +125,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                       setItemId(item.id);
                       handleMoreInfoVisible();
                     }}
-                    // onClick={handleMoreInfoVisible}
                   >
                     Learn more
                   </LearnMoreBtn>
