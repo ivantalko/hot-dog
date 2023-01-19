@@ -14,6 +14,10 @@ export const ModalNoticeBackdrop = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  align-items: center;
+  display: flex;
+  padding: 20px 0px;
 `;
 
 export const ModalBox = styled.div`
@@ -29,8 +33,6 @@ export const ModalBox = styled.div`
   background-color: white;
   margin: auto;
   position: relative;
-  transform: translateY(-50%);
-  top: 50%;
 `;
 
 export const ModalCLoseBtn = styled.button`
@@ -65,6 +67,9 @@ export const CatagoryName = styled.span`
   padding: 6px 53px 6px 20px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(50px);
+  @media ${breakpoints.maxTablet} {
+    top: 52px;
+  }
 `;
 
 export const NoticesInfoImg = styled.img`
