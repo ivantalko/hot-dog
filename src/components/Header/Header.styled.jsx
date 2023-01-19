@@ -6,7 +6,7 @@ export const HeaderStyled = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 42px;
+  padding-bottom: 42px;
 
   padding-top: 16px;
   padding-right: 20px;
@@ -15,10 +15,10 @@ export const HeaderStyled = styled.header`
   background-color: #fdf7f2;
 
   @media ${breakpoints.minTablet} {
-    margin-bottom: 88px;
+    padding-bottom: 88px;
   }
 
   @media ${breakpoints.desktop} {
-    margin-bottom: 59px;
+    padding-bottom: 59px;
   }
 `;

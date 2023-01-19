@@ -51,6 +51,10 @@ const userSlice = createSlice({
       state.notice = action.payload.notice;
       state.birthday = action.payload.birthday;
       state.token = action.payload.token;
+      state.location = action.payload.location;
+    },
+    [loginUserOperation.rejected](state) {
+      state.status = StatusForAll.error;
     },
   },
 });
