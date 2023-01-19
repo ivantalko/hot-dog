@@ -60,7 +60,7 @@ export const Modal = styled.div`
 `;
 export const NextPageModal = styled.div`
   z-index: 2;
-  background: red;
+  background: #ffffff;
   border-radius: 20px;
   width: calc(100% - 40px);
   margin: auto;
@@ -199,3 +199,5 @@ export const ControlsBtn = styled.button`
     background: #f59256;
   }
 `;
+
+export const maleInput = styled.input``;
