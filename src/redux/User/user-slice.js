@@ -41,7 +41,6 @@ const userSlice = createSlice({
     [getUserOperation.rejected](state) {
       state.status = StatusForAll.error;
     },
-
     [loginUserOperation.fulfilled](state, action) {
       state.status = StatusForAll.success;
       state.email = action.payload.email;
