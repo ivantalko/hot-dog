@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
-import { Notices } from '../pages/NoticesPage/NoticesPage';
 import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { useState } from 'react';
 import { Home } from './Home/Home';
 import { NewsPage } from 'pages/NewsPage/NewsPage';
+import { Notices } from 'pages/NoticesPage/NoticesPage';
 export const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   return (
