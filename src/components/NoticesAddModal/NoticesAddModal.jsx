@@ -2,8 +2,8 @@ import { useState } from 'react';
 import {
   Backdrop,
   Modal,
-  MaleIcon,
-  FemaleIcon,
+  // MaleIcon,
+  // FemaleIcon,
   // IconPlus,
   IconClose,
   ModalTitle,
