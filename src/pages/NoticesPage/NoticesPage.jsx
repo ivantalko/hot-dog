@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
 import {
   Section,
   NavBox,
@@ -107,18 +108,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
         </AddBtnBox>
       </NavBox>
       {isModalOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            width: '100%',
-            height: '100%',
-            top: '0',
-            left: '0',
-          }}
-          onClick={handleBackdropClose}
-        >
-          <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>
-        </div>
+        <NoticesAddModal handleBackdropClose={handleBackdropClose} />
       )}
     </Section>
   );
