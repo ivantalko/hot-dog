@@ -24,6 +24,18 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [pet, setPet] = useState({
+    title: '',
+    name: '',
+    birthday: '',
+    breed: '',
+    sex: '',
+    location: '',
+    price: '',
+    category: '',
+    comments: '',
+  });
+
   const handleSearchButton = e => {
     setParams({ query: name });
     setSearchQuery(name);
@@ -112,6 +124,8 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
       </NavBox>
       {isModalOpen && (
         <NoticesAddModal
+          pet={pet}
+          setPet={setPet}
           setIsModalOpen={setIsModalOpen}
           handleBackdropClose={handleBackdropClose}
         />
