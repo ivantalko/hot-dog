@@ -1,10 +1,15 @@
 import React from 'react';
 import { AccountStyled, SvgAccount } from './UserNav.styled';
 
-export default function UserNav() {
+export default function UserNav({ setBurgerMenu }) {
   return (
     <nav>
-      <AccountStyled to="/user">
+      <AccountStyled
+        to="/user"
+        onClick={() => {
+          setBurgerMenu(false);
+        }}
+      >
         <SvgAccount
           viewBox="0 0 20 20"
           fill="none"
