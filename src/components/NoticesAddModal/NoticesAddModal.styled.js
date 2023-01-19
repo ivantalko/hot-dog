@@ -58,6 +58,15 @@ export const Modal = styled.div`
   position: relative;
   padding: 20px 20px 40px 20px;
 `;
+export const NextPageModal = styled.div`
+  z-index: 2;
+  background: red;
+  border-radius: 20px;
+  width: calc(100% - 40px);
+  margin: auto;
+  position: absolute;
+  padding: 20px 20px 40px 20px;
+`;
 
 export const ModalTitle = styled.h2`
   font-weight: 500;
@@ -155,11 +164,38 @@ export const ParameterInput = styled.input`
   &:focus {
     border: 1px solid #f59256;
     color: #f59256;
-    box-shadow: inset 0px 0px 1px #f59256;
+    box-shadow: inset 0px 0px 4px #f59256;
+    &::placeholder {
+      color: #f59256;
+    }
   }
 `;
 
+export const ControlsBtnList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
 export const ControlsBtn = styled.button`
-  background: #f59256;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  background: transparent;
   border-radius: 40px;
+  width: 100%;
+  padding: 9px 0px;
+  border: 2px solid #f59256;
+  color: #111111;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    background: #f59256;
+  }
 `;

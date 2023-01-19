@@ -13,22 +13,70 @@ import {
   ParameterList,
   ParameterTitle,
   ParameterInput,
+  ControlsBtnList,
   ControlsBtn,
+  NextPageModal,
 } from './NoticesAddModal.styled';
 
 export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
-  const [pet, setPet] = useState({ category: '' });
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('');
+  const [name, setName] = useState('');
+  const [birth, setBirth] = useState('');
+  const [breed, setBreed] = useState('');
+
+  const [nextPageOpen, setNextPageOpen] = useState(false);
+
+  const [pet, setPet] = useState({
+    category: '',
+    title: '',
+    name: '',
+    birth: '',
+    breed: '',
+  });
+
+  const handleChangeParameter = e => {
+    if (e.target.id === 'titleInput') {
+      setTitle(e.target.value);
+    }
+    if (e.target.id === 'nameInput') {
+      setName(e.target.value);
+    }
+    if (e.target.id === 'birthInput') {
+      setBirth(e.target.value);
+    }
+    if (e.target.id === 'breedInput') {
+      setBreed(e.target.value);
+    }
+  };
+
+  const handleChoiseCategory = e => {
+    setCategory(e.target.textContent);
+  };
 
   const handleBtnCLoseModal = () => {
     setIsModalOpen(false);
     document.querySelector('body').classList.remove('modal');
   };
 
-  const handleChoiseCategory = e => {
-    setPet({ category: e.target.textContent });
+  const handleNextPage = () => {
+    if (
+      category !== '' &&
+      title !== '' &&
+      name !== '' &&
+      birth !== '' &&
+      breed !== ''
+    ) {
+      setPet({
+        category: category,
+        title: title,
+        name: name,
+        birth: birth,
+        breed: breed,
+      });
+      setNextPageOpen(true);
+    }
   };
-
-  console.log(pet);
 
   return (
     <Backdrop onClick={handleBackdropClose}>
@@ -62,36 +110,57 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
             <ParameterTitle>
               Tittle of ad<span>*</span>
             </ParameterTitle>
-            <ParameterInput type="text" placeholder="Type name" />
+            <ParameterInput
+              id="titleInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type title"
+            />
           </li>
           <li>
             <ParameterTitle>
               Name pet<span>*</span>
             </ParameterTitle>
-            <ParameterInput type="text" placeholder="Type name pet" />
+            <ParameterInput
+              id="nameInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type name pet"
+            />
           </li>
           <li>
             <ParameterTitle>
               Date of birth<span>*</span>
             </ParameterTitle>
-            <ParameterInput type="text" placeholder="Type date of birth" />
+            <ParameterInput
+              id="birthInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type date of birth"
+            />
           </li>
           <li>
             <ParameterTitle>
               Breed<span>*</span>
             </ParameterTitle>
-            <ParameterInput type="text" placeholder="Type breed" />
+            <ParameterInput
+              id="breedInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type breed"
+            />
           </li>
         </ParameterList>
-        <ul>
+        <ControlsBtnList>
           <li>
-            <ControlsBtn>Cancel</ControlsBtn>
+            <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
           </li>
           <li>
-            <ControlsBtn>Next</ControlsBtn>
+            <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
           </li>
-        </ul>
+        </ControlsBtnList>
       </Modal>
+      {nextPageOpen && <NextPageModal>SecondPage</NextPageModal>}
     </Backdrop>
   );
 };
