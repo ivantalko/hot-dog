@@ -79,13 +79,22 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
   };
 
   const handleChoiseCategory = e => {
-    if (e.target.textContent === 'lost/found') {
+    if (e.target.id === 'lostFound') {
       setCategory('lostFound');
+      document.querySelector('#lostFound').classList.add('active');
+      document.querySelector('#inGoodHands').classList.remove('active');
+      document.querySelector('#sell').classList.remove('active');
     }
-    if (e.target.textContent === 'in good hands') {
+    if (e.target.id === 'inGoodHands') {
+      document.querySelector('#lostFound').classList.remove('active');
+      document.querySelector('#inGoodHands').classList.add('active');
+      document.querySelector('#sell').classList.remove('active');
       setCategory('inGoodHands');
     }
-    if (e.target.textContent === 'sell') {
+    if (e.target.id === 'sell') {
+      document.querySelector('#lostFound').classList.remove('active');
+      document.querySelector('#inGoodHands').classList.remove('active');
+      document.querySelector('#sell').classList.add('active');
       setCategory('sell');
     }
   };
@@ -113,6 +122,7 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
         breed: breed,
       });
       setNextPageOpen(true);
+      document.querySelector('#mainPageModal').classList.add('hidden');
     } else if (
       category === '' ||
       title === '' ||
@@ -127,92 +137,100 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
 
   const handleToBackPage = () => {
     setNextPageOpen(false);
+    document.querySelector('#mainPageModal').classList.remove('hidden');
   };
 
   return (
     <Backdrop onClick={handleBackdropClose}>
-      {!nextPageOpen && (
-        <Modal id="mainPageModal">
-          <IconClose onClick={handleBtnCLoseModal} />
-          <ModalTitle>Add pet</ModalTitle>
-          <ModalTitleInfo>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
-          </ModalTitleInfo>
+      <Modal id="mainPageModal">
+        <IconClose onClick={handleBtnCLoseModal} />
+        <ModalTitle>Add pet</ModalTitle>
+        <ModalTitleInfo>
+          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+          consectetur
+        </ModalTitleInfo>
 
-          <CategoryList>
-            <li>
-              <CategoryBtn onClick={handleChoiseCategory} type="button">
-                lost/found
-              </CategoryBtn>
-            </li>
-            <li>
-              <CategoryBtn onClick={handleChoiseCategory} type="button">
-                in good hands
-              </CategoryBtn>
-            </li>
-            <li>
-              <CategoryBtn onClick={handleChoiseCategory} type="button">
-                sell
-              </CategoryBtn>
-            </li>
-          </CategoryList>
-          <ParameterList>
-            <li>
-              <ParameterTitle>
-                Tittle of ad<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="titleInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type title"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Name pet<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="nameInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type name pet"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Date of birth<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="birthInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type date of birth"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Breed<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="breedInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type breed"
-              />
-            </li>
-          </ParameterList>
-          <ControlsBtnList>
-            <li>
-              <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
-            </li>
-            <li>
-              <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
-            </li>
-          </ControlsBtnList>
-        </Modal>
-      )}
+        <CategoryList>
+          <li>
+            <CategoryBtn
+              id="lostFound"
+              onClick={handleChoiseCategory}
+              type="button"
+            >
+              lost/found
+            </CategoryBtn>
+          </li>
+          <li>
+            <CategoryBtn
+              id="inGoodHands"
+              onClick={handleChoiseCategory}
+              type="button"
+            >
+              in good hands
+            </CategoryBtn>
+          </li>
+          <li>
+            <CategoryBtn id="sell" onClick={handleChoiseCategory} type="button">
+              sell
+            </CategoryBtn>
+          </li>
+        </CategoryList>
+        <ParameterList>
+          <li>
+            <ParameterTitle>
+              Tittle of ad<span>*</span>
+            </ParameterTitle>
+            <ParameterInput
+              id="titleInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type title"
+            />
+          </li>
+          <li>
+            <ParameterTitle>
+              Name pet<span>*</span>
+            </ParameterTitle>
+            <ParameterInput
+              id="nameInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type name pet"
+            />
+          </li>
+          <li>
+            <ParameterTitle>
+              Date of birth<span>*</span>
+            </ParameterTitle>
+            <ParameterInput
+              id="birthInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type date of birth"
+            />
+          </li>
+          <li>
+            <ParameterTitle>
+              Breed<span>*</span>
+            </ParameterTitle>
+            <ParameterInput
+              id="breedInput"
+              onChange={handleChangeParameter}
+              type="text"
+              placeholder="Type breed"
+            />
+          </li>
+        </ParameterList>
+        <ControlsBtnList>
+          <li>
+            <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
+          </li>
+          <li>
+            <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
+          </li>
+        </ControlsBtnList>
+      </Modal>
+
       {nextPageOpen && (
         <NextPageModal id="secondPageModal">
           <ModalTitle>Add pet</ModalTitle>

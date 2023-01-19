@@ -56,12 +56,23 @@ export const IconClose = styled(iconClosePrimal)`
 `;
 
 export const Modal = styled.div`
+  &.hidden {
+    opacity: 0;
+    position: absolute;
+  }
   background: #ffffff;
   border-radius: 20px;
   width: calc(100% - 40px);
   margin: auto;
   position: relative;
+  @media screen and (min-width: 460px) {
+    max-width: 421px;
+  }
   padding: 20px 20px 40px 20px;
+  @media ${breakpoints.minTablet} {
+    padding: 40px 80px;
+    max-width: 610px;
+  }
 `;
 export const NextPageModal = styled.div`
   z-index: 2;
@@ -71,6 +82,13 @@ export const NextPageModal = styled.div`
   margin: auto;
   position: relative;
   padding: 20px 20px 40px 20px;
+  @media screen and (min-width: 460px) {
+    max-width: 421px;
+  }
+  @media ${breakpoints.minTablet} {
+    padding: 40px 80px;
+    max-width: 610px;
+  }
 `;
 
 export const ModalTitle = styled.h2`
@@ -80,6 +98,13 @@ export const ModalTitle = styled.h2`
   color: #111111;
   text-align: center;
   margin-bottom: 20px;
+  @media ${breakpoints.minTablet} {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 49px;
+
+    color: #000000;
+  }
 `;
 
 export const ModalTitleInfo = styled.p`
@@ -90,6 +115,10 @@ export const ModalTitleInfo = styled.p`
   letter-spacing: -0.01em;
   color: #111111;
   margin-bottom: 20px;
+  @media ${breakpoints.minTablet} {
+    font-size: 20px;
+    line-height: 27px;
+  }
 `;
 
 export const CategoryList = styled.ul`
@@ -104,11 +133,15 @@ export const CategoryList = styled.ul`
 `;
 
 export const CategoryBtn = styled.button`
+  &.active {
+    background-color: #f59256;
+    color: white;
+  }
   &:nth-of-type(1) {
     margin-bottom: 4px;
   }
   cursor: pointer;
-  padding: 8px 28px;
+  padding: 8px 26px;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
@@ -124,6 +157,10 @@ export const CategoryBtn = styled.button`
   &:focus {
     background-color: #f59256;
     color: white;
+  }
+  @media ${breakpoints.minTablet} {
+    font-size: 20px;
+    line-height: 27px;
   }
 `;
 
@@ -174,15 +211,30 @@ export const ParameterInput = styled.input`
       color: #f59256;
     }
   }
+  @media ${breakpoints.minTablet} {
+    font-size: 16px;
+    line-height: 26px;
+  }
 `;
 
 export const ControlsBtnList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media ${breakpoints.minTablet} {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
 `;
 
 export const ControlsBtn = styled.button`
+  width: 100%;
+  @media ${breakpoints.minTablet} {
+    width: 180px;
+    font-size: 20px;
+    line-height: 27px;
+  }
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
@@ -193,7 +245,7 @@ export const ControlsBtn = styled.button`
   cursor: pointer;
   background: transparent;
   border-radius: 40px;
-  width: 100%;
+
   padding: 9px 0px;
   border: 2px solid #f59256;
   color: #111111;
