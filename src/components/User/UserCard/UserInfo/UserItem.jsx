@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { putUpdateUser } from "redux/User/user-operation";
 
 
 const emailPattern = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
@@ -10,6 +11,7 @@ const phonePattern = /^\+380\d{9}$/;
 export const UserItem = ({ label, name, user, active, setActive }) => {
     const [value, setValue] = useState();
     const dispatch = useDispatch();
+    const refWrapper = useRef(null);
     
     
 
@@ -64,12 +66,35 @@ export const UserItem = ({ label, name, user, active, setActive }) => {
         const data = name === 'birthday' ? convertDate(value) : value;
         setActive('');
         if (!data || (data === user)) return;
-        dispatch()
+        dispatch(putUpdateUser({[name]: data || user}))
+    }
+
+    const onSetActive = name => () => setActive(name);
+
+    const converterDateFormat = name => (date) => {
+        if (!date?.length) return '';
+        const info = date?.split('.');
+        return [info[0], info[1], info[2]] = [info[2], info[1], info[0]].join('-');
     }
 
     return (
         <>
-        
+        <li ref={active === name ? refWrapper : null}>
+                <label htmlFor={name}>{label}</label>
+                <input
+                    disabled={active !== name}
+                    active={active === name}
+                    type={name === 'birthday' ? 'date' : 'text'}
+                    value={value || (name === 'birthday' ? converterDateFormat(user) : user) || ''}
+                    name={name}
+                    onChange={onChange}
+                />
+                <button>
+                    active === name ? (
+                        <img src="" alt="" />
+                    )
+                </button>
+        </li>
         </>
     )
 }
