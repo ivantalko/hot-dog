@@ -55,13 +55,12 @@ export const registerUserOperation = createAsyncThunk(
     }
   }
 );
-
 export const logoutUserOperation = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
       const response = await postLogout();
-      token.unset(response.accessToken);
+      token.unset(response.token);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

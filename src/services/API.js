@@ -26,3 +26,7 @@ export async function getAllNews() {
   const { data } = await axios.get(`/news`);
   return data;
 }
+export async function updateUser(body) {
+  const { data } = await axios.put('/user', body);
+  return data;
+}
