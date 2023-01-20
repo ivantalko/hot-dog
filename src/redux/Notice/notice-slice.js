@@ -3,7 +3,6 @@ import { getNoticesData } from './notice-operations';
 
 const initialState = {
   items: [],
-  params: 'lostFound',
 };
 
 const status = {

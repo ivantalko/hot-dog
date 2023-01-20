@@ -26,29 +26,11 @@ import {
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
-// export const Category = () => {
-//   const location = useLocation();
-//   const pathname = location.pathname;
-//   if (pathname === '/notices/lost-found') {
-//     const path = 'lostFound';
-//     console.log(path);
-//     return path;
-//   }
-//   if (pathname === '/notices/for-free') {
-//     const path = 'inGoodHands';
-//     console.log(path);
-//     return path;
-//   }
-//   if (pathname === '/notices/sell') {
-//     const path = 'sell';
-//     console.log(path);
-//     return path;
-//   }
-// };
-
-export const Category = 'lostFound';
+export let category = '';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
+  const dispatch = useDispatch();
+
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const pathname = location.pathname;
@@ -56,41 +38,22 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const [itemId, setItemId] = useState('');
-
-  const dispatch = useDispatch();
+  const notices = useSelector(selectorNoticesData);
 
   useEffect(() => {
     dispatch(getNoticesData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location]);
 
-  const notices = useSelector(selectorNoticesData);
+  console.log(notices);
 
-  const Category = () => {
-    if (location.pathname === '/notices/lost-found') {
-      const noticesFilterCategory = notices.items.filter(
-        item => item.category === 'lostFound'
-      );
-      console.log('lost-found', noticesFilterCategory);
-      return noticesFilterCategory;
-    }
-    if (location.pathname === '/notices/for-free') {
-      const noticesFilterCategory = notices.items.filter(
-        item => item.category === 'inGoodHands'
-      );
-      console.log('for-free', noticesFilterCategory);
-      return noticesFilterCategory;
-    }
-    if (location.pathname === '/notices/sell') {
-      const noticesFilterCategory = notices.items.filter(
-        item => item.category === 'sell'
-      );
-      console.log('sell', noticesFilterCategory);
-      return noticesFilterCategory;
-    }
-  };
-
-  Category();
+  if (location.pathname === '/notices/lost-found') {
+    category = 'lostFound';
+  } else if (location.pathname === '/notices/for-free') {
+    category = 'inGoodHands';
+  } else if (location.pathname === '/notices/sell') {
+    category = 'sell';
+  }
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
