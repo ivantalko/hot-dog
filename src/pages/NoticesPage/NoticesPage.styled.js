@@ -168,16 +168,18 @@ export const AddIcon = styled(AddIconPrimal)`
 `;
 
 export const AddBtnBox = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  width: 80px;
-  flex-direction: column-reverse;
+
+border: 2px solid #f59256;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+height: 80px;
+width: 80px;
+flex-direction: column-reverse;
   background: #f59256;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 50%;
-
+  
   justify-content: center;
   position: fixed;
   bottom: 92px;
@@ -185,6 +187,7 @@ export const AddBtnBox = styled.div`
   cursor: pointer;
   transition: 250ms;
   @media ${breakpoints.minTablet} {
+    border: none;
     position: absolute;
     flex-direction: row;
     border-radius: 0;
@@ -232,7 +235,7 @@ export const AddBtn = styled.button`
   border: none;
   background-color: transparent;
   transition: 250ms;
-  border: 2px solid #f59256;
+
   @media ${breakpoints.minTablet} {
     margin-left: 12px;
     width: 44px;

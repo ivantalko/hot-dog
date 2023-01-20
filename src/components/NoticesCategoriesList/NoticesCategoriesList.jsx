@@ -1,6 +1,7 @@
 import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
 import {
   Section,
   NoticesList,
@@ -22,6 +23,7 @@ import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
+  const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const pathname = location.pathname;
   const currentPath = pathname.slice(9);
@@ -81,13 +83,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           return (
             <NoticesItem id={item.id} key={item.id}>
               <PetCategory>{item.category}</PetCategory>
-              <FavoriteBtn onClick={handleClickToFavorite}>
-                {favotire ? (
-                  <HeartIconPrimal id="toFavoriteInList" active="true" />
-                ) : (
-                  <HeartIconPrimal id="toFavoriteInList" active="false" />
-                )}
-              </FavoriteBtn>
+              {isLogin && (
+                <FavoriteBtn onClick={handleClickToFavorite}>
+                  {favotire ? (
+                    <HeartIconPrimal id="toFavoriteInList" active="true" />
+                  ) : (
+                    <HeartIconPrimal id="toFavoriteInList" active="false" />
+                  )}
+                </FavoriteBtn>
+              )}
+
               <NoticesItemImg
                 height="288px"
                 loading="lazy"
@@ -129,16 +134,18 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                     Learn more
                   </LearnMoreBtn>
                 </li>
-                <li>
-                  <DeleteBtn
-                    id={item.id}
-                    onClick={() => {
-                      console.log('delete btn');
-                    }}
-                  >
-                    Delete <DeleteIcon />
-                  </DeleteBtn>
-                </li>
+                {isLogin && (
+                  <li>
+                    <DeleteBtn
+                      id={item.id}
+                      onClick={() => {
+                        console.log('delete btn');
+                      }}
+                    >
+                      Delete <DeleteIcon />
+                    </DeleteBtn>
+                  </li>
+                )}
               </ButtonsList>
             </NoticesItem>
           );
