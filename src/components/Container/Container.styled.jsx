@@ -9,7 +9,7 @@ export const ContainerStyled = styled.div`
   max-width: 480px;
 
   @media ${breakpoints.minTablet} {
-    padding: 0 6px;
+    padding: 0 32px;
     max-width: 768px;
   }
 

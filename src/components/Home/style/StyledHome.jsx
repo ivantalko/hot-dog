@@ -8,6 +8,7 @@ import FrameImageMX from 'helpers/images/home/home-frame-2xm.png';
 
 export const StyledTitle = styled('h1')`
   @media screen and (min-width: 320px) {
+    position: absolute;
     max-width: 767px;
     width: 280px;
     height: 88px;
@@ -15,10 +16,9 @@ export const StyledTitle = styled('h1')`
     line-height: 44px;
   }
   @media screen and (min-width: 768px) {
+    position: absolute;
     width: 588px;
     height: 200px;
-    margin-top: 92px;
-
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 700;
