@@ -27,6 +27,7 @@ import {
   TextRegisterForm,
   TitleRegisterForm,
   ValidationContainerEmail,
+  ValidationContainerName,
   ValidationContainerPassword,
   ValidationContainerPhone,
 } from './RegisterForm.styled';
@@ -47,6 +48,8 @@ export default function RegistrationForm() {
   const [passwordError, setpasswordError] = useState('Password cannot be emty');
   const [phoneError, setphoneError] = useState('Phone cannot be emty');
   const [phoneDirty, setphoneDirty] = useState(false);
+  const [nameError, setNameError] = useState('Phone cannot be emty');
+  const [nameDirty, setNameDirty] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [notFoundCity, setNotFoundCity] = useState(false);
   const [type, setType] = useState('password');
@@ -91,11 +94,12 @@ export default function RegistrationForm() {
         } else {
           setEmailDirty(false);
         }
+        // eslint-disable-next-line
+        let re = /^\w{1,}[\.-\w]*\w{1,}@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-        let re = /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}/;
         if (
           !re.test(String(e.target.value).toLocaleLowerCase()) ||
-          e.target.value.length > 36
+          e.target.value.length > 64
         ) {
           setEmailError('Wrong email, exemple: lovepets@ukr.ua');
           setEmailDirty(true);
@@ -125,6 +129,18 @@ export default function RegistrationForm() {
         } else {
           setphoneError('');
           setphoneDirty(false);
+        }
+        break;
+      case 'name':
+        let reg = /^([a-zA-Z]{1,}['`-]?[a-zA-Z]?)+$/;
+        if (!reg.test(String(e.target.value))) {
+          setNameError(
+            'Wrong name, only english letters. Hyphen and apostrophe are allowed'
+          );
+          setNameDirty(true);
+        } else {
+          setNameError('');
+          setNameDirty(false);
         }
         break;
       default:
@@ -287,6 +303,9 @@ export default function RegistrationForm() {
           )}
           {page2 && (
             <>
+              {nameDirty && (
+                <ValidationContainerName>{nameError}</ValidationContainerName>
+              )}
               <InputRegisterForm
                 label="Name"
                 type="text"
@@ -322,7 +341,9 @@ export default function RegistrationForm() {
               <ButtonsContainer>
                 <RegisterButton
                   type="submit"
-                  disabled={!name || !location || phoneError !== ''}
+                  disabled={
+                    !name || !location || phoneError !== '' || nameError !== ''
+                  }
                 >
                   Register
                 </RegisterButton>
@@ -337,7 +358,7 @@ export default function RegistrationForm() {
                     <li key={index}>
                       <RegisterButtonLocation onClick={handleButtonClick}>
                         <span>{locate.name}</span>
-                        {'  '}
+                        {',  '}
                         <span>{locate.regionArea}</span>
                       </RegisterButtonLocation>
                     </li>
