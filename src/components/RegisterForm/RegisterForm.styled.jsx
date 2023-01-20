@@ -368,6 +368,7 @@ export const NotSeePassword = styled.div`
     height: 25px;
   }
 `;
+
 export const SeePassword = styled.div`
   position: absolute;
   transform: translate(234px, -86px);
