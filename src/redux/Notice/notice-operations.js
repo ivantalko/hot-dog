@@ -3,11 +3,11 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const getNoticesData = createAsyncThunk(
-  'notices/category/lostFound',
-  async (_, thunkAPI) => {
+export const getNoticesData = () =>
+  createAsyncThunk('notices/category/lostFound', async (_, thunkAPI) => {
     try {
-      const data = await axios.get('/notices/category/lostFound');
+      const { data } = await axios.get('/notices/category/lostFound');
+      console.log(data);
       return data;
     } catch (error) {
       if (error.data.status === 401) {
@@ -17,5 +17,4 @@ export const getNoticesData = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
-);
+  });

@@ -44,7 +44,31 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   const notices = useSelector(selectorNoticesData);
 
-  console.log(notices);
+  const Category = () => {
+    if (location.pathname === '/notices/lost-found') {
+      const noticesFilterCategory = notices.items.filter(
+        item => item.category === 'lostFound'
+      );
+      console.log('lost-found', noticesFilterCategory);
+      return noticesFilterCategory;
+    }
+    if (location.pathname === '/notices/for-free') {
+      const noticesFilterCategory = notices.items.filter(
+        item => item.category === 'inGoodHands'
+      );
+      console.log('for-free', noticesFilterCategory);
+      return noticesFilterCategory;
+    }
+    if (location.pathname === '/notices/sell') {
+      const noticesFilterCategory = notices.items.filter(
+        item => item.category === 'sell'
+      );
+      console.log('sell', noticesFilterCategory);
+      return noticesFilterCategory;
+    }
+  };
+
+  Category();
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
