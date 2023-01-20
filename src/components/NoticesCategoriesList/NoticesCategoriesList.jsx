@@ -2,6 +2,10 @@ import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { getNoticesData } from 'redux/Notice/notice-operations';
+import { selectorNoticesData } from 'redux/Notice/notice-selector';
+import { useDispatch } from 'react-redux';
+
 import {
   Section,
   NoticesList,
@@ -30,6 +34,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const [itemId, setItemId] = useState('');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNoticesData());
+  }, []);
+
+  const notices = useSelector(selectorNoticesData);
+
+  console.log(notices.items);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
