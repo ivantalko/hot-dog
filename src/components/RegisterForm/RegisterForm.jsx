@@ -18,6 +18,7 @@ import {
   InputRegisterFormConfirm,
   LinkRegisterForm,
   NotSeePassword,
+  PasswordRegisterForm,
   RegisterButton,
   RegisterButtonLocation,
   RegisterContainer,
@@ -88,20 +89,16 @@ export default function RegistrationForm() {
   const handleInput = e => {
     switch (e.target.name) {
       case 'email':
-        if (e.target.value === '') {
-          setEmailDirty(true);
-          setEmailError('Wrong cannot be empty');
-        } else {
-          setEmailDirty(false);
-        }
         // eslint-disable-next-line
         let re = /^\w{1,}[\.-\w]*\w{1,}@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-        if (
-          !re.test(String(e.target.value).toLocaleLowerCase()) ||
-          e.target.value.length > 64
-        ) {
+        if (!re.test(String(e.target.value).toLocaleLowerCase())) {
           setEmailError('Wrong email, exemple: lovepets@ukr.ua');
+          setEmailDirty(true);
+        } else if (e.target.value.length < 10) {
+          setEmailError('Email should be more than 10 characters');
+          setEmailDirty(true);
+        } else if (e.target.value.length > 63) {
+          setEmailError('Email should be less  64 characters');
           setEmailDirty(true);
         } else {
           setEmailError('');
@@ -109,10 +106,16 @@ export default function RegistrationForm() {
         }
         break;
       case 'password':
-        if (e.target.value.length < 7 || e.target.value.length > 32) {
-          setpasswordError(
-            'Passsword  should be more than 7 characters and least 32 characters'
-          );
+        let pattern = /^\w*$/;
+        if (!pattern.test(String(e.target.value))) {
+          setpasswordError('Passsword  wrong');
+          setpasswordDirty(true);
+        }
+        if (e.target.value.length < 7) {
+          setpasswordError('Passsword  should be more than 7 characters ');
+          setpasswordDirty(true);
+        } else if (e.target.value.length > 32) {
+          setpasswordError('Passsword  should be less 32 characters ');
           setpasswordDirty(true);
         } else {
           setpasswordError('');
@@ -132,7 +135,7 @@ export default function RegistrationForm() {
         }
         break;
       case 'name':
-        let reg = /^([a-zA-Z]{1,}['`-]?[a-zA-Z]?)+$/;
+        let reg = /^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?[a-zA-Z])+)+$/;
         if (!reg.test(String(e.target.value))) {
           setNameError(
             'Wrong name, only english letters. Hyphen and apostrophe are allowed'
@@ -268,13 +271,13 @@ export default function RegistrationForm() {
                   {passwordError}
                 </ValidationContainerPassword>
               )}
-              <InputRegisterForm
+              <PasswordRegisterForm
                 label="Password"
                 type={type}
                 placeholder="Password"
                 required
                 minLength={7}
-                maxLength={32}
+                maxLength={63}
                 name="password"
                 onChange={handleInput}
                 value={password}
