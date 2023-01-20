@@ -115,7 +115,11 @@ export const NoticesAddModalPage2 = ({
   // };
 
   const chooseAvatar = e => {
-    console.log(AvatarInput);
+    // console.log(AvatarInput);
+    // console.dir(e.target);
+    var fr = new FileReader();
+    fr.readAsDataURL(e.target.files[0]);
+    console.log(fr);
   };
 
   return (

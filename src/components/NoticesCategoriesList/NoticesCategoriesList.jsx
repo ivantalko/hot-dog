@@ -175,6 +175,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       </NoticesList>
       {moreInfoVisible && (
         <ModalNotice
+          notices={notices}
           itemId={itemId}
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
