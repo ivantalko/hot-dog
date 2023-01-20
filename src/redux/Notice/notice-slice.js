@@ -3,6 +3,7 @@ import { getNoticesData } from './notice-operations';
 
 const initialState = {
   items: [],
+  avatar: null,
 };
 
 const status = {
@@ -20,7 +21,7 @@ const noticesSlice = createSlice({
     },
     [getNoticesData.fulfilled](state, action) {
       state.status = status.success;
-      state.items = [...action.payload.data];
+      state.items = [...action.payload];
     },
 
     [getNoticesData.rejected](state) {
