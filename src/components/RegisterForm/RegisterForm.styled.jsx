@@ -248,6 +248,31 @@ export const ValidationContainerEmail = styled.div`
     transform: translate(140px, -198px);
   }
 `;
+export const ValidationContainerName = styled.div`
+  position: absolute;
+  transform: translate(0, -180px);
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.33;
+
+  border: 1px solid red;
+  border-radius: 40px;
+
+  background-color: #ffffffff;
+
+  padding: 2px;
+  @media ${breakpoints.minTablet} {
+    transform: translate(78px, -206px);
+    padding: 10px;
+  }
+  @media ${breakpoints.desktop} {
+    transform: translate(93px, -209px);
+  }
+`;
+
 export const ValidationContainerPhone = styled.div`
   position: absolute;
   transform: translate(19px, -72px);

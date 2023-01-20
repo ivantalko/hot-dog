@@ -19,7 +19,7 @@ export const loginUserOperation = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login/', body);
       token.set(response.token);
-      return response;
+      return response.data;
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Email doesn`t exist or Password is wrong', {
@@ -36,7 +36,7 @@ export const registerUserOperation = createAsyncThunk(
     try {
       const response = await axios.post('/auth/registration', body);
       token.set(response.token);
-      return response;
+      return response.data;
     } catch (error) {
       if (error.response.status === 500) {
         toast.error(
@@ -61,7 +61,7 @@ export const logoutUserOperation = createAsyncThunk(
     try {
       const response = await postLogout();
       token.unset(response.token);
-      return response;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

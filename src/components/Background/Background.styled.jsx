@@ -34,3 +34,8 @@ export const BackgroundAuthorize = styled.div`
     background-repeat: no-repeat, no-repeat;
   }
 `;
+//  let re = /^(\\w{1,}[\\.-\\w]+\\w)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/;
+
+//  valid email /[a-z0-9._%+-]{2,24}@[a-z0-9.-]+.[a-z]{2,4}/
+// name  /^([a-zA-Z]{1,}[`-]?[a-zA-Z]?)+$/
+// /^\w{1,}[\.-\w]*\w{1,}@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
