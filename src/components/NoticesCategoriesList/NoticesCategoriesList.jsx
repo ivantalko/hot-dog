@@ -45,8 +45,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
-  console.log(category, notices);
-
   if (location.pathname === '/notices/lost-found') {
     category = 'lostFound';
   } else if (location.pathname === '/notices/for-free') {

@@ -105,6 +105,19 @@ export const NoticesAddModalPage2 = ({
     document.querySelector('#mainPageModal').classList.remove('hidden');
   };
 
+  // const chooseAvatar = event => {
+  //   var file = event.target.files[0];
+  //   var reader = new FileReader();
+  //   reader.onload = function (event) {
+  //     dispatch(addAvatar(event.target.result));
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
+
+  const chooseAvatar = e => {
+    console.log(AvatarInput);
+  };
+
   return (
     <NextPageModal id="secondPageModal">
       <ModalTitle>Add pet</ModalTitle>
@@ -167,7 +180,13 @@ export const NoticesAddModalPage2 = ({
           <ParameterTitle>Load the pet’s image</ParameterTitle>
           <AvatarInputBox>
             <IconPlus />
-            <AvatarInput type="file" name="fileInput" id="fileInput" />
+            <AvatarInput
+              onChange={chooseAvatar}
+              type="file"
+              name="fileInput"
+              id="fileInput"
+            />
+            <img src="" alt="" />
           </AvatarInputBox>
         </ParameterItem>
         <ParameterItem>
