@@ -8,3 +8,5 @@ export const selectAvatarURL = state => state.user.avatarURL;
 export const selectNotice = state => state.user.notice;
 export const selectBirthday = state => state.user.birthday;
 export const selectToken = state => state.user.token;
+
+export const selector = state => state;
