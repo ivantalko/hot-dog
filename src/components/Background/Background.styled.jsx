@@ -19,7 +19,11 @@ export const BackgroundAuthorize = styled.div`
   background-image: url(${mobile});
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-size: 479px;
+  background-size: 100%;
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    background-size: 479px;
+  }
+
   @media ${breakpoints.minTablet} {
     padding: 0;
 
