@@ -1,39 +1,21 @@
 import { useState } from 'react';
-import {
-  Backdrop,
-  Modal,
-  // MaleIcon,
-  // FemaleIcon,
-  // IconPlus,
-  IconClose,
-  ModalTitle,
-  ModalTitleInfo,
-  CategoryList,
-  CategoryBtn,
-  ParameterList,
-  ParameterTitle,
-  ParameterInput,
-  ControlsBtnList,
-  ControlsBtn,
-  NextPageModal,
-} from './NoticesAddModal.styled';
+import { NoticesAddModalPage1 } from 'components/NoticesAddModalPage1/NoticesAddModalPage1';
+import { NoticesAddModalPage2 } from 'components/NoticesAddModalPage2/NoticesAddModalPage2';
+import { Backdrop } from './NoticesAddModal.styled';
 
-export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
+export const NoticesAddModal = ({
+  handleBackdropClose,
+  setIsModalOpen,
+  pet,
+  setPet,
+}) => {
   const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
   const [name, setName] = useState('');
-  const [birth, setBirth] = useState('');
+  const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
 
   const [nextPageOpen, setNextPageOpen] = useState(false);
-
-  const [pet, setPet] = useState({
-    category: '',
-    title: '',
-    name: '',
-    birth: '',
-    breed: '',
-  });
 
   const handleChangeParameter = e => {
     if (e.target.id === 'titleInput') {
@@ -43,7 +25,7 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
       setName(e.target.value);
     }
     if (e.target.id === 'birthInput') {
-      setBirth(e.target.value);
+      setBirthday(e.target.value);
     }
     if (e.target.id === 'breedInput') {
       setBreed(e.target.value);
@@ -51,7 +33,24 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
   };
 
   const handleChoiseCategory = e => {
-    setCategory(e.target.textContent);
+    if (e.target.id === 'lostFound') {
+      setCategory('lostFound');
+      document.querySelector('#lostFound').classList.add('active');
+      document.querySelector('#inGoodHands').classList.remove('active');
+      document.querySelector('#sell').classList.remove('active');
+    }
+    if (e.target.id === 'inGoodHands') {
+      setCategory('inGoodHands');
+      document.querySelector('#lostFound').classList.remove('active');
+      document.querySelector('#inGoodHands').classList.add('active');
+      document.querySelector('#sell').classList.remove('active');
+    }
+    if (e.target.id === 'sell') {
+      setCategory('sell');
+      document.querySelector('#lostFound').classList.remove('active');
+      document.querySelector('#inGoodHands').classList.remove('active');
+      document.querySelector('#sell').classList.add('active');
+    }
   };
 
   const handleBtnCLoseModal = () => {
@@ -64,173 +63,50 @@ export const NoticesAddModal = ({ handleBackdropClose, setIsModalOpen }) => {
       category !== '' &&
       title !== '' &&
       name !== '' &&
-      birth !== '' &&
+      birthday !== '' &&
       breed !== ''
     ) {
-      setPet({
-        category: category,
-        title: title,
-        name: name,
-        birth: birth,
-        breed: breed,
-      });
       setNextPageOpen(true);
+      document.querySelector('#mainPageModal').classList.add('hidden');
+      if (nextPageOpen) {
+        document.querySelector('#secondPageModal').classList.remove('hidden');
+      }
     } else if (
       category === '' ||
       title === '' ||
       name === '' ||
-      birth === '' ||
+      birthday === '' ||
       breed === ''
     ) {
       console.log('all parameters must be set');
     }
-    console.log(pet);
   };
 
   return (
     <Backdrop onClick={handleBackdropClose}>
-      {!nextPageOpen && (
-        <Modal id="mainPageModal">
-          <IconClose onClick={handleBtnCLoseModal} />
-          <ModalTitle>Add pet</ModalTitle>
-          <ModalTitleInfo>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
-          </ModalTitleInfo>
+      <NoticesAddModalPage1
+        pet={pet}
+        setPet={setPet}
+        handleBtnCLoseModal={handleBtnCLoseModal}
+        handleChoiseCategory={handleChoiseCategory}
+        handleChangeParameter={handleChangeParameter}
+        handleNextPage={handleNextPage}
+      />
 
-          <CategoryList>
-            <li>
-              <CategoryBtn onClick={handleChoiseCategory} type="button">
-                lost/found
-              </CategoryBtn>
-            </li>
-            <li>
-              <CategoryBtn onClick={handleChoiseCategory} type="button">
-                in good hands
-              </CategoryBtn>
-            </li>
-            <li>
-              <CategoryBtn onClick={handleChoiseCategory} type="button">
-                sell
-              </CategoryBtn>
-            </li>
-          </CategoryList>
-          <ParameterList>
-            <li>
-              <ParameterTitle>
-                Tittle of ad<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="titleInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type title"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Name pet<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="nameInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type name pet"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Date of birth<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="birthInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type date of birth"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Breed<span>*</span>
-              </ParameterTitle>
-              <ParameterInput
-                id="breedInput"
-                onChange={handleChangeParameter}
-                type="text"
-                placeholder="Type breed"
-              />
-            </li>
-          </ParameterList>
-          <ControlsBtnList>
-            <li>
-              <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
-            </li>
-            <li>
-              <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
-            </li>
-          </ControlsBtnList>
-        </Modal>
-      )}
       {nextPageOpen && (
-        <NextPageModal id="secondPageModal">
-          <ModalTitle>Add pet</ModalTitle>
-          <IconClose onClick={handleBtnCLoseModal} />
-          <ul>
-            <li>
-              <ParameterTitle>
-                The sex<span style={{ color: '#F59256' }}>*</span>:
-              </ParameterTitle>
-              <ul style={{ display: 'flex' }}>
-                <li>
-                  <input type="radio" name="sexMale" id="sexInputMale" />
-                  <p>Male</p>
-                </li>
-                <li>
-                  <input type="radio" name="sexFemle" id="sexInputFemale" />
-                  <p>Female</p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ParameterTitle>
-                Location<span style={{ color: '#F59256' }}>*</span>:
-              </ParameterTitle>
-              <input
-                type="text"
-                name="locationInput"
-                id="locationInput"
-                placeholder="Type pet location"
-              />
-            </li>
-            <li>
-              <ParameterTitle>
-                Price<span style={{ color: '#F59256' }}>*</span>:
-              </ParameterTitle>
-              <input
-                type="number"
-                name="priceInput"
-                id="priceInput"
-                placeholder="Type pet price"
-              />
-            </li>
-            <li>
-              <ParameterTitle>Load the pet’s image</ParameterTitle>
-              <input type="file" name="fileInput" id="fileInput" />
-            </li>
-            <li>
-              <ParameterTitle>Comments</ParameterTitle>
-              <textarea name="" id="" cols="30" rows="10"></textarea>
-            </li>
-          </ul>
-          <ControlsBtnList>
-            <li>
-              <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
-            </li>
-            <li>
-              <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
-            </li>
-          </ControlsBtnList>
-        </NextPageModal>
+        <NoticesAddModalPage2
+          pet={pet}
+          setPet={setPet}
+          nextPageOpen={nextPageOpen}
+          setIsModalOpen={setIsModalOpen}
+          setNextPageOpen={setNextPageOpen}
+          handleBtnCLoseModal={handleBtnCLoseModal}
+          category={category}
+          title={title}
+          name={name}
+          birthday={birthday}
+          breed={breed}
+        />
       )}
     </Backdrop>
   );

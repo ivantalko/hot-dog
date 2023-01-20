@@ -8,6 +8,7 @@ import FrameImageMX from 'helpers/images/home/home-frame-2xm.png';
 
 export const StyledTitle = styled('h1')`
   @media screen and (min-width: 320px) {
+    position: absolute;
     max-width: 767px;
     width: 280px;
     height: 88px;
@@ -15,10 +16,9 @@ export const StyledTitle = styled('h1')`
     line-height: 44px;
   }
   @media screen and (min-width: 768px) {
+    position: absolute;
     width: 588px;
     height: 200px;
-    margin-top: 92px;
-
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 700;
@@ -31,8 +31,8 @@ export const StyledTitle = styled('h1')`
 export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 320px) {
     max-width: 424px;
-    height: 456px;
-    background-size: cover;
+    height: 100vh;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url(${FrameImageM});
 
@@ -46,8 +46,8 @@ export const StyledFrameImage = styled('div')`
 
   @media screen and (min-width: 425px) {
     max-width: 767px;
-    height: 550px;
-    background-size: cover;
+    height: 100vh;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url(${FrameImageM});
 
@@ -62,7 +62,7 @@ export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 768px) {
     max-width: 1023px;
     height: 1108px;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url(${FrameImageT});
 
