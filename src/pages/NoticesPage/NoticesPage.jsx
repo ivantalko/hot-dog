@@ -1,7 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
+import { useSelector } from 'react-redux';
+import { selectorNoticesData } from 'redux/Notice/notice-selector';
+import { useDispatch } from 'react-redux';
+import { getNoticesData } from 'redux/Notice/notice-operations';
 
 import {
   Section,
@@ -24,6 +29,17 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const query = params.get('query');
   const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [category, setCategory] = useState('');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNoticesData());
+  }, []);
+
+  const contacts = useSelector(selectorNoticesData);
+
+  console.log(contacts);
 
   const [pet, setPet] = useState({
     title: '',
@@ -36,6 +52,13 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     category: '',
     comments: '',
   });
+
+  // const getMovies = async () => {
+  //   const moviesApi = await getSearchMoviesApi(name);
+  //   setMoviesArr(moviesApi.results);
+  // };
+
+  // console.log(getSearchMoviesApi);
 
   const handleSearchButton = e => {
     setParams({ query: name });
@@ -115,7 +138,11 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
             </SearchButton>
           )}
         </SearchForm>
-        <NoticesCategoriesNav location={location} />
+        <NoticesCategoriesNav
+          category={category}
+          setCategory={setCategory}
+          location={location}
+        />
         <AddBtnBox>
           <AddBtnText>Add pet</AddBtnText>
           <AddBtn onClick={handleModalOpen} type="button">
