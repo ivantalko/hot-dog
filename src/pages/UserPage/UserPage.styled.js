@@ -1,13 +1,28 @@
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
-export const Container = styled.section`
+export const ContainerStyled = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 0 50px;
+
+  @media ${breakpoints.minTablet} {
+    padding: 0 0 100px;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding: 0 0 100px;
+  }
+`;
+
+export const Container = styled(ContainerStyled)`
     background-color: #fdf7f2;
     height: 100%;
     width: 100%;
     padding: 0 0 50px;
     
-    @media ${breakpoints.tablet} {
+    @media ${breakpoints.minTablet} {
         padding: 0 0 100px;
     }
 
@@ -27,24 +42,28 @@ export const Wrapper = styled.div`
 export const UserDiv = styled.div`
     display: flex;
     flex-direction: column;
+
+    @media ${breakpoints.mobile} {
+        margin-right: 32px;
+    }
 `
 
 export const Title = styled.h2`
 
     font-weight: 500;
-    line-height: 27px;
-    font-size: 20px;
-    letter-spacing: 0.04em;
+    line-height: 38px;
+    font-size: 28px;
     color: #000000;
 
+    @media ${breakpoints.mobile} {
+        font-size: 20px;
+        line-height: 27px;
+    }
     @media ${breakpoints.maxMobile} {
         padding-left: 20px;
     }
 
     @media ${breakpoints.tablet} {
-        font-size: 28px;
-        line-height: 1.35;
-
         padding-left: 32px;
     }
 
@@ -79,5 +98,23 @@ export const LogoutBox = styled.div`
         display: flex;
         justify-content: flex-end;
         align-items: center;
+    }
+`;
+
+export const PetDiv = styled.div`
+    width: 100%;
+    padding-right: 20px;
+
+    @media ${breakpoints.maxMobile}{
+        padding-left: 20px;
+    }
+
+    @media ${breakpoints.tablet} {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    @media ${breakpoints.desktop} {
+        padding-right: 16px;
     }
 `

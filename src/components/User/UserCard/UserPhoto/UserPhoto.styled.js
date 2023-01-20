@@ -7,7 +7,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-    @media ${breakpoints.tablet} {
+    @media ${breakpoints.minTablet} {
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: flex-start;
@@ -28,7 +28,7 @@ export const Photo = styled.div`
     justify-content: center;
     width: 233px;
     height: 233px;
-    background: #fdf7f2;
+    background-color: #fdf7f2;
     border-radius: 50%;
 
     @media ${breakpoints.maxMobile} {

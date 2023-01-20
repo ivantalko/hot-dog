@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectAvatarURL } from "redux/User/user-selectors"
 import { Avatar, Button, Container, Edit, Photo, Text, Wrapper } from "./UserPhoto.styled";
 import addPhoto from 'helpers/images/user/addFoto.svg';
-import { ReactComponent as IconCamera } from 'helpers/images/user/Camera.svg'
+import { ReactComponent as IconCamera } from 'helpers/images/user/Camera.svg';
+import { putUpdateUser } from "redux/User/user-operation";
+import UserInfo from "../UserInfo/UserInfo";
+
 
 export const UserPhoto = () => {
     const userPhoto = useSelector(selectAvatarURL);
@@ -11,7 +14,7 @@ export const UserPhoto = () => {
     const onChangePhoto = e => {
         const formData = new FormData();
         formData.append('avatar', e.target.files[0]);
-        dispatch(selectAvatarURL(formData));
+        dispatch(putUpdateUser(formData));
     }
     return (
         <Container>
@@ -41,6 +44,7 @@ export const UserPhoto = () => {
                     />
                 </Button>
             </Wrapper>
+            <UserInfo />
         </Container>
     )
 }

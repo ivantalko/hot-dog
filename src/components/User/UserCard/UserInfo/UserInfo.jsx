@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux"
 import { selectBirthday, selectEmail, selectLocation, selectName, selectPhone } from "redux/User/user-selectors"
-import { UserItem } from "./UserItem";
+import UserItem from "./UserItem";
 
-export const UserInfo = () => {
+
+function UserInfo() {
     const userMail = useSelector(selectEmail);
     const userName = useSelector(selectName);
     const userCity = useSelector(selectLocation);
