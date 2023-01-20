@@ -21,8 +21,6 @@ export const BackgroundAuthorize = styled.div`
   background-position: bottom center;
   background-size: 479px;
   @media ${breakpoints.minTablet} {
-    align-items: center;
-
     padding: 0;
 
     background-image: url(${tablet});
@@ -32,7 +30,7 @@ export const BackgroundAuthorize = styled.div`
   @media ${breakpoints.desktop} {
     background-image: url(${second}), url(${first});
     background-size: 1077px, 511px;
-    background-position: bottom -11px left, right 30px bottom;
+    background-position: bottom left, right 30px bottom;
     background-repeat: no-repeat, no-repeat;
   }
 `;

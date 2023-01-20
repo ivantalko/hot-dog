@@ -13,7 +13,11 @@ export default function Navigation({ setBurgerMenu }) {
       <NavStyled>
         <Nav setBurgerMenu={setBurgerMenu} />
       </NavStyled>
-      {token ? <UserNav /> : <AuthNav />}
+      {token ? (
+        <UserNav setBurgerMenu={setBurgerMenu} />
+      ) : (
+        <AuthNav setBurgerMenu={setBurgerMenu} />
+      )}
     </NavigationStyled>
   );
 }

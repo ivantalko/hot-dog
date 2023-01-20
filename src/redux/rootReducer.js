@@ -10,7 +10,6 @@ const persistRegistrConfig = {
   storage,
   blacklist: ['status'],
 };
-
 const persistedRegistrReducer = persistReducer(
   persistRegistrConfig,
   authReducer
