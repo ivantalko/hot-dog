@@ -26,6 +26,28 @@ import {
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
+// export const Category = () => {
+//   const location = useLocation();
+//   const pathname = location.pathname;
+//   if (pathname === '/notices/lost-found') {
+//     const path = 'lostFound';
+//     console.log(path);
+//     return path;
+//   }
+//   if (pathname === '/notices/for-free') {
+//     const path = 'inGoodHands';
+//     console.log(path);
+//     return path;
+//   }
+//   if (pathname === '/notices/sell') {
+//     const path = 'sell';
+//     console.log(path);
+//     return path;
+//   }
+// };
+
+export const Category = 'lostFound';
+
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();

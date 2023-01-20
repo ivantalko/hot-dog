@@ -2,12 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Category } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
-export const getNoticesData = () =>
-  createAsyncThunk('notices/category/lostFound', async (_, thunkAPI) => {
+export const getNoticesData = createAsyncThunk(
+  'notices/category',
+  async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('/notices/category/lostFound');
-      console.log(data);
+      const { data } = await axios.get(`/notices/category/${Category}`);
+
       return data;
     } catch (error) {
       if (error.data.status === 401) {
@@ -17,4 +19,5 @@ export const getNoticesData = () =>
       }
       return thunkAPI.rejectWithValue(error.message);
     }
-  });
+  }
+);
