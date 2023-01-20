@@ -2,15 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { category } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 export const getNoticesData = createAsyncThunk(
-  'notices/category/lostFound',
+  'notices/category',
   async (_, thunkAPI) => {
     try {
-      const items = await axios.get('/notices/category/lostFound');
-      return items;
+      const { data } = await axios.get(`/notices/category/${category}`);
+      return data;
     } catch (error) {
-      if (error.items.status === 401) {
+      if (error.data.status === 401) {
         toast.error('Something went wrong', {
           position: 'top-right',
         });

@@ -1,1 +1,1 @@
-export const selectorNoticesData = state => state.notices;
+export const selectorNoticesData = state => state.notices.items;

@@ -5,6 +5,12 @@ import { ReactComponent as iconPlusPrimal } from '../NoticesAddModal/img/iconPlu
 import { ReactComponent as maleIconPrimal } from '../NoticesAddModal/img/male.svg';
 import { ReactComponent as femaleIconPrimal } from '../NoticesAddModal/img/female.svg';
 
+export const ImageReview = styled.img`
+  position: absolute;
+  border-radius: inherit;
+  padding: 1px;
+`;
+
 export const NextPageModal = styled.div`
   &.hidden {
     display: none;

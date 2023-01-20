@@ -105,6 +105,22 @@ export const NoticesAddModalPage2 = ({
     document.querySelector('#mainPageModal').classList.remove('hidden');
   };
 
+  function previewFile(e) {
+    let preview = document.querySelector('#imagePreview');
+    var file = e.target.files[0];
+    let reader = new FileReader();
+
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = '';
+    }
+  }
+
   return (
     <NextPageModal id="secondPageModal">
       <ModalTitle>Add pet</ModalTitle>
@@ -167,7 +183,25 @@ export const NoticesAddModalPage2 = ({
           <ParameterTitle>Load the pet’s image</ParameterTitle>
           <AvatarInputBox>
             <IconPlus />
-            <AvatarInput type="file" name="fileInput" id="fileInput" />
+            <AvatarInput
+              onChange={previewFile}
+              type="file"
+              name="fileInput"
+              id="fileInput"
+            />
+            <img
+              style={{
+                position: 'absolute',
+                borderRadius: 'inherit',
+                padding: '1px',
+                boxShadow: '0px 0px 4px #f59256',
+                cursor: 'pointer',
+                pointerEvents: 'none',
+              }}
+              id="imagePreview"
+              src=""
+              alt=""
+            />
           </AvatarInputBox>
         </ParameterItem>
         <ParameterItem>

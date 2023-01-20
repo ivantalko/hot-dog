@@ -3,10 +3,6 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
-import { useSelector } from 'react-redux';
-import { selectorNoticesData } from 'redux/Notice/notice-selector';
-import { useDispatch } from 'react-redux';
-import { getNoticesData } from 'redux/Notice/notice-operations';
 
 import {
   Section,
@@ -31,16 +27,6 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [category, setCategory] = useState('');
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getNoticesData());
-  }, []);
-
-  const contacts = useSelector(selectorNoticesData);
-
-  console.log(contacts);
-
   const [pet, setPet] = useState({
     title: '',
     name: '',
@@ -62,6 +48,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   const handleSearchButton = e => {
     setParams({ query: name });
+
     setSearchQuery(name);
     e.preventDefault();
   };
@@ -75,6 +62,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   }, [query]);
 
   useEffect(() => {
+    // if (name !== '') {}
     setParams({ query: name });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -2,6 +2,10 @@ import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { getNoticesData } from 'redux/Notice/notice-operations';
+import { selectorNoticesData } from 'redux/Notice/notice-selector';
+import { useDispatch } from 'react-redux';
+
 import {
   Section,
   NoticesList,
@@ -22,7 +26,11 @@ import {
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
+export let category = '';
+
 export const NoticiesCategoriesList = ({ searchQuery }) => {
+  const dispatch = useDispatch();
+
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const pathname = location.pathname;
@@ -30,6 +38,20 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const [itemId, setItemId] = useState('');
+  const notices = useSelector(selectorNoticesData);
+
+  useEffect(() => {
+    dispatch(getNoticesData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
+  if (location.pathname === '/notices/lost-found') {
+    category = 'lostFound';
+  } else if (location.pathname === '/notices/for-free') {
+    category = 'inGoodHands';
+  } else if (location.pathname === '/notices/sell') {
+    category = 'sell';
+  }
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
@@ -153,6 +175,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       </NoticesList>
       {moreInfoVisible && (
         <ModalNotice
+          notices={notices}
           itemId={itemId}
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
