@@ -7,10 +7,10 @@ export const getNoticesData = createAsyncThunk(
   'notices/category/lostFound',
   async (_, thunkAPI) => {
     try {
-      const items = await axios.get('/notices/category/lostFound');
-      return items;
+      const data = await axios.get('/notices/category/lostFound');
+      return data;
     } catch (error) {
-      if (error.items.status === 401) {
+      if (error.data.status === 401) {
         toast.error('Something went wrong', {
           position: 'top-right',
         });

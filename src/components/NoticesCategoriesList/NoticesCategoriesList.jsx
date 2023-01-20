@@ -39,11 +39,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   useEffect(() => {
     dispatch(getNoticesData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const notices = useSelector(selectorNoticesData);
 
-  console.log(notices.items);
+  console.log(notices);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
