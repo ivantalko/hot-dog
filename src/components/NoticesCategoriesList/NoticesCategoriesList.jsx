@@ -134,16 +134,18 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                     Learn more
                   </LearnMoreBtn>
                 </li>
-                <li>
-                  <DeleteBtn
-                    id={item.id}
-                    onClick={() => {
-                      console.log('delete btn');
-                    }}
-                  >
-                    Delete <DeleteIcon />
-                  </DeleteBtn>
-                </li>
+                {isLogin && (
+                  <li>
+                    <DeleteBtn
+                      id={item.id}
+                      onClick={() => {
+                        console.log('delete btn');
+                      }}
+                    >
+                      Delete <DeleteIcon />
+                    </DeleteBtn>
+                  </li>
+                )}
               </ButtonsList>
             </NoticesItem>
           );
