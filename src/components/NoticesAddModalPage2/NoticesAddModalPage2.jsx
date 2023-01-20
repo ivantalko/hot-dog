@@ -105,22 +105,21 @@ export const NoticesAddModalPage2 = ({
     document.querySelector('#mainPageModal').classList.remove('hidden');
   };
 
-  // const chooseAvatar = event => {
-  //   var file = event.target.files[0];
-  //   var reader = new FileReader();
-  //   reader.onload = function (event) {
-  //     dispatch(addAvatar(event.target.result));
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
+  function previewFile(e) {
+    let preview = document.querySelector('#imagePreview');
+    var file = e.target.files[0];
+    let reader = new FileReader();
 
-  const chooseAvatar = e => {
-    // console.log(AvatarInput);
-    // console.dir(e.target);
-    var fr = new FileReader();
-    fr.readAsDataURL(e.target.files[0]);
-    console.log(fr);
-  };
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = '';
+    }
+  }
 
   return (
     <NextPageModal id="secondPageModal">
@@ -185,12 +184,24 @@ export const NoticesAddModalPage2 = ({
           <AvatarInputBox>
             <IconPlus />
             <AvatarInput
-              onChange={chooseAvatar}
+              onChange={previewFile}
               type="file"
               name="fileInput"
               id="fileInput"
             />
-            <img src="" alt="" />
+            <img
+              style={{
+                position: 'absolute',
+                borderRadius: 'inherit',
+                padding: '1px',
+                boxShadow: '0px 0px 4px #f59256',
+                cursor: 'pointer',
+                pointerEvents: 'none',
+              }}
+              id="imagePreview"
+              src=""
+              alt=""
+            />
           </AvatarInputBox>
         </ParameterItem>
         <ParameterItem>

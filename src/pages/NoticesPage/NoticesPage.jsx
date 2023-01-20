@@ -48,6 +48,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   const handleSearchButton = e => {
     setParams({ query: name });
+
     setSearchQuery(name);
     e.preventDefault();
   };
@@ -61,6 +62,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   }, [query]);
 
   useEffect(() => {
+    // if (name !== '') {}
     setParams({ query: name });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

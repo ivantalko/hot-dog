@@ -3,6 +3,7 @@ import { getNoticesData } from './notice-operations';
 
 const initialState = {
   items: [],
+  avatar: null,
 };
 
 const status = {
