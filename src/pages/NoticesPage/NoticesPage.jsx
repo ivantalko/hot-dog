@@ -26,6 +26,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [category, setCategory] = useState('');
+  const [iconChange, setIconChange] = useState(false);
 
   const [pet, setPet] = useState({
     title: '',
@@ -47,10 +48,10 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   // console.log(getSearchMoviesApi);
 
   const handleSearchButton = e => {
-    setParams({ query: name });
-
-    setSearchQuery(name);
     e.preventDefault();
+    setParams({ query: name });
+    setSearchQuery(name);
+    setIconChange(true);
   };
 
   useEffect(() => {
@@ -62,8 +63,12 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   }, [query]);
 
   useEffect(() => {
-    // if (name !== '') {}
-    setParams({ query: name });
+    if (name !== '') {
+      setParams({ query: name });
+    }
+    if (name !== '') {
+      setIconChange(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -71,6 +76,10 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     e.preventDefault();
     setParams({ query: '' });
     setName('');
+    setIconChange(false);
+    if (name === '') {
+      setParams('');
+    }
   };
 
   const handleInputChange = e => {
@@ -116,7 +125,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
             type="text"
             placeholder="Search"
           />
-          {query !== '' || query === null ? (
+          {iconChange ? (
             <SearchButton type="submit" onClick={handleSearchClear}>
               <CloseIcon />
             </SearchButton>

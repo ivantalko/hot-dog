@@ -20,3 +20,21 @@ export const getNoticesData = createAsyncThunk(
     }
   }
 );
+
+export const getNoticesById = createAsyncThunk(
+  'notices/{id}',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/notices/${id}`);
+      console.log(data);
+      return data;
+    } catch (error) {
+      if (error.data.status === 401) {
+        toast.error('Something went wrong', {
+          position: 'top-right',
+        });
+      }
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

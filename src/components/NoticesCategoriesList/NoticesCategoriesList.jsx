@@ -1,10 +1,11 @@
-import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
 import { getNoticesData } from 'redux/Notice/notice-operations';
 import { selectorNoticesData } from 'redux/Notice/notice-selector';
 import { useDispatch } from 'react-redux';
+import { getNoticesById } from 'redux/Notice/notice-operations';
+import { selectorNoticeById } from 'redux/Notice/notice-selector';
 
 import {
   Section,
@@ -30,7 +31,7 @@ export let category = '';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const dispatch = useDispatch();
-
+  const noticeById = useSelector(selectorNoticeById);
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const pathname = location.pathname;
@@ -57,24 +58,13 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     setFavorite(!favotire);
   };
 
-  const filteredPets = () => {
-    const filterFoCategory = FakeNoticesCardData.filter(
-      item => item.category === `${currentPath}`
-    );
-    const filteredForPet = filterFoCategory.filter(item =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    if (searchQuery === '') {
-      return filterFoCategory;
-    }
-
-    return filteredForPet;
-  };
-
   const handleMoreInfoVisible = () => {
+    dispatch(getNoticesById(itemId));
     setMoreInfoVisible(true);
     document.querySelector('body').classList.add('modal');
   };
+
+  console.log(itemId);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyModalClose);
@@ -98,12 +88,22 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     }
   };
 
+  const filteredPets = () => {
+    const filteredForPet = notices.filter(item =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    if (searchQuery === '') {
+      return notices;
+    }
+    return filteredForPet;
+  };
+
   return (
     <Section>
       <NoticesList>
         {filteredPets().map(item => {
           return (
-            <NoticesItem id={item.id} key={item.id}>
+            <NoticesItem id={item.id} key={item._id}>
               <PetCategory>{item.category}</PetCategory>
               {isLogin && (
                 <FavoriteBtn onClick={handleClickToFavorite}>
@@ -114,12 +114,11 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                   )}
                 </FavoriteBtn>
               )}
-
               <NoticesItemImg
                 height="288px"
                 loading="lazy"
-                src={item.src}
-                alt={item.title}
+                src={item.avatarURL}
+                alt={item.Noki}
               />
               <ItemTitle>{item.title}</ItemTitle>
 
@@ -133,7 +132,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                 <li>
                   <ParametersItemText>
                     <ParametersName>Place:</ParametersName>
-                    {item.place}
+                    {item.location}
                   </ParametersItemText>
                 </li>
                 <li>
@@ -147,9 +146,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
               <ButtonsList>
                 <li>
                   <LearnMoreBtn
-                    id={item.id}
+                    id={item._id}
                     onClick={() => {
-                      setItemId(item.id);
+                      setItemId(item._id);
                       handleMoreInfoVisible();
                     }}
                   >
@@ -159,9 +158,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                 {isLogin && (
                   <li>
                     <DeleteBtn
-                      id={item.id}
+                      id={item._id}
                       onClick={() => {
-                        console.log('delete btn');
+                        console.log(`delete item id=${item._id}`);
                       }}
                     >
                       Delete <DeleteIcon />
@@ -179,6 +178,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           itemId={itemId}
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
+          noticeById={noticeById}
         />
       )}
     </Section>
