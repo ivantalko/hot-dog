@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { toast } from 'react-toastify';
 
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
@@ -94,10 +95,13 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   };
 
   const handleModalOpen = () => {
-    if (isLogin) {
-      setIsModalOpen(!isModalOpen);
-      document.querySelector('body').classList.add('modal');
-    }
+    // if (isLogin) {
+    setIsModalOpen(!isModalOpen);
+    document.querySelector('body').classList.add('modal');
+    // }
+    toast.error('Email doesn`t exist or Password is wrong', {
+      position: 'top-right',
+    });
   };
 
   useEffect(() => {
@@ -155,15 +159,13 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
           </AddBtn>
         </AddBtnBox>
       </NavBox>
-      {isModalOpen ? (
+      {isModalOpen && (
         <NoticesAddModal
           pet={pet}
           setPet={setPet}
           setIsModalOpen={setIsModalOpen}
           handleBackdropClose={handleBackdropClose}
         />
-      ) : (
-        <div>You must login if you want to use this functionality</div>
       )}
     </Section>
   );
