@@ -120,7 +120,12 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const NavItem = styled.li``;
+export const NavItem = styled.li`
+  &:focus,
+  &:hover {
+    box-shadow: 0px 0px 4px black;
+  }
+`;
 
 export const NavLinkStyled = styled(NavLink)`
   font-weight: 500;
@@ -142,6 +147,7 @@ export const NavLinkStyled = styled(NavLink)`
     background-color: #f59256;
     color: white;
   }
+
 `;
 
 export const AddIcon = styled(AddIconPrimal)`
@@ -162,16 +168,18 @@ export const AddIcon = styled(AddIconPrimal)`
 `;
 
 export const AddBtnBox = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  width: 80px;
-  flex-direction: column-reverse;
+
+border: 2px solid #f59256;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+height: 80px;
+width: 80px;
+flex-direction: column-reverse;
   background: #f59256;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 50%;
-
+  
   justify-content: center;
   position: fixed;
   bottom: 92px;
@@ -179,6 +187,7 @@ export const AddBtnBox = styled.div`
   cursor: pointer;
   transition: 250ms;
   @media ${breakpoints.minTablet} {
+    border: none;
     position: absolute;
     flex-direction: row;
     border-radius: 0;
@@ -200,7 +209,8 @@ export const AddBtnBox = styled.div`
   &:hover,
   &:focus {
     @media ${breakpoints.maxMobile}  {
-      box-shadow: 0px 0px 4px black;
+      // box-shadow: 0px 0px 1px black;
+      background-color: #f59256a8;
      
   }
 `;
@@ -225,11 +235,17 @@ export const AddBtn = styled.button`
   border: none;
   background-color: transparent;
   transition: 250ms;
+
   @media ${breakpoints.minTablet} {
     margin-left: 12px;
     width: 44px;
     height: 44px;
     background-color: #f59256;
     border-radius: 50%;
+    &:hover,
+    &:focus {
+      box-shadow: 0px 0px 4px grey;
+      background-color: #f59256a8;
+    }
   }
 `;

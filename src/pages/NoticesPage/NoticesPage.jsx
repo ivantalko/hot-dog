@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
+
 import {
   Section,
   NavBox,
@@ -22,9 +25,30 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const query = params.get('query');
   const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [category, setCategory] = useState('');
+
+  const [pet, setPet] = useState({
+    title: '',
+    name: '',
+    birthday: '',
+    breed: '',
+    sex: '',
+    location: '',
+    price: '',
+    category: '',
+    comments: '',
+  });
+
+  // const getMovies = async () => {
+  //   const moviesApi = await getSearchMoviesApi(name);
+  //   setMoviesArr(moviesApi.results);
+  // };
+
+  // console.log(getSearchMoviesApi);
 
   const handleSearchButton = e => {
     setParams({ query: name });
+
     setSearchQuery(name);
     e.preventDefault();
   };
@@ -38,6 +62,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   }, [query]);
 
   useEffect(() => {
+    // if (name !== '') {}
     setParams({ query: name });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -55,6 +80,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
+    document.querySelector('body').classList.add('modal');
   };
 
   useEffect(() => {
@@ -68,12 +94,14 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setIsModalOpen(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
@@ -98,7 +126,11 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
             </SearchButton>
           )}
         </SearchForm>
-        <NoticesCategoriesNav location={location} />
+        <NoticesCategoriesNav
+          category={category}
+          setCategory={setCategory}
+          location={location}
+        />
         <AddBtnBox>
           <AddBtnText>Add pet</AddBtnText>
           <AddBtn onClick={handleModalOpen} type="button">
@@ -107,18 +139,12 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
         </AddBtnBox>
       </NavBox>
       {isModalOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            width: '100%',
-            height: '100%',
-            top: '0',
-            left: '0',
-          }}
-          onClick={handleBackdropClose}
-        >
-          <div style={{ backgroundColor: 'red' }}>MODAL FORM</div>
-        </div>
+        <NoticesAddModal
+          pet={pet}
+          setPet={setPet}
+          setIsModalOpen={setIsModalOpen}
+          handleBackdropClose={handleBackdropClose}
+        />
       )}
     </Section>
   );

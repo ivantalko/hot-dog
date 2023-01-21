@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUserOperation } from '../Auth/auth-operations';
 import { StatusForAll } from '../status';
-import { getUserOperation } from './user-operation';
+import { getUserOperation, putUpdateUser } from './user-operation';
 
 const initialState = {
+  favoriteNotices: null,
+  ownNotices: null,
   _id: null,
   email: null,
   name: null,
@@ -39,7 +41,6 @@ const userSlice = createSlice({
     [getUserOperation.rejected](state) {
       state.status = StatusForAll.error;
     },
-
     [loginUserOperation.fulfilled](state, action) {
       state.status = StatusForAll.success;
       state.email = action.payload.email;
@@ -51,6 +52,23 @@ const userSlice = createSlice({
       state.notice = action.payload.notice;
       state.birthday = action.payload.birthday;
       state.token = action.payload.token;
+      state.location = action.payload.location;
+    },
+    [loginUserOperation.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+    [putUpdateUser.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [putUpdateUser.fulfilled](state, action) {
+      state.email = action.payload.email;
+      state.name = action.payload.name;
+      state.phone = action.payload.phone;
+      state.birthday = action.payload.birthday;
+      state.location = action.payload.location;
+    },
+    [putUpdateUser.rejected](state) {
+      state.status = StatusForAll.error;
     },
   },
 });

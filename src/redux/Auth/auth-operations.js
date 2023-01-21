@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { postLogin, postLogout } from '../../services/API';
+import { postLogout } from '../../services/API';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const token = {
   set(token) {
@@ -15,14 +17,41 @@ export const loginUserOperation = createAsyncThunk(
   'auth/login',
   async (body, thunkAPI) => {
     try {
-      const response = await postLogin(body);
-      token.set(response.accessToken);
-      return response;
+      const response = await axios.post('/auth/login/', body);
+      token.set(response.token);
+      return response.data;
     } catch (error) {
-      if (error.response.status === 403) {
-        alert('Email doesn`t exist or Password is wrong.');
+      if (error.response.status === 401) {
+        toast.error('Email doesn`t exist or Password is wrong', {
+          position: 'top-right',
+        });
       }
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const registerUserOperation = createAsyncThunk(
+  'auth/registration/',
+  async (body, thunkAPI) => {
+    try {
+      const response = await axios.post('/auth/registration', body);
+      token.set(response.token);
+      return response.data;
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error(
+          'This email or Phone are already exist in the our dayabase',
+          {
+            position: 'top-right',
+          }
+        );
+      }
+      if (error.response.status === 400) {
+        toast.error(error.response.data.message, {
+          position: 'top-right',
+        });
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -31,8 +60,8 @@ export const logoutUserOperation = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await postLogout();
-      token.unset(response.accessToken);
-      return response;
+      token.unset(response.token);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
