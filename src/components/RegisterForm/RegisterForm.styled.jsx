@@ -83,6 +83,48 @@ export const InputRegisterForm = styled.input`
     width: 458px;
   }
 `;
+export const PasswordRegisterForm = styled.input`
+  width: 280px;
+  height: 40px;
+
+  padding-left: 14px;
+
+  background: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  color: rgba(17, 17, 17, 0.6);
+
+  &:hover,
+  &:focus {
+    color: #ff6101;
+    outline: 1px solid #ff6101;
+    background: #fdf7f2;
+  }
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  padding-right: 70px;
+
+  @media ${breakpoints.minTablet} {
+    width: 448px;
+    height: 52px;
+
+    padding-left: 32px;
+    padding-right: 90px;
+
+    font-size: 18px;
+    line-height: 1.38;
+  }
+  @media ${breakpoints.desktop} {
+    width: 458px;
+  }
+`;
 
 export const RegisterForma = styled.form`
   display: flex;
@@ -204,7 +246,7 @@ export const ButtonsContainer = styled.div`
 `;
 export const ValidationContainerPassword = styled.div`
   position: absolute;
-  transform: translate(0px, -118px);
+  transform: translate(52px, -118px);
 
   font-family: 'Manrope';
   font-style: normal;
@@ -218,12 +260,12 @@ export const ValidationContainerPassword = styled.div`
   border: 1px solid red;
   border-radius: 40px;
   @media ${breakpoints.minTablet} {
-    transform: translate(90px, -123px);
+    transform: translate(129px, -123px);
     paddding: 10px;
   }
 
   @media ${breakpoints.desktop} {
-    transform: translate(90px, -126px);
+    transform: translate(143px, -126px);
   }
 `;
 export const ValidationContainerEmail = styled.div`
@@ -242,12 +284,37 @@ export const ValidationContainerEmail = styled.div`
   background-color: #ffffffff;
   padding: 10px;
   @media ${breakpoints.minTablet} {
-    transform: translate(128px, -196px);
+    transform: translate(143px, -196px);
   }
   @media ${breakpoints.desktop} {
     transform: translate(140px, -198px);
   }
 `;
+export const ValidationContainerName = styled.div`
+  position: absolute;
+  transform: translate(0, -180px);
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.33;
+
+  border: 1px solid red;
+  border-radius: 40px;
+
+  background-color: #ffffffff;
+
+  padding: 2px;
+  @media ${breakpoints.minTablet} {
+    transform: translate(78px, -206px);
+    padding: 10px;
+  }
+  @media ${breakpoints.desktop} {
+    transform: translate(93px, -209px);
+  }
+`;
+
 export const ValidationContainerPhone = styled.div`
   position: absolute;
   transform: translate(19px, -72px);
@@ -343,6 +410,7 @@ export const NotSeePassword = styled.div`
     height: 25px;
   }
 `;
+
 export const SeePassword = styled.div`
   position: absolute;
   transform: translate(234px, -86px);
