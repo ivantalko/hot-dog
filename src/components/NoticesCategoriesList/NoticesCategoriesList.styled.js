@@ -9,7 +9,7 @@ export const Section = styled.section`
   max-width: 450px;
 
   @media ${breakpoints.minTablet} {
-    max-width: 900px;
+    max-width: 768px;
     margin-top: 57px;
   }
   @media ${breakpoints.desktop} {
@@ -37,6 +37,9 @@ export const NoticesList = styled.ul`
 `;
 
 export const NoticesItem = styled.li`
+  @media ${breakpoints.minTablet} {
+    width: 100%;
+  }
   display: grid;
   align-items: end;
   height: 100%;
@@ -53,8 +56,10 @@ export const NoticesItem = styled.li`
 export const NoticesItemImg = styled.img`
   margin-bottom: 20px;
   @media ${breakpoints.minTablet} {
-    min-height: 346px;
+height: 288px;
+    width: 100%;
     object-fit: cover;
+}
   }
 `;
 

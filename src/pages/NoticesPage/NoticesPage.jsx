@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
-import { toast } from 'react-toastify';
 
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   Section,
@@ -65,7 +67,6 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     if (query !== null) {
       setSearchQuery(query);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
@@ -95,13 +96,15 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   };
 
   const handleModalOpen = () => {
-    // if (isLogin) {
-    setIsModalOpen(!isModalOpen);
-    document.querySelector('body').classList.add('modal');
-    // }
-    toast.error('Email doesn`t exist or Password is wrong', {
-      position: 'top-right',
-    });
+    if (isLogin) {
+      setIsModalOpen(!isModalOpen);
+      document.querySelector('body').classList.add('modal');
+    }
+    if (!isLogin) {
+      toast.error('You must login if you want to use this functionality', {
+        position: 'top-right',
+      });
+    }
   };
 
   useEffect(() => {
@@ -128,6 +131,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   return (
     <Section>
+      <ToastContainer autoClose={3500} />
       <NavBox>
         <SectionTitle>Find your favorite pet</SectionTitle>
         <SearchForm>
