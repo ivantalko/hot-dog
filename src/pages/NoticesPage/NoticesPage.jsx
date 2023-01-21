@@ -131,7 +131,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   return (
     <Section>
-      <ToastContainer autoClose={3500} />
+      <ToastContainer autoClose={4000} />
       <NavBox>
         <SectionTitle>Find your favorite pet</SectionTitle>
         <SearchForm>
