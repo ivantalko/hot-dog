@@ -23,18 +23,30 @@ import {
   ParametersBox,
   HeartIcon,
 } from './ModalNotice.styled';
+import { date } from 'yup';
 
 export const ModalNotice = ({
   handleBackdropClose,
-  itemId,
   setMoreInfoVisible,
-  notices,
   noticeById,
 }) => {
   const handleModalCloseBtn = () => {
     setMoreInfoVisible(false);
     document.querySelector('body').classList.remove('modal');
   };
+
+  // //training
+  // const getFullAge = () => {
+  //   const birthday = new Date(noticeById.birthday);
+  //   const birthdayFullYear = birthday.getFullYear();
+  //   const date = new Date();
+  //   const newDateFullYear = date.getFullYear();
+  //   const fullAge = birthdayFullYear - newDateFullYear;
+  //   return fullAge;
+  // };
+  // const date = noticeById.birthday;
+  // console.log(date);
+  console.log(noticeById);
 
   return (
     <ModalNoticeBackdrop onClick={handleBackdropClose}>
@@ -43,22 +55,22 @@ export const ModalNotice = ({
           <CloseBtn />
         </ModalCLoseBtn>
         <TopBoxStyled>
-          <CatagoryName>{noticeById.category}</CatagoryName>
+          <CatagoryName>{noticeById.category || ''}</CatagoryName>
           <NoticesInfoImg src={noticeById.avatarURL} alt={noticeById.name} />
 
           <ParametersBox>
-            <NoticesInfoTitle>{noticeById.title}</NoticesInfoTitle>
+            <NoticesInfoTitle>{noticeById.title || ''}</NoticesInfoTitle>
             <ParametersList>
               <li>
                 <NoticesInfoParameters>
                   Name:
-                  <ParametersValue>{noticeById.name}</ParametersValue>
+                  <ParametersValue>{noticeById.name || ''}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   Birthday:
-                  <ParametersValue>{noticeById.birthday}</ParametersValue>
+                  <ParametersValue>{noticeById.birthday || ''}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>

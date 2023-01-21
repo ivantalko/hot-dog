@@ -34,8 +34,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const noticeById = useSelector(selectorNoticeById);
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();
-  const pathname = location.pathname;
-  const currentPath = pathname.slice(9);
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const [itemId, setItemId] = useState('');
@@ -58,13 +56,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     setFavorite(!favotire);
   };
 
-  const handleMoreInfoVisible = () => {
-    dispatch(getNoticesById(itemId));
+  //  const getMovies = async () => {
+  //    const moviesApi = await getSearchMoviesApi(name);
+  //    setMoviesArr(moviesApi.results);
+  //  };
+
+  const handleMoreInfoVisible = e => {
+    dispatch(getNoticesById(e));
     setMoreInfoVisible(true);
     document.querySelector('body').classList.add('modal');
   };
-
-  console.log(itemId);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyModalClose);
@@ -148,8 +149,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                   <LearnMoreBtn
                     id={item._id}
                     onClick={() => {
-                      setItemId(item._id);
-                      handleMoreInfoVisible();
+                      handleMoreInfoVisible(item._id);
                     }}
                   >
                     Learn more
@@ -175,7 +175,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       {moreInfoVisible && (
         <ModalNotice
           notices={notices}
-          itemId={itemId}
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
           noticeById={noticeById}
