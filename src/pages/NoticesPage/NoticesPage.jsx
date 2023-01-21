@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
+
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
 
@@ -20,6 +23,7 @@ import {
 } from './NoticesPage.styled';
 
 export const Notices = ({ searchQuery, setSearchQuery }) => {
+  const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const [params, setParams] = useSearchParams();
   const query = params.get('query');
@@ -27,6 +31,8 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [category, setCategory] = useState('');
   const [iconChange, setIconChange] = useState(false);
+
+  console.log(isLogin);
 
   const [pet, setPet] = useState({
     title: '',
@@ -88,8 +94,10 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   };
 
   const handleModalOpen = () => {
-    setIsModalOpen(!isModalOpen);
-    document.querySelector('body').classList.add('modal');
+    if (isLogin) {
+      setIsModalOpen(!isModalOpen);
+      document.querySelector('body').classList.add('modal');
+    }
   };
 
   useEffect(() => {
@@ -147,13 +155,15 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
           </AddBtn>
         </AddBtnBox>
       </NavBox>
-      {isModalOpen && (
+      {isModalOpen ? (
         <NoticesAddModal
           pet={pet}
           setPet={setPet}
           setIsModalOpen={setIsModalOpen}
           handleBackdropClose={handleBackdropClose}
         />
+      ) : (
+        <div>You must login if you want to use this functionality</div>
       )}
     </Section>
   );

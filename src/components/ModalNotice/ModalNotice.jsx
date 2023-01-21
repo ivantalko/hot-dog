@@ -99,7 +99,7 @@ export const ModalNotice = ({
           <BtnList>
             <li>
               <ContactBtn
-                href={noticeById.owner ? `tel:${noticeById.owner.phone}` : ''}
+                href={noticeById.owner && `tel:${noticeById.owner.phone}`}
               >
                 Contact
               </ContactBtn>
