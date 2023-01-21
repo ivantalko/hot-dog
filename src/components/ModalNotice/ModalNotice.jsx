@@ -1,8 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getNoticesById } from 'redux/Notice/notice-operations';
-import { selectorNoticeById } from 'redux/Notice/notice-selector';
-
 import {
   ModalNoticeBackdrop,
   ModalBox,
@@ -23,7 +18,6 @@ import {
   ParametersBox,
   HeartIcon,
 } from './ModalNotice.styled';
-import { date } from 'yup';
 
 export const ModalNotice = ({
   handleBackdropClose,
@@ -34,19 +28,6 @@ export const ModalNotice = ({
     setMoreInfoVisible(false);
     document.querySelector('body').classList.remove('modal');
   };
-
-  // //training
-  // const getFullAge = () => {
-  //   const birthday = new Date(noticeById.birthday);
-  //   const birthdayFullYear = birthday.getFullYear();
-  //   const date = new Date();
-  //   const newDateFullYear = date.getFullYear();
-  //   const fullAge = birthdayFullYear - newDateFullYear;
-  //   return fullAge;
-  // };
-  // const date = noticeById.birthday;
-  // console.log(date);
-  console.log(noticeById);
 
   return (
     <ModalNoticeBackdrop onClick={handleBackdropClose}>

@@ -36,7 +36,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
-  const [itemId, setItemId] = useState('');
   const notices = useSelector(selectorNoticesData);
 
   useEffect(() => {
