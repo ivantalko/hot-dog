@@ -55,11 +55,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     setFavorite(!favotire);
   };
 
-  //  const getMovies = async () => {
-  //    const moviesApi = await getSearchMoviesApi(name);
-  //    setMoviesArr(moviesApi.results);
-  //  };
-
   const handleMoreInfoVisible = e => {
     dispatch(getNoticesById(e));
     setMoreInfoVisible(true);

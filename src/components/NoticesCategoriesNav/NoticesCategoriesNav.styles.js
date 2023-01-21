@@ -18,6 +18,10 @@ export const NavLinkStyled = styled(NavLink)`
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
+  @media ${breakpoints.minTablet} {
+    font-size: 20px;
+    line-height: 27px;
+  }
   display: inline-flex;
   align-items: center;
   letter-spacing: 0.04em;

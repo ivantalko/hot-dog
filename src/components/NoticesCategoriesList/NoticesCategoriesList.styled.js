@@ -48,6 +48,9 @@ export const NoticesItem = styled.li`
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
+  @media ${breakpoints.minTablet} {
+    border-radius: 0px 0px 40px 40px;
+  }
   padding-bottom: 12px;
   display: grid;
   align-items: end;
