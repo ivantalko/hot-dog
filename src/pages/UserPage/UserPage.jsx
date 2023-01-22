@@ -1,5 +1,6 @@
 import Logout from 'components/User/UserCard/Logout/Logout';
 import UserPhoto from 'components/User/UserCard/UserPhoto/UserPhoto';
+import { UserPagePetsData } from 'components/UserPagePetsData/UserPagePetsData';
 
 import {
   Container,
@@ -25,7 +26,9 @@ const UserPage = () => {
               </LogoutBox>
             </InfoUser>
           </UserDiv>
-          <PetDiv>{/* <PetsData/> */}</PetDiv>
+          <PetDiv>
+            <UserPagePetsData />
+          </PetDiv>
         </Wrapper>
       </Container>
     </>
