@@ -3,11 +3,10 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { category } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 export const getNoticesData = createAsyncThunk(
   'notices/category',
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
     try {
       const { data } = await axios.get(`/notices/category/${category}`);
       return data;

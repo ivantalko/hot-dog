@@ -35,8 +35,6 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   const [category, setCategory] = useState('');
   const [iconChange, setIconChange] = useState(false);
 
-  console.log(isLogin);
-
   const [pet, setPet] = useState({
     title: '',
     name: '',
@@ -48,13 +46,6 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     category: '',
     comments: '',
   });
-
-  // const getMovies = async () => {
-  //   const moviesApi = await getSearchMoviesApi(name);
-  //   setMoviesArr(moviesApi.results);
-  // };
-
-  // console.log(getSearchMoviesApi);
 
   const handleSearchButton = e => {
     e.preventDefault();

@@ -27,8 +27,6 @@ import {
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
-export let category = '';
-
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const dispatch = useDispatch();
   const noticeById = useSelector(selectorNoticeById);
@@ -37,9 +35,10 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const notices = useSelector(selectorNoticesData);
+  let category = '';
 
   useEffect(() => {
-    dispatch(getNoticesData());
+    dispatch(getNoticesData(category));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
@@ -93,10 +92,24 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     return filteredForPet;
   };
 
+  const age = birthday => {
+    const date = new Date();
+    const dateYear = date.getFullYear();
+    const age = dateYear - birthday;
+    return age;
+  };
+
   return (
     <Section>
       <NoticesList>
         {filteredPets().map(item => {
+          let birthday = '';
+          let dateNow = new Date();
+          if (item.birthday.length < 11) {
+            birthday = item.birthday.slice(6);
+          } else if (item.birthday.length > 11) {
+            birthday = dateNow.getFullYear();
+          }
           return (
             <NoticesItem id={item.id} key={item._id}>
               <PetCategory>{item.category}</PetCategory>
@@ -133,7 +146,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                 <li>
                   <ParametersItemText>
                     <ParametersName>Age:</ParametersName>
-                    {item.age}
+                    {age(birthday)}
                   </ParametersItemText>
                 </li>
               </ParametersList>

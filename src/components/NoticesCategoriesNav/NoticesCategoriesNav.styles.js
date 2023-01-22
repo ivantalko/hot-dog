@@ -6,8 +6,8 @@ export const NavList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  @media screen and (min-width: 440px) {
-    width: 400px;
+  @media screen and (min-width: 484px) {
+    width: 484px;
   }
   @media ${breakpoints.desktop} {
     width: auto;
