@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addUserPet } from 'services/API';
 import { loginUserOperation } from '../Auth/auth-operations';
 import { StatusForAll } from '../status';
 import {
@@ -82,6 +83,16 @@ const userSlice = createSlice({
       state.avatarURL = action.payload.avatarURL;
     },
     [patchUserAvatar.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [addUserPet.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [addUserPet.fulfilled](state, action) {
+      // state.avatarURL = action.payload.avatarURL;
+    },
+    [addUserPet.rejected](state) {
       state.status = StatusForAll.error;
     },
   },

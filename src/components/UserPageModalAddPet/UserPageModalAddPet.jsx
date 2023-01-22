@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { postUserPet } from 'redux/User/user-operation';
 import {
   Backdrop,
   ModalMainPage,
@@ -25,19 +27,14 @@ export const UserPageModalAddPet = ({
   handleBackdropClose,
   setIsModalOpen,
 }) => {
+  const dispatch = useDispatch();
   const [nextPageOpen, setNextPageOpen] = useState(false);
-  const [avatar, setAvatar] = useState('');
+
+  let formData = new FormData();
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
   const [comments, setComments] = useState('');
-  const [pet, setPet] = useState({
-    avatar: '',
-    name: '',
-    birthday: '',
-    breed: '',
-    comments: '',
-  });
 
   const handleOpenSecondPage = e => {
     e.preventDefault();
@@ -47,9 +44,9 @@ export const UserPageModalAddPet = ({
         .querySelector('#userAddOwnPetModalMainPage')
         .classList.add('hidden');
       if (nextPageOpen) {
-      document
-        .querySelector('#userAddOwnPetModalSecondPage')
-        .classList.remove('hidden');
+        document
+          .querySelector('#userAddOwnPetModalSecondPage')
+          .classList.remove('hidden');
       }
     }
   };
@@ -57,7 +54,7 @@ export const UserPageModalAddPet = ({
   function previewFile(e) {
     let preview = document.querySelector('#imagePreview');
     let file = e.target.files[0];
-    setAvatar(file);
+    formData.append('avatar', e.target.files[0]);
     let reader = new FileReader();
 
     reader.onloadend = function () {
@@ -94,25 +91,24 @@ export const UserPageModalAddPet = ({
     setComments(e.target.value);
   };
 
-  const handleDoneAddPet = e => {
+  const handleDoneAddPet = async e => {
     e.preventDefault();
-    if (
-      name !== '' &&
-      birthday !== '' &&
-      breed !== '' &&
-      comments !== '' &&
-      avatar !== ''
-    ) {
-      setPet({
-        avatar: avatar,
-        name: name,
-        birthday: birthday,
-        breed: breed,
-        comments: comments,
-      });
-      setIsModalOpen(false);
-      console.log(pet);
-      document.querySelector('body').classList.remove('modal');
+    if (name !== '' && birthday !== '' && breed !== '' && comments !== '') {
+      formData.append(
+        'data',
+        JSON.stringify({
+          name,
+          birthday,
+          breed,
+          comments,
+        })
+      );
+
+      const response = await dispatch(postUserPet(formData));
+      if (response.meta.requestStatus === 'fulfilled') {
+        setIsModalOpen(false);
+        document.querySelector('body').classList.remove('modal');
+      }
     }
   };
 
@@ -196,7 +192,7 @@ export const UserPageModalAddPet = ({
                   <AvatarInput
                     onChange={previewFile}
                     type="file"
-                    name="fileInput"
+                    name="avatar"
                     id="fileInput"
                   />
                   <img

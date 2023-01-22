@@ -32,6 +32,16 @@ export async function changeUserAvatar(body) {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 
-  // const { data } = await axios.patch('/user/avatar', body);
+  return data;
+}
+
+export async function addUserPet(body) {
+  const { data } = await axios({
+    method: 'post',
+    url: '/user/petlist',
+    data: body,
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
   return data;
 }
