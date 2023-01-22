@@ -18,3 +18,15 @@ export async function updateUser(body) {
   const { data } = await axios.put('/user/', body);
   return data;
 }
+
+export async function changeUserAvatar(body) {
+  const { data } = await axios({
+    method: 'patch',
+    url: '/user/avatar',
+    data: body,
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
+  // const { data } = await axios.patch('/user/avatar', body);
+  return data;
+}

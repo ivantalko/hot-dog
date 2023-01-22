@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUserdata, updateUser } from '../../services/API';
+import { getUserdata, updateUser, changeUserAvatar } from '../../services/API';
 
 export const getUserOperation = createAsyncThunk(
   'user/getUser',
@@ -17,6 +17,18 @@ export const putUpdateUser = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await updateUser(body);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const patchUserAvatar = createAsyncThunk(
+  'user/avatar',
+  async (body, thunkAPI) => {
+    try {
+      const response = await changeUserAvatar(body);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
