@@ -12,6 +12,12 @@ export const NewsPage = () => {
   const [closeBtn, setCloseBtn] = useState(false);
   const [value, setValue] = useState('');
 
+  const normDate = date => {
+    return Date.parse(date);
+  };
+
+  const sortedNews = news.sort((a, b) => normDate(b.date) - normDate(a.date));
+
   const getNews = () => {
     async function getData() {
       try {
@@ -34,7 +40,7 @@ export const NewsPage = () => {
     setCloseBtn(!closeBtn);
 
     setFilteredNews(
-      news.filter(item =>
+      sortedNews.filter(item =>
         item.description.toLowerCase().includes(value.toLowerCase())
       )
     );
