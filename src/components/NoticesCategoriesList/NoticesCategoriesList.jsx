@@ -6,7 +6,9 @@ import { selectorNoticesData } from 'redux/Notice/notice-selector';
 import { useDispatch } from 'react-redux';
 import { getNoticesById } from 'redux/Notice/notice-operations';
 import { selectorNoticeById } from 'redux/Notice/notice-selector';
-
+import { getMyNotices } from 'redux/Notice/notice-operations';
+import { getToken } from 'redux/Auth/auth-selectors';
+import { selectorMyNotices } from 'redux/Notice/notice-selector';
 import {
   Section,
   NoticesList,
@@ -34,21 +36,52 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
-  const notices = useSelector(selectorNoticesData);
+  const token = useSelector(getToken);
+  let notices = useSelector(selectorNoticesData);
+  const myNotices = useSelector(selectorMyNotices);
+
   let category = '';
-
-  useEffect(() => {
-    dispatch(getNoticesData(category));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
-
   if (location.pathname === '/notices/lost-found') {
     category = 'lostFound';
   } else if (location.pathname === '/notices/for-free') {
     category = 'inGoodHands';
   } else if (location.pathname === '/notices/sell') {
     category = 'sell';
+  } else if (location.pathname === '/notices/own') {
+    category = 'own';
+  } else if (location.pathname === '/notices/favorite') {
+    category = 'favorite';
   }
+
+  const noticesArr = () => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      return notices;
+    }
+    if (category === 'own') {
+      return myNotices;
+    }
+    if (category === 'favorite') {
+      return myNotices;
+    }
+  };
+
+  useEffect(() => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      dispatch(getNoticesData(category));
+    }
+    if (category === 'own') {
+      dispatch(getMyNotices(token));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
@@ -83,14 +116,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   };
 
   const filteredPets = () => {
-    const filteredForPet = notices.filter(item =>
+    const filteredForPet = noticesArr().filter(item =>
       item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     if (searchQuery === '') {
-      return notices;
+      return noticesArr();
     }
     return filteredForPet;
   };
+
+  console.log(filteredPets());
 
   const age = birthday => {
     const date = new Date();
@@ -98,6 +133,8 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     const age = dateYear - birthday;
     return age;
   };
+
+  console.log(category);
 
   return (
     <Section>

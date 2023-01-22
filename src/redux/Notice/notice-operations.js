@@ -40,9 +40,9 @@ export const getNoticesById = createAsyncThunk(
 
 export const getMyNotices = createAsyncThunk(
   'notices/myads',
-  async (_, thunkAPI) => {
+  async (token, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/notices/myads`);
+      const { data } = await axios.get(`/notices/myads`, token);
       return data;
     } catch (error) {
       if (error.data.status === 401) {
