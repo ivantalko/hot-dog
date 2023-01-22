@@ -107,7 +107,8 @@ export const NoticesAddModalPage2 = ({
 
   function previewFile(e) {
     let preview = document.querySelector('#imagePreview');
-    var file = e.target.files[0];
+    let file = e.target.files[0];
+    console.log(file);
     let reader = new FileReader();
 
     reader.onloadend = function () {

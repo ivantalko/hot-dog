@@ -133,8 +133,8 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
               <ParametersList>
                 <li>
                   <ParametersItemText>
-                    <ParametersName>Breed:</ParametersName>
-                    {item.breed}
+                    <ParametersName>Breed: </ParametersName>
+                    {item.breed || 'dry food'}
                   </ParametersItemText>
                 </li>
                 <li>
