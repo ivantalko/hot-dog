@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUserOperation } from '../Auth/auth-operations';
 import { StatusForAll } from '../status';
-import { getUserOperation, putUpdateUser } from './user-operation';
+import {
+  getUserOperation,
+  putUpdateUser,
+  patchUserAvatar,
+} from './user-operation';
 
 const initialState = {
   favoriteNotices: '',
@@ -69,6 +73,15 @@ const userSlice = createSlice({
       state.location = action.payload.location;
     },
     [putUpdateUser.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+    [patchUserAvatar.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [patchUserAvatar.fulfilled](state, action) {
+      state.avatarURL = action.payload.avatarURL;
+    },
+    [patchUserAvatar.rejected](state) {
       state.status = StatusForAll.error;
     },
   },
