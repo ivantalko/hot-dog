@@ -1,11 +1,14 @@
-import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
 import { getNoticesData } from 'redux/Notice/notice-operations';
 import { selectorNoticesData } from 'redux/Notice/notice-selector';
 import { useDispatch } from 'react-redux';
-
+import { getNoticesById } from 'redux/Notice/notice-operations';
+import { selectorNoticeById } from 'redux/Notice/notice-selector';
+import { getMyNotices } from 'redux/Notice/notice-operations';
+import { getToken } from 'redux/Auth/auth-selectors';
+import { selectorMyNotices } from 'redux/Notice/notice-selector';
 import {
   Section,
   NoticesList,
@@ -26,52 +29,66 @@ import {
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
-export let category = '';
-
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const dispatch = useDispatch();
-
+  const noticeById = useSelector(selectorNoticeById);
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();
-  const pathname = location.pathname;
-  const currentPath = pathname.slice(9);
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
-  const [itemId, setItemId] = useState('');
-  const notices = useSelector(selectorNoticesData);
+  const token = useSelector(getToken);
+  let notices = useSelector(selectorNoticesData);
+  const myNotices = useSelector(selectorMyNotices);
 
-  useEffect(() => {
-    dispatch(getNoticesData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
-
+  let category = '';
   if (location.pathname === '/notices/lost-found') {
     category = 'lostFound';
   } else if (location.pathname === '/notices/for-free') {
     category = 'inGoodHands';
   } else if (location.pathname === '/notices/sell') {
     category = 'sell';
+  } else if (location.pathname === '/notices/own') {
+    category = 'own';
+  } else if (location.pathname === '/notices/favorite') {
+    category = 'favorite';
   }
+
+  const noticesArr = () => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      return notices;
+    }
+    if (category === 'own') {
+      return myNotices;
+    }
+    if (category === 'favorite') {
+      return myNotices;
+    }
+  };
+
+  useEffect(() => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      dispatch(getNoticesData(category));
+    }
+    if (category === 'own') {
+      dispatch(getMyNotices(token));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
   };
 
-  const filteredPets = () => {
-    const filterFoCategory = FakeNoticesCardData.filter(
-      item => item.category === `${currentPath}`
-    );
-    const filteredForPet = filterFoCategory.filter(item =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    if (searchQuery === '') {
-      return filterFoCategory;
-    }
-
-    return filteredForPet;
-  };
-
-  const handleMoreInfoVisible = () => {
+  const handleMoreInfoVisible = e => {
+    dispatch(getNoticesById(e));
     setMoreInfoVisible(true);
     document.querySelector('body').classList.add('modal');
   };
@@ -98,12 +115,40 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     }
   };
 
+  const filteredPets = () => {
+    const filteredForPet = noticesArr().filter(item =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    if (searchQuery === '') {
+      return noticesArr();
+    }
+    return filteredForPet;
+  };
+
+  console.log(filteredPets());
+
+  const age = birthday => {
+    const date = new Date();
+    const dateYear = date.getFullYear();
+    const age = dateYear - birthday;
+    return age;
+  };
+
+  console.log(category);
+
   return (
     <Section>
       <NoticesList>
         {filteredPets().map(item => {
+          let birthday = '';
+          let dateNow = new Date();
+          if (item.birthday.length < 11) {
+            birthday = item.birthday.slice(6);
+          } else if (item.birthday.length > 11) {
+            birthday = dateNow.getFullYear();
+          }
           return (
-            <NoticesItem id={item.id} key={item.id}>
+            <NoticesItem id={item.id} key={item._id}>
               <PetCategory>{item.category}</PetCategory>
               {isLogin && (
                 <FavoriteBtn onClick={handleClickToFavorite}>
@@ -114,32 +159,31 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                   )}
                 </FavoriteBtn>
               )}
-
               <NoticesItemImg
                 height="288px"
                 loading="lazy"
-                src={item.src}
-                alt={item.title}
+                src={item.avatarURL}
+                alt={item.Noki}
               />
               <ItemTitle>{item.title}</ItemTitle>
 
               <ParametersList>
                 <li>
                   <ParametersItemText>
-                    <ParametersName>Breed:</ParametersName>
-                    {item.breed}
+                    <ParametersName>Breed: </ParametersName>
+                    {item.breed || 'dry food'}
                   </ParametersItemText>
                 </li>
                 <li>
                   <ParametersItemText>
                     <ParametersName>Place:</ParametersName>
-                    {item.place}
+                    {item.location}
                   </ParametersItemText>
                 </li>
                 <li>
                   <ParametersItemText>
                     <ParametersName>Age:</ParametersName>
-                    {item.age}
+                    {age(birthday)}
                   </ParametersItemText>
                 </li>
               </ParametersList>
@@ -147,10 +191,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
               <ButtonsList>
                 <li>
                   <LearnMoreBtn
-                    id={item.id}
+                    id={item._id}
                     onClick={() => {
-                      setItemId(item.id);
-                      handleMoreInfoVisible();
+                      handleMoreInfoVisible(item._id);
                     }}
                   >
                     Learn more
@@ -159,9 +202,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                 {isLogin && (
                   <li>
                     <DeleteBtn
-                      id={item.id}
+                      id={item._id}
                       onClick={() => {
-                        console.log('delete btn');
+                        console.log(`delete item id=${item._id}`);
                       }}
                     >
                       Delete <DeleteIcon />
@@ -176,9 +219,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       {moreInfoVisible && (
         <ModalNotice
           notices={notices}
-          itemId={itemId}
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
+          noticeById={noticeById}
         />
       )}
     </Section>
