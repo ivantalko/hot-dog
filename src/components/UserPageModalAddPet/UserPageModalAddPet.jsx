@@ -46,9 +46,11 @@ export const UserPageModalAddPet = ({
       document
         .querySelector('#userAddOwnPetModalMainPage')
         .classList.add('hidden');
+      if (nextPageOpen) {
       document
         .querySelector('#userAddOwnPetModalSecondPage')
         .classList.remove('hidden');
+      }
     }
   };
 
