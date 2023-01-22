@@ -40,24 +40,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   let notices = useSelector(selectorNoticesData);
   const myNotices = useSelector(selectorMyNotices);
 
-  const notices = () => {
-    if (
-      category === 'lostFound' ||
-      category === 'inGoodHands' ||
-      category === 'sell'
-    ) {
-      return useSelector(selectorNoticesData);
-    }
-    if (category === 'own') {
-      notices = useSelector(selectorMyNotices);
-      return notices;
-    }
-    if (category === 'favorite') {
-      notices = useSelector(selectorNoticesData);
-      return notices;
-    }
-  };
-
   let category = '';
   if (location.pathname === '/notices/lost-found') {
     category = 'lostFound';
@@ -67,14 +49,25 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     category = 'sell';
   } else if (location.pathname === '/notices/own') {
     category = 'own';
+  } else if (location.pathname === '/notices/favorite') {
+    category = 'favorite';
   }
 
-  console.log(myNotices);
-
-  // useEffect(() => {
-  //   dispatch(getNoticesData(category));
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [location]);
+  const noticesArr = () => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      return notices;
+    }
+    if (category === 'own') {
+      return myNotices;
+    }
+    if (category === 'favorite') {
+      return myNotices;
+    }
+  };
 
   useEffect(() => {
     if (
@@ -123,14 +116,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   };
 
   const filteredPets = () => {
-    const filteredForPet = notices.filter(item =>
+    const filteredForPet = noticesArr().filter(item =>
       item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     if (searchQuery === '') {
-      return notices;
+      return noticesArr();
     }
     return filteredForPet;
   };
+
+  console.log(filteredPets());
 
   const age = birthday => {
     const date = new Date();
