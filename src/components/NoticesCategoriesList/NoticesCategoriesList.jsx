@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import { getNoticesById } from 'redux/Notice/notice-operations';
 import { selectorNoticeById } from 'redux/Notice/notice-selector';
 import { getMyNotices } from 'redux/Notice/notice-operations';
-
+import { getToken } from 'redux/Auth/auth-selectors';
+import { selectorMyNotices } from 'redux/Notice/notice-selector';
 import {
   Section,
   NoticesList,
@@ -35,7 +36,27 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
-  const notices = useSelector(selectorNoticesData);
+  const token = useSelector(getToken);
+  let notices = useSelector(selectorNoticesData);
+  const myNotices = useSelector(selectorMyNotices);
+
+  const notices = () => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      return useSelector(selectorNoticesData);
+    }
+    if (category === 'own') {
+      notices = useSelector(selectorMyNotices);
+      return notices;
+    }
+    if (category === 'favorite') {
+      notices = useSelector(selectorNoticesData);
+      return notices;
+    }
+  };
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -47,6 +68,8 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   } else if (location.pathname === '/notices/own') {
     category = 'own';
   }
+
+  console.log(myNotices);
 
   // useEffect(() => {
   //   dispatch(getNoticesData(category));
@@ -62,7 +85,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       dispatch(getNoticesData(category));
     }
     if (category === 'own') {
-      dispatch(getMyNotices(category));
+      dispatch(getMyNotices(token));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
@@ -115,6 +138,8 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     const age = dateYear - birthday;
     return age;
   };
+
+  console.log(category);
 
   return (
     <Section>
