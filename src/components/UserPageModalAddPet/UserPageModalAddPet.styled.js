@@ -21,6 +21,10 @@ export const ModalMainPage = styled.div`
   background: #ffffff;
   border-radius: 20px;
   padding: 40px 20px;
+  margin: auto;
+  @media screen and (min-width: 400px) {
+    max-width: 400px;
+  }
   @media ${breakpoints.minTablet} {
     padding: 40px 80px;
   }
@@ -36,6 +40,10 @@ export const ModalSecondPage = styled.div`
   background: #ffffff;
   border-radius: 20px;
   padding: 40px 20px;
+  margin: auto;
+  @media screen and (min-width: 400px) {
+    max-width: 400px;
+  }
   @media ${breakpoints.minTablet} {
     padding: 40px 80px;
   }
@@ -206,6 +214,7 @@ export const ControlsBtn = styled.button`
 `;
 
 export const AvatarInputBox = styled.div`
+  overflow: hidden;
   display: inline-flex;
   background: #fdf7f2;
   border-radius: 20px;
