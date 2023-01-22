@@ -67,7 +67,7 @@ export const CatagoryName = styled.span`
   padding: 6px 53px 6px 20px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(50px);
-  @media ${breakpoints.maxTablet} {
+  @media ${breakpoints.minTablet} {
     top: 52px;
   }
 `;
