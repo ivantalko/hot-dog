@@ -22,9 +22,8 @@ export const OurFriendsModal = ({
     return () => {
       document.removeEventListener('keydown', ourFriendsHandleKeyDown);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
 
   const ourFriendsHandleKeyDown = event => {
     if (event.code === 'Escape') setOurFriendsModalBul(false);
