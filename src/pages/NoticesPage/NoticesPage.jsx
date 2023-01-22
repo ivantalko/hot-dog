@@ -1,8 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
+
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesAddModal } from 'components/NoticesAddModal/NoticesAddModal';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   Section,
@@ -20,12 +26,14 @@ import {
 } from './NoticesPage.styled';
 
 export const Notices = ({ searchQuery, setSearchQuery }) => {
+  const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const [params, setParams] = useSearchParams();
   const query = params.get('query');
   const [name, setName] = useState(query ?? searchQuery);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [category, setCategory] = useState('');
+  const [iconChange, setIconChange] = useState(false);
 
   const [pet, setPet] = useState({
     title: '',
@@ -39,31 +47,27 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     comments: '',
   });
 
-  // const getMovies = async () => {
-  //   const moviesApi = await getSearchMoviesApi(name);
-  //   setMoviesArr(moviesApi.results);
-  // };
-
-  // console.log(getSearchMoviesApi);
-
   const handleSearchButton = e => {
-    setParams({ query: name });
-
-    setSearchQuery(name);
     e.preventDefault();
+    setParams({ query: name });
+    setSearchQuery(name);
+    setIconChange(true);
   };
 
   useEffect(() => {
     if (query !== null) {
       setSearchQuery(query);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   useEffect(() => {
-    // if (name !== '') {}
-    setParams({ query: name });
+    if (name !== '') {
+      setParams({ query: name });
+    }
+    if (name !== '') {
+      setIconChange(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -71,6 +75,10 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     e.preventDefault();
     setParams({ query: '' });
     setName('');
+    setIconChange(false);
+    if (name === '') {
+      setParams('');
+    }
   };
 
   const handleInputChange = e => {
@@ -79,8 +87,15 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
   };
 
   const handleModalOpen = () => {
-    setIsModalOpen(!isModalOpen);
-    document.querySelector('body').classList.add('modal');
+    if (isLogin) {
+      setIsModalOpen(!isModalOpen);
+      document.querySelector('body').classList.add('modal');
+    }
+    if (!isLogin) {
+      toast.error('You must login if you want to use this functionality', {
+        position: 'top-right',
+      });
+    }
   };
 
   useEffect(() => {
@@ -107,6 +122,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
 
   return (
     <Section>
+      <ToastContainer autoClose={4000} />
       <NavBox>
         <SectionTitle>Find your favorite pet</SectionTitle>
         <SearchForm>
@@ -116,7 +132,7 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
             type="text"
             placeholder="Search"
           />
-          {query !== '' || query === null ? (
+          {iconChange ? (
             <SearchButton type="submit" onClick={handleSearchClear}>
               <CloseIcon />
             </SearchButton>

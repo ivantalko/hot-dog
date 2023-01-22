@@ -25,6 +25,9 @@ export const SearchIcon = styled(SearchIconPrimal)`
     color: inherit;
     fill: inherit;
   }
+  @media ${breakpoints.minTablet} {
+    height: 24px;
+  }
 `;
 export const CloseIcon = styled(CloseIconPrimal)`
   height: 20px;
@@ -73,14 +76,20 @@ export const SearchInput = styled.input`
   cursor: pointer;
   width: 100%;
   height: 40px;
+  font-size: 16px;
+  line-height: 22px;
+  @media ${breakpoints.minTablet} {
+    font-size: 20px;
+    line-height: 27px;
+    height: 44px;
+    padding-left: 20px;
+    width: 608px;
+  }
   border-radius: 20px;
   outline: none;
   padding-left: 12px;
   border: 2px solid transparent;
   color: #535353;
-  @media ${breakpoints.minTablet} {
-    width: 608px;
-  }
   &::placeholder {
     color: #535353;
     transition: 250ms;
@@ -117,6 +126,9 @@ export const SearchButton = styled.button`
   &:focus {
     color: #f59256;
     fill: #f59256;
+  }
+  @media ${breakpoints.minTablet} {
+    width: 44px;
   }
 `;
 
