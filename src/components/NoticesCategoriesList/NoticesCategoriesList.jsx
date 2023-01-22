@@ -6,6 +6,7 @@ import { selectorNoticesData } from 'redux/Notice/notice-selector';
 import { useDispatch } from 'react-redux';
 import { getNoticesById } from 'redux/Notice/notice-operations';
 import { selectorNoticeById } from 'redux/Notice/notice-selector';
+import { getMyNotices } from 'redux/Notice/notice-operations';
 
 import {
   Section,
@@ -35,20 +36,36 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const notices = useSelector(selectorNoticesData);
+
   let category = '';
-
-  useEffect(() => {
-    dispatch(getNoticesData(category));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
-
   if (location.pathname === '/notices/lost-found') {
     category = 'lostFound';
   } else if (location.pathname === '/notices/for-free') {
     category = 'inGoodHands';
   } else if (location.pathname === '/notices/sell') {
     category = 'sell';
+  } else if (location.pathname === '/notices/own') {
+    category = 'own';
   }
+
+  // useEffect(() => {
+  //   dispatch(getNoticesData(category));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [location]);
+
+  useEffect(() => {
+    if (
+      category === 'lostFound' ||
+      category === 'inGoodHands' ||
+      category === 'sell'
+    ) {
+      dispatch(getNoticesData(category));
+    }
+    if (category === 'own') {
+      dispatch(getMyNotices(category));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
