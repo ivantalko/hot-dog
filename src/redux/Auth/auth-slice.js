@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { StatusForAll } from '../status';
 import {
+  currentUser,
   loginUserOperation,
   logoutUserOperation,
   registerUserOperation,
@@ -8,8 +9,8 @@ import {
 
 const initialState = {
   name: '',
-  _id: null,
-  accessToken: null,
+  _id: '',
+  token: '',
   status: StatusForAll.init,
   isLogin: false,
 };
@@ -24,14 +25,14 @@ const authSlice = createSlice({
       state.status = StatusForAll.success;
       state.name = action.payload.name;
       state._id = action.payload._id;
-      state.accessToken = action.payload.token;
+      state.token = action.payload.token;
       state.isLogin = true;
     },
     [loginUserOperation.rejected](state) {
       state.status = StatusForAll.error;
       state.name = '';
-      state._id = null;
-      state.accessToken = null;
+      state._id = '';
+      state.token = '';
     },
     [logoutUserOperation.pending](state) {
       state.status = StatusForAll.loading;
@@ -49,13 +50,28 @@ const authSlice = createSlice({
       state.status = StatusForAll.success;
       state.name = action.payload.name;
       state._id = action.payload._id;
-      state.accessToken = action.payload.token;
+      state.token = action.payload.token;
     },
     [registerUserOperation.rejected](state) {
       state.status = StatusForAll.error;
       state.name = '';
-      state._id = null;
-      state.accessToken = null;
+      state._id = '';
+      state.token = '';
+    },
+    [currentUser.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [currentUser.fulfilled](state, action) {
+      state.status = StatusForAll.success;
+      state.name = action.payload.name;
+      state._id = action.payload._id;
+      state.token = action.payload.token;
+    },
+    [currentUser.rejected](state) {
+      state.status = StatusForAll.error;
+      state.name = '';
+      state._id = '';
+      state.token = '';
     },
   },
 });
