@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as iconClosePrimal } from './img/closeIcon.svg';
 import { breakpoints } from 'helpers/breakpoints';
+import { ReactComponent as iconPlusPrimal } from './img/iconPlus.svg';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -15,8 +16,8 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalMainPage = styled.div`
-  position: absolute;
-  width: calc(100% - 40px);
+  position: relative;
+  width: 100%;
   background: #ffffff;
   border-radius: 20px;
   padding: 40px 20px;
@@ -24,13 +25,14 @@ export const ModalMainPage = styled.div`
     padding: 40px 80px;
   }
   &.hidden {
+    position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 `;
 export const ModalSecondPage = styled.div`
-  position: absolute;
-  width: calc(100% - 40px);
+  position: relative;
+  width: 100%;
   background: #ffffff;
   border-radius: 20px;
   padding: 40px 20px;
@@ -105,6 +107,12 @@ export const CategoryList = styled.ul`
   gap: 16px;
   margin-bottom: 40px;
 `;
+export const CategoryListSecondPage = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+`;
 
 export const CategoryTitle = styled.h4`
   font-weight: 500;
@@ -126,6 +134,22 @@ export const CategoryTitleSecondPage = styled.h4`
   text-align: center;
   letter-spacing: -0.01em;
   color: #000000;
+  margin-bottom: 20px;
+  @media ${breakpoints.minTablet} {
+    font-size: 24px;
+    line-height: 26px;
+  }
+`;
+
+export const CategoryCommentsTitle = styled.h4`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #000000;
+  margin-bottom: 8px;
+  text-align: start;
   @media ${breakpoints.minTablet} {
     font-size: 24px;
     line-height: 26px;
@@ -178,5 +202,62 @@ export const ControlsBtn = styled.button`
   &:hover,
   &:focus {
     background-color: #f59256;
+  }
+`;
+
+export const AvatarInputBox = styled.div`
+  display: inline-flex;
+  background: #fdf7f2;
+  border-radius: 20px;
+  position: relative;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 4px #f59256;
+  }
+`;
+
+export const AvatarInput = styled.input`
+  cursor: pointer;
+    width: 208px;
+    height: 208px;
+    background-color: red;
+    opacity: 0;
+    border-radius: 20px;
+
+}`;
+
+export const IconPlus = styled(iconPlusPrimal)`
+  position: absolute;
+  top 50%;
+  left 50%;
+  transform: translate(-50%, -50%);
+
+`;
+
+export const TextArea = styled.textarea`
+  cursor: pointer;
+
+  height: 100px;
+  padding: 12px 14px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: rgba(27, 27, 27, 0.6);
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  background: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    border: 1px solid #f59256;
+    color: #f59256;
+    box-shadow: inset 0px 0px 4px #f59256;
   }
 `;

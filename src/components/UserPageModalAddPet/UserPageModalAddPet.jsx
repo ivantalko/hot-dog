@@ -13,6 +13,12 @@ import {
   ControlsList,
   ControlsBtn,
   SecondPageModalTitle,
+  AvatarInputBox,
+  IconPlus,
+  AvatarInput,
+  CategoryListSecondPage,
+  TextArea,
+  CategoryCommentsTitle,
 } from './UserPageModalAddPet.styled';
 
 export const UserPageModalAddPet = ({
@@ -20,7 +26,18 @@ export const UserPageModalAddPet = ({
   setIsModalOpen,
 }) => {
   const [nextPageOpen, setNextPageOpen] = useState(false);
-  const [pet, setPet] = useState({ name: '', birthday: '', breed: '' });
+  const [avatar, setAvatar] = useState('');
+  const [name, setName] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [breed, setBreed] = useState('');
+  const [comments, setComments] = useState('');
+  const [pet, setPet] = useState({
+    avatar: '',
+    name: '',
+    birthday: '',
+    breed: '',
+    comments: '',
+  });
 
   const handleOpenSecondPage = e => {
     e.preventDefault();
@@ -30,7 +47,56 @@ export const UserPageModalAddPet = ({
       .classList.add('hidden');
   };
 
-  console.log(pet);
+  function previewFile(e) {
+    let preview = document.querySelector('#imagePreview');
+    let file = e.target.files[0];
+    setAvatar(file);
+    let reader = new FileReader();
+
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = '';
+    }
+  }
+
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
+  const handleBirthdayChange = e => {
+    setBirthday(e.target.value);
+  };
+  const handleBreedChange = e => {
+    setBreed(e.target.value);
+  };
+  const handleCommentsChange = e => {
+    setComments(e.target.value);
+  };
+
+  const handleDoneAddPet = e => {
+    e.preventDefault();
+    if (
+      name !== '' &&
+      birthday !== '' &&
+      breed !== '' &&
+      comments !== '' &&
+      avatar !== ''
+    ) {
+      setPet({
+        avatar: avatar,
+        name: name,
+        birthday: birthday,
+        breed: breed,
+        comments: comments,
+      });
+      console.log(pet);
+    }
+  };
+
   return (
     <Backdrop onClick={handleBackdropClose}>
       <ModalMainPage id="userAddOwnPetModalMainPage">
@@ -46,15 +112,30 @@ export const UserPageModalAddPet = ({
           <CategoryList>
             <li>
               <CategoryTitle>Name pet</CategoryTitle>
-              <CategoryInput type="text" placeholder="Type name pet" />
+              <CategoryInput
+                type="text"
+                placeholder="Type name pet"
+                value={name}
+                onChange={handleNameChange}
+              />
             </li>
             <li>
               <CategoryTitle>Date of birth</CategoryTitle>
-              <CategoryInput type="text" placeholder="Type date of birth" />
+              <CategoryInput
+                type="text"
+                value={birthday}
+                onChange={handleBirthdayChange}
+                placeholder="Type date of birth"
+              />
             </li>
             <li>
               <CategoryTitle>Breed</CategoryTitle>
-              <CategoryInput type="text" placeholder="Type breed" />
+              <CategoryInput
+                type="text"
+                value={breed}
+                onChange={handleBreedChange}
+                placeholder="Type breed"
+              />
             </li>
           </CategoryList>
           <ControlsList>
@@ -78,24 +159,52 @@ export const UserPageModalAddPet = ({
           </CloseBtn>
           <SecondPageModalTitle>Add pet</SecondPageModalTitle>
           <form>
-            <CategoryList>
-              <li>
+            <CategoryListSecondPage>
+              <li style={{ display: 'block', textAlign: 'center' }}>
                 <CategoryTitleSecondPage>
                   Add photo and some comments
                 </CategoryTitleSecondPage>
-                <CategoryInput type="text" placeholder="Type name pet" />
+                <AvatarInputBox>
+                  <IconPlus />
+                  <AvatarInput
+                    onChange={previewFile}
+                    type="file"
+                    name="fileInput"
+                    id="fileInput"
+                  />
+                  <img
+                    style={{
+                      position: 'absolute',
+                      borderRadius: 'inherit',
+                      padding: '1px',
+                      boxShadow: '0px 0px 4px #f59256',
+                      cursor: 'pointer',
+                      pointerEvents: 'none',
+                    }}
+                    id="imagePreview"
+                    src=""
+                    alt=""
+                  />
+                </AvatarInputBox>
               </li>
               <li>
-                <CategoryTitleSecondPage>Date of birth</CategoryTitleSecondPage>
-                <CategoryInput type="text" placeholder="Type date of birth" />
+                <CategoryCommentsTitle>Comments</CategoryCommentsTitle>
+                <TextArea
+                  onChange={handleCommentsChange}
+                  value={comments}
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></TextArea>
               </li>
-            </CategoryList>
+            </CategoryListSecondPage>
             <ControlsList>
               <li>
-                <ControlsBtn onClick={handleOpenSecondPage}>Next</ControlsBtn>
+                <ControlsBtn onClick={handleDoneAddPet}>Done</ControlsBtn>
               </li>
               <li>
-                <ControlsBtn>Cancel</ControlsBtn>
+                <ControlsBtn>Back</ControlsBtn>
               </li>
             </ControlsList>
           </form>
