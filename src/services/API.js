@@ -10,6 +10,11 @@ export async function getUserdata() {
   return data;
 }
 
+export const getServices = async () => {
+  const { data } = await axios.get(`/services`);
+  return data;
+};
+
 export async function getAllNews() {
   const { data } = await axios.get(`/news`);
   return data;
