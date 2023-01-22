@@ -19,13 +19,16 @@ export const OurFriendsModal = ({
   const ourFriendsModalRoot = document.getElementById('ourFriendsModal-root');
   useEffect(() => {
     document.addEventListener('keydown', ourFriendsHandleKeyDown);
-    return;
+    return () => {
+      document.removeEventListener('keydown', ourFriendsHandleKeyDown);
+    };
   }, []);
+
+
 
   const ourFriendsHandleKeyDown = event => {
     if (event.code === 'Escape') setOurFriendsModalBul(false);
-    document.querySelector(`#\\3${idTime} a`).classList.remove('active');
-  };
+    document.querySelector(`#\\3${idTime} a`).classList.remove('active');};
 
   const ourFriendsCloseModal = event => {
     if (event.target === event.currentTarget) {
