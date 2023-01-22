@@ -141,7 +141,6 @@ export const OurFriendsLogo = styled.img`
   height: 78px;
   margin-right: 12px;
   margin-top: 0px;
- 
 
   @media ${breakpoints.minTablet} {
     width: 120px;
@@ -155,7 +154,7 @@ export const OurFriendsLogo = styled.img`
   }
 `;
 
-export const OurFriandsInfo = styled.ul`
+export const OurFriendsInfoItem = styled.ul`
 
 `;
 
@@ -164,6 +163,7 @@ export const OurFriendsAdress = styled.li`
   display: block;
   margin-bottom: 4px;
 
+  
 @media ${breakpoints.minTablet} {
   margin-bottom: 8px;
 }

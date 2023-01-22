@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import { breakpoints } from 'helpers/breakpoints';
 
 export const OurFriendsModalOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;

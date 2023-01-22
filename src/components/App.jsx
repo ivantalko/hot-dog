@@ -9,7 +9,7 @@ import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategorie
 import { useState } from 'react';
 import { Home } from './Home/Home';
 import { NewsPage } from 'pages/NewsPage/NewsPage';
-import { Notices } from 'pages/NoticesPage/NoticesPage';
+// import { Notices } from 'pages/NoticesPage/NoticesPage';
 export const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   return (

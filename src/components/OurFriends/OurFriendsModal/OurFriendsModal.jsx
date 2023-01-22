@@ -14,9 +14,9 @@ export const OurFriendsModal = ({
   setOurFriendsModalBul,
   cordinate,
   timeWork,
+  idTime,
 }) => {
   const ourFriendsModalRoot = document.getElementById('ourFriendsModal-root');
-  console.log('cordinate', cordinate);
   useEffect(() => {
     document.addEventListener('keydown', ourFriendsHandleKeyDown);
     return;
@@ -24,21 +24,22 @@ export const OurFriendsModal = ({
 
   const ourFriendsHandleKeyDown = event => {
     if (event.code === 'Escape') setOurFriendsModalBul(false);
+    document.querySelector(`#\\3${idTime} a`).classList.remove('active');
   };
 
   const ourFriendsCloseModal = event => {
-    console.log('event', event);
     if (event.target === event.currentTarget) {
       setOurFriendsModalBul(false);
+      document.querySelector(`#\\3${idTime} a`).classList.remove('active');
     }
   };
 
-  let cutFirstZero = (s) => {
-    if (s[0] === '0'){
-      s = s.slice(1)
-      return s
-    } 
-    return s
+  let cutFirstZero = s => {
+    if (s[0] === '0') {
+      s = s.slice(1);
+      return s;
+    }
+    return s;
   };
 
   return createPortal(

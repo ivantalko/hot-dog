@@ -9,14 +9,14 @@ import {
   OurFriendsAdress,
   OurFriendseEmail,
   OurFriendsPhone,
-  OurFriandsInfo,
   OurFriendsCard,
   OurFriendsInfo,
   OurFriendseEmailMailto,
   OurFriendsPhoneTel,
   OurFriendseAdressMap,
+  OurFriendsInfoItem,
 } from './OurFriends.styled';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import ourFriendsBaseLogo from '../../helpers/images/ourFriends/ourFriendsBaseLogo.png';
 import { OurFriendsTimeWork } from 'components/OurFriends/OurFriendsTimeWork';
 
@@ -45,17 +45,15 @@ const OurFriends = () => {
     return item;
   }
 
-  console.log('item', services);
-
   return (
     <>
       <OurFriendsBox>
         <OurFriendsBoxTitle>Our friends</OurFriendsBoxTitle>
         <OurFriendsCards>
           {' '}
-          {services?.map(item => {
+          {services?.map((item, index) => {
             return (
-              <OurFriendsCard key={nanoid()}>
+              <OurFriendsCard key={index} id={index}>
                 <OurFriendsCardSecondTitle
                   href={ourFriendsPlug(item.url)}
                   target="_blank"
@@ -67,8 +65,11 @@ const OurFriends = () => {
                     src={ourFriendsLogo(item.imageUrl)}
                     alt="logo"
                   />
-                  <OurFriandsInfo>
-                    <OurFriendsTimeWork timeWork={item.workDays} />
+                  <OurFriendsInfoItem>
+                    <OurFriendsTimeWork
+                      timeWork={item.workDays}
+                      idTime={index}
+                    />
                     <OurFriendsAdress>
                       Address:
                       <br />
@@ -77,18 +78,20 @@ const OurFriends = () => {
                       </OurFriendseAdressMap>
                     </OurFriendsAdress>
                     <OurFriendseEmail>
-                      Email:<br/>
+                      Email:
+                      <br />
                       <OurFriendseEmailMailto href="mailto:{ourFriendsplug(item.email)}">
                         {ourFriendsPlug(item.email)}
                       </OurFriendseEmailMailto>
                     </OurFriendseEmail>
                     <OurFriendsPhone>
-                      Phone:<br/>
+                      Phone:
+                      <br />
                       <OurFriendsPhoneTel href="tel:{ourFriendsplug(item.phone)}">
                         {ourFriendsPlug(item.phone)}
                       </OurFriendsPhoneTel>
                     </OurFriendsPhone>
-                  </OurFriandsInfo>
+                  </OurFriendsInfoItem>
                 </OurFriendsInfo>
               </OurFriendsCard>
             );
