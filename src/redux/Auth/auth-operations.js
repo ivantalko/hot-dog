@@ -18,7 +18,7 @@ export const loginUserOperation = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await axios.post('/auth/login/', body);
-      token.set(response.token);
+      token.set(response.data.token);
       return response.data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -35,7 +35,7 @@ export const registerUserOperation = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await axios.post('/auth/registration', body);
-      token.set(response.token);
+      token.set(response.data.token);
       return response.data;
     } catch (error) {
       if (error.response.status === 500) {
@@ -60,10 +60,27 @@ export const logoutUserOperation = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await postLogout();
-      token.unset(response.token);
+      token.unset();
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const currentUser = createAsyncThunk(
+  'auth/currentUser',
+  async (_, thunkAPI) => {
+    const { auth } = thunkAPI.getState();
+    if (auth.token === '') {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    token.set(auth.token);
+    try {
+      const { data } = await axios.get('/auth/current');
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }
 );
