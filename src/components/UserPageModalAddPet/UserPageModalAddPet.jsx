@@ -41,10 +41,15 @@ export const UserPageModalAddPet = ({
 
   const handleOpenSecondPage = e => {
     e.preventDefault();
-    setNextPageOpen(true);
-    document
-      .querySelector('#userAddOwnPetModalMainPage')
-      .classList.add('hidden');
+    if (name !== '' && birthday !== '' && breed !== '') {
+      setNextPageOpen(true);
+      document
+        .querySelector('#userAddOwnPetModalMainPage')
+        .classList.add('hidden');
+      document
+        .querySelector('#userAddOwnPetModalSecondPage')
+        .classList.remove('hidden');
+    }
   };
 
   function previewFile(e) {
@@ -63,6 +68,16 @@ export const UserPageModalAddPet = ({
       preview.src = '';
     }
   }
+
+  const handleBackBtn = e => {
+    e.preventDefault();
+    document
+      .querySelector('#userAddOwnPetModalSecondPage')
+      .classList.add('hidden');
+    document
+      .querySelector('#userAddOwnPetModalMainPage')
+      .classList.remove('hidden');
+  };
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -93,7 +108,9 @@ export const UserPageModalAddPet = ({
         breed: breed,
         comments: comments,
       });
+      setIsModalOpen(false);
       console.log(pet);
+      document.querySelector('body').classList.remove('modal');
     }
   };
 
@@ -143,7 +160,15 @@ export const UserPageModalAddPet = ({
               <ControlsBtn onClick={handleOpenSecondPage}>Next</ControlsBtn>
             </li>
             <li>
-              <ControlsBtn>Cancel</ControlsBtn>
+              <ControlsBtn
+                onClick={e => {
+                  e.preventDefault();
+                  setIsModalOpen(false);
+                  document.querySelector('body').classList.remove('modal');
+                }}
+              >
+                Cancel
+              </ControlsBtn>
             </li>
           </ControlsList>
         </form>
@@ -204,7 +229,7 @@ export const UserPageModalAddPet = ({
                 <ControlsBtn onClick={handleDoneAddPet}>Done</ControlsBtn>
               </li>
               <li>
-                <ControlsBtn>Back</ControlsBtn>
+                <ControlsBtn onClick={handleBackBtn}>Back</ControlsBtn>
               </li>
             </ControlsList>
           </form>
