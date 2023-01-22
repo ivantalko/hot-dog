@@ -6,7 +6,6 @@ export const getUserOperation = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await getUserdata();
-      console.log(response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
