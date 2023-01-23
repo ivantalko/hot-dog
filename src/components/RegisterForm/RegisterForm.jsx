@@ -54,8 +54,9 @@ export default function RegistrationForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [notFoundCity, setNotFoundCity] = useState(false);
   const [type, setType] = useState('password');
-  //
   const [arrayLocation, setArrayLocation] = useState('');
+  //
+  // const [isCorerectPassword, setIsCorerectPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -83,6 +84,7 @@ export default function RegistrationForm() {
     } else {
       setNext(true);
       setConfirmPassword(e.target.value);
+      console.log('wrong');
     }
   };
 
@@ -107,11 +109,12 @@ export default function RegistrationForm() {
         break;
       case 'password':
         let pattern = /^\w*$/;
-        if (!pattern.test(String(e.target.value))) {
-          setpasswordError('Passsword  wrong');
+        if (!pattern.test(e.target.value)) {
+          setpasswordError(
+            'Password must contain numbers and/or letters without spaces'
+          );
           setpasswordDirty(true);
-        }
-        if (e.target.value.length < 7) {
+        } else if (e.target.value.length < 7) {
           setpasswordError('Passsword  should be more than 7 characters ');
           setpasswordDirty(true);
         } else if (e.target.value.length > 32) {
@@ -121,6 +124,7 @@ export default function RegistrationForm() {
           setpasswordError('');
           setpasswordDirty(false);
         }
+
         break;
       case 'phone':
         let regex = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
@@ -297,7 +301,12 @@ export default function RegistrationForm() {
               />
               <BaseButton
                 type="button"
-                disabled={next || emailErorr !== '' || passwordError !== ''}
+                disabled={
+                  next ||
+                  emailErorr !== '' ||
+                  passwordError !== '' ||
+                  password !== confirmPassword
+                }
                 onClick={nextClickButton}
               >
                 Next
