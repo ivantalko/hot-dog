@@ -9,6 +9,8 @@ import { selectorNoticeById } from 'redux/Notice/notice-selector';
 import { getMyNotices } from 'redux/Notice/notice-operations';
 import { getToken } from 'redux/Auth/auth-selectors';
 import { selectorMyNotices } from 'redux/Notice/notice-selector';
+import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
+
 import {
   Section,
   NoticesList,
@@ -25,6 +27,12 @@ import {
   LearnMoreBtn,
   DeleteBtn,
   DeleteIcon,
+  // ConfirmBackdrop,
+  // ConfirmModal,
+  // ConfirmText,
+  // PetName,
+  // ConfirmBtnList,
+  // ConfirmBtn,
 } from './NoticesCategoriesList.styled';
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -39,6 +47,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const token = useSelector(getToken);
   let notices = useSelector(selectorNoticesData);
   const myNotices = useSelector(selectorMyNotices);
+  const [openConfirmModal, setOpenConfirmModal] = useState();
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -87,6 +96,11 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     setFavorite(!favotire);
   };
 
+  const handleOpenConfirmModal = () => {
+    document.querySelector('body').classList.add('modal');
+    setOpenConfirmModal(!openConfirmModal);
+  };
+
   const handleMoreInfoVisible = e => {
     dispatch(getNoticesById(e));
     setMoreInfoVisible(true);
@@ -104,6 +118,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setMoreInfoVisible(false);
+      setOpenConfirmModal(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -111,6 +126,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setMoreInfoVisible(false);
+      setOpenConfirmModal(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -125,16 +141,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     return filteredForPet;
   };
 
-  console.log(filteredPets());
-
   const age = birthday => {
     const date = new Date();
     const dateYear = date.getFullYear();
     const age = dateYear - birthday;
     return age;
   };
-
-  console.log(category);
 
   return (
     <Section>
@@ -204,7 +216,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                     <DeleteBtn
                       id={item._id}
                       onClick={() => {
-                        console.log(`delete item id=${item._id}`);
+                        handleOpenConfirmModal();
                       }}
                     >
                       Delete <DeleteIcon />
@@ -222,6 +234,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
           noticeById={noticeById}
+        />
+      )}
+      {openConfirmModal && (
+        <ConfirmModalComponent
+          handleOpenConfirmModal={handleOpenConfirmModal}
+          handleBackdropClose={handleBackdropClose}
         />
       )}
     </Section>
