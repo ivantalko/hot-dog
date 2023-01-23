@@ -10,8 +10,8 @@ import {
 } from './user-operation';
 
 const initialState = {
-  favoriteNotices: '',
-  ownNotices: '',
+  favoriteNotices: [],
+  ownNotices: [],
   _id: '',
   email: '',
   name: '',
@@ -19,7 +19,6 @@ const initialState = {
   avatarURL: '',
   location: '',
   pets: '',
-  notice: '',
   birthday: '',
   token: '',
 
@@ -40,7 +39,9 @@ const userSlice = createSlice({
       state.phone = action.payload.phone;
       state.pets = action.payload.pets;
       state.avatarURL = action.payload.avatarURL;
-      state.notice = action.payload.notice;
+      state.ownNotices = action.payload.notice;
+      state.favoriteNotices = action.payload.favoriteNotices;
+
       state.birthday = action.payload.birthday;
       state.token = action.payload.token;
       state.location = action.payload.location;

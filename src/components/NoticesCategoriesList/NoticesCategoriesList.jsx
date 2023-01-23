@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getIsLogin } from 'redux/Auth/auth-selectors';
-import { getNoticesData } from 'redux/Notice/notice-operations';
-import { selectorNoticesData } from 'redux/Notice/notice-selector';
-import { useDispatch } from 'react-redux';
-import { getNoticesById } from 'redux/Notice/notice-operations';
-import { selectorNoticeById } from 'redux/Notice/notice-selector';
-import { getMyNotices } from 'redux/Notice/notice-operations';
-import { getToken } from 'redux/Auth/auth-selectors';
-import { selectorMyNotices } from 'redux/Notice/notice-selector';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
 import {
   Section,
   NoticesList,
@@ -26,19 +19,38 @@ import {
   DeleteBtn,
   DeleteIcon,
 } from './NoticesCategoriesList.styled';
-import { useLocation } from 'react-router-dom';
+
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
+
+import {
+  getNoticesData,
+  getMyNotices,
+  getNoticesById,
+  getFavNotices,
+  deleteNoticesById,
+} from 'redux/Notice/notice-operations';
+import {
+  selectorNoticeById,
+  selectorNoticesData,
+} from 'redux/Notice/notice-selector';
+
+import { getIsLogin, getToken } from 'redux/Auth/auth-selectors';
+
+import { selectFavNotices, selectOwnNotices } from 'redux/User/user-selectors';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const dispatch = useDispatch();
+
   const noticeById = useSelector(selectorNoticeById);
+  const token = useSelector(getToken);
+  let notices = useSelector(selectorNoticesData);
   const isLogin = useSelector(getIsLogin);
+  const ownNotices = useSelector(selectOwnNotices);
+  const favNotices = useSelector(selectFavNotices);
+
   const location = useLocation();
   const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
-  const token = useSelector(getToken);
-  let notices = useSelector(selectorNoticesData);
-  const myNotices = useSelector(selectorMyNotices);
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -53,22 +65,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     category = 'favorite';
   }
 
-  const noticesArr = () => {
-    if (
-      category === 'lostFound' ||
-      category === 'inGoodHands' ||
-      category === 'sell'
-    ) {
-      return notices;
-    }
-    if (category === 'own') {
-      return myNotices;
-    }
-    if (category === 'favorite') {
-      return myNotices;
-    }
-  };
-
   useEffect(() => {
     if (
       category === 'lostFound' ||
@@ -80,11 +76,18 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     if (category === 'own') {
       dispatch(getMyNotices(token));
     }
+    if (category === 'favorite') {
+      dispatch(getFavNotices(token));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
   const handleClickToFavorite = () => {
     setFavorite(!favotire);
+  };
+
+  const handleNoticeDelete = e => {
+    dispatch(deleteNoticesById(e.target.dataset.id));
   };
 
   const handleMoreInfoVisible = e => {
@@ -116,16 +119,14 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   };
 
   const filteredPets = () => {
-    const filteredForPet = noticesArr().filter(item =>
+    const filteredForPet = notices.filter(item =>
       item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     if (searchQuery === '') {
-      return noticesArr();
+      return notices;
     }
     return filteredForPet;
   };
-
-  console.log(filteredPets());
 
   const age = birthday => {
     const date = new Date();
@@ -134,12 +135,13 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     return age;
   };
 
-  console.log(category);
-
   return (
     <Section>
       <NoticesList>
         {filteredPets().map(item => {
+          const deleteBtnRule =
+            ownNotices.find(ownId => ownId === item._id) && isLogin;
+          const favBtnRule = favNotices.find(favId => favId === item._id);
           let birthday = '';
           let dateNow = new Date();
           if (item.birthday.length < 11) {
@@ -147,13 +149,18 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           } else if (item.birthday.length > 11) {
             birthday = dateNow.getFullYear();
           }
+
           return (
             <NoticesItem id={item.id} key={item._id}>
               <PetCategory>{item.category}</PetCategory>
               {isLogin && (
                 <FavoriteBtn onClick={handleClickToFavorite}>
-                  {favotire ? (
-                    <HeartIconPrimal id="toFavoriteInList" active="true" />
+                  {favBtnRule ? (
+                    <HeartIconPrimal
+                      {...favBtnRule}
+                      id="toFavoriteInList"
+                      active="true"
+                    />
                   ) : (
                     <HeartIconPrimal id="toFavoriteInList" active="false" />
                   )}
@@ -191,7 +198,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
               <ButtonsList>
                 <li>
                   <LearnMoreBtn
-                    id={item._id}
                     onClick={() => {
                       handleMoreInfoVisible(item._id);
                     }}
@@ -199,14 +205,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                     Learn more
                   </LearnMoreBtn>
                 </li>
-                {isLogin && (
+                {deleteBtnRule && (
                   <li>
-                    <DeleteBtn
-                      id={item._id}
-                      onClick={() => {
-                        console.log(`delete item id=${item._id}`);
-                      }}
-                    >
+                    <DeleteBtn data-id={item._id} onClick={handleNoticeDelete}>
                       Delete <DeleteIcon />
                     </DeleteBtn>
                   </li>

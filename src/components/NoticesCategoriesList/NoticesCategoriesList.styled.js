@@ -136,13 +136,13 @@ export const FavoriteBtn = styled.button`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   border-radius: 50%;
-  color: white;
-  fill: white;
+  color: ${p => (p.favBtnRule ? '#f59256' : 'white')};
+  fill: ${p => (p.favBtnRule ? '#f59256' : 'white')};
 
   &:hover,
   &:focus {
-    color: #f59256;
-    fill: #f59256;
+    color: ${p => (p.favBtnRule ? 'white' : '#f59256')};
+    fill: ${p => (p.favBtnRule ? 'white' : '#f59256')};
   }
 `;
 
