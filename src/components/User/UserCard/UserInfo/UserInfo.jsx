@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectBirthday,
@@ -10,6 +11,48 @@ import {
 import UserItem from './UserItem';
 
 function UserInfo() {
+  const [location, setLocation] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [notFoundCity, setNotFoundCity] = useState(false);
+  const [arrayLocation, setArrayLocation] = useState('');
+
+  const handelChangeLocation = query => {
+    setLocation(query);
+
+    console.log('first', location);
+    setIsOpen(true);
+
+    fetchProducts(query.trim());
+    if (!location) {
+      setArrayLocation(false);
+      setNotFoundCity(true);
+      return;
+    }
+  };
+
+  const fetchProducts = useMemo(
+    () => async search => {
+      if (!search) return;
+      try {
+        const response = await axios.get(
+          `https://petssupportapi.onrender.com/location?city=${search}`
+        );
+        if (response?.data?.cities.length === 0) {
+          setNotFoundCity(true);
+          setArrayLocation(false);
+          return;
+        }
+
+        setArrayLocation(response?.data?.cities);
+        setNotFoundCity(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [arrayLocation]
+  );
+
   const userMail = useSelector(selectEmail);
   const userName = useSelector(selectName);
   const userCity = useSelector(selectLocation);
@@ -49,8 +92,9 @@ function UserInfo() {
       />
       <UserItem
         active={active}
+        handelChangeLocation={handelChangeLocation}
         setActive={setActive}
-        name={'location'}
+        name={'city'}
         label={'City:'}
         user={userCity}
       />
