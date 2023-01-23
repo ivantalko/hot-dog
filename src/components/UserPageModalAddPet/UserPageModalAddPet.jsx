@@ -30,7 +30,8 @@ export const UserPageModalAddPet = ({
   const dispatch = useDispatch();
   const [nextPageOpen, setNextPageOpen] = useState(false);
 
-  let formData = new FormData();
+  const formData = new FormData();
+
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
@@ -54,7 +55,6 @@ export const UserPageModalAddPet = ({
   function previewFile(e) {
     let preview = document.querySelector('#imagePreview');
     let file = e.target.files[0];
-    formData.append('avatar', e.target.files[0]);
     let reader = new FileReader();
 
     reader.onloadend = function () {
@@ -94,6 +94,7 @@ export const UserPageModalAddPet = ({
   const handleDoneAddPet = async e => {
     e.preventDefault();
     if (name !== '' && birthday !== '' && breed !== '' && comments !== '') {
+      formData.append('avatar', e.target.avatar.files[0]);
       formData.append(
         'data',
         JSON.stringify({
@@ -103,7 +104,6 @@ export const UserPageModalAddPet = ({
           comments,
         })
       );
-
       const response = await dispatch(postUserPet(formData));
       if (response.meta.requestStatus === 'fulfilled') {
         setIsModalOpen(false);
@@ -181,7 +181,7 @@ export const UserPageModalAddPet = ({
             <IconClose />
           </CloseBtn>
           <SecondPageModalTitle>Add pet</SecondPageModalTitle>
-          <form>
+          <form onSubmit={handleDoneAddPet}>
             <CategoryListSecondPage>
               <li style={{ display: 'block', textAlign: 'center' }}>
                 <CategoryTitleSecondPage>
@@ -224,7 +224,7 @@ export const UserPageModalAddPet = ({
             </CategoryListSecondPage>
             <ControlsList>
               <li>
-                <ControlsBtn onClick={handleDoneAddPet}>Done</ControlsBtn>
+                <ControlsBtn type="submit">Done</ControlsBtn>
               </li>
               <li>
                 <ControlsBtn onClick={handleBackBtn}>Back</ControlsBtn>

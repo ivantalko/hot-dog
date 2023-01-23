@@ -45,3 +45,8 @@ export async function addUserPet(body) {
 
   return data;
 }
+
+export async function removeUserPet(id) {
+  const { data } = await axios.delete(`/user/petlist/${id}`);
+  return data;
+}

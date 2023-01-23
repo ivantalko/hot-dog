@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addUserPet } from 'services/API';
 import { loginUserOperation } from '../Auth/auth-operations';
 import { StatusForAll } from '../status';
 import {
   getUserOperation,
   putUpdateUser,
   patchUserAvatar,
+  postUserPet,
+  deleteUserPet,
 } from './user-operation';
 
 const initialState = {
@@ -86,13 +87,25 @@ const userSlice = createSlice({
       state.status = StatusForAll.error;
     },
 
-    [addUserPet.pending](state) {
+    [postUserPet.pending](state) {
       state.status = StatusForAll.loading;
     },
-    [addUserPet.fulfilled](state, action) {
+    [postUserPet.fulfilled](state, action) {
+      // state.pets = state.pets.push(action.payload);
       // state.avatarURL = action.payload.avatarURL;
     },
-    [addUserPet.rejected](state) {
+    [postUserPet.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [deleteUserPet.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [deleteUserPet.fulfilled](state, action) {
+      // state.pets = state.pets.push(action.payload);
+      // state.avatarURL = action.payload.avatarURL;
+    },
+    [deleteUserPet.rejected](state) {
       state.status = StatusForAll.error;
     },
   },

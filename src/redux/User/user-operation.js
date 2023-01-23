@@ -4,6 +4,7 @@ import {
   updateUser,
   changeUserAvatar,
   addUserPet,
+  removeUserPet,
 } from '../../services/API';
 
 export const getUserOperation = createAsyncThunk(
@@ -46,7 +47,18 @@ export const postUserPet = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await addUserPet(body);
-      console.log('response :>> ', response);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteUserPet = createAsyncThunk(
+  'user/petlistDelete',
+  async (id, thunkAPI) => {
+    try {
+      const response = await removeUserPet(id);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
