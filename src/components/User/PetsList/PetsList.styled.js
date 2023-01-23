@@ -50,12 +50,6 @@ export const UserPetAvatarImage = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  /* @media ${breakpoints.minTablet} {
-
-  }
-  @media ${breakpoints.desktop} {
-
-  } */
 `;
 
 export const UserPetDescription = styled.div`
@@ -99,13 +93,6 @@ export const UserPetText = styled.p`
 export const UserPetCategoryName = styled.span`
   font-weight: 500;
   hyphens: auto;
-
-  /* @media ${breakpoints.minTablet} {
-
-  }
-  @media ${breakpoints.desktop} {
-
-  } */
 `;
 
 export const UserPetDeleteBtn = styled.button`

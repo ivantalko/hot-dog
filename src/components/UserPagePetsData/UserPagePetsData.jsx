@@ -52,7 +52,6 @@ export const UserPagePetsData = () => {
       document.querySelector('body').classList.remove('modal');
     }
   };
-
   return (
     <PetDataBox>
       <PetsDataBoxTop>

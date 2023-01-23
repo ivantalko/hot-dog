@@ -91,8 +91,7 @@ const userSlice = createSlice({
       state.status = StatusForAll.loading;
     },
     [postUserPet.fulfilled](state, action) {
-      // state.pets = state.pets.push(action.payload);
-      // state.avatarURL = action.payload.avatarURL;
+      state.pets.push(action.payload);
     },
     [postUserPet.rejected](state) {
       state.status = StatusForAll.error;
@@ -102,8 +101,10 @@ const userSlice = createSlice({
       state.status = StatusForAll.loading;
     },
     [deleteUserPet.fulfilled](state, action) {
-      // state.pets = state.pets.push(action.payload);
-      // state.avatarURL = action.payload.avatarURL;
+      return {
+        ...state,
+        pets: [...state.pets.filter(({ _id }) => _id !== action.payload)],
+      };
     },
     [deleteUserPet.rejected](state) {
       state.status = StatusForAll.error;
