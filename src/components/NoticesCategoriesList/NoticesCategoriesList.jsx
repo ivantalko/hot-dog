@@ -29,6 +29,9 @@ import {
   getFavNotices,
   deleteNoticesById,
 } from 'redux/Notice/notice-operations';
+
+import { toogleFavNotice } from 'redux/User/user-operation';
+
 import {
   selectorNoticeById,
   selectorNoticesData,
@@ -49,7 +52,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const favNotices = useSelector(selectFavNotices);
 
   const location = useLocation();
-  const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
 
   let category = '';
@@ -82,12 +84,21 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
-  const handleClickToFavorite = () => {
-    setFavorite(!favotire);
+  const handleClickToFavorite = async e => {
+    const target = e.currentTarget;
+    target.disabled = true;
+    const { payload } = await dispatch(toogleFavNotice(target.dataset));
+
+    if (payload.message === 'Add to fav') target.dataset.favorite = 0;
+    if (payload.message === 'Deletete from fav') target.dataset.favorite = 1;
+
+    target.disabled = false;
+
+    target.blur();
   };
 
-  const handleNoticeDelete = e => {
-    dispatch(deleteNoticesById(e.target.dataset.id));
+  const handleNoticeDelete = async e => {
+    await dispatch(deleteNoticesById(e.target.dataset.id));
   };
 
   const handleMoreInfoVisible = e => {
@@ -151,19 +162,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           }
 
           return (
-            <NoticesItem id={item.id} key={item._id}>
+            <NoticesItem key={item._id}>
               <PetCategory>{item.category}</PetCategory>
               {isLogin && (
-                <FavoriteBtn onClick={handleClickToFavorite}>
-                  {favBtnRule ? (
-                    <HeartIconPrimal
-                      {...favBtnRule}
-                      id="toFavoriteInList"
-                      active="true"
-                    />
-                  ) : (
-                    <HeartIconPrimal id="toFavoriteInList" active="false" />
-                  )}
+                <FavoriteBtn
+                  onClick={handleClickToFavorite}
+                  favBtnRule={favBtnRule}
+                  data-id={item._id}
+                  data-favorite={favBtnRule ? 0 : 1}
+                >
+                  <HeartIconPrimal />
                 </FavoriteBtn>
               )}
               <NoticesItemImg

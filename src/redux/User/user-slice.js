@@ -7,6 +7,7 @@ import {
   patchUserAvatar,
   postUserPet,
   deleteUserPet,
+  toogleFavNotice,
 } from './user-operation';
 
 const initialState = {
@@ -108,6 +109,28 @@ const userSlice = createSlice({
       };
     },
     [deleteUserPet.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [toogleFavNotice.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [toogleFavNotice.fulfilled](state, action) {
+      if (action.payload.message === 'Add to fav') {
+        state.favoriteNotices.push(action.payload.NoticeId);
+      }
+      if (action.payload.message === 'Deletete from fav') {
+        return {
+          ...state,
+          favoriteNotices: [
+            ...state.favoriteNotices.filter(
+              item => item !== action.payload.NoticeId
+            ),
+          ],
+        };
+      }
+    },
+    [toogleFavNotice.rejected](state) {
       state.status = StatusForAll.error;
     },
   },

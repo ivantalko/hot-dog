@@ -11,7 +11,6 @@ const initialState = {
   items: [],
   avatar: null,
   byId: '',
-  myNotices: [],
 };
 
 const status = {

@@ -141,8 +141,8 @@ export const FavoriteBtn = styled.button`
 
   &:hover,
   &:focus {
-    color: ${p => (p.favBtnRule ? 'white' : '#f59256')};
-    fill: ${p => (p.favBtnRule ? 'white' : '#f59256')};
+    color: ${p => (p.favBtnRule ? '#eb7026' : '#f59256')};
+    fill: ${p => (p.favBtnRule ? '#eb7026' : '#f59256')};
   }
 `;
 
