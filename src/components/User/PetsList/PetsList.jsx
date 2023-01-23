@@ -1,4 +1,5 @@
 import { DeleteIcon } from './DeleteIcon';
+import { useState } from 'react';
 import {
   UserPetAvatarImage,
   UserPetAvatarThumb,
@@ -8,6 +9,12 @@ import {
   UserPetDeleteBtn,
   UserPetDescription,
   UserPetText,
+  ConfirmBackdrop,
+  ConfirmModal,
+  PetName,
+  ConfirmText,
+  ConfirmBtn,
+  ConfirmBtnList,
 } from './PetsList.styled';
 
 export const PetsList = ({
@@ -19,41 +26,63 @@ export const PetsList = ({
   birthday,
   avatarURL,
 }) => {
+  const [openConfirmModal, setOpenConfirmModal] = useState();
+
+  const handleOpenConfirmModal = () => {
+    setOpenConfirmModal(true);
+  };
+
   return (
-    <UserPetCard key={id}>
-      <UserPetCardWrapper>
-        <UserPetAvatarThumb>
-          <UserPetAvatarImage
-            src={avatarURL}
-            alt={name}
-            loading="lazy"
-            height="161px"
-          />
-        </UserPetAvatarThumb>
-        <UserPetDescription>
-          <div>
-            <UserPetText>
-              <UserPetCategoryName>Name: </UserPetCategoryName>
-              {name}
-            </UserPetText>
-            <UserPetText>
-              <UserPetCategoryName>Date of birth: </UserPetCategoryName>
-              {birthday}
-            </UserPetText>
-            <UserPetText>
-              <UserPetCategoryName>Breed: </UserPetCategoryName>
-              {breed}
-            </UserPetText>
-            <UserPetText>
-              <UserPetCategoryName>Comments: </UserPetCategoryName>
-              {comments}
-            </UserPetText>
-          </div>
-          <UserPetDeleteBtn type="button" onClick={() => handleDeletePet(id)}>
-            <DeleteIcon />
-          </UserPetDeleteBtn>
-        </UserPetDescription>
-      </UserPetCardWrapper>
-    </UserPetCard>
+    <>
+      <UserPetCard key={id}>
+        <UserPetCardWrapper>
+          <UserPetAvatarThumb>
+            <UserPetAvatarImage
+              src={avatarURL}
+              alt={name}
+              loading="lazy"
+              height="161px"
+            />
+          </UserPetAvatarThumb>
+          <UserPetDescription>
+            <div>
+              <UserPetText>
+                <UserPetCategoryName>Name: </UserPetCategoryName>
+                {name}
+              </UserPetText>
+              <UserPetText>
+                <UserPetCategoryName>Date of birth: </UserPetCategoryName>
+                {birthday}
+              </UserPetText>
+              <UserPetText>
+                <UserPetCategoryName>Breed: </UserPetCategoryName>
+                {breed}
+              </UserPetText>
+              <UserPetText>
+                <UserPetCategoryName>Comments: </UserPetCategoryName>
+                {comments}
+              </UserPetText>
+            </div>
+            <UserPetDeleteBtn type="button" onClick={handleOpenConfirmModal}>
+              <DeleteIcon />
+            </UserPetDeleteBtn>
+          </UserPetDescription>
+        </UserPetCardWrapper>
+      </UserPetCard>
+      {openConfirmModal && (
+        <ConfirmBackdrop>
+          <ConfirmModal>
+            <ConfirmText>
+              Confirm to delete <PetName>{name}'s</PetName>
+              pet card
+            </ConfirmText>
+            <ConfirmBtnList>
+              <ConfirmBtn onClick={() => handleDeletePet(id)}>Done</ConfirmBtn>
+              <ConfirmBtn>Cancel</ConfirmBtn>
+            </ConfirmBtnList>
+          </ConfirmModal>
+        </ConfirmBackdrop>
+      )}
+    </>
   );
 };
