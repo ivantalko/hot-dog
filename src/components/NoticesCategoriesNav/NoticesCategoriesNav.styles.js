@@ -6,8 +6,8 @@ export const NavList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  @media screen and (min-width: 440px) {
-    width: 400px;
+  @media screen and (min-width: 484px) {
+    width: 484px;
   }
   @media ${breakpoints.desktop} {
     width: auto;
@@ -18,6 +18,10 @@ export const NavLinkStyled = styled(NavLink)`
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
+  @media ${breakpoints.minTablet} {
+    font-size: 20px;
+    line-height: 27px;
+  }
   display: inline-flex;
   align-items: center;
   letter-spacing: 0.04em;

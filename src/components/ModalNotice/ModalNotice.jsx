@@ -1,5 +1,3 @@
-import { FakeNoticesCardData } from 'data/FakeNoticesCardData';
-
 import {
   ModalNoticeBackdrop,
   ModalBox,
@@ -23,11 +21,9 @@ import {
 
 export const ModalNotice = ({
   handleBackdropClose,
-  itemId,
   setMoreInfoVisible,
+  noticeById,
 }) => {
-  const NoticeMoreInfo = FakeNoticesCardData.find(item => item.id === itemId);
-
   const handleModalCloseBtn = () => {
     setMoreInfoVisible(false);
     document.querySelector('body').classList.remove('modal');
@@ -40,52 +36,56 @@ export const ModalNotice = ({
           <CloseBtn />
         </ModalCLoseBtn>
         <TopBoxStyled>
-          <CatagoryName>{NoticeMoreInfo.category}</CatagoryName>
-          <NoticesInfoImg src={NoticeMoreInfo.src} alt={NoticeMoreInfo.pet} />
+          <CatagoryName>{noticeById.category || ''}</CatagoryName>
+          <NoticesInfoImg src={noticeById.avatarURL} alt={noticeById.name} />
 
           <ParametersBox>
-            <NoticesInfoTitle>{NoticeMoreInfo.title}</NoticesInfoTitle>
+            <NoticesInfoTitle>{noticeById.title || ''}</NoticesInfoTitle>
             <ParametersList>
               <li>
                 <NoticesInfoParameters>
                   Name:
-                  <ParametersValue>{NoticeMoreInfo.name}</ParametersValue>
+                  <ParametersValue>{noticeById.name || ''}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   Birthday:
-                  <ParametersValue>{NoticeMoreInfo.birthday}</ParametersValue>
+                  <ParametersValue>{noticeById.birthday || ''}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   Breed:
-                  <ParametersValue>{NoticeMoreInfo.breed}</ParametersValue>
+                  <ParametersValue>{noticeById.breed}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   Location:
-                  <ParametersValue>{NoticeMoreInfo.location}</ParametersValue>
+                  <ParametersValue>{noticeById.location}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   The sex:
-                  <ParametersValue>{NoticeMoreInfo.sex}</ParametersValue>
+                  <ParametersValue>{noticeById.sex}</ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   Email:
-                  <ParametersValue>DedMol@gmail.com</ParametersValue>
+                  <ParametersValue>
+                    {noticeById.owner ? noticeById.owner.email : ''}
+                  </ParametersValue>
                 </NoticesInfoParameters>
               </li>
               <li>
                 <NoticesInfoParameters>
                   Phone:
-                  <ParametersValue>{NoticeMoreInfo.phone}</ParametersValue>
+                  <ParametersValue>
+                    {noticeById.owner ? noticeById.owner.phone : ''}
+                  </ParametersValue>
                 </NoticesInfoParameters>
               </li>
             </ParametersList>
@@ -94,11 +94,13 @@ export const ModalNotice = ({
         <div>
           <CommentsText>
             <CommentsTextStrong>Comments: </CommentsTextStrong>
-            {NoticeMoreInfo.comments}
+            {noticeById.comments}
           </CommentsText>
           <BtnList>
             <li>
-              <ContactBtn href={`tel:${NoticeMoreInfo.phone}`}>
+              <ContactBtn
+                href={noticeById.owner && `tel:${noticeById.owner.phone}`}
+              >
                 Contact
               </ContactBtn>
             </li>

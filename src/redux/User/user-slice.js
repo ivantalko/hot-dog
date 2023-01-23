@@ -1,21 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUserOperation } from '../Auth/auth-operations';
 import { StatusForAll } from '../status';
-import { getUserOperation, putUpdateUser } from './user-operation';
+import {
+  getUserOperation,
+  putUpdateUser,
+  patchUserAvatar,
+  postUserPet,
+  deleteUserPet,
+} from './user-operation';
 
 const initialState = {
-  favoriteNotices: null,
-  ownNotices: null,
-  _id: null,
-  email: null,
-  name: null,
-  phone: null,
-  avatarURL: null,
-  location: null,
-  pets: null,
-  notice: null,
-  birthday: null,
-  token: null,
+  favoriteNotices: '',
+  ownNotices: '',
+  _id: '',
+  email: '',
+  name: '',
+  phone: '',
+  avatarURL: '',
+  location: '',
+  pets: '',
+  notice: '',
+  birthday: '',
+  token: '',
 
   status: StatusForAll.init,
 };
@@ -37,6 +43,7 @@ const userSlice = createSlice({
       state.notice = action.payload.notice;
       state.birthday = action.payload.birthday;
       state.token = action.payload.token;
+      state.location = action.payload.location;
     },
     [getUserOperation.rejected](state) {
       state.status = StatusForAll.error;
@@ -68,6 +75,38 @@ const userSlice = createSlice({
       state.location = action.payload.location;
     },
     [putUpdateUser.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+    [patchUserAvatar.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [patchUserAvatar.fulfilled](state, action) {
+      state.avatarURL = action.payload.avatarURL;
+    },
+    [patchUserAvatar.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [postUserPet.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [postUserPet.fulfilled](state, action) {
+      state.pets.push(action.payload);
+    },
+    [postUserPet.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [deleteUserPet.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [deleteUserPet.fulfilled](state, action) {
+      return {
+        ...state,
+        pets: [...state.pets.filter(({ _id }) => _id !== action.payload)],
+      };
+    },
+    [deleteUserPet.rejected](state) {
       state.status = StatusForAll.error;
     },
   },
