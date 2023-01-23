@@ -59,10 +59,9 @@ export const NoticesItem = styled.li`
 export const NoticesItemImg = styled.img`
   margin-bottom: 20px;
   @media ${breakpoints.minTablet} {
-height: 288px;
+    height: 288px;
     width: 100%;
     object-fit: cover;
-}
   }
 `;
 
@@ -72,7 +71,7 @@ export const ItemTitle = styled.h3`
   line-height: 38px;
   letter-spacing: -0.01em;
   color: #111111;
-  padding 0px 20px;
+  padding: 0px 20px;
   margin-bottom: 20px;
   height: 76px;
 `;
@@ -113,10 +112,10 @@ export const PetCategory = styled.span`
   color: #111111;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
-  padding 6px 53px 6px 20px;
+  padding: 6px 53px 6px 20px;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
-top: 20px;
+  top: 20px;
 `;
 
 export const FavoriteBtn = styled.button`
@@ -181,13 +180,14 @@ export const LearnMoreBtn = styled.button`
   align-items: center;
   letter-spacing: 0.04em;
   color: #f59256;
-    cursor: pointer;
+  cursor: pointer;
   transition: 250ms;
   color: #f59256;
   &:hover,
   &:focus {
     background: #f59256;
     color: white;
+  }
 `;
 export const DeleteBtn = styled.button`
   display: flex;
