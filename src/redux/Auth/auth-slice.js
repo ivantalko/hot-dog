@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { StatusForAll } from '../status';
 import {
-  currentUser,
+  // currentUser,
   loginUserOperation,
   logoutUserOperation,
   registerUserOperation,
+  currentUserOperation,
 } from './auth-operations';
 
 const initialState = {
@@ -58,20 +59,32 @@ const authSlice = createSlice({
       state._id = '';
       state.token = '';
     },
-    [currentUser.pending](state) {
+    // [currentUser.pending](state) {
+    //   state.status = StatusForAll.loading;
+    // },
+    // [currentUser.fulfilled](state, action) {
+    //   state.status = StatusForAll.success;
+    //   state.name = action.payload.name;
+    //   state._id = action.payload._id;
+    //   // state.token = action.payload.token;
+    // },
+    // [currentUser.rejected](state) {
+    //   state.status = StatusForAll.error;
+    //   state.name = '';
+    //   state._id = '';
+    //   state.token = '';
+    // },
+
+    [currentUserOperation.pending](state) {
       state.status = StatusForAll.loading;
     },
-    [currentUser.fulfilled](state, action) {
+    [currentUserOperation.fulfilled](state, { payload }) {
+      state.name = payload.name;
+      state._id = payload._id;
       state.status = StatusForAll.success;
-      state.name = action.payload.name;
-      state._id = action.payload._id;
-      state.token = action.payload.token;
     },
-    [currentUser.rejected](state) {
+    [currentUserOperation.rejected](state) {
       state.status = StatusForAll.error;
-      state.name = '';
-      state._id = '';
-      state.token = '';
     },
   },
 });

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getNoticesDataNew } from 'redux/Notice/notice-operations';
 
 import {
   NextPageModal,
@@ -38,6 +40,7 @@ export const NoticesAddModalPage2 = ({
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
+  const dispatch = useDispatch();
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
@@ -81,9 +84,27 @@ export const NoticesAddModalPage2 = ({
         comments: comments,
       });
       console.log('notices is done');
-      // console.log(pet);
+
       document.querySelector('body').classList.remove('modal');
       setIsModalOpen(false);
+
+      const notice = {
+        name: 'govnaKusok',
+        birthday: '12-02-2001',
+        breed: 'zaluped',
+        title: 'Huilo',
+        location: 'govno',
+        price: '500',
+        category: 'lostFound',
+        comments: 'jaskdjalksdjlkasjklj',
+      };
+
+      const formData = new FormData();
+      const avatar = document.querySelector('#fileInput').files[0];
+      formData.append('avatar', avatar);
+      formData.append('notice', JSON.stringify(notice));
+
+      dispatch(getNoticesDataNew(formData));
     }
   };
 
@@ -108,7 +129,7 @@ export const NoticesAddModalPage2 = ({
   function previewFile(e) {
     let preview = document.querySelector('#imagePreview');
     let file = e.target.files[0];
-    console.log(file);
+
     let reader = new FileReader();
 
     reader.onloadend = function () {

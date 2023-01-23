@@ -6,7 +6,7 @@ export async function postLogout() {
 }
 
 export async function getUserdata() {
-  const { data } = await axios.get('/user/');
+  const { data } = await axios.get('/user');
   return data;
 }
 
@@ -20,7 +20,7 @@ export async function getAllNews() {
   return data;
 }
 export async function updateUser(body) {
-  const { data } = await axios.put('/user/', body);
+  const { data } = await axios.put('/user', body);
   return data;
 }
 
@@ -35,3 +35,15 @@ export async function changeUserAvatar(body) {
   // const { data } = await axios.patch('/user/avatar', body);
   return data;
 }
+
+export const postNoticedDataNew = async body => {
+  const { data } = await axios({
+    method: 'post',
+    url: '/notices/new',
+    data: body,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return data;
+};

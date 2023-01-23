@@ -3,6 +3,7 @@ import {
   getNoticesData,
   getMyNotices,
   getNoticesById,
+  getNoticesDataNew,
 } from './notice-operations';
 
 const initialState = {
@@ -60,6 +61,17 @@ const noticesSlice = createSlice({
       state.myNotices = [...action.payload];
     },
     [getMyNotices.rejected](state) {
+      state.status = status.error;
+    },
+    [getNoticesDataNew.loading](state) {
+      state.status = status.loading;
+    },
+    [getNoticesDataNew.fulfilled](state, action) {
+      console.log(action.payload);
+      state.status = status.success;
+      state.avatar = action.payload;
+    },
+    [getNoticesDataNew.rejected](state) {
       state.status = status.error;
     },
   },

@@ -67,20 +67,43 @@ export const logoutUserOperation = createAsyncThunk(
     }
   }
 );
-export const currentUser = createAsyncThunk(
-  'auth/currentUser',
+// export const currentUser = createAsyncThunk(
+//   'auth/currentUser',
+//   async (_, thunkAPI) => {
+//     const { auth } = thunkAPI.getState();
+//     if (auth.token === '') {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
+//     token.set(auth.token);
+//     try {
+//       const { data } = await axios.get('/auth/current');
+//       token.set(data.token);
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error?.response?.data?.message);
+//     }
+//   }
+// );
+
+export const currentUserOperation = createAsyncThunk(
+  'auth/current',
   async (_, thunkAPI) => {
-    const { auth } = thunkAPI.getState();
-    if (auth.token === '') {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-    token.set(auth.token);
     try {
-      const { data } = await axios.get('/auth/current');
-      token.set(data.token);
+      const state = thunkAPI.getState();
+
+      const upToken = state.auth.token;
+
+      token.set(upToken);
+
+      if (upToken === null) {
+        return thunkAPI.rejectWithValue();
+      }
+
+      const { data } = await axios.get('auth/current');
+
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error?.response?.data?.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

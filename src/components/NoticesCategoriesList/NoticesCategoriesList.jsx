@@ -125,16 +125,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     return filteredForPet;
   };
 
-  console.log(filteredPets());
-
   const age = birthday => {
     const date = new Date();
     const dateYear = date.getFullYear();
     const age = dateYear - birthday;
     return age;
   };
-
-  console.log(category);
 
   return (
     <Section>
