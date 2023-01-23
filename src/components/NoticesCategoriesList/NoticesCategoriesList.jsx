@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/Auth/auth-selectors';
-import { getNoticesData } from 'redux/Notice/notice-operations';
-import { selectorNoticesData } from 'redux/Notice/notice-selector';
+import {
+  getFavoriteNotices,
+  getNoticesData,
+} from 'redux/Notice/notice-operations';
+import {
+  selectorNoticesData,
+  selectorMyNotices,
+  selectorNoticeById,
+  selectorFavoriteNotices,
+} from 'redux/Notice/notice-selector';
 import { useDispatch } from 'react-redux';
 import { getNoticesById } from 'redux/Notice/notice-operations';
-import { selectorNoticeById } from 'redux/Notice/notice-selector';
 import { getMyNotices } from 'redux/Notice/notice-operations';
 import { getToken } from 'redux/Auth/auth-selectors';
-import { selectorMyNotices } from 'redux/Notice/notice-selector';
 import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
 
 import {
@@ -27,12 +33,6 @@ import {
   LearnMoreBtn,
   DeleteBtn,
   DeleteIcon,
-  // ConfirmBackdrop,
-  // ConfirmModal,
-  // ConfirmText,
-  // PetName,
-  // ConfirmBtnList,
-  // ConfirmBtn,
 } from './NoticesCategoriesList.styled';
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -47,6 +47,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const token = useSelector(getToken);
   let notices = useSelector(selectorNoticesData);
   const myNotices = useSelector(selectorMyNotices);
+  const favoriteNotices = useSelector(selectorFavoriteNotices);
   const [openConfirmModal, setOpenConfirmModal] = useState();
 
   let category = '';
@@ -74,9 +75,11 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       return myNotices;
     }
     if (category === 'favorite') {
-      return myNotices;
+      return favoriteNotices.favotires;
     }
   };
+
+  console.log(favoriteNotices.favotires);
 
   useEffect(() => {
     if (
@@ -88,6 +91,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     }
     if (category === 'own') {
       dispatch(getMyNotices(token));
+    }
+    if (category === 'favorite') {
+      dispatch(getFavoriteNotices());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
@@ -150,6 +156,13 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   return (
     <Section>
+      {openConfirmModal && (
+        <ConfirmModalComponent
+          handleOpenConfirmModal={handleOpenConfirmModal}
+          handleBackdropClose={handleBackdropClose}
+        />
+      )}
+
       <NoticesList>
         {filteredPets().map(item => {
           let birthday = '';
@@ -234,12 +247,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
           noticeById={noticeById}
-        />
-      )}
-      {openConfirmModal && (
-        <ConfirmModalComponent
-          handleOpenConfirmModal={handleOpenConfirmModal}
-          handleBackdropClose={handleBackdropClose}
         />
       )}
     </Section>

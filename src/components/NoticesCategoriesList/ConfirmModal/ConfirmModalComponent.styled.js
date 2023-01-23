@@ -8,7 +8,7 @@ export const ConfirmBackdrop = styled.div`
   width: 100%;
   height: 100%;
   // background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   z-index: 2;
 `;
 export const ConfirmModal = styled.div`
