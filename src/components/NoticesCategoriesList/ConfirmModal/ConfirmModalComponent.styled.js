@@ -1,3 +1,4 @@
+import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
 
 export const ConfirmBackdrop = styled.div`
@@ -7,7 +8,7 @@ export const ConfirmBackdrop = styled.div`
   width: 100%;
   height: 100%;
   // background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
   z-index: 2;
 `;
 export const ConfirmModal = styled.div`
@@ -25,6 +26,10 @@ export const ConfirmModal = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
+  @media ${breakpoints.minTablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
   display: flex;
   align-items: center;
   color: rgba(27, 27, 27, 0.6);

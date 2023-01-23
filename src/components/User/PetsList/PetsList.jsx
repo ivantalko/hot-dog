@@ -1,5 +1,6 @@
 import { DeleteIcon } from './DeleteIcon';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import {
   UserPetAvatarImage,
   UserPetAvatarThumb,
@@ -32,6 +33,28 @@ export const PetsList = ({
     const body = document.querySelector('body');
     setOpenConfirmModal(!openConfirmModal);
     body.classList.add('modal');
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyModalClose);
+    return () => {
+      window.removeEventListener('keydown', handleKeyModalClose);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleKeyModalClose = e => {
+    if (e.code === 'Escape') {
+      setOpenConfirmModal(false);
+      document.querySelector('body').classList.remove('modal');
+    }
+  };
+
+  const handleBackdropClose = e => {
+    if (e.target === e.currentTarget) {
+      setOpenConfirmModal(false);
+      document.querySelector('body').classList.remove('modal');
+    }
   };
 
   console.log(document.querySelector('body'));
@@ -74,7 +97,7 @@ export const PetsList = ({
         </UserPetCardWrapper>
       </UserPetCard>
       {openConfirmModal && (
-        <ConfirmBackdrop>
+        <ConfirmBackdrop onClick={handleBackdropClose}>
           <ConfirmModal>
             <ConfirmText>
               Confirm to delete <PetName>{name}'s</PetName>

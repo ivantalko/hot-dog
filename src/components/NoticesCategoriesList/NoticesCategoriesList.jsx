@@ -9,7 +9,8 @@ import { selectorNoticeById } from 'redux/Notice/notice-selector';
 import { getMyNotices } from 'redux/Notice/notice-operations';
 import { getToken } from 'redux/Auth/auth-selectors';
 import { selectorMyNotices } from 'redux/Notice/notice-selector';
-import { ConfirmModal } from './ConfirmModal/ConfirmModal';
+import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
+
 import {
   Section,
   NoticesList,
@@ -26,6 +27,12 @@ import {
   LearnMoreBtn,
   DeleteBtn,
   DeleteIcon,
+  // ConfirmBackdrop,
+  // ConfirmModal,
+  // ConfirmText,
+  // PetName,
+  // ConfirmBtnList,
+  // ConfirmBtn,
 } from './NoticesCategoriesList.styled';
 import { useLocation } from 'react-router-dom';
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -90,9 +97,8 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   };
 
   const handleOpenConfirmModal = () => {
-    // const body = document.querySelector('body');
+    document.querySelector('body').classList.add('modal');
     setOpenConfirmModal(!openConfirmModal);
-    // body.classList.add('modal');
   };
 
   const handleMoreInfoVisible = e => {
@@ -112,6 +118,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setMoreInfoVisible(false);
+      setOpenConfirmModal(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -119,6 +126,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setMoreInfoVisible(false);
+      setOpenConfirmModal(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -142,8 +150,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   return (
     <Section>
-      <ConfirmModal handleOpenConfirmModal={handleOpenConfirmModal} />
-
       <NoticesList>
         {filteredPets().map(item => {
           let birthday = '';
@@ -228,6 +234,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           setMoreInfoVisible={setMoreInfoVisible}
           handleBackdropClose={handleBackdropClose}
           noticeById={noticeById}
+        />
+      )}
+      {openConfirmModal && (
+        <ConfirmModalComponent
+          handleOpenConfirmModal={handleOpenConfirmModal}
+          handleBackdropClose={handleBackdropClose}
         />
       )}
     </Section>

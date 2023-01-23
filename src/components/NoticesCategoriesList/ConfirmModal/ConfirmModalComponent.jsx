@@ -1,23 +1,19 @@
 import {
   ConfirmBackdrop,
   ConfirmText,
-  PetName,
   ConfirmBtnList,
   ConfirmBtn,
-} from './ConfirmModal.styled';
+  ConfirmModal,
+} from './ConfirmModalComponent.styled';
 
-export const ConfirmModal = ({ handleOpenConfirmModal }) => {
+export const ConfirmModalComponent = ({
+  handleOpenConfirmModal,
+  handleBackdropClose,
+}) => {
   return (
-    <ConfirmBackdrop>
+    <ConfirmBackdrop onClick={handleBackdropClose}>
       <ConfirmModal>
-        <ConfirmText>
-          Confirm to delete{' '}
-          <PetName>
-            {/* {name} */}
-            's
-          </PetName>
-          pet card
-        </ConfirmText>
+        <ConfirmText>Confirm to delete pet's notice?</ConfirmText>
         <ConfirmBtnList>
           <ConfirmBtn
           // onClick={() => handleDeletePet(id)}
@@ -27,7 +23,7 @@ export const ConfirmModal = ({ handleOpenConfirmModal }) => {
           <ConfirmBtn
             onClick={() => {
               handleOpenConfirmModal();
-              //   document.querySelector('body').classList.remove('modal');
+              document.querySelector('body').classList.remove('modal');
             }}
           >
             Cancel
