@@ -15,6 +15,12 @@ function UserInfo() {
   const [isOpen, setIsOpen] = useState(false);
   const [notFoundCity, setNotFoundCity] = useState(false);
   const [arrayLocation, setArrayLocation] = useState('');
+  const userMail = useSelector(selectEmail);
+  const userName = useSelector(selectName);
+  const userCity = useSelector(selectLocation);
+  const userPhone = useSelector(selectPhone);
+  const userBirthday = useSelector(selectBirthday);
+  const [active, setActive] = useState('');
 
   const handelChangeLocation = query => {
     setLocation(query);
@@ -53,12 +59,6 @@ function UserInfo() {
     [arrayLocation]
   );
 
-  const userMail = useSelector(selectEmail);
-  const userName = useSelector(selectName);
-  const userCity = useSelector(selectLocation);
-  const userPhone = useSelector(selectPhone);
-  const userBirthday = useSelector(selectBirthday);
-  const [active, setActive] = useState('');
 
   return (
     <ul>
