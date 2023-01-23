@@ -29,8 +29,12 @@ export const PetsList = ({
   const [openConfirmModal, setOpenConfirmModal] = useState();
 
   const handleOpenConfirmModal = () => {
-    setOpenConfirmModal(true);
+    const body = document.querySelector('body');
+    setOpenConfirmModal(!openConfirmModal);
+    body.classList.add('modal');
   };
+
+  console.log(document.querySelector('body'));
 
   return (
     <>
@@ -77,8 +81,15 @@ export const PetsList = ({
               pet card
             </ConfirmText>
             <ConfirmBtnList>
-              <ConfirmBtn onClick={() => handleDeletePet(id)}>Done</ConfirmBtn>
-              <ConfirmBtn>Cancel</ConfirmBtn>
+              <ConfirmBtn onClick={() => handleDeletePet(id)}>Yes</ConfirmBtn>
+              <ConfirmBtn
+                onClick={() => {
+                  handleOpenConfirmModal();
+                  document.querySelector('body').classList.remove('modal');
+                }}
+              >
+                Cancel
+              </ConfirmBtn>
             </ConfirmBtnList>
           </ConfirmModal>
         </ConfirmBackdrop>

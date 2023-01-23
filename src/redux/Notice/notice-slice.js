@@ -3,6 +3,7 @@ import {
   getNoticesData,
   getMyNotices,
   getNoticesById,
+  getFavoriteNotices,
 } from './notice-operations';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   avatar: null,
   byId: '',
   myNotices: [],
+  favorites: [],
 };
 
 const status = {
@@ -60,6 +62,16 @@ const noticesSlice = createSlice({
       state.myNotices = [...action.payload];
     },
     [getMyNotices.rejected](state) {
+      state.status = status.error;
+    },
+    [getFavoriteNotices.loading](state) {
+      state.status = status.loading;
+    },
+    [getFavoriteNotices.fulfilled](state, action) {
+      state.status = status.success;
+      state.favotires = [...action.payload];
+    },
+    [getFavoriteNotices.rejected](state) {
       state.status = status.error;
     },
   },

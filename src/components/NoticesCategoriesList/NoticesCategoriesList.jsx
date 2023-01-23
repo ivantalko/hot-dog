@@ -9,6 +9,7 @@ import { selectorNoticeById } from 'redux/Notice/notice-selector';
 import { getMyNotices } from 'redux/Notice/notice-operations';
 import { getToken } from 'redux/Auth/auth-selectors';
 import { selectorMyNotices } from 'redux/Notice/notice-selector';
+import { ConfirmModal } from './ConfirmModal/ConfirmModal';
 import {
   Section,
   NoticesList,
@@ -39,6 +40,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const token = useSelector(getToken);
   let notices = useSelector(selectorNoticesData);
   const myNotices = useSelector(selectorMyNotices);
+  const [openConfirmModal, setOpenConfirmModal] = useState();
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -87,6 +89,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     setFavorite(!favotire);
   };
 
+  const handleOpenConfirmModal = () => {
+    // const body = document.querySelector('body');
+    setOpenConfirmModal(!openConfirmModal);
+    // body.classList.add('modal');
+  };
+
   const handleMoreInfoVisible = e => {
     dispatch(getNoticesById(e));
     setMoreInfoVisible(true);
@@ -125,8 +133,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     return filteredForPet;
   };
 
-  console.log(filteredPets());
-
   const age = birthday => {
     const date = new Date();
     const dateYear = date.getFullYear();
@@ -134,10 +140,10 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     return age;
   };
 
-  console.log(category);
-
   return (
     <Section>
+      <ConfirmModal handleOpenConfirmModal={handleOpenConfirmModal} />
+
       <NoticesList>
         {filteredPets().map(item => {
           let birthday = '';
@@ -204,7 +210,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                     <DeleteBtn
                       id={item._id}
                       onClick={() => {
-                        console.log(`delete item id=${item._id}`);
+                        handleOpenConfirmModal();
                       }}
                     >
                       Delete <DeleteIcon />

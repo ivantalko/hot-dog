@@ -143,7 +143,7 @@ export const ConfirmModal = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
   background: #fdf7f2;
-  box-shadow: 7px 4px 14px rgb(0 0 0 / 11%);
+  box-shadow: 0px 0px 8px #d5d5d5;
   width: max-content;
   height: max-content;
   border-radius: 20px;

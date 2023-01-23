@@ -24,6 +24,8 @@ export const UserPagePetsData = () => {
 
   const handleDeletePet = id => {
     dispatch(deleteUserPet(id));
+
+    document.querySelector('body').classList.remove('modal');
   };
 
   const handleModalOpen = () => {
