@@ -28,13 +28,14 @@ export const PetsDataTitle = styled.h3`
 export const UserPetsList = styled.ul`
   display: grid;
   gap: 20px;
+  margin-top: 26px;
+  justify-content: center;
 
-  /* @media ${breakpoints.minTablet} {
-
+  @media ${breakpoints.minTablet} {
+    margin-top: 22px;
   }
   @media ${breakpoints.desktop} {
-
-  } */
+  }
 `;
 
 export const AddBtnBox = styled.div`

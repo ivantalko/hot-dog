@@ -3,6 +3,7 @@ import {
   UserPetAvatarImage,
   UserPetAvatarThumb,
   UserPetCard,
+  UserPetCardWrapper,
   UserPetCategoryName,
   UserPetDeleteBtn,
   UserPetDescription,
@@ -20,9 +21,14 @@ export const PetsList = ({
 }) => {
   return (
     <UserPetCard key={id}>
-      <div>
+      <UserPetCardWrapper>
         <UserPetAvatarThumb>
-          <UserPetAvatarImage src={avatarURL} alt={name} />
+          <UserPetAvatarImage
+            src={avatarURL}
+            alt={name}
+            loading="lazy"
+            height="161px"
+          />
         </UserPetAvatarThumb>
         <UserPetDescription>
           <div>
@@ -47,7 +53,7 @@ export const PetsList = ({
             <DeleteIcon />
           </UserPetDeleteBtn>
         </UserPetDescription>
-      </div>
+      </UserPetCardWrapper>
     </UserPetCard>
   );
 };
