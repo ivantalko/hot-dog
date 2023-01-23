@@ -1,5 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUserdata, updateUser, changeUserAvatar } from '../../services/API';
+import {
+  getUserdata,
+  updateUser,
+  changeUserAvatar,
+  addUserPet,
+  removeUserPet,
+} from '../../services/API';
 
 export const getUserOperation = createAsyncThunk(
   'user/getUser',
@@ -29,6 +35,30 @@ export const patchUserAvatar = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await changeUserAvatar(body);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const postUserPet = createAsyncThunk(
+  'user/petlist',
+  async (body, thunkAPI) => {
+    try {
+      const response = await addUserPet(body);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteUserPet = createAsyncThunk(
+  'user/petlistDelete',
+  async (id, thunkAPI) => {
+    try {
+      const response = await removeUserPet(id);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

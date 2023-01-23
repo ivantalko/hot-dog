@@ -9,16 +9,15 @@ export const HeaderStyled = styled.header`
   padding-bottom: 42px;
 
   padding-top: 16px;
-  padding-right: 20px;
-  padding-left: 20px;
 
   background-color: #fdf7f2;
 
   @media ${breakpoints.minTablet} {
-    padding-bottom: 88px;
+    padding-bottom: 0px;
+    margin-bottom: 88px;
   }
 
   @media ${breakpoints.desktop} {
-    padding-bottom: 59px;
+    margin-bottom: 59px;
   }
 `;

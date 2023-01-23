@@ -1,6 +1,7 @@
 import UserPage from 'pages/UserPage/UserPage';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
+import OurFriends from '../pages/OurFriends/OurFriends';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
 import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
@@ -57,7 +58,7 @@ export const App = () => {
           />
         </Route>
 
-        <Route path="friends" element={<>friends Page</>} />
+        <Route path="friends" element={<OurFriends />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="user" element={<UserPage />} />

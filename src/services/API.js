@@ -10,6 +10,11 @@ export async function getUserdata() {
   return data;
 }
 
+export const getServices = async () => {
+  const { data } = await axios.get(`/services`);
+  return data;
+};
+
 export async function getAllNews() {
   const { data } = await axios.get(`/news`);
   return data;
@@ -27,6 +32,22 @@ export async function changeUserAvatar(body) {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 
-  // const { data } = await axios.patch('/user/avatar', body);
   return data;
+}
+
+export async function addUserPet(body) {
+  const { data } = await axios({
+    method: 'post',
+    url: '/user/petlist',
+    data: body,
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
+  return data;
+}
+
+export async function removeUserPet(id) {
+  await axios.delete(`/user/petlist/${id}`);
+
+  return id;
 }
