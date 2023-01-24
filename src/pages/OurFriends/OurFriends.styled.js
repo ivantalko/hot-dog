@@ -81,14 +81,14 @@ export const OurFriendsCard = styled.div`
 
   @media ${breakpoints.minTablet} {
     width: 336px;
-    min-height: 283px;
+    height: 288px;
 
     padding: 16px 4px 16px 16px;
   }
 
   @media ${breakpoints.desktop} {
     width: 395px;
-    min-height: 337px;
+    height: 337px;
   }
 `;
 
@@ -160,7 +160,6 @@ export const OurFriendsInfoItem = styled.ul`
 
 
 export const OurFriendsAdress = styled.li`
-  display: block;
   margin-bottom: 4px;
 
   
