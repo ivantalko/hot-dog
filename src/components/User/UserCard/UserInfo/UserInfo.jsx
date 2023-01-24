@@ -20,7 +20,7 @@ function UserInfo() {
   const userCity = useSelector(selectLocation);
   const userPhone = useSelector(selectPhone);
   const userBirthday = useSelector(selectBirthday);
-  // const [active, setActive] = useState('');
+  const [active, setActive] = useState('');
 
   // const handelChangeLocation = query => {
   //   setLocation(query);
