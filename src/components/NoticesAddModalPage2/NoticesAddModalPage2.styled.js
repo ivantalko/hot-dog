@@ -263,3 +263,9 @@ export const ControlsBtn = styled.button`
     background: #f59256;
   }
 `;
+
+export const PreviewImg = styled.img`
+  width: ${props => (props.chooseAvatar ? '100%' : 'auto')};
+  height: ${props => (props.chooseAvatar ? '100%' : 'auto')};
+  object-fit: ${props => (props.chooseAvatar ? 'cover' : 'cover')};
+`;
