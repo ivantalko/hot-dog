@@ -18,7 +18,8 @@ const UserItem = ({
   setActive,
   handelChangeLocation,
 }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
+
   const dispatch = useDispatch();
   const refWrapper = useRef(null);
 
@@ -27,6 +28,7 @@ const UserItem = ({
   const convertDate = date => {
     if (!date?.length) return;
     const d = date?.split('-');
+
     return ([d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'));
   };
 
@@ -65,19 +67,9 @@ const UserItem = ({
         setError('');
       }
       setValue(value);
-      console.log('object :>> ', value);
       handelChangeLocation(value);
     }
   };
-
-  const onEdit = name => () => {
-    const data = name === 'birthday' ? convertDate(value) : value;
-    setActive('');
-    if (!data || data === user) return;
-    dispatch(putUpdateUser({ [name]: data || user }));
-  };
-
-  const onSetActive = name => () => setActive(name);
 
   const converterDateFormat = date => {
     if (!date?.length) return '';
@@ -87,36 +79,43 @@ const UserItem = ({
     ));
   };
 
+  const onEdit = name => () => {
+    const data = name === 'birthday' ? convertDate(value) : value;
+    setActive('');
+    if (!data || data === user) {
+      setValue(name === 'birthday' ? converterDateFormat(user) : user);
+
+      return;
+    }
+    dispatch(putUpdateUser({ [name]: data || user }));
+  };
+
+  const onSetActive = name => () => setActive(name);
+
   return (
-    <>
-      <LiItem ref={active === name ? refWrapper : null}>
-        <LiLabel htmlFor={name}>{label}</LiLabel>
-        <LiInput
-          disabled={active !== name}
-          active={active === name}
-          type={name === 'birthday' ? 'date' : 'text'}
-          value={
-            value ||
-            (name === 'birthday' ? converterDateFormat(user) : user) ||
-            ''
-          }
-          name={name}
-          onChange={onChange}
-        />
-        <Button>
-          {active === name ? (
-            <EditIcon onClick={onEdit(name)} />
-          ) : (
-            <PenIcon
-              onClick={onSetActive(name)}
-              fill={
-                active && active !== name ? 'rgba(17,17,17,0.6)' : '#F59256'
-              }
-            />
-          )}
-        </Button>
-      </LiItem>
-    </>
+    <LiItem ref={active === name ? refWrapper : null}>
+      <LiLabel htmlFor={name}>{label}</LiLabel>
+      <LiInput
+        disabled={active !== name}
+        active={active === name}
+        type={name === 'birthday' ? 'date' : 'text'}
+        value={
+          value ?? (name === 'birthday' ? converterDateFormat(user) : user)
+        }
+        name={name}
+        onChange={onChange}
+      />
+      <Button>
+        {active === name ? (
+          <EditIcon onClick={onEdit(name)} />
+        ) : (
+          <PenIcon
+            onClick={onSetActive(name)}
+            fill={active && active !== name ? 'rgba(17,17,17,0.6)' : '#F59256'}
+          />
+        )}
+      </Button>
+    </LiItem>
   );
 };
 
