@@ -75,7 +75,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       return myNotices;
     }
     if (category === 'favorite') {
-      return favoriteNotices.favotires;
+      return myNotices;
     }
   };
 
