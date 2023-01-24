@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { selectFavNotices } from 'redux/User/user-selectors';
 import {
   ModalNoticeBackdrop,
   ModalBox,
@@ -22,12 +25,17 @@ import {
 export const ModalNotice = ({
   handleBackdropClose,
   setMoreInfoVisible,
+  handleClickToFavorite,
   noticeById,
 }) => {
   const handleModalCloseBtn = () => {
     setMoreInfoVisible(false);
     document.querySelector('body').classList.remove('modal');
   };
+  const favNotices = useSelector(selectFavNotices);
+  const isLogin = useSelector(getIsLogin);
+
+  const favBtnRule = favNotices.find(favId => favId === noticeById._id);
 
   return (
     <ModalNoticeBackdrop onClick={handleBackdropClose}>
@@ -105,8 +113,14 @@ export const ModalNotice = ({
               </ContactBtn>
             </li>
             <li>
-              <AddToBtn>
-                Add to <HeartIcon />
+              <AddToBtn
+                onClick={handleClickToFavorite}
+                favBtnRule={isLogin && favBtnRule}
+                data-id={isLogin ? noticeById._id : null}
+                data-favorite={favBtnRule ? 0 : 1}
+              >
+                {favBtnRule && isLogin ? 'Unfollow' : 'Add to'}
+                <HeartIcon />
               </AddToBtn>
             </li>
           </BtnList>

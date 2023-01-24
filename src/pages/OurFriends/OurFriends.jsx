@@ -16,7 +16,6 @@ import {
   OurFriendseAdressMap,
   OurFriendsInfoItem,
 } from './OurFriends.styled';
-// import { nanoid } from 'nanoid';
 import ourFriendsBaseLogo from '../../helpers/images/ourFriends/ourFriendsBaseLogo.png';
 import { OurFriendsTimeWork } from 'components/OurFriends/OurFriendsTimeWork';
 
@@ -80,16 +79,16 @@ const OurFriends = () => {
                     <OurFriendseEmail>
                       Email:
                       <br />
-                      <OurFriendseEmailMailto href="mailto:{ourFriendsplug(item.email)}">
+                      {!!item.email ? <OurFriendseEmailMailto href="mailto:{ourFriendsplug(item.email)}">
                         {ourFriendsPlug(item.email)}
-                      </OurFriendseEmailMailto>
+                      </OurFriendseEmailMailto> : <li>-----------------------------------</li>} 
                     </OurFriendseEmail>
                     <OurFriendsPhone>
                       Phone:
                       <br />
-                      <OurFriendsPhoneTel href="tel:{ourFriendsplug(item.phone)}">
+                      {!!item.phone ? <OurFriendsPhoneTel href="tel:{ourFriendsplug(item.phone)}">
                         {ourFriendsPlug(item.phone)}
-                      </OurFriendsPhoneTel>
+                      </OurFriendsPhoneTel> : <li>-----------------------------------</li>}
                     </OurFriendsPhone>
                   </OurFriendsInfoItem>
                 </OurFriendsInfo>

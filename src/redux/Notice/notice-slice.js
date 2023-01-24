@@ -3,15 +3,14 @@ import {
   getNoticesData,
   getMyNotices,
   getNoticesById,
-  getFavoriteNotices,
+  getFavNotices,
+  deleteNoticesById,
 } from './notice-operations';
 
 const initialState = {
   items: [],
   avatar: null,
   byId: '',
-  myNotices: [],
-  favorites: [],
 };
 
 const status = {
@@ -23,6 +22,14 @@ const status = {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
+  reducers: {
+    deleteFromFav(state, action) {
+      return {
+        ...state,
+        items: [...state.items.filter(({ _id }) => _id !== action.payload)],
+      };
+    },
+  },
   extraReducers: {
     [getNoticesData.loading](state) {
       state.status = status.loading;
@@ -59,21 +66,35 @@ const noticesSlice = createSlice({
     },
     [getMyNotices.fulfilled](state, action) {
       state.status = status.success;
-      state.myNotices = [...action.payload];
+      state.items = [...action.payload];
     },
     [getMyNotices.rejected](state) {
       state.status = status.error;
     },
-    [getFavoriteNotices.loading](state) {
+    [getFavNotices.loading](state) {
       state.status = status.loading;
     },
-    [getFavoriteNotices.fulfilled](state, action) {
+    [getFavNotices.fulfilled](state, action) {
       state.status = status.success;
-      state.favotires = [...action.payload];
+      state.items = [...action.payload];
     },
-    [getFavoriteNotices.rejected](state) {
+    [getFavNotices.rejected](state) {
+      state.status = status.error;
+    },
+    [deleteNoticesById.loading](state) {
+      state.status = status.loading;
+    },
+    [deleteNoticesById.fulfilled](state, action) {
+      return {
+        ...state,
+        items: [...state.items.filter(({ _id }) => _id !== action.payload)],
+      };
+    },
+    [deleteNoticesById.rejected](state) {
       state.status = status.error;
     },
   },
 });
+
+export const { deleteFromFav } = noticesSlice.actions;
 export default noticesSlice.reducer;

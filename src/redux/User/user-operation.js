@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import {
   getUserdata,
   updateUser,
   changeUserAvatar,
   addUserPet,
   removeUserPet,
+  patchFavNotice,
 } from '../../services/API';
 
 export const getUserOperation = createAsyncThunk(
@@ -61,6 +63,24 @@ export const deleteUserPet = createAsyncThunk(
       const response = await removeUserPet(id);
       return response;
     } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const toogleFavNotice = createAsyncThunk(
+  'notices/favorite/{id}',
+  async (params, thunkAPI) => {
+    const { id, favorite } = params;
+    try {
+      const response = await patchFavNotice(id, !!+favorite);
+      return response;
+    } catch (error) {
+      if (error.data.status === 401) {
+        toast.error('Something went wrong', {
+          position: 'top-right',
+        });
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

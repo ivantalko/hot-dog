@@ -1,21 +1,13 @@
+// ConfirmBackdrop,
+// ConfirmModal,
+// ConfirmText,
+// PetName,
+// ConfirmBtnList,
+// ConfirmBtn,
+
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getIsLogin } from 'redux/Auth/auth-selectors';
-import {
-  getFavoriteNotices,
-  getNoticesData,
-} from 'redux/Notice/notice-operations';
-import {
-  selectorNoticesData,
-  selectorMyNotices,
-  selectorNoticeById,
-  selectorFavoriteNotices,
-} from 'redux/Notice/notice-selector';
-import { useDispatch } from 'react-redux';
-import { getNoticesById } from 'redux/Notice/notice-operations';
-import { getMyNotices } from 'redux/Notice/notice-operations';
-import { getToken } from 'redux/Auth/auth-selectors';
-import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import {
   Section,
@@ -34,21 +26,43 @@ import {
   DeleteBtn,
   DeleteIcon,
 } from './NoticesCategoriesList.styled';
-import { useLocation } from 'react-router-dom';
+
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
 
+import {
+  getNoticesData,
+  getMyNotices,
+  getNoticesById,
+  getFavNotices,
+  deleteNoticesById,
+} from 'redux/Notice/notice-operations';
+
+import { toogleFavNotice } from 'redux/User/user-operation';
+
+import {
+  selectorNoticeById,
+  selectorNoticesData,
+} from 'redux/Notice/notice-selector';
+
+import { getIsLogin, getToken } from 'redux/Auth/auth-selectors';
+
+import { selectFavNotices, selectOwnNotices } from 'redux/User/user-selectors';
+import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
+import { toast } from 'react-toastify';
+import { deleteFromFav } from 'redux/Notice/notice-slice';
+
 export const NoticiesCategoriesList = ({ searchQuery }) => {
+  const location = useLocation();
   const dispatch = useDispatch();
+
   const noticeById = useSelector(selectorNoticeById);
   const isLogin = useSelector(getIsLogin);
-  const location = useLocation();
-  const [favotire, setFavorite] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   const token = useSelector(getToken);
-  let notices = useSelector(selectorNoticesData);
-  const myNotices = useSelector(selectorMyNotices);
-  const favoriteNotices = useSelector(selectorFavoriteNotices);
-  const [openConfirmModal, setOpenConfirmModal] = useState();
+  const notices = useSelector(selectorNoticesData);
+  const [openConfirmModalId, setOpenConfirmModalId] = useState(null);
+  const ownNotices = useSelector(selectOwnNotices);
+  const favNotices = useSelector(selectFavNotices);
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -63,24 +77,6 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     category = 'favorite';
   }
 
-  const noticesArr = () => {
-    if (
-      category === 'lostFound' ||
-      category === 'inGoodHands' ||
-      category === 'sell'
-    ) {
-      return notices;
-    }
-    if (category === 'own') {
-      return myNotices;
-    }
-    if (category === 'favorite') {
-      return myNotices;
-    }
-  };
-
-  console.log(favoriteNotices.favotires);
-
   useEffect(() => {
     if (
       category === 'lostFound' ||
@@ -93,22 +89,48 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       dispatch(getMyNotices(token));
     }
     if (category === 'favorite') {
-      dispatch(getFavoriteNotices());
+      dispatch(getFavNotices(token));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
-  const handleClickToFavorite = () => {
-    setFavorite(!favotire);
+  const handleClickToFavorite = async e => {
+    const target = e.currentTarget;
+
+    if (!target.dataset.id) {
+      return toast.info('Please login, this is for authorized users only');
+    }
+
+    target.disabled = true;
+    const { payload } = await dispatch(toogleFavNotice(target.dataset));
+
+    if (payload.message === 'Add to fav') target.dataset.favorite = 0;
+    if (payload.message === 'Deletete from fav') {
+      target.dataset.favorite = 1;
+      if (category === 'favorite') dispatch(deleteFromFav(target.dataset.id));
+    }
+
+    target.disabled = false;
+
+    target.blur();
   };
 
-  const handleOpenConfirmModal = () => {
+  const handleOpenConfirmModal = e => {
     document.querySelector('body').classList.add('modal');
-    setOpenConfirmModal(!openConfirmModal);
+    setOpenConfirmModalId(e.target.dataset.id);
   };
 
-  const handleMoreInfoVisible = e => {
-    dispatch(getNoticesById(e));
+  const handleCloseConfirmModal = e => {
+    document.querySelector('body').classList.remove('modal');
+    setOpenConfirmModalId(null);
+  };
+
+  const handleNoticeDelete = id => {
+    dispatch(deleteNoticesById(id));
+  };
+
+  const handleMoreInfoVisible = async e => {
+    await dispatch(getNoticesById(e));
     setMoreInfoVisible(true);
     document.querySelector('body').classList.add('modal');
   };
@@ -124,7 +146,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setMoreInfoVisible(false);
-      setOpenConfirmModal(false);
+      setOpenConfirmModalId(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -132,17 +154,17 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setMoreInfoVisible(false);
-      setOpenConfirmModal(false);
+      setOpenConfirmModalId(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
 
   const filteredPets = () => {
-    const filteredForPet = noticesArr().filter(item =>
+    const filteredForPet = notices.filter(item =>
       item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     if (searchQuery === '') {
-      return noticesArr();
+      return notices;
     }
     return filteredForPet;
   };
@@ -156,7 +178,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   return (
     <Section>
-      {openConfirmModal && (
+      {openConfirmModalId && (
         <ConfirmModalComponent
           handleOpenConfirmModal={handleOpenConfirmModal}
           handleBackdropClose={handleBackdropClose}
@@ -165,6 +187,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
       <NoticesList>
         {filteredPets().map(item => {
+          const deleteBtnRule =
+            ownNotices.find(ownId => ownId === item._id) && isLogin;
+          const favBtnRule = favNotices.find(favId => favId === item._id);
           let birthday = '';
           let dateNow = new Date();
           if (item.birthday.length < 11) {
@@ -175,15 +200,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           return (
             <NoticesItem id={item.id} key={item._id}>
               <PetCategory>{item.category}</PetCategory>
-              {isLogin && (
-                <FavoriteBtn onClick={handleClickToFavorite}>
-                  {favotire ? (
-                    <HeartIconPrimal id="toFavoriteInList" active="true" />
-                  ) : (
-                    <HeartIconPrimal id="toFavoriteInList" active="false" />
-                  )}
-                </FavoriteBtn>
-              )}
+
+              <FavoriteBtn
+                onClick={handleClickToFavorite}
+                favBtnRule={isLogin && favBtnRule}
+                data-id={isLogin ? item._id : null}
+                data-favorite={favBtnRule ? 0 : 1}
+              >
+                <HeartIconPrimal />
+              </FavoriteBtn>
+
               <NoticesItemImg
                 height="288px"
                 loading="lazy"
@@ -224,13 +250,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
                     Learn more
                   </LearnMoreBtn>
                 </li>
-                {isLogin && (
+
+                {deleteBtnRule && (
                   <li>
                     <DeleteBtn
-                      id={item._id}
-                      onClick={() => {
-                        handleOpenConfirmModal();
-                      }}
+                      data-id={item._id}
+                      onClick={handleOpenConfirmModal}
                     >
                       Delete <DeleteIcon />
                     </DeleteBtn>
@@ -243,10 +268,22 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       </NoticesList>
       {moreInfoVisible && (
         <ModalNotice
-          notices={notices}
-          setMoreInfoVisible={setMoreInfoVisible}
-          handleBackdropClose={handleBackdropClose}
-          noticeById={noticeById}
+          {...{
+            handleClickToFavorite,
+            setMoreInfoVisible,
+            handleBackdropClose,
+            noticeById,
+          }}
+        />
+      )}
+      {openConfirmModalId && (
+        <ConfirmModalComponent
+          {...{
+            handleNoticeDelete,
+            handleCloseConfirmModal,
+            openConfirmModalId,
+            handleBackdropClose,
+          }}
         />
       )}
     </Section>

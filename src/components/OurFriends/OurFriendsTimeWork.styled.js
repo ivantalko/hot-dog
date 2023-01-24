@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const OurFriendsTimeWorks = styled.li`
+display: inline-block;
   margin-bottom: 4px;
   cursor: pointer;
 

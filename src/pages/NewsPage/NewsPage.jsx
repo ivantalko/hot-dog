@@ -1,9 +1,11 @@
 import { Container } from 'components/Container/Container';
-import { Title } from './NewsPage.styled';
+import { Error, Title, WrapperLoader } from './NewsPage.styled';
 import { NewsSearchForm } from '../../components/News/NewsSearch/NewsSearchForm';
 import { NewsList } from 'components/News/NewsList/NewsList';
 import { useState, useEffect } from 'react';
 import { getAllNews } from 'services/API';
+import { StatusForAll } from '../../redux/status';
+import Loader from 'components/Loader/Loader';
 
 export const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -11,6 +13,7 @@ export const NewsPage = () => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [closeBtn, setCloseBtn] = useState(false);
   const [value, setValue] = useState('');
+  const [status, setStatus] = useState(StatusForAll.init);
 
   const normDate = date => {
     return Date.parse(date);
@@ -20,11 +23,13 @@ export const NewsPage = () => {
 
   const getNews = () => {
     async function getData() {
+      setStatus(StatusForAll.loading);
       try {
         const data = await getAllNews();
         setNews(data.reverse());
+        setStatus(StatusForAll.success);
       } catch {
-        console.log('error');
+        setStatus(StatusForAll.error);
       }
     }
     getData();
@@ -70,11 +75,19 @@ export const NewsPage = () => {
         removeValue={removeValue}
       />
 
-      <NewsList
-        news={news}
-        filteredNews={filteredNews}
-        isFiltered={isFiltered}
-      />
+      {status === StatusForAll.loading && (
+        <WrapperLoader>
+          <Loader />
+        </WrapperLoader>
+      )}
+      {status === StatusForAll.success && (
+        <NewsList
+          news={news}
+          filteredNews={filteredNews}
+          isFiltered={isFiltered}
+        />
+      )}
+      {status === StatusForAll.error && <Error>Sorry! Try again!</Error>}
     </Container>
   );
 };

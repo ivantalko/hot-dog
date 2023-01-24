@@ -26,6 +26,7 @@ export const Input = styled.input`
   line-height: 0.7;
   letter-spacing: 4%;
   color: #535353;
+  transition: box-shadow linear 250ms;
 
   @media ${breakpoints.minTablet} {
     padding: 10px 50px 10px 20px;
@@ -48,8 +49,15 @@ export const Button = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  scale: 1;
+
+  transition: all linear 250ms;
 
   @media ${breakpoints.minTablet} {
     bottom: 7px;
+  }
+
+  :hover {
+    scale: 0.8;
   }
 `;

@@ -7,8 +7,10 @@ import {
 } from './ConfirmModalComponent.styled';
 
 export const ConfirmModalComponent = ({
-  handleOpenConfirmModal,
+  handleNoticeDelete,
   handleBackdropClose,
+  openConfirmModalId,
+  handleCloseConfirmModal,
 }) => {
   return (
     <ConfirmBackdrop onClick={handleBackdropClose}>
@@ -16,18 +18,14 @@ export const ConfirmModalComponent = ({
         <ConfirmText>Confirm to delete pet's notice?</ConfirmText>
         <ConfirmBtnList>
           <ConfirmBtn
-          // onClick={() => handleDeletePet(id)}
+            onClick={() => {
+              handleNoticeDelete(openConfirmModalId);
+              handleCloseConfirmModal();
+            }}
           >
             Yes
           </ConfirmBtn>
-          <ConfirmBtn
-            onClick={() => {
-              handleOpenConfirmModal();
-              document.querySelector('body').classList.remove('modal');
-            }}
-          >
-            Cancel
-          </ConfirmBtn>
+          <ConfirmBtn onClick={handleCloseConfirmModal}>Cancel</ConfirmBtn>
         </ConfirmBtnList>
       </ConfirmModal>
     </ConfirmBackdrop>
