@@ -49,6 +49,7 @@ import { getIsLogin, getToken } from 'redux/Auth/auth-selectors';
 import { selectFavNotices, selectOwnNotices } from 'redux/User/user-selectors';
 import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
 import { toast } from 'react-toastify';
+import { deleteFromFav } from 'redux/Notice/notice-slice';
 
 export const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
@@ -104,7 +105,10 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     const { payload } = await dispatch(toogleFavNotice(target.dataset));
 
     if (payload.message === 'Add to fav') target.dataset.favorite = 0;
-    if (payload.message === 'Deletete from fav') target.dataset.favorite = 1;
+    if (payload.message === 'Deletete from fav') {
+      target.dataset.favorite = 1;
+      if (category === 'favorite') dispatch(deleteFromFav(target.dataset.id));
+    }
 
     target.disabled = false;
 
