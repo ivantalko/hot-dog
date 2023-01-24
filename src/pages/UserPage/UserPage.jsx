@@ -1,8 +1,7 @@
 import Logout from 'components/User/UserCard/Logout/Logout';
 import UserPhoto from 'components/User/UserCard/UserPhoto/UserPhoto';
 import { UserPagePetsData } from 'components/UserPagePetsData/UserPagePetsData';
-import { NavLink } from 'react-router-dom';
-import { getToken } from 'redux/Auth/auth-selectors';
+
 
 import {
   Container,
