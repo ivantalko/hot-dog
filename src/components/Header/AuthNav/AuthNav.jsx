@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthNavStyled, LoginStyled, RegisterStyled } from './AuthNav.styled';
 
-export default function AuthNav({ setBurgerMenu }) {
+export default function AuthNav({ setBurgerMenu, burgerMenu }) {
   return (
     <AuthNavStyled>
       <LoginStyled
