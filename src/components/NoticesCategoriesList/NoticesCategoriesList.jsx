@@ -170,6 +170,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     const date = new Date();
     const dateYear = date.getFullYear();
     const age = dateYear - birthday;
+    if (birthday > new Date().getFullYear()) {
+      return 'not yet born';
+    }
     return age;
   };
 
