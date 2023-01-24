@@ -4,6 +4,7 @@ import { ReactComponent as heartPrimal } from './img/heartPrimal.svg';
 import { ReactComponent as deleteIconPrimal } from './img/deleteIcon.svg';
 
 export const Section = styled.section`
+  position: relative;
   margin: auto;
   margin-top: 30px;
   max-width: 450px;

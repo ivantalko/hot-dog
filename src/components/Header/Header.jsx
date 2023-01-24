@@ -15,9 +15,13 @@ export default function Header() {
   return (
     <HeaderStyled>
       <Logo />
-      {!burgerMenu && <Navigation setBurgerMenu={setBurgerMenu} />}
+      {!burgerMenu && (
+        <Navigation burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
+      )}
       <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
-      {burgerMenu && <BurgerMenu />}
+      {burgerMenu && (
+        <BurgerMenu setBurgerMenu={setBurgerMenu} burgerMenu={burgerMenu} />
+      )}
     </HeaderStyled>
   );
 }

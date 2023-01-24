@@ -178,6 +178,13 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   return (
     <Section>
+      {openConfirmModalId && (
+        <ConfirmModalComponent
+          handleOpenConfirmModal={handleOpenConfirmModal}
+          handleBackdropClose={handleBackdropClose}
+        />
+      )}
+
       <NoticesList>
         {filteredPets().map(item => {
           const deleteBtnRule =
