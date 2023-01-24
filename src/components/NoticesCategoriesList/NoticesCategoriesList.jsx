@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
+
 import {
   Section,
   NoticesList,
@@ -18,6 +20,12 @@ import {
   LearnMoreBtn,
   DeleteBtn,
   DeleteIcon,
+  // ConfirmBackdrop,
+  // ConfirmModal,
+  // ConfirmText,
+  // PetName,
+  // ConfirmBtnList,
+  // ConfirmBtn,
 } from './NoticesCategoriesList.styled';
 
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -47,12 +55,15 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const noticeById = useSelector(selectorNoticeById);
   const token = useSelector(getToken);
   let notices = useSelector(selectorNoticesData);
+
   const isLogin = useSelector(getIsLogin);
   const ownNotices = useSelector(selectOwnNotices);
   const favNotices = useSelector(selectFavNotices);
 
   const location = useLocation();
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
+
+  const [openConfirmModal, setOpenConfirmModal] = useState();
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -107,6 +118,11 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     document.querySelector('body').classList.add('modal');
   };
 
+  const handleOpenConfirmModal = () => {
+    document.querySelector('body').classList.add('modal');
+    setOpenConfirmModal(!openConfirmModal);
+  };
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyModalClose);
     return () => {
@@ -118,6 +134,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleKeyModalClose = e => {
     if (e.code === 'Escape') {
       setMoreInfoVisible(false);
+      setOpenConfirmModal(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -125,6 +142,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       setMoreInfoVisible(false);
+      setOpenConfirmModal(false);
       document.querySelector('body').classList.remove('modal');
     }
   };
@@ -227,12 +245,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       </NoticesList>
       {moreInfoVisible && (
         <ModalNotice
-          {...{
-            handleClickToFavorite,
-            setMoreInfoVisible,
-            handleBackdropClose,
-            noticeById,
-          }}
+          notices={notices}
+          setMoreInfoVisible={setMoreInfoVisible}
+          handleBackdropClose={handleBackdropClose}
+          noticeById={noticeById}
+        />
+      )}
+      {openConfirmModal && (
+        <ConfirmModalComponent
+          handleOpenConfirmModal={handleOpenConfirmModal}
+          handleBackdropClose={handleBackdropClose}
         />
       )}
     </Section>
