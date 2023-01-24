@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { selectFavNotices } from 'redux/User/user-selectors';
 import {
   ModalNoticeBackdrop,
   ModalBox,
@@ -22,12 +24,15 @@ import {
 export const ModalNotice = ({
   handleBackdropClose,
   setMoreInfoVisible,
+  handleClickToFavorite,
   noticeById,
 }) => {
   const handleModalCloseBtn = () => {
     setMoreInfoVisible(false);
     document.querySelector('body').classList.remove('modal');
   };
+  const favNotices = useSelector(selectFavNotices);
+  const favBtnRule = favNotices.find(favId => favId === noticeById._id);
 
   return (
     <ModalNoticeBackdrop onClick={handleBackdropClose}>
@@ -105,8 +110,14 @@ export const ModalNotice = ({
               </ContactBtn>
             </li>
             <li>
-              <AddToBtn>
-                Add to <HeartIcon />
+              <AddToBtn
+                onClick={handleClickToFavorite}
+                favBtnRule={favBtnRule}
+                data-id={noticeById._id}
+                data-favorite={favBtnRule ? 0 : 1}
+              >
+                {favBtnRule ? 'Unfollow' : 'Add to'}{' '}
+                <HeartIcon favBtnRule={favBtnRule} />
               </AddToBtn>
             </li>
           </BtnList>

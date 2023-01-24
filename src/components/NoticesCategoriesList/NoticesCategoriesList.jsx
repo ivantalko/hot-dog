@@ -101,8 +101,8 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     await dispatch(deleteNoticesById(e.target.dataset.id));
   };
 
-  const handleMoreInfoVisible = e => {
-    dispatch(getNoticesById(e));
+  const handleMoreInfoVisible = async e => {
+    await dispatch(getNoticesById(e));
     setMoreInfoVisible(true);
     document.querySelector('body').classList.add('modal');
   };
@@ -227,10 +227,12 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
       </NoticesList>
       {moreInfoVisible && (
         <ModalNotice
-          notices={notices}
-          setMoreInfoVisible={setMoreInfoVisible}
-          handleBackdropClose={handleBackdropClose}
-          noticeById={noticeById}
+          {...{
+            handleClickToFavorite,
+            setMoreInfoVisible,
+            handleBackdropClose,
+            noticeById,
+          }}
         />
       )}
     </Section>

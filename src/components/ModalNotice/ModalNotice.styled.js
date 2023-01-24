@@ -227,15 +227,17 @@ export const AddToBtn = styled.button`
   background-color: #f59256;
   border-radius: 40px;
   border: 2px solid #f59256;
-  background-color: transparent;
-  color: #f59256;
   width: 100%;
   justify-content: center;
   transition: 250ms;
-  fill: white;
+
+  color: ${p => (p.favBtnRule ? 'white' : '#f59256')};
+  fill: ${p => (p.favBtnRule ? '#eb7026' : 'white')};
+  background-color: ${p => (p.favBtnRule ? '#f59256' : 'transparent')};
+
   &:hover,
   &:focus {
-    background-color: #f59256;
+    background-color: ${p => (p.favBtnRule ? '#eb7026' : '#f59256')};
     color: white;
   }
   @media ${breakpoints.minTablet} {
