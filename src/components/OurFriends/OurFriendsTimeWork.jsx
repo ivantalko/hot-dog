@@ -1,6 +1,9 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { OurFriendsDefis, OurFriendsTimeWorks } from './OurFriendsTimeWork.styled';
+import {
+  OurFriendsDefis,
+  OurFriendsTimeWorks,
+} from './OurFriendsTimeWork.styled';
 import { OurFriendsModal } from './OurFriendsModal/OurFriendsModal';
 import $ from 'jquery';
 
@@ -69,7 +72,7 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
     }
     return s;
   };
-  
+
   $(window).scroll(function () {
     setOurFriendsModalBul(false);
     document.querySelector(`#\\3${idTime} a`).classList.remove('active');
@@ -87,8 +90,8 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
             item.isOpen && (
               <div key={nanoid()}>
                 <p onClick={OpenModal}>
-                  {item.isOpen && cutFirstZero(item.from)} <OurFriendsDefis>-</OurFriendsDefis>{' '}
-                  {cutFirstZero(item.to)}
+                  {item.isOpen && cutFirstZero(item.from)}{' '}
+                  <OurFriendsDefis>-</OurFriendsDefis> {cutFirstZero(item.to)}
                 </p>
                 {ourFriendsModalBul && (
                   <OurFriendsModal

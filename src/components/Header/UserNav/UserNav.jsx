@@ -1,7 +1,7 @@
 import React from 'react';
 import { AccountStyled, SvgAccount } from './UserNav.styled';
 
-export default function UserNav({ setBurgerMenu }) {
+export default function UserNav({ setBurgerMenu, burgerMenu }) {
   return (
     <nav>
       <AccountStyled
