@@ -1,13 +1,8 @@
-// ConfirmBackdrop,
-// ConfirmModal,
-// ConfirmText,
-// PetName,
-// ConfirmBtnList,
-// ConfirmBtn,
-
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
+import { selectorNoticesStatus } from 'redux/Notice/notice-selector';
 
 import {
   Section,
@@ -25,6 +20,7 @@ import {
   LearnMoreBtn,
   DeleteBtn,
   DeleteIcon,
+  LoaderBox,
 } from './NoticesCategoriesList.styled';
 
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -63,6 +59,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [openConfirmModalId, setOpenConfirmModalId] = useState(null);
   const ownNotices = useSelector(selectOwnNotices);
   const favNotices = useSelector(selectFavNotices);
+  const noticesStatus = useSelector(selectorNoticesStatus);
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -178,6 +175,11 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   return (
     <Section>
+      {noticesStatus !== 'success' && (
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      )}
       {openConfirmModalId && (
         <ConfirmModalComponent
           handleOpenConfirmModal={handleOpenConfirmModal}
