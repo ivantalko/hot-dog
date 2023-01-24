@@ -116,8 +116,8 @@ export const ModalNotice = ({
                 data-id={noticeById._id}
                 data-favorite={favBtnRule ? 0 : 1}
               >
-                {favBtnRule ? 'Unfollow' : 'Add to'}{' '}
-                <HeartIcon favBtnRule={favBtnRule} />
+                {favBtnRule ? 'Unfollow' : 'Add to'}
+                <HeartIcon />
               </AddToBtn>
             </li>
           </BtnList>
