@@ -3,6 +3,14 @@ import { breakpoints } from 'helpers/breakpoints';
 import { ReactComponent as heartPrimal } from './img/heartPrimal.svg';
 import { ReactComponent as deleteIconPrimal } from './img/deleteIcon.svg';
 
+export const LoaderBox = styled.div`
+  position: fixed;
+  z-index: 1003;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export const Section = styled.section`
   position: relative;
   margin: auto;
