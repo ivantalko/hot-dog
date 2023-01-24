@@ -31,3 +31,17 @@ export const Wrapper = styled.div`
   margin: 0;
   padding: 0;
 `;
+
+export const Error = styled.p`
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  padding-top: 80px;
+`;
+
+export const WrapperLoader = styled.div`
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
