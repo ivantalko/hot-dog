@@ -10,7 +10,7 @@ export const BackgroundAuthorize = styled.div`
   display: flex;
 
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 98px);
 
   background-color: #fdf7f2;
 
@@ -27,14 +27,31 @@ export const BackgroundAuthorize = styled.div`
   @media ${breakpoints.minTablet} {
     padding: 0;
 
+    height: calc(100vh - 148px);
     background-image: url(${tablet});
     background-position: bottom;
     background-size: 768px;
   }
   @media ${breakpoints.desktop} {
     background-image: url(${second}), url(${first});
+    height: calc(100vh - 122px);
     background-size: 1077px, 511px;
-    background-position: bottom left, right 30px bottom;
+    background-position: bottom left, right 3px bottom -32px;
+
     background-repeat: no-repeat, no-repeat;
+  }
+`;
+export const ContainerBackground = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 480px;
+
+  @media ${breakpoints.minTablet} {
+    max-width: 768px;
+  }
+
+  @media ${breakpoints.desktop} {
+    max-width: 1280px;
   }
 `;
