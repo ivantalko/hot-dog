@@ -63,3 +63,11 @@ export async function removeUserPet(id) {
 
   return id;
 }
+
+export async function patchFavNotice(id, favorite) {
+  const { data } = await axios.patch(`/notices/favorite/${id}`, {
+    favorite,
+  });
+
+  return data;
+}

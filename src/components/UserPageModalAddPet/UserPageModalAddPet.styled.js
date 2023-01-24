@@ -13,6 +13,7 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(10px);
   padding: 20px;
   overflow: auto;
+  display: flex;
 `;
 
 export const ModalMainPage = styled.div`
@@ -27,6 +28,7 @@ export const ModalMainPage = styled.div`
   }
   @media ${breakpoints.minTablet} {
     padding: 40px 80px;
+    max-width: 608px;
   }
   &.hidden {
     position: absolute;
