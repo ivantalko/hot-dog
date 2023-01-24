@@ -5,6 +5,8 @@ import {
   getUserOperation,
   putUpdateUser,
   patchUserAvatar,
+  postUserPet,
+  deleteUserPet,
 } from './user-operation';
 
 const initialState = {
@@ -82,6 +84,29 @@ const userSlice = createSlice({
       state.avatarURL = action.payload.avatarURL;
     },
     [patchUserAvatar.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [postUserPet.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [postUserPet.fulfilled](state, action) {
+      state.pets.push(action.payload);
+    },
+    [postUserPet.rejected](state) {
+      state.status = StatusForAll.error;
+    },
+
+    [deleteUserPet.pending](state) {
+      state.status = StatusForAll.loading;
+    },
+    [deleteUserPet.fulfilled](state, action) {
+      return {
+        ...state,
+        pets: [...state.pets.filter(({ _id }) => _id !== action.payload)],
+      };
+    },
+    [deleteUserPet.rejected](state) {
       state.status = StatusForAll.error;
     },
   },

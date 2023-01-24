@@ -8,11 +8,23 @@ import {
   AddBtnText,
   AddBtn,
   AddIcon,
+  UserPetsList,
 } from './UserPagePetsData.styled';
 import { UserPageModalAddPet } from 'components/UserPageModalAddPet/UserPageModalAddPet';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPets } from 'redux/User/user-selectors';
+import { PetsList } from 'components/User/PetsList/PetsList';
+import { deleteUserPet } from 'redux/User/user-operation';
 
 export const UserPagePetsData = () => {
+  const pets = useSelector(selectPets);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleDeletePet = id => {
+    dispatch(deleteUserPet(id));
+  };
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -40,7 +52,6 @@ export const UserPagePetsData = () => {
       document.querySelector('body').classList.remove('modal');
     }
   };
-
   return (
     <PetDataBox>
       <PetsDataBoxTop>
@@ -52,6 +63,17 @@ export const UserPagePetsData = () => {
           </AddBtn>
         </AddBtnBox>
       </PetsDataBoxTop>
+      <UserPetsList>
+        {pets &&
+          pets.map(({ _id, ...other }) => (
+            <PetsList
+              key={_id}
+              handleDeletePet={handleDeletePet}
+              id={_id}
+              {...other}
+            />
+          ))}
+      </UserPetsList>
       {isModalOpen && (
         <div>
           <UserPageModalAddPet

@@ -14,7 +14,7 @@ export const OurFriendsModalStyled = styled.div`
   top: ${props => props.cordinate.top + 20}px;
   left: ${props => props.cordinate.left}px;
   background-color: tomato;
-  width: 120px;
+  min-width: 120px;
   height: 160px;
   background: #ffffff;
   border: 1px solid #f59256;

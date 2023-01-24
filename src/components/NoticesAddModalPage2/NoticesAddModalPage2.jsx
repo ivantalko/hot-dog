@@ -44,7 +44,7 @@ export const NoticesAddModalPage2 = ({
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
-      setSex('male');
+      setSex(() => 'male');
       document.querySelector('#SexMaleActive').classList.add('active');
       document.querySelector('#SexFemaleActive').classList.remove('active');
       document.querySelector('#sexInputFemale').checked = false;
@@ -58,61 +58,35 @@ export const NoticesAddModalPage2 = ({
   };
 
   const handleNoticeDone = () => {
-    if (
-      pet !==
-      {
-        title: '',
-        name: '',
-        birthday: '',
-        breed: '',
-        sex: '',
-        location: '',
-        price: '',
-        category: '',
-        comments: '',
-      }
-    ) {
-      setPet({
-        title: title,
-        name: name,
-        birthday: birthday,
-        breed: breed,
-        sex: sex,
-        location: location,
-        price: price,
-        category: category,
-        comments: comments,
-      });
-      console.log('notices is done');
+    setPet({
+      title,
+      name,
+      birthday,
+      breed,
+      sex,
+      location,
+      price,
+      category,
+      comments,
+    });
 
-      document.querySelector('body').classList.remove('modal');
-      setIsModalOpen(false);
+    document.querySelector('body').classList.remove('modal');
+    setIsModalOpen(false);
 
-      const notice = {
-        name: 'govnaKusok',
-        birthday: '12-02-2001',
-        breed: 'zaluped',
-        title: 'Huilo',
-        location: 'govno',
-        price: '500',
-        category: 'lostFound',
-        comments: 'jaskdjalksdjlkasjklj',
-      };
-
-      const formData = new FormData();
-      const avatar = document.querySelector('#fileInput').files[0];
-      formData.append('avatar', avatar);
-      formData.append('notice', JSON.stringify(notice));
-
-      dispatch(getNoticesDataNew(formData));
-    }
+    const formData = new FormData();
+    const avatar = document.querySelector('#fileInput').files[0];
+    formData.append('avatar', avatar);
+    formData.append('notice', JSON.stringify(pet));
+    dispatch(getNoticesDataNew(formData));
   };
+
+  console.log(pet);
 
   const handleLocationSet = e => {
     setLocation(e.target.value);
   };
   const handleChangePrice = e => {
-    setPrice(e.target.value);
+    setPrice(() => e.target.value);
   };
   const handleChangeComments = e => {
     setComments(e.target.value);
