@@ -1,4 +1,4 @@
-import { Paw, Wrapper } from './Loader.styled';
+import { Paw } from './Loader.styled';
 
 export default function Loader() {
   return (
