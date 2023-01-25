@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {
   RegisterButtonLocation,
-  RegisterLocationContainer,
 } from 'components/RegisterForm/RegisterForm.styled';
 import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ import {
   selectName,
   selectPhone,
 } from 'redux/User/user-selectors';
-import { LOCATIONWRAPPER, WRAPPER } from './UserInfo.styled';
+import { LocationDiv, LOCATIONWRAPPER, WRAPPER } from './UserInfo.styled';
 import UserItem from './UserItem';
 
 function UserInfo() {
@@ -117,7 +116,7 @@ function UserInfo() {
         />
         <WRAPPER>
           {arrayLocation && isOpen && (
-            <RegisterLocationContainer>
+            <LocationDiv>
               {arrayLocation?.map((locate, index) => (
                 <li key={index}>
                   <RegisterButtonLocation onClick={handleButtonClick}>
@@ -127,16 +126,16 @@ function UserInfo() {
                   </RegisterButtonLocation>
                 </li>
               ))}
-            </RegisterLocationContainer>
+            </LocationDiv>
           )}
           {isOpen && notFoundCity && !arrayLocation && (
-            <RegisterLocationContainer>
+            <LocationDiv>
               <li>
                 <RegisterButtonLocation>
                   There is no such city, try another
                 </RegisterButtonLocation>
               </li>
-            </RegisterLocationContainer>
+            </LocationDiv>
           )}
         </WRAPPER>
       </LOCATIONWRAPPER>
