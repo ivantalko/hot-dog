@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { RegisterButtonLocation } from 'components/RegisterForm/RegisterForm.styled';
+import {
+  LocationDiv,
+  LOCATIONWRAPPER,
+} from 'components/User/UserCard/UserInfo/UserInfo.styled';
+import { useMemo, useState } from 'react';
 
 import {
   NextPageModal,
@@ -21,9 +27,14 @@ import {
   ControlsBtnList,
   ControlsBtn,
   PreviewImg,
+  LocationListWrapper,
 } from './NoticesAddModalPage2.styled';
 
 export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [notFoundCity, setNotFoundCity] = useState(false);
+  const [arrayLocation, setArrayLocation] = useState('');
+
   const [sex, setSex] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
@@ -45,8 +56,42 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
     e.target.checked = true;
   };
 
+  const fetchProducts = useMemo(
+    () => async search => {
+      if (!search) return;
+      try {
+        const response = await axios.get(
+          `https://petssupportapi.onrender.com/location?city=${search}`
+        );
+        if (response?.data?.cities.length === 0) {
+          setNotFoundCity(true);
+          setArrayLocation(false);
+          return;
+        }
+
+        setArrayLocation(response?.data?.cities);
+        setNotFoundCity(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [arrayLocation]
+  );
+
   const handleLocationSet = e => {
-    setLocation(e.target.value);
+    const { value } = e.target;
+    const query = value.trim();
+    setLocation(query);
+    setIsOpen(true);
+    if (query) fetchProducts(query);
+    if (!location) {
+      setArrayLocation(false);
+      setNotFoundCity(true);
+      return;
+    }
+
+    // setLocation(e.target.value);
   };
   const handleChangePrice = e => {
     setPrice(e.target.value);
@@ -79,6 +124,11 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
       preview.src = '';
     }
   }
+
+  const handleButtonClick = e => {
+    setLocation(e.currentTarget.innerText);
+    setIsOpen(false);
+  };
 
   return (
     <NextPageModal id="secondPageModal">
@@ -114,19 +164,49 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
             </SexItem>
           </SexList>
         </li>
-        <ParameterItem>
-          <ParameterTitle>
-            Location<span style={{ color: '#F59256' }}>*</span>:
-          </ParameterTitle>
-          <SecondPageParameterInput
-            value={location}
-            onChange={handleLocationSet}
-            type="text"
-            name="locationInput"
-            id="locationInput"
-            placeholder="Type pet location"
-          />
-        </ParameterItem>
+        <LOCATIONWRAPPER>
+          <ParameterItem>
+            <ParameterTitle>
+              Location<span style={{ color: '#F59256' }}>*</span>:
+            </ParameterTitle>
+
+            <SecondPageParameterInput
+              value={location}
+              onChange={handleLocationSet}
+              type="text"
+              name="locationInput"
+              id="locationInput"
+              placeholder="Type pet location"
+            />
+          </ParameterItem>
+          <LocationListWrapper>
+            {arrayLocation && isOpen && (
+              <LocationDiv>
+                {arrayLocation?.map((locate, index) => (
+                  <li key={index}>
+                    <RegisterButtonLocation
+                      type="button"
+                      onClick={handleButtonClick}
+                    >
+                      <span>{locate.name}</span>
+                      {',  '}
+                      <span>{locate.regionArea}</span>
+                    </RegisterButtonLocation>
+                  </li>
+                ))}
+              </LocationDiv>
+            )}
+            {isOpen && notFoundCity && !arrayLocation && (
+              <LocationDiv>
+                <li>
+                  <RegisterButtonLocation type="button">
+                    There is no such city, try another
+                  </RegisterButtonLocation>
+                </li>
+              </LocationDiv>
+            )}
+          </LocationListWrapper>
+        </LOCATIONWRAPPER>
         <ParameterItem>
           <ParameterTitle>
             Price<span style={{ color: '#F59256' }}>*</span>:
@@ -184,7 +264,9 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
 
       <ControlsBtnList>
         <ParameterItem>
-          <ControlsBtn type="submit">Done</ControlsBtn>
+          <ControlsBtn type="submit" disabled={isOpen ? true : false}>
+            Done
+          </ControlsBtn>
         </ParameterItem>
         <ParameterItem>
           <ControlsBtn type="button" onClick={handleToBackPage}>
