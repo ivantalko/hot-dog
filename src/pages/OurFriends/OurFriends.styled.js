@@ -80,9 +80,9 @@ export const OurFriendsCard = styled.div`
 
   @media ${breakpoints.minTablet} {
     width: 336px;
-    min-height: 288px;
+    height: 300px;
 
-    padding: 16px 4px 16px 16px;
+    padding: 16px 4px 16px 4px;
   }
 
   @media ${breakpoints.desktop} {
