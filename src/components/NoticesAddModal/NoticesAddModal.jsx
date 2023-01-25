@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { NoticesAddModalPage1 } from 'components/NoticesAddModalPage1/NoticesAddModalPage1';
 import { NoticesAddModalPage2 } from 'components/NoticesAddModalPage2/NoticesAddModalPage2';
 import { Backdrop } from './NoticesAddModal.styled';
+import { useDispatch } from 'react-redux';
+import { postNewNotice } from 'redux/Notice/notice-operations';
+import { toast } from 'react-toastify';
 
 export const NoticesAddModal = ({
   handleBackdropClose,
@@ -14,7 +17,7 @@ export const NoticesAddModal = ({
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
-
+  const dispatch = useDispatch();
   const [nextPageOpen, setNextPageOpen] = useState(false);
 
   const handleChangeParameter = e => {
@@ -25,10 +28,56 @@ export const NoticesAddModal = ({
       setName(e.target.value);
     }
     if (e.target.id === 'birthInput') {
-      setBirthday(e.target.value);
+      setBirthday(convertDate(e.target.value));
     }
     if (e.target.id === 'breedInput') {
       setBreed(e.target.value);
+    }
+  };
+
+  const convertDate = date => {
+    if (!date?.length) return;
+    const d = date?.split('-');
+
+    return ([d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'));
+  };
+
+  const createPet = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    const secondPage = new FormData(e.target);
+    const {
+      sexMale,
+      sexFemle,
+      locationInput: location,
+      priceInput: price,
+      fileInput,
+      comments,
+    } = Object.fromEntries(secondPage.entries());
+
+    formData.append('avatar', fileInput);
+    formData.append(
+      'notice',
+      JSON.stringify({
+        title,
+        name,
+        birthday,
+        breed,
+        category,
+        sex: sexMale || sexFemle,
+        location,
+        price,
+        comments,
+      })
+    );
+
+    const result = await dispatch(postNewNotice(formData));
+    if (result.type === 'notices/new/fulfilled') {
+      document.querySelector('body').classList.remove('modal');
+      setIsModalOpen(false);
+    }
+    if (result.type === 'notices/new/rejected') {
+      toast.info('Something wrong');
     }
   };
 
@@ -78,36 +127,38 @@ export const NoticesAddModal = ({
       birthday === '' ||
       breed === ''
     ) {
-      console.log('all parameters must be set');
+      toast.info('All parameters must be set');
     }
   };
 
   return (
-    <Backdrop onClick={handleBackdropClose}>
-      <NoticesAddModalPage1
-        pet={pet}
-        setPet={setPet}
-        handleBtnCLoseModal={handleBtnCLoseModal}
-        handleChoiseCategory={handleChoiseCategory}
-        handleChangeParameter={handleChangeParameter}
-        handleNextPage={handleNextPage}
-      />
-
-      {nextPageOpen && (
-        <NoticesAddModalPage2
+    <form onSubmit={createPet}>
+      <Backdrop onClick={handleBackdropClose}>
+        <NoticesAddModalPage1
           pet={pet}
           setPet={setPet}
-          nextPageOpen={nextPageOpen}
-          setIsModalOpen={setIsModalOpen}
-          setNextPageOpen={setNextPageOpen}
           handleBtnCLoseModal={handleBtnCLoseModal}
-          category={category}
-          title={title}
-          name={name}
-          birthday={birthday}
-          breed={breed}
+          handleChoiseCategory={handleChoiseCategory}
+          handleChangeParameter={handleChangeParameter}
+          handleNextPage={handleNextPage}
         />
-      )}
-    </Backdrop>
+
+        {nextPageOpen && (
+          <NoticesAddModalPage2
+            pet={pet}
+            setPet={setPet}
+            nextPageOpen={nextPageOpen}
+            setIsModalOpen={setIsModalOpen}
+            setNextPageOpen={setNextPageOpen}
+            handleBtnCLoseModal={handleBtnCLoseModal}
+            category={category}
+            title={title}
+            name={name}
+            birthday={birthday}
+            breed={breed}
+          />
+        )}
+      </Backdrop>
+    </form>
   );
 };

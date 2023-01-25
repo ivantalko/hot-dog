@@ -88,3 +88,20 @@ export const deleteNoticesById = createAsyncThunk(
     }
   }
 );
+
+export const postNewNotice = createAsyncThunk(
+  'notices/new',
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await axios({
+        method: 'post',
+        url: '/notices/new',
+        data: body,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

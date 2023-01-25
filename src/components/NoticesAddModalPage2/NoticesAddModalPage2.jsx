@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { RegisterButtonLocation } from 'components/RegisterForm/RegisterForm.styled';
+import {
+  LocationDiv,
+  LOCATIONWRAPPER,
+} from 'components/User/UserCard/UserInfo/UserInfo.styled';
+import { useMemo, useState } from 'react';
 
 import {
   NextPageModal,
@@ -21,21 +27,15 @@ import {
   ControlsBtnList,
   ControlsBtn,
   PreviewImg,
+  LocationListWrapper,
 } from './NoticesAddModalPage2.styled';
 
-export const NoticesAddModalPage2 = ({
-  handleBtnCLoseModal,
-  setIsModalOpen,
-  nextPageOpen,
-  category,
-  title,
-  name,
-  birthday,
-  breed,
-  pet,
-  setPet,
-}) => {
-  const [sex, setSex] = useState('');
+export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [notFoundCity, setNotFoundCity] = useState(false);
+  const [arrayLocation, setArrayLocation] = useState('');
+
+  // const [sex, setSex] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -43,12 +43,12 @@ export const NoticesAddModalPage2 = ({
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
-      setSex('male');
+      // setSex('male');
       document.querySelector('#SexMaleActive').classList.add('active');
       document.querySelector('#SexFemaleActive').classList.remove('active');
       document.querySelector('#sexInputFemale').checked = false;
     } else if (e.target.id === 'sexInputFemale') {
-      setSex('female');
+      // setSex('female');
       document.querySelector('#SexMaleActive').classList.remove('active');
       document.querySelector('#SexFemaleActive').classList.add('active');
       document.querySelector('#sexInputMale').checked = false;
@@ -56,41 +56,42 @@ export const NoticesAddModalPage2 = ({
     e.target.checked = true;
   };
 
-  const handleNoticeDone = () => {
-    if (
-      pet !==
-      {
-        title: '',
-        name: '',
-        birthday: '',
-        breed: '',
-        sex: '',
-        location: '',
-        price: '',
-        category: '',
-        comments: '',
+  const fetchProducts = useMemo(
+    () => async search => {
+      if (!search) return;
+      try {
+        const response = await axios.get(
+          `https://petssupportapi.onrender.com/location?city=${search}`
+        );
+        if (response?.data?.cities.length === 0) {
+          setNotFoundCity(true);
+          setArrayLocation(false);
+          return;
+        }
+
+        setArrayLocation(response?.data?.cities);
+        setNotFoundCity(false);
+      } catch (error) {
+        console.log(error.message);
       }
-    ) {
-      setPet({
-        title: title,
-        name: name,
-        birthday: birthday,
-        breed: breed,
-        sex: sex,
-        location: location,
-        price: price,
-        category: category,
-        comments: comments,
-      });
-      console.log('notices is done');
-      // console.log(pet);
-      document.querySelector('body').classList.remove('modal');
-      setIsModalOpen(false);
-    }
-  };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [arrayLocation]
+  );
 
   const handleLocationSet = e => {
-    setLocation(e.target.value);
+    const { value } = e.target;
+    const query = value.trim();
+    setLocation(query);
+    setIsOpen(true);
+    if (query) fetchProducts(query);
+    if (!location) {
+      setArrayLocation(false);
+      setNotFoundCity(true);
+      return;
+    }
+
+    // setLocation(e.target.value);
   };
   const handleChangePrice = e => {
     setPrice(e.target.value);
@@ -124,6 +125,11 @@ export const NoticesAddModalPage2 = ({
     }
   }
 
+  const handleButtonClick = e => {
+    setLocation(e.currentTarget.innerText);
+    setIsOpen(false);
+  };
+
   return (
     <NextPageModal id="secondPageModal">
       <ModalTitle>Add pet</ModalTitle>
@@ -141,6 +147,7 @@ export const NoticesAddModalPage2 = ({
                 type="checkbox"
                 name="sexMale"
                 id="sexInputMale"
+                value={'male'}
               />
               <SexText id="SexMaleActive">Male</SexText>
             </SexItem>
@@ -151,24 +158,55 @@ export const NoticesAddModalPage2 = ({
                 type="checkbox"
                 name="sexFemle"
                 id="sexInputFemale"
+                value={'female'}
               />
               <SexText id="SexFemaleActive">Female</SexText>
             </SexItem>
           </SexList>
         </li>
-        <ParameterItem>
-          <ParameterTitle>
-            Location<span style={{ color: '#F59256' }}>*</span>:
-          </ParameterTitle>
-          <SecondPageParameterInput
-            value={location}
-            onChange={handleLocationSet}
-            type="text"
-            name="locationInput"
-            id="locationInput"
-            placeholder="Type pet location"
-          />
-        </ParameterItem>
+        <LOCATIONWRAPPER>
+          <ParameterItem>
+            <ParameterTitle>
+              Location<span style={{ color: '#F59256' }}>*</span>:
+            </ParameterTitle>
+
+            <SecondPageParameterInput
+              value={location}
+              onChange={handleLocationSet}
+              type="text"
+              name="locationInput"
+              id="locationInput"
+              placeholder="Type pet location"
+            />
+          </ParameterItem>
+          <LocationListWrapper>
+            {arrayLocation && isOpen && (
+              <LocationDiv>
+                {arrayLocation?.map((locate, index) => (
+                  <li key={index}>
+                    <RegisterButtonLocation
+                      type="button"
+                      onClick={handleButtonClick}
+                    >
+                      <span>{locate.name}</span>
+                      {',  '}
+                      <span>{locate.regionArea}</span>
+                    </RegisterButtonLocation>
+                  </li>
+                ))}
+              </LocationDiv>
+            )}
+            {isOpen && notFoundCity && !arrayLocation && (
+              <LocationDiv>
+                <li>
+                  <RegisterButtonLocation type="button">
+                    There is no such city, try another
+                  </RegisterButtonLocation>
+                </li>
+              </LocationDiv>
+            )}
+          </LocationListWrapper>
+        </LOCATIONWRAPPER>
         <ParameterItem>
           <ParameterTitle>
             Price<span style={{ color: '#F59256' }}>*</span>:
@@ -216,8 +254,8 @@ export const NoticesAddModalPage2 = ({
           <TextArea
             onChange={handleChangeComments}
             value={comments}
-            name=""
-            id=""
+            name="comments"
+            id="comments"
             cols="30"
             rows="10"
           ></TextArea>
@@ -226,10 +264,14 @@ export const NoticesAddModalPage2 = ({
 
       <ControlsBtnList>
         <ParameterItem>
-          <ControlsBtn onClick={handleNoticeDone}>Done</ControlsBtn>
+          <ControlsBtn type="submit" disabled={isOpen ? true : false}>
+            Done
+          </ControlsBtn>
         </ParameterItem>
         <ParameterItem>
-          <ControlsBtn onClick={handleToBackPage}>Back</ControlsBtn>
+          <ControlsBtn type="button" onClick={handleToBackPage}>
+            Back
+          </ControlsBtn>
         </ParameterItem>
       </ControlsBtnList>
     </NextPageModal>

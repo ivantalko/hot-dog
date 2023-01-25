@@ -269,3 +269,10 @@ export const PreviewImg = styled.img`
   height: ${props => (props.chooseAvatar ? '100%' : 'auto')};
   object-fit: ${props => (props.chooseAvatar ? 'cover' : 'cover')};
 `;
+
+export const LocationListWrapper = styled.div`
+  position: absolute;
+  z-index: 9999999999;
+  top: 130px;
+  right: 90%;
+`;

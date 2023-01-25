@@ -82,7 +82,7 @@ export const NoticesAddModalPage1 = ({
           <ParameterInput
             id="birthInput"
             onChange={handleChangeParameter}
-            type="text"
+            type="date"
             placeholder="Type date of birth"
           />
         </li>
@@ -100,10 +100,14 @@ export const NoticesAddModalPage1 = ({
       </ParameterList>
       <ControlsBtnList>
         <li>
-          <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
+          <ControlsBtn type="button" onClick={handleBtnCLoseModal}>
+            Cancel
+          </ControlsBtn>
         </li>
         <li>
-          <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
+          <ControlsBtn type="button" onClick={handleNextPage}>
+            Next
+          </ControlsBtn>
         </li>
       </ControlsBtnList>
     </Modal>

@@ -5,6 +5,7 @@ import {
   getNoticesById,
   getFavNotices,
   deleteNoticesById,
+  postNewNotice,
 } from './notice-operations';
 
 const initialState = {
@@ -92,6 +93,16 @@ const noticesSlice = createSlice({
     },
     [deleteNoticesById.rejected](state) {
       state.status = status.error;
+    },
+    [postNewNotice.loading](state) {
+      state.status = status.loading;
+    },
+    [postNewNotice.fulfilled](state, action) {
+      state.items.unshift(action.payload);
+      state.status = status.success;
+    },
+    [postNewNotice.rejected](state) {
+      state.status = status.success;
     },
   },
 });
