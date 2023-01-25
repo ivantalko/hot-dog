@@ -79,16 +79,16 @@ const OurFriends = () => {
                     <OurFriendseEmail>
                       Email:
                       <br />
-                      {!!item.email ? <OurFriendseEmailMailto href="mailto:{ourFriendsplug(item.email)}">
+                      {!!item.email ? <OurFriendseEmailMailto href={`mailto:${item.email}`}>
                         {ourFriendsPlug(item.email)}
-                      </OurFriendseEmailMailto> : <li>-----------------------------------</li>} 
+                      </OurFriendseEmailMailto> : <p>-----------------------------------</p>} 
                     </OurFriendseEmail>
                     <OurFriendsPhone>
                       Phone:
                       <br />
-                      {!!item.phone ? <OurFriendsPhoneTel href="tel:{ourFriendsplug(item.phone)}">
+                      {!!item.phone ? <OurFriendsPhoneTel href={`tel:${item.phone}`}>
                         {ourFriendsPlug(item.phone)}
-                      </OurFriendsPhoneTel> : <li>-----------------------------------</li>}
+                      </OurFriendsPhoneTel> : <p>-----------------------------------</p>}
                     </OurFriendsPhone>
                   </OurFriendsInfoItem>
                 </OurFriendsInfo>
