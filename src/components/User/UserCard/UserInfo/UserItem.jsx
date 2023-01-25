@@ -17,6 +17,9 @@ const UserItem = ({
   active,
   setActive,
   handelChangeLocation,
+  closeCitysList,
+  location,
+  isOpen,
 }) => {
   const [value, setValue] = useState(null);
 
@@ -30,6 +33,24 @@ const UserItem = ({
     const d = date?.split('-');
 
     return ([d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'));
+  };
+
+  const inputValueSelector = () => {
+    console.log('value :>> ', value);
+    if (name === 'birthday') {
+      return converterDateFormat(user);
+    } else if (name === 'city') {
+      return location ?? location ?? user;
+    } else if (
+      name === 'city' &&
+      isOpen &&
+      location === value &&
+      value !== user
+    ) {
+      return user;
+    } else {
+      return value ?? user;
+    }
   };
 
   const onChange = e => {
@@ -79,18 +100,27 @@ const UserItem = ({
     ));
   };
 
-  const onEdit = name => () => {
+  const onEdit = name => {
     const data = name === 'birthday' ? convertDate(value) : value;
+    if (name === 'city') closeCitysList();
     setActive('');
     if (!data || data === user) {
       setValue(name === 'birthday' ? converterDateFormat(user) : user);
-
       return;
     }
+
+    if (name === 'city' && isOpen && location === value && value !== user) {
+      return;
+    }
+    if (name === 'city' ?? user !== location) {
+      setValue(null);
+      return dispatch(putUpdateUser({ location }));
+    }
+
     dispatch(putUpdateUser({ [name]: data || user }));
   };
 
-  const onSetActive = name => () => setActive(name);
+  const onSetActive = name => setActive(name);
 
   return (
     <LiItem ref={active === name ? refWrapper : null}>
@@ -99,18 +129,16 @@ const UserItem = ({
         disabled={active !== name}
         active={active === name}
         type={name === 'birthday' ? 'date' : 'text'}
-        value={
-          value ?? (name === 'birthday' ? converterDateFormat(user) : user)
-        }
+        value={inputValueSelector()}
         name={name}
         onChange={onChange}
       />
       <Button>
         {active === name ? (
-          <EditIcon onClick={onEdit(name)} />
+          <EditIcon onClick={() => onEdit(name)} />
         ) : (
           <PenIcon
-            onClick={onSetActive(name)}
+            onClick={() => onSetActive(name)}
             fill={active && active !== name ? 'rgba(17,17,17,0.6)' : '#F59256'}
           />
         )}
