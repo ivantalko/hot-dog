@@ -5,6 +5,12 @@ import { currentUser } from '../redux/Auth/auth-operations';
 import { getToken } from '../redux/Auth/auth-selectors';
 import { getUserOperation } from 'redux/User/user-operation';
 import PrivateRouter from 'helpers/PrivateRoute/PrivateRoute';
+import Loader from './Loader/Loader';
+import { LoaderBox } from './Loader/Loader.styled';
+
+// import Layout from './Layout/Layout';
+// import NewsPage from 'pages/NewsPage/NewsPage';
+// import UserPage from 'pages/UserPage/UserPage';
 
 const Layout = lazy(() => import('./Layout/Layout'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
@@ -27,7 +33,13 @@ export const App = () => {
   }, [authToken, dispatch]);
   const [searchQuery, setSearchQuery] = useState('');
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      }
+    >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
