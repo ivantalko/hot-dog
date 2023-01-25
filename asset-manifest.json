@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/hot-dog/static/css/main.fdbf83c8.css",
-    "main.js": "/hot-dog/static/js/main.e698ef34.js",
+    "main.js": "/hot-dog/static/js/main.3bef4ba2.js",
     "static/js/442.48a2a5de.chunk.js": "/hot-dog/static/js/442.48a2a5de.chunk.js",
     "static/js/36.e193bf2e.chunk.js": "/hot-dog/static/js/36.e193bf2e.chunk.js",
     "static/js/695.cf1bb727.chunk.js": "/hot-dog/static/js/695.cf1bb727.chunk.js",
-    "static/js/268.4ccfdd16.chunk.js": "/hot-dog/static/js/268.4ccfdd16.chunk.js",
+    "static/js/268.b0584eba.chunk.js": "/hot-dog/static/js/268.b0584eba.chunk.js",
     "static/js/633.25c631fd.chunk.js": "/hot-dog/static/js/633.25c631fd.chunk.js",
     "static/js/77.78cb1ff0.chunk.js": "/hot-dog/static/js/77.78cb1ff0.chunk.js",
     "static/js/423.10af8715.chunk.js": "/hot-dog/static/js/423.10af8715.chunk.js",
@@ -39,11 +39,11 @@
     "static/media/iconPlus.svg": "/hot-dog/static/media/iconPlus.a2e26894a4ce18911a73de53e34e86e7.svg",
     "static/media/addIcon.svg": "/hot-dog/static/media/addIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.fdbf83c8.css.map": "/hot-dog/static/css/main.fdbf83c8.css.map",
-    "main.e698ef34.js.map": "/hot-dog/static/js/main.e698ef34.js.map",
+    "main.3bef4ba2.js.map": "/hot-dog/static/js/main.3bef4ba2.js.map",
     "442.48a2a5de.chunk.js.map": "/hot-dog/static/js/442.48a2a5de.chunk.js.map",
     "36.e193bf2e.chunk.js.map": "/hot-dog/static/js/36.e193bf2e.chunk.js.map",
     "695.cf1bb727.chunk.js.map": "/hot-dog/static/js/695.cf1bb727.chunk.js.map",
-    "268.4ccfdd16.chunk.js.map": "/hot-dog/static/js/268.4ccfdd16.chunk.js.map",
+    "268.b0584eba.chunk.js.map": "/hot-dog/static/js/268.b0584eba.chunk.js.map",
     "633.25c631fd.chunk.js.map": "/hot-dog/static/js/633.25c631fd.chunk.js.map",
     "77.78cb1ff0.chunk.js.map": "/hot-dog/static/js/77.78cb1ff0.chunk.js.map",
     "423.10af8715.chunk.js.map": "/hot-dog/static/js/423.10af8715.chunk.js.map",
@@ -53,6 +53,6 @@
   },
   "entrypoints": [
     "static/css/main.fdbf83c8.css",
-    "static/js/main.e698ef34.js"
+    "static/js/main.3bef4ba2.js"
   ]
 }
