@@ -12,7 +12,7 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
 
   function ourFriendsAdress(items) {
     if (!items) {
-      return '-----------------------------------';
+      return '-------------------------------';
     }
 
     let date = new Date();
@@ -47,17 +47,6 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
 
   const [ourFriendsModalBul, setOurFriendsModalBul] = useState(false);
   const [cordinate, setCordinate] = useState({});
-
-  // function getCoords(elem) {
-  //   let box = elem.getBoundingClientRect();
-
-  //   return {
-  //     top: box.top + window.pageYOffset,
-  //     right: box.right + window.pageXOffset,
-  //     bottom: box.bottom + window.pageYOffset,
-  //     left: box.left + window.pageXOffset,
-  //   };
-  // }
 
   const OpenModal = event => {
     document.querySelector(`#\\3${idTime} a`).classList.add('active');

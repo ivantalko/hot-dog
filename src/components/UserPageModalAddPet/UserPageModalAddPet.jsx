@@ -21,6 +21,7 @@ import {
   CategoryListSecondPage,
   TextArea,
   CategoryCommentsTitle,
+  PreviewImg,
 } from './UserPageModalAddPet.styled';
 
 export const UserPageModalAddPet = ({
@@ -36,6 +37,7 @@ export const UserPageModalAddPet = ({
   const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
   const [comments, setComments] = useState('');
+  const [chooseAvatar, setChooseAvatar] = useState(false);
 
   const handleOpenSecondPage = e => {
     e.preventDefault();
@@ -190,12 +192,15 @@ export const UserPageModalAddPet = ({
                 <AvatarInputBox>
                   <IconPlus />
                   <AvatarInput
+                    onClick={() => {
+                      setChooseAvatar(true);
+                    }}
                     onChange={previewFile}
                     type="file"
                     name="avatar"
                     id="fileInput"
                   />
-                  <img
+                  <PreviewImg
                     style={{
                       position: 'absolute',
                       borderRadius: 'inherit',
@@ -204,6 +209,7 @@ export const UserPageModalAddPet = ({
                       cursor: 'pointer',
                       pointerEvents: 'none',
                     }}
+                    chooseAvatar={chooseAvatar}
                     id="imagePreview"
                     src=""
                     alt=""

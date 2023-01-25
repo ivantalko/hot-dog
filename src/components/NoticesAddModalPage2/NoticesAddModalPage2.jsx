@@ -20,6 +20,7 @@ import {
   TextArea,
   ControlsBtnList,
   ControlsBtn,
+  PreviewImg,
 } from './NoticesAddModalPage2.styled';
 
 export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
@@ -27,6 +28,7 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
+  const [chooseAvatar, setChooseAvatar] = useState(false);
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
@@ -143,12 +145,15 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
           <AvatarInputBox>
             <IconPlus />
             <AvatarInput
+              onClick={() => {
+                setChooseAvatar(true);
+              }}
               onChange={previewFile}
               type="file"
               name="fileInput"
               id="fileInput"
             />
-            <img
+            <PreviewImg
               style={{
                 position: 'absolute',
                 borderRadius: 'inherit',
@@ -157,6 +162,7 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
                 cursor: 'pointer',
                 pointerEvents: 'none',
               }}
+              chooseAvatar={chooseAvatar}
               id="imagePreview"
               src=""
               alt=""

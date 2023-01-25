@@ -2,7 +2,7 @@ import { Container } from 'components/Container/Container';
 import Header from 'components/Header/Header';
 import { Outlet } from 'react-router-dom';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <>
       <Container>
@@ -12,3 +12,5 @@ export const Layout = () => {
     </>
   );
 };
+
+export default Layout;
