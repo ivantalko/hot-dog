@@ -21,3 +21,11 @@ export const Paw = styled.svg`
     }
   }
 `;
+
+export const LoaderBox = styled.div`
+  position: fixed;
+  z-index: 1003;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

@@ -47,7 +47,7 @@ import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
 import { toast } from 'react-toastify';
 import { deleteFromFav } from 'redux/Notice/notice-slice';
 
-export const NoticiesCategoriesList = ({ searchQuery }) => {
+const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -170,6 +170,9 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     const date = new Date();
     const dateYear = date.getFullYear();
     const age = dateYear - birthday;
+    if (birthday > new Date().getFullYear()) {
+      return 'not yet born';
+    }
     return age;
   };
 
@@ -291,3 +294,5 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     </Section>
   );
 };
+
+export default NoticiesCategoriesList;

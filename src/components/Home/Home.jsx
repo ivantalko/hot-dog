@@ -2,7 +2,7 @@ import { StyledFrameImage, StyledTitle } from './style/StyledHome';
 
 import { Container } from 'components/Container/Container';
 
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <Container>
@@ -12,3 +12,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

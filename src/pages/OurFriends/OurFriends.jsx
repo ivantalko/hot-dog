@@ -32,7 +32,7 @@ const OurFriends = () => {
 
   function ourFriendsPlug(item) {
     if (!item) {
-      return '-----------------------------------';
+      return '-------------------------------';
     }
     return item;
   }
@@ -45,61 +45,67 @@ const OurFriends = () => {
   }
 
   return (
-    <OurFriendsBox>
-      <OurFriendsBoxTitle>Our friends</OurFriendsBoxTitle>
-      <OurFriendsCards>
-        {services?.map((item, index) => {
-          return (
-            <OurFriendsCard key={index} id={index}>
-              <OurFriendsCardSecondTitle
-                href={ourFriendsPlug(item.url)}
-                target="_blank"
-              >
-                {ourFriendsPlug(item.title)}
-              </OurFriendsCardSecondTitle>
-              <OurFriendsInfo>
-                <OurFriendsLogo
-                  src={ourFriendsLogo(item.imageUrl)}
-                  alt="logo"
-                />
-                <OurFriendsInfoItem>
-                  <OurFriendsTimeWork timeWork={item.workDays} idTime={index} />
-                  <OurFriendsAdress>
-                    Address:
-                    <br />
-                    <OurFriendseAdressMap>
-                      {ourFriendsPlug(item.address)}
-                    </OurFriendseAdressMap>
-                  </OurFriendsAdress>
-                  <OurFriendseEmail>
-                    Email:
-                    <br />
-                    {!!item.email ? (
-                      <OurFriendseEmailMailto href="mailto:{ourFriendsplug(item.email)}">
-                        {ourFriendsPlug(item.email)}
-                      </OurFriendseEmailMailto>
-                    ) : (
-                      <span>-----------------------------------</span>
-                    )}
-                  </OurFriendseEmail>
-                  <OurFriendsPhone>
-                    Phone:
-                    <br />
-                    {!!item.phone ? (
-                      <OurFriendsPhoneTel href="tel:{ourFriendsplug(item.phone)}">
-                        {ourFriendsPlug(item.phone)}
-                      </OurFriendsPhoneTel>
-                    ) : (
-                      <span>-----------------------------------</span>
-                    )}
-                  </OurFriendsPhone>
-                </OurFriendsInfoItem>
-              </OurFriendsInfo>
-            </OurFriendsCard>
-          );
-        })}
-      </OurFriendsCards>
-    </OurFriendsBox>
+    <>
+      <OurFriendsBox>
+        <OurFriendsBoxTitle>Our friends</OurFriendsBoxTitle>
+        <OurFriendsCards>
+          {' '}
+          {services?.map((item, index) => {
+            return (
+              <OurFriendsCard key={index} id={index}>
+                <OurFriendsCardSecondTitle
+                  href={ourFriendsPlug(item.url)}
+                  target="_blank"
+                >
+                  {ourFriendsPlug(item.title)}
+                </OurFriendsCardSecondTitle>
+                <OurFriendsInfo>
+                  <OurFriendsLogo
+                    src={ourFriendsLogo(item.imageUrl)}
+                    alt="logo"
+                  />
+                  <OurFriendsInfoItem>
+                    <OurFriendsTimeWork
+                      timeWork={item.workDays}
+                      idTime={index}
+                    />
+                    <OurFriendsAdress>
+                      Address:
+                      <br />
+                      <OurFriendseAdressMap>
+                        {ourFriendsPlug(item.address)}
+                      </OurFriendseAdressMap>
+                    </OurFriendsAdress>
+                    <OurFriendseEmail>
+                      Email:
+                      <br />
+                      {!!item.email ? (
+                        <OurFriendseEmailMailto href={`mailto:${item.email}`}>
+                          {ourFriendsPlug(item.email)}
+                        </OurFriendseEmailMailto>
+                      ) : (
+                        <p>-------------------------------</p>
+                      )}
+                    </OurFriendseEmail>
+                    <OurFriendsPhone>
+                      Phone:
+                      <br />
+                      {!!item.phone ? (
+                        <OurFriendsPhoneTel href={`tel:${item.phone}`}>
+                          {ourFriendsPlug(item.phone)}
+                        </OurFriendsPhoneTel>
+                      ) : (
+                        <p>-------------------------------</p>
+                      )}
+                    </OurFriendsPhone>
+                  </OurFriendsInfoItem>
+                </OurFriendsInfo>
+              </OurFriendsCard>
+            );
+          })}
+        </OurFriendsCards>
+      </OurFriendsBox>
+    </>
   );
 };
 

@@ -16,6 +16,12 @@ export const Backdrop = styled.div`
   display: flex;
 `;
 
+export const PreviewImg = styled.img`
+  width: ${props => (props.chooseAvatar ? '100%' : 'auto')};
+  height: ${props => (props.chooseAvatar ? '100%' : 'auto')};
+  object-fit: ${props => (props.chooseAvatar ? 'cover' : 'cover')};
+`;
+
 export const ModalMainPage = styled.div`
   position: relative;
   width: 100%;
@@ -32,7 +38,7 @@ export const ModalMainPage = styled.div`
   }
   &.hidden {
     position: absolute;
-    opacity: 0;
+    display: none;
     pointer-events: none;
   }
 `;
@@ -50,7 +56,7 @@ export const ModalSecondPage = styled.div`
     padding: 40px 80px;
   }
   &.hidden {
-    opacity: 0;
+    display: none;
     pointer-events: none;
   }
 `;
