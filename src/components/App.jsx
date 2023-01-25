@@ -27,9 +27,12 @@ const NoticiesCategoriesList = lazy(() =>
 export const App = () => {
   const authToken = useSelector(getToken);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(currentUser());
-    dispatch(getUserOperation());
+    if (authToken) {
+      dispatch(currentUser());
+      dispatch(getUserOperation());
+    }
   }, [authToken, dispatch]);
   const [searchQuery, setSearchQuery] = useState('');
   return (

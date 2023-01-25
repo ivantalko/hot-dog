@@ -5,7 +5,8 @@ export const OurFriendsBox = styled.div`
   font-family: 'Manrope';
   margin: 0 auto;
   padding: 0px 20px 100px;
-  /* min-width: 320px;
+  min-width: 320px;
+  /* 
   max-width: 480px; */
 
   @media ${breakpoints.minTablet} {
