@@ -6,13 +6,19 @@ import { getToken } from 'redux/Auth/auth-selectors';
 import React from 'react';
 import { AuthNavStyled, BurgerOverlay } from './BurgerMenu.styled';
 
-export default function BurgerMenu() {
+export default function BurgerMenu({ burgerMenu, setBurgerMenu }) {
   const token = useSelector(getToken);
 
   return (
     <BurgerOverlay>
-      <AuthNavStyled>{token ? <UserNav /> : <AuthNav />}</AuthNavStyled>
-      <Nav />
+      <AuthNavStyled>
+        {token ? (
+          <UserNav burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
+        ) : (
+          <AuthNav burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
+        )}
+      </AuthNavStyled>
+      <Nav burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
     </BurgerOverlay>
   );
 }

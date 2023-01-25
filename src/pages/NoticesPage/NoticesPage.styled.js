@@ -6,14 +6,17 @@ import { ReactComponent as CloseIconPrimal } from './img/closeIcon.svg';
 import { ReactComponent as AddIconPrimal } from './img/addIcon.svg';
 
 export const Section = styled.section`
-  max-width: 1280px;
   margin: auto;
   padding: 0px 20px 100px;
+  max-width: 480px;
   @media ${breakpoints.minTablet} {
+    max-width: 768px;
+
     padding: 0px 32px 100px;
   }
   @media ${breakpoints.desktop} {
     padding: 0px 16px 200px;
+    max-width: 1280px;
   }
 `;
 

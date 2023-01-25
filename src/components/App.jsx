@@ -14,12 +14,16 @@ import { useEffect } from 'react';
 import { currentUser } from '../redux/Auth/auth-operations';
 import { getToken } from '../redux/Auth/auth-selectors';
 import { getUserOperation } from 'redux/User/user-operation';
+import PrivateRouter from 'helpers/PrivateRoute/PrivateRoute';
 export const App = () => {
   const authToken = useSelector(getToken);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(currentUser());
-    dispatch(getUserOperation());
+    if (authToken) {
+      dispatch(currentUser());
+      dispatch(getUserOperation());
+    }
   }, [authToken, dispatch]);
   const [searchQuery, setSearchQuery] = useState('');
   return (
@@ -61,7 +65,14 @@ export const App = () => {
         <Route path="friends" element={<OurFriends />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
-        <Route path="user" element={<UserPage />} />
+        <Route
+          path="user"
+          element={
+            <PrivateRouter>
+              <UserPage />
+            </PrivateRouter>
+          }
+        />
       </Route>
     </Routes>
   );

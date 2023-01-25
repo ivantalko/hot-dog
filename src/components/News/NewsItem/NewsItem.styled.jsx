@@ -75,6 +75,8 @@ export const ReadMoreLink = styled.a`
   text-decoration-line: none;
   color: #f59256;
   text-decoration-line: underline;
+  transition: color linear 250ms;
+
   :hover,
   :focus {
     color: #ff634e;

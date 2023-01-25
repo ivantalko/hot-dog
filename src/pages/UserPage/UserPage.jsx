@@ -2,6 +2,7 @@ import Logout from 'components/User/UserCard/Logout/Logout';
 import UserPhoto from 'components/User/UserCard/UserPhoto/UserPhoto';
 import { UserPagePetsData } from 'components/UserPagePetsData/UserPagePetsData';
 
+
 import {
   Container,
   InfoUser,
@@ -13,9 +14,9 @@ import {
 } from './UserPage.styled';
 
 const UserPage = () => {
+
   return (
-    <>
-      <Container>
+          <Container>
         <Wrapper>
           <UserDiv>
             <Title>My information:</Title>
@@ -31,7 +32,6 @@ const UserPage = () => {
           </PetDiv>
         </Wrapper>
       </Container>
-    </>
   );
 };
 
