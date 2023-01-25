@@ -139,6 +139,7 @@ export const NoticesAddModalPage2 = ({
                 type="checkbox"
                 name="sexMale"
                 id="sexInputMale"
+                value={'male'}
               />
               <SexText id="SexMaleActive">Male</SexText>
             </SexItem>
@@ -149,6 +150,7 @@ export const NoticesAddModalPage2 = ({
                 type="checkbox"
                 name="sexFemle"
                 id="sexInputFemale"
+                value={'female'}
               />
               <SexText id="SexFemaleActive">Female</SexText>
             </SexItem>
@@ -210,8 +212,8 @@ export const NoticesAddModalPage2 = ({
           <TextArea
             onChange={handleChangeComments}
             value={comments}
-            name=""
-            id=""
+            name="comments"
+            id="comments"
             cols="30"
             rows="10"
           ></TextArea>
@@ -220,10 +222,12 @@ export const NoticesAddModalPage2 = ({
 
       <ControlsBtnList>
         <ParameterItem>
-          <ControlsBtn onClick={handleNoticeDone}>Done</ControlsBtn>
+          <ControlsBtn type="submit">Done</ControlsBtn>
         </ParameterItem>
         <ParameterItem>
-          <ControlsBtn onClick={handleToBackPage}>Back</ControlsBtn>
+          <ControlsBtn type="button" onClick={handleToBackPage}>
+            Back
+          </ControlsBtn>
         </ParameterItem>
       </ControlsBtnList>
     </NextPageModal>

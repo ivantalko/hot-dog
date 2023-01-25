@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { NoticesAddModalPage1 } from 'components/NoticesAddModalPage1/NoticesAddModalPage1';
 import { NoticesAddModalPage2 } from 'components/NoticesAddModalPage2/NoticesAddModalPage2';
 import { Backdrop } from './NoticesAddModal.styled';
+import { useDispatch } from 'react-redux';
+import { postNewNotice } from 'redux/Notice/notice-operations';
 
 export const NoticesAddModal = ({
   handleBackdropClose,
@@ -14,7 +16,7 @@ export const NoticesAddModal = ({
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
-
+  const dispatch = useDispatch();
   const [nextPageOpen, setNextPageOpen] = useState(false);
 
   const handleChangeParameter = e => {
@@ -30,6 +32,37 @@ export const NoticesAddModal = ({
     if (e.target.id === 'breedInput') {
       setBreed(e.target.value);
     }
+  };
+
+  const createPet = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    const secondPage = new FormData(e.target);
+    const {
+      sexMale: sex,
+      locationInput: location,
+      priceInput: price,
+      fileInput,
+      comments,
+    } = Object.fromEntries(secondPage.entries());
+
+    formData.append('avatar', fileInput);
+    formData.append(
+      'notice',
+      JSON.stringify({
+        title,
+        name,
+        birthday,
+        breed,
+        category,
+        sex,
+        location,
+        price,
+        comments,
+      })
+    );
+
+    dispatch(postNewNotice(formData));
   };
 
   const handleChoiseCategory = e => {
@@ -83,31 +116,66 @@ export const NoticesAddModal = ({
   };
 
   return (
-    <Backdrop onClick={handleBackdropClose}>
-      <NoticesAddModalPage1
-        pet={pet}
-        setPet={setPet}
-        handleBtnCLoseModal={handleBtnCLoseModal}
-        handleChoiseCategory={handleChoiseCategory}
-        handleChangeParameter={handleChangeParameter}
-        handleNextPage={handleNextPage}
-      />
-
-      {nextPageOpen && (
-        <NoticesAddModalPage2
+    <form onSubmit={createPet}>
+      <Backdrop onClick={handleBackdropClose}>
+        <NoticesAddModalPage1
           pet={pet}
           setPet={setPet}
-          nextPageOpen={nextPageOpen}
-          setIsModalOpen={setIsModalOpen}
-          setNextPageOpen={setNextPageOpen}
           handleBtnCLoseModal={handleBtnCLoseModal}
-          category={category}
-          title={title}
-          name={name}
-          birthday={birthday}
-          breed={breed}
+          handleChoiseCategory={handleChoiseCategory}
+          handleChangeParameter={handleChangeParameter}
+          handleNextPage={handleNextPage}
         />
-      )}
-    </Backdrop>
+
+        {nextPageOpen && (
+          <NoticesAddModalPage2
+            pet={pet}
+            setPet={setPet}
+            nextPageOpen={nextPageOpen}
+            setIsModalOpen={setIsModalOpen}
+            setNextPageOpen={setNextPageOpen}
+            handleBtnCLoseModal={handleBtnCLoseModal}
+            category={category}
+            title={title}
+            name={name}
+            birthday={birthday}
+            breed={breed}
+          />
+        )}
+      </Backdrop>
+    </form>
   );
 };
+
+// const handleNoticeDone = () => {
+//   if (
+//     pet !==
+//     {
+//       title: '',
+//       name: '',
+//       birthday: '',
+//       breed: '',
+//       sex: '',
+//       location: '',
+//       price: '',
+//       category: '',
+//       comments: '',
+//     }
+//   ) {
+//     setPet({
+//       title: title,
+//       name: name,
+//       birthday: birthday,
+//       breed: breed,
+//       sex: sex,
+//       location: location,
+//       price: price,
+//       category: category,
+//       comments: comments,
+//     });
+//     console.log('notices is done');
+//     // console.log(pet);
+//     document.querySelector('body').classList.remove('modal');
+//     setIsModalOpen(false);
+//   }
+// };
