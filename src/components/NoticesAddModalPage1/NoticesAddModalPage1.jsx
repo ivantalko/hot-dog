@@ -62,6 +62,10 @@ export const NoticesAddModalPage1 = ({
             onChange={handleChangeParameter}
             type="text"
             placeholder="Type title"
+            minLength={2}
+            maxLength={48}
+            required
+            pattern="^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?\s{1,}[a-zA-Z])+|\s{1,})+$"
           />
         </li>
         <li>
@@ -73,6 +77,9 @@ export const NoticesAddModalPage1 = ({
             onChange={handleChangeParameter}
             type="text"
             placeholder="Type name pet"
+            pattern="^[a-zA-Z]+$"
+            minLength={2}
+            maxLength={16}
           />
         </li>
         <li>
@@ -95,6 +102,9 @@ export const NoticesAddModalPage1 = ({
             onChange={handleChangeParameter}
             type="text"
             placeholder="Type breed"
+            minLength={2}
+            maxLength={24}
+            pattern="^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?\s{1,}[a-zA-Z])+|\s{1,})+$"
           />
         </li>
       </ParameterList>
