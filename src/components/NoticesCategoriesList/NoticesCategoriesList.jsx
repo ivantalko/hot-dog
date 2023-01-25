@@ -47,7 +47,7 @@ import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
 import { toast } from 'react-toastify';
 import { deleteFromFav } from 'redux/Notice/notice-slice';
 
-export const NoticiesCategoriesList = ({ searchQuery }) => {
+const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -294,3 +294,5 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     </Section>
   );
 };
+
+export default NoticiesCategoriesList;
