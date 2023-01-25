@@ -111,7 +111,6 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
   function previewFile(e) {
     let preview = document.querySelector('#imagePreview');
     let file = e.target.files[0];
-    console.log(file);
     let reader = new FileReader();
 
     reader.onloadend = function () {
@@ -214,10 +213,12 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
           <SecondPageParameterInput
             value={price}
             onChange={handleChangePrice}
-            type="number"
+            type="text"
             name="priceInput"
             id="priceInput"
             placeholder="Type pet price"
+            pattern="^[1-9]+[0-9]*$"
+            required
           />
         </ParameterItem>
         <ParameterItem>
@@ -258,6 +259,9 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
             id="comments"
             cols="30"
             rows="10"
+            minLength={8}
+            maxLength={120}
+            required
           ></TextArea>
         </ParameterItem>
       </SecondPageParameterList>
