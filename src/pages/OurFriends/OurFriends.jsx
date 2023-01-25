@@ -32,7 +32,7 @@ const OurFriends = () => {
 
   function ourFriendsPlug(item) {
     if (!item) {
-      return '-----------------------------------';
+      return '-------------------------------';
     }
     return item;
   }
@@ -79,16 +79,24 @@ const OurFriends = () => {
                     <OurFriendseEmail>
                       Email:
                       <br />
-                      {!!item.email ? <OurFriendseEmailMailto href={`mailto:${item.email}`}>
-                        {ourFriendsPlug(item.email)}
-                      </OurFriendseEmailMailto> : <p>-----------------------------------</p>} 
+                      {!!item.email ? (
+                        <OurFriendseEmailMailto href={`mailto:${item.email}`}>
+                          {ourFriendsPlug(item.email)}
+                        </OurFriendseEmailMailto>
+                      ) : (
+                        <p>-------------------------------</p>
+                      )}
                     </OurFriendseEmail>
                     <OurFriendsPhone>
                       Phone:
                       <br />
-                      {!!item.phone ? <OurFriendsPhoneTel href={`tel:${item.phone}`}>
-                        {ourFriendsPlug(item.phone)}
-                      </OurFriendsPhoneTel> : <p>-----------------------------------</p>}
+                      {!!item.phone ? (
+                        <OurFriendsPhoneTel href={`tel:${item.phone}`}>
+                          {ourFriendsPlug(item.phone)}
+                        </OurFriendsPhoneTel>
+                      ) : (
+                        <p>-------------------------------</p>
+                      )}
                     </OurFriendsPhone>
                   </OurFriendsInfoItem>
                 </OurFriendsInfo>
