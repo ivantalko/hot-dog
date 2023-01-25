@@ -28,11 +28,18 @@ export const NoticesAddModal = ({
       setName(e.target.value);
     }
     if (e.target.id === 'birthInput') {
-      setBirthday(e.target.value);
+      setBirthday(convertDate(e.target.value));
     }
     if (e.target.id === 'breedInput') {
       setBreed(e.target.value);
     }
+  };
+
+  const convertDate = date => {
+    if (!date?.length) return;
+    const d = date?.split('-');
+
+    return ([d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'));
   };
 
   const createPet = async e => {

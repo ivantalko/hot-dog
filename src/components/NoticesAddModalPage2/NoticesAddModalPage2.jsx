@@ -35,7 +35,7 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
   const [notFoundCity, setNotFoundCity] = useState(false);
   const [arrayLocation, setArrayLocation] = useState('');
 
-  const [sex, setSex] = useState('');
+  // const [sex, setSex] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -43,12 +43,12 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
-      setSex('male');
+      // setSex('male');
       document.querySelector('#SexMaleActive').classList.add('active');
       document.querySelector('#SexFemaleActive').classList.remove('active');
       document.querySelector('#sexInputFemale').checked = false;
     } else if (e.target.id === 'sexInputFemale') {
-      setSex('female');
+      // setSex('female');
       document.querySelector('#SexMaleActive').classList.remove('active');
       document.querySelector('#SexFemaleActive').classList.add('active');
       document.querySelector('#sexInputMale').checked = false;

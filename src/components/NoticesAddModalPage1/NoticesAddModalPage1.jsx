@@ -82,7 +82,7 @@ export const NoticesAddModalPage1 = ({
           <ParameterInput
             id="birthInput"
             onChange={handleChangeParameter}
-            type="text"
+            type="date"
             placeholder="Type date of birth"
           />
         </li>
