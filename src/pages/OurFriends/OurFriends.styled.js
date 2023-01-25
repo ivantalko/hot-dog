@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
-
 export const OurFriendsBox = styled.div`
   font-family: 'Manrope';
   margin: 0 auto;
@@ -75,7 +74,6 @@ export const OurFriendsCard = styled.div`
   width: 280px;
   font-weight: 500;
 
-
   padding: 12px 4px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
@@ -101,10 +99,8 @@ export const OurFriendsCardSecondTitle = styled.a`
   text-align: center;
   color: #f59256;
 
-
   margin: 0 auto 12px;
 
-  
   @media ${breakpoints.minTablet} {
     font-size: 16px;
     line-height: 1.38;
@@ -136,7 +132,7 @@ export const OurFriendsInfo = styled.div`
 `;
 
 export const OurFriendsLogo = styled.img`
-  display:block;
+  display: block;
   width: 110px;
   height: 78px;
   margin-right: 12px;
@@ -154,23 +150,18 @@ export const OurFriendsLogo = styled.img`
   }
 `;
 
-export const OurFriendsInfoItem = styled.ul`
-
-`;
-
+export const OurFriendsInfoItem = styled.ul``;
 
 export const OurFriendsAdress = styled.li`
   margin-bottom: 4px;
 
-  
-@media ${breakpoints.minTablet} {
-  margin-bottom: 8px;
-}
-@media ${breakpoints.desktop} {
-  margin-bottom: 12px;
-}
+  @media ${breakpoints.minTablet} {
+    margin-bottom: 8px;
+  }
+  @media ${breakpoints.desktop} {
+    margin-bottom: 12px;
+  }
 `;
-
 
 export const OurFriendseAdressMap = styled.a`
   color: inherit;
@@ -179,21 +170,19 @@ export const OurFriendseAdressMap = styled.a`
 export const OurFriendseEmail = styled.li`
   margin-bottom: 4px;
 
-
-@media ${breakpoints.minTablet} {
-  margin-bottom: 8px;
-}
-@media ${breakpoints.desktop} {
-  margin-bottom: 12px;
-}
+  @media ${breakpoints.minTablet} {
+    margin-bottom: 8px;
+  }
+  @media ${breakpoints.desktop} {
+    margin-bottom: 12px;
+  }
 `;
 export const OurFriendseEmailMailto = styled.a`
   text-decoration: none;
   color: inherit;
 `;
 
-export const OurFriendsPhone = styled.li` 
-`;
+export const OurFriendsPhone = styled.li``;
 
 export const OurFriendsPhoneTel = styled.a`
   text-decoration: none;

@@ -25,7 +25,7 @@ import {
   AddBtn,
 } from './NoticesPage.styled';
 
-export const Notices = ({ searchQuery, setSearchQuery }) => {
+const NoticesPage = ({ searchQuery, setSearchQuery }) => {
   const isLogin = useSelector(getIsLogin);
   const location = useLocation();
   const [params, setParams] = useSearchParams();
@@ -165,3 +165,5 @@ export const Notices = ({ searchQuery, setSearchQuery }) => {
     </Section>
   );
 };
+
+export default NoticesPage;
