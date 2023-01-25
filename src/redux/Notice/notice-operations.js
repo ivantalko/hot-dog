@@ -99,7 +99,6 @@ export const postNewNotice = createAsyncThunk(
         data: body,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log('data', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

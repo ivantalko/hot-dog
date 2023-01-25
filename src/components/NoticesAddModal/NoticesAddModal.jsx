@@ -4,6 +4,7 @@ import { NoticesAddModalPage2 } from 'components/NoticesAddModalPage2/NoticesAdd
 import { Backdrop } from './NoticesAddModal.styled';
 import { useDispatch } from 'react-redux';
 import { postNewNotice } from 'redux/Notice/notice-operations';
+import { toast } from 'react-toastify';
 
 export const NoticesAddModal = ({
   handleBackdropClose,
@@ -34,12 +35,13 @@ export const NoticesAddModal = ({
     }
   };
 
-  const createPet = e => {
+  const createPet = async e => {
     e.preventDefault();
     const formData = new FormData();
     const secondPage = new FormData(e.target);
     const {
-      sexMale: sex,
+      sexMale,
+      sexFemle,
       locationInput: location,
       priceInput: price,
       fileInput,
@@ -55,14 +57,21 @@ export const NoticesAddModal = ({
         birthday,
         breed,
         category,
-        sex,
+        sex: sexMale || sexFemle,
         location,
         price,
         comments,
       })
     );
 
-    dispatch(postNewNotice(formData));
+    const result = await dispatch(postNewNotice(formData));
+    if (result.type === 'notices/new/fulfilled') {
+      document.querySelector('body').classList.remove('modal');
+      setIsModalOpen(false);
+    }
+    if (result.type === 'notices/new/rejected') {
+      toast.info('Something wrong');
+    }
   };
 
   const handleChoiseCategory = e => {
@@ -111,7 +120,7 @@ export const NoticesAddModal = ({
       birthday === '' ||
       breed === ''
     ) {
-      console.log('all parameters must be set');
+      toast.info('All parameters must be set');
     }
   };
 
@@ -146,36 +155,3 @@ export const NoticesAddModal = ({
     </form>
   );
 };
-
-// const handleNoticeDone = () => {
-//   if (
-//     pet !==
-//     {
-//       title: '',
-//       name: '',
-//       birthday: '',
-//       breed: '',
-//       sex: '',
-//       location: '',
-//       price: '',
-//       category: '',
-//       comments: '',
-//     }
-//   ) {
-//     setPet({
-//       title: title,
-//       name: name,
-//       birthday: birthday,
-//       breed: breed,
-//       sex: sex,
-//       location: location,
-//       price: price,
-//       category: category,
-//       comments: comments,
-//     });
-//     console.log('notices is done');
-//     // console.log(pet);
-//     document.querySelector('body').classList.remove('modal');
-//     setIsModalOpen(false);
-//   }
-// };

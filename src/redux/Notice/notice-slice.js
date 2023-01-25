@@ -99,9 +99,10 @@ const noticesSlice = createSlice({
     },
     [postNewNotice.fulfilled](state, action) {
       state.items.unshift(action.payload);
+      state.status = status.success;
     },
     [postNewNotice.rejected](state) {
-      state.status = status.error;
+      state.status = status.success;
     },
   },
 });

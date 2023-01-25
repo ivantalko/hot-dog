@@ -22,18 +22,7 @@ import {
   ControlsBtn,
 } from './NoticesAddModalPage2.styled';
 
-export const NoticesAddModalPage2 = ({
-  handleBtnCLoseModal,
-  setIsModalOpen,
-  nextPageOpen,
-  category,
-  title,
-  name,
-  birthday,
-  breed,
-  pet,
-  setPet,
-}) => {
+export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
   const [sex, setSex] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
@@ -52,39 +41,6 @@ export const NoticesAddModalPage2 = ({
       document.querySelector('#sexInputMale').checked = false;
     }
     e.target.checked = true;
-  };
-
-  const handleNoticeDone = () => {
-    if (
-      pet !==
-      {
-        title: '',
-        name: '',
-        birthday: '',
-        breed: '',
-        sex: '',
-        location: '',
-        price: '',
-        category: '',
-        comments: '',
-      }
-    ) {
-      setPet({
-        title: title,
-        name: name,
-        birthday: birthday,
-        breed: breed,
-        sex: sex,
-        location: location,
-        price: price,
-        category: category,
-        comments: comments,
-      });
-      console.log('notices is done');
-      // console.log(pet);
-      document.querySelector('body').classList.remove('modal');
-      setIsModalOpen(false);
-    }
   };
 
   const handleLocationSet = e => {
