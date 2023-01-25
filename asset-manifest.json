@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/hot-dog/static/css/main.fdbf83c8.css",
-    "main.js": "/hot-dog/static/js/main.2d685e30.js",
+    "main.js": "/hot-dog/static/js/main.1eced345.js",
     "static/js/442.48a2a5de.chunk.js": "/hot-dog/static/js/442.48a2a5de.chunk.js",
     "static/js/36.e193bf2e.chunk.js": "/hot-dog/static/js/36.e193bf2e.chunk.js",
-    "static/js/695.cf1bb727.chunk.js": "/hot-dog/static/js/695.cf1bb727.chunk.js",
+    "static/js/695.9e2088b3.chunk.js": "/hot-dog/static/js/695.9e2088b3.chunk.js",
     "static/js/268.48f0698f.chunk.js": "/hot-dog/static/js/268.48f0698f.chunk.js",
-    "static/js/633.25c631fd.chunk.js": "/hot-dog/static/js/633.25c631fd.chunk.js",
+    "static/js/160.9a019714.chunk.js": "/hot-dog/static/js/160.9a019714.chunk.js",
     "static/js/77.78cb1ff0.chunk.js": "/hot-dog/static/js/77.78cb1ff0.chunk.js",
     "static/js/423.10af8715.chunk.js": "/hot-dog/static/js/423.10af8715.chunk.js",
     "static/js/935.6e956808.chunk.js": "/hot-dog/static/js/935.6e956808.chunk.js",
@@ -39,12 +39,12 @@
     "static/media/iconPlus.svg": "/hot-dog/static/media/iconPlus.a2e26894a4ce18911a73de53e34e86e7.svg",
     "static/media/addIcon.svg": "/hot-dog/static/media/addIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.fdbf83c8.css.map": "/hot-dog/static/css/main.fdbf83c8.css.map",
-    "main.2d685e30.js.map": "/hot-dog/static/js/main.2d685e30.js.map",
+    "main.1eced345.js.map": "/hot-dog/static/js/main.1eced345.js.map",
     "442.48a2a5de.chunk.js.map": "/hot-dog/static/js/442.48a2a5de.chunk.js.map",
     "36.e193bf2e.chunk.js.map": "/hot-dog/static/js/36.e193bf2e.chunk.js.map",
-    "695.cf1bb727.chunk.js.map": "/hot-dog/static/js/695.cf1bb727.chunk.js.map",
+    "695.9e2088b3.chunk.js.map": "/hot-dog/static/js/695.9e2088b3.chunk.js.map",
     "268.48f0698f.chunk.js.map": "/hot-dog/static/js/268.48f0698f.chunk.js.map",
-    "633.25c631fd.chunk.js.map": "/hot-dog/static/js/633.25c631fd.chunk.js.map",
+    "160.9a019714.chunk.js.map": "/hot-dog/static/js/160.9a019714.chunk.js.map",
     "77.78cb1ff0.chunk.js.map": "/hot-dog/static/js/77.78cb1ff0.chunk.js.map",
     "423.10af8715.chunk.js.map": "/hot-dog/static/js/423.10af8715.chunk.js.map",
     "935.6e956808.chunk.js.map": "/hot-dog/static/js/935.6e956808.chunk.js.map",
@@ -53,6 +53,6 @@
   },
   "entrypoints": [
     "static/css/main.fdbf83c8.css",
-    "static/js/main.2d685e30.js"
+    "static/js/main.1eced345.js"
   ]
 }
