@@ -7,7 +7,7 @@ import { getAllNews } from 'services/API';
 import { StatusForAll } from '../../redux/status';
 import Loader from 'components/Loader/Loader';
 
-export const NewsPage = () => {
+const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [filteredNews, setFilteredNews] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
@@ -91,3 +91,5 @@ export const NewsPage = () => {
     </Container>
   );
 };
+
+export default NewsPage;
