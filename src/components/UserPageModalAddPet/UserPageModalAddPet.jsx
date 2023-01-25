@@ -34,7 +34,7 @@ export const UserPageModalAddPet = ({
   const formData = new FormData();
 
   const [name, setName] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [birthday, setBirthday] = useState(null);
   const [breed, setBreed] = useState('');
   const [comments, setComments] = useState('');
   const [chooseAvatar, setChooseAvatar] = useState(false);
@@ -84,13 +84,20 @@ export const UserPageModalAddPet = ({
     setName(e.target.value);
   };
   const handleBirthdayChange = e => {
-    setBirthday(e.target.value);
+    console.log(convertDate(e.target.value));
+    setBirthday(convertDate(e.target.value));
   };
   const handleBreedChange = e => {
     setBreed(e.target.value);
   };
   const handleCommentsChange = e => {
     setComments(e.target.value);
+  };
+  const convertDate = date => {
+    if (!date?.length) return;
+    const d = date?.split('-');
+
+    return ([d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'));
   };
 
   const handleDoneAddPet = async e => {
@@ -139,8 +146,7 @@ export const UserPageModalAddPet = ({
             <li>
               <CategoryTitle>Date of birth</CategoryTitle>
               <CategoryInput
-                type="text"
-                value={birthday}
+                type="date"
                 onChange={handleBirthdayChange}
                 placeholder="Type date of birth"
               />
