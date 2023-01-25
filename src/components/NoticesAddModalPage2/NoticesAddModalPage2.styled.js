@@ -4,6 +4,7 @@ import { ReactComponent as iconClosePrimal } from '../NoticesAddModal/img/closeI
 import { ReactComponent as iconPlusPrimal } from '../NoticesAddModal/img/iconPlus.svg';
 import { ReactComponent as maleIconPrimal } from '../NoticesAddModal/img/male.svg';
 import { ReactComponent as femaleIconPrimal } from '../NoticesAddModal/img/female.svg';
+import { LocationDiv } from 'components/User/UserCard/UserInfo/UserInfo.styled';
 
 export const ImageReview = styled.img`
   position: absolute;
@@ -282,5 +283,27 @@ export const LocationListWrapper = styled.div`
   position: absolute;
   z-index: 9999999999;
   top: 130px;
-  right: 90%;
+  left: 0%;
+  @media ${breakpoints.minTablet} {
+    left: 3%;
+  }
+`;
+
+export const NoticeLOcation = styled(LocationDiv)`
+  min-width: 200px;
+
+  width: 40vw;
+  height: 65px;
+
+  @media ${breakpoints.minTablet} {
+    transform: translate(8px, -37px);
+    width: 410px;
+
+    height: 69px;
+  }
+  @media ${breakpoints.desktop} {
+    transform: translate(8px, -40px);
+    width: 408px;
+    height: 200px;
+  }
 `;
