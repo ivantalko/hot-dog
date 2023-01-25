@@ -168,6 +168,10 @@ export const SecondPageParameterInput = styled.input`
       color: #f59256;
     }
   }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
+  }
 `;
 
 export const AvatarInputBox = styled.div`
@@ -221,6 +225,10 @@ export const TextArea = styled.textarea`
     border: 1px solid #f59256;
     color: #f59256;
     box-shadow: inset 0px 0px 4px #f59256;
+  }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
   }
 `;
 
