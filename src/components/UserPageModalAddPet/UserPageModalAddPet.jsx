@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
 import { postUserPet } from 'redux/User/user-operation';
 import {
   Backdrop,
@@ -31,8 +32,6 @@ export const UserPageModalAddPet = ({
   const dispatch = useDispatch();
   const [nextPageOpen, setNextPageOpen] = useState(false);
 
-  const formData = new FormData();
-
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState(null);
   const [breed, setBreed] = useState('');
@@ -51,6 +50,8 @@ export const UserPageModalAddPet = ({
           .querySelector('#userAddOwnPetModalSecondPage')
           .classList.remove('hidden');
       }
+    } else {
+      toast.info('All parameters must be set');
     }
   };
 
@@ -84,7 +85,6 @@ export const UserPageModalAddPet = ({
     setName(e.target.value);
   };
   const handleBirthdayChange = e => {
-    console.log(convertDate(e.target.value));
     setBirthday(convertDate(e.target.value));
   };
   const handleBreedChange = e => {
@@ -103,6 +103,7 @@ export const UserPageModalAddPet = ({
   const handleDoneAddPet = async e => {
     e.preventDefault();
     if (name !== '' && birthday !== '' && breed !== '' && comments !== '') {
+      const formData = new FormData();
       formData.append('avatar', e.target.avatar.files[0]);
       formData.append(
         'data',
@@ -118,11 +119,14 @@ export const UserPageModalAddPet = ({
         setIsModalOpen(false);
         document.querySelector('body').classList.remove('modal');
       }
+    } else {
+      toast.info('All parameters must be set');
     }
   };
 
   return (
     <Backdrop onClick={handleBackdropClose}>
+      <ToastContainer autoClose={4000} />
       <ModalMainPage id="userAddOwnPetModalMainPage">
         <CloseBtn
           onClick={() => {
@@ -141,6 +145,9 @@ export const UserPageModalAddPet = ({
                 placeholder="Type name pet"
                 value={name}
                 onChange={handleNameChange}
+                pattern="^[a-zA-Z]+$"
+                minLength={2}
+                maxLength={16}
               />
             </li>
             <li>
@@ -158,6 +165,9 @@ export const UserPageModalAddPet = ({
                 value={breed}
                 onChange={handleBreedChange}
                 placeholder="Type breed"
+                pattern="^[a-zA-Z]+$"
+                minLength={2}
+                maxLength={16}
               />
             </li>
           </CategoryList>
@@ -231,6 +241,8 @@ export const UserPageModalAddPet = ({
                   id=""
                   cols="30"
                   rows="10"
+                  minLength={8}
+                  maxLength={120}
                 ></TextArea>
               </li>
             </CategoryListSecondPage>

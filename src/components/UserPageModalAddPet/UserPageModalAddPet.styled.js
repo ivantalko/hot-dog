@@ -191,6 +191,10 @@ export const CategoryInput = styled.input`
     border: 1px solid #f59256;
     box-shadow: inset 0px 0px 4px #f59256;
   }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
+  }
 `;
 
 export const ControlsList = styled.ul`
@@ -277,4 +281,7 @@ export const TextArea = styled.textarea`
     color: #f59256;
     box-shadow: inset 0px 0px 4px #f59256;
   }
+    &:invalid {
+    color: Red;
+    font-weight: 700;
 `;
