@@ -6,9 +6,6 @@ import { Button, LiInput, LiItem, LiLabel, UserValidation } from './UserInfo.sty
 import { ReactComponent as PenIcon } from 'helpers/images/user/pen_edit.svg';
 import { ReactComponent as EditIcon } from 'helpers/images/user/ci_edit.svg';
 
-const emailPattern = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
-const cityPattern = /^(\w+(,)\s*)+\w+$/;
-const phonePattern = /^\+380\d{9}$/;
 
 const UserItem = ({
   label,
@@ -22,7 +19,10 @@ const UserItem = ({
   isOpen,
 }) => {
   const [value, setValue] = useState(null);
-
+  const emailPattern = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+  const cityPattern = /^(\w+(,)\s*)+\w+$/;
+  const phonePattern = /^\+380\d{9}$/;
+  
   const dispatch = useDispatch();
   const refWrapper = useRef(null);
 
