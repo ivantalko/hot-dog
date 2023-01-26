@@ -78,20 +78,21 @@ export const WRAPPER = styled.div`
   position: absolute;
   top: 72px;
   right: 105%;
-
 `;
 
 export const LocationDiv = styled(RegisterLocationContainer)`
   width: 298px;
   height: 65px;
+
   @media ${breakpoints.minTablet} {
     transform: translate(8px, -37px);
     width: 410px;
+
     height: 69px;
   }
   @media ${breakpoints.desktop} {
     transform: translate(8px, -40px);
     width: 408px;
-
+    height: 200px;
   }
-`
+`;

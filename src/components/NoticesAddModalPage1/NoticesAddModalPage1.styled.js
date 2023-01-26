@@ -157,6 +157,7 @@ export const ParameterInput = styled.input`
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
   }
+
   &:hover,
   &:focus {
     border: 1px solid #f59256;
@@ -165,6 +166,11 @@ export const ParameterInput = styled.input`
     &::placeholder {
       color: #f59256;
     }
+  }
+
+  &:invalid {
+    color: Red;
+    font-weight: 700;
   }
   @media ${breakpoints.minTablet} {
     font-size: 16px;
@@ -176,6 +182,7 @@ export const ControlsBtnList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
   @media ${breakpoints.minTablet} {
     flex-direction: row;
     justify-content: center;

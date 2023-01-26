@@ -36,7 +36,6 @@ const UserItem = ({
   };
 
   const inputValueSelector = () => {
-    console.log('value :>> ', value);
     if (name === 'birthday') {
       return converterDateFormat(user);
     } else if (name === 'city') {

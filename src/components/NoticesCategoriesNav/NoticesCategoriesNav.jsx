@@ -9,9 +9,6 @@ import { Outlet } from 'react-router-dom';
 
 export const NoticesCategoriesNav = ({ location }) => {
   const isLogin = useSelector(getToken);
-
-  console.log(isLogin);
-
   return (
     <>
       <nav>
