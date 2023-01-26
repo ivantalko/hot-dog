@@ -95,3 +95,14 @@ export const LocationDiv = styled(RegisterLocationContainer)`
 
   }
 `
+
+export const UserValidation = styled.span`
+  color: red;
+  font-size: 14px;
+  line-height: 22px;
+  margin-left: 69px;
+  
+  @media ${breakpoints.minTablet} {
+    margin-left: 111px;
+  }
+`
