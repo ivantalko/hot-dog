@@ -2,13 +2,10 @@ import React, { useRef } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { putUpdateUser } from 'redux/User/user-operation';
-import { Button, LiInput, LiItem, LiLabel } from './UserInfo.styled';
+import { Button, LiInput, LiItem, LiLabel, UserValidation } from './UserInfo.styled';
 import { ReactComponent as PenIcon } from 'helpers/images/user/pen_edit.svg';
 import { ReactComponent as EditIcon } from 'helpers/images/user/ci_edit.svg';
 
-const emailPattern = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
-const cityPattern = /^(\w+(,)\s*)+\w+$/;
-const phonePattern = /^\+380\d{9}$/;
 
 const UserItem = ({
   label,
@@ -22,7 +19,10 @@ const UserItem = ({
   isOpen,
 }) => {
   const [value, setValue] = useState(null);
-
+  const emailPattern = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+  const cityPattern = /^(\w+(,)\s*)+\w+$/;
+  const phonePattern = /^\+380\d{9}$/;
+  
   const dispatch = useDispatch();
   const refWrapper = useRef(null);
 
@@ -122,27 +122,30 @@ const UserItem = ({
   const onSetActive = name => setActive(name);
 
   return (
-    <LiItem ref={active === name ? refWrapper : null}>
-      <LiLabel htmlFor={name}>{label}</LiLabel>
-      <LiInput
-        disabled={active !== name}
-        active={active === name}
-        type={name === 'birthday' ? 'date' : 'text'}
-        value={inputValueSelector()}
-        name={name}
-        onChange={onChange}
-      />
-      <Button>
-        {active === name ? (
-          <EditIcon onClick={() => onEdit(name)} />
-        ) : (
-          <PenIcon
-            onClick={() => onSetActive(name)}
-            fill={active && active !== name ? 'rgba(17,17,17,0.6)' : '#F59256'}
-          />
-        )}
-      </Button>
-    </LiItem>
+    <>
+      <LiItem ref={active === name ? refWrapper : null}>
+        <LiLabel htmlFor={name}>{label}</LiLabel>
+        <LiInput
+          disabled={active !== name}
+          active={active === name}
+          type={name === 'birthday' ? 'date' : 'text'}
+          value={inputValueSelector()}
+          name={name}
+          onChange={onChange}
+        />
+        <Button>
+          {active === name ? (
+            <EditIcon onClick={() => onEdit(name)} />
+          ) : (
+            <PenIcon
+              onClick={() => onSetActive(name)}
+              fill={active && active !== name ? 'rgba(17,17,17,0.6)' : '#F59256'}
+            />
+          )}
+        </Button>
+      </LiItem>
+      {error && (active === name) ? <UserValidation>{error}</UserValidation> : null}
+    </>
   );
 };
 
