@@ -28,7 +28,7 @@ import {
   schemaUserPageModalAddPetFirstPage,
   schemaUserPageModalAddPetSecondPage,
   notify,
-} from 'helpers/validator/yupValidation';
+} from 'helpers/validator/validationInputs';
 
 export const UserPageModalAddPet = ({
   handleBackdropClose,

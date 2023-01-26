@@ -1,17 +1,9 @@
-import UserPage from 'pages/UserPage/UserPage';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from './Layout/Layout';
-import OurFriends from '../pages/OurFriends/OurFriends';
-import RegisterPage from 'pages/RegisterPage';
-import LoginPage from 'pages/LoginPage';
-import { NoticiesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+
 import { useState, lazy, Suspense, useEffect, useRef } from 'react';
-import { Home } from './Home/Home';
-import { NewsPage } from 'pages/NewsPage/NewsPage';
-import { Notices } from 'pages/NoticesPage/NoticesPage';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { currentUser } from '../redux/Auth/auth-operations';
-import { getToken } from '../redux/Auth/auth-selectors';
+
 import { ToastContainer } from 'react-toastify';
 import { getUserOperation } from 'redux/User/user-operation';
 import { currentUserOperation } from 'redux/Auth/auth-operations';
@@ -19,10 +11,6 @@ import { getIsLogin } from 'redux/Auth/auth-selectors';
 import PrivateRouter from 'helpers/PrivateRoute/PrivateRoute';
 import Loader from './Loader/Loader';
 import { LoaderBox } from './Loader/Loader.styled';
-
-// import Layout from './Layout/Layout';
-// import NewsPage from 'pages/NewsPage/NewsPage';
-// import UserPage from 'pages/UserPage/UserPage';
 
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 const Layout = lazy(() => import('./Layout/Layout'));

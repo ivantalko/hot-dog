@@ -12,7 +12,10 @@ import {
   ControlsBtn,
 } from './NoticesAddModalPage1.styled';
 import { useForm } from 'react-hook-form';
-import { schemaAddModalPage1, notify } from 'helpers/validator/yupValidation';
+import {
+  schemaAddModalPage1,
+  notify,
+} from 'helpers/validator/validationInputs';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export const NoticesAddModalPage1 = ({
