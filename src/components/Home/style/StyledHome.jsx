@@ -76,7 +76,7 @@ export const StyledFrameImage = styled('div')`
 
   @media screen and (min-width: 768px) {
     max-width: 1023px;
-    height: calc(100vh - 30px);
+    height: calc(100vh - 20px);
     background-position: bottom center;
     background-size: cover;
     background-repeat: no-repeat;
