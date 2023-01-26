@@ -11,7 +11,7 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
 
   function ourFriendsAdress(items) {
     if (!items) {
-      return '---------------------------';
+      return '---------------';
     }    
 
     let date = new Date();

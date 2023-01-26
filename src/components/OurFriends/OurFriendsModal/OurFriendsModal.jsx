@@ -27,7 +27,7 @@ export const OurFriendsModal = ({
     document.addEventListener('keydown', ourFriendsHandleKeyDown);
     return () => {
       document.removeEventListener('keydown', ourFriendsHandleKeyDown);
-      $(window).off();
+      $(window).off("scroll");
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
