@@ -60,3 +60,16 @@ export const SvgAccount = styled.svg`
     height: 28px;
   }
 `;
+
+export const ImgAccount = styled.img`
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  @media ${breakpoints.minTablet} {
+    width: 28px;
+    height: 28px;
+  }
+`;
