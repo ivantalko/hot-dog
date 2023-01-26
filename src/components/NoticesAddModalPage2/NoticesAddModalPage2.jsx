@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { RegisterButtonLocation } from 'components/RegisterForm/RegisterForm.styled';
-import {
-  LocationDiv,
-  LOCATIONWRAPPER,
-} from 'components/User/UserCard/UserInfo/UserInfo.styled';
+import { LOCATIONWRAPPER } from 'components/User/UserCard/UserInfo/UserInfo.styled';
 import { useMemo, useState } from 'react';
 
 import {
@@ -28,6 +25,7 @@ import {
   ControlsBtn,
   PreviewImg,
   LocationListWrapper,
+  NoticeLOcation,
 } from './NoticesAddModalPage2.styled';
 
 export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
@@ -35,6 +33,7 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
   const [notFoundCity, setNotFoundCity] = useState(false);
   const [arrayLocation, setArrayLocation] = useState('');
 
+  // const [sex, setSex] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -42,10 +41,12 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
+      // setSex('male');
       document.querySelector('#SexMaleActive').classList.add('active');
       document.querySelector('#SexFemaleActive').classList.remove('active');
       document.querySelector('#sexInputFemale').checked = false;
     } else if (e.target.id === 'sexInputFemale') {
+      // setSex('female');
       document.querySelector('#SexMaleActive').classList.remove('active');
       document.querySelector('#SexFemaleActive').classList.add('active');
       document.querySelector('#sexInputMale').checked = false;
@@ -87,8 +88,6 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
       setNotFoundCity(true);
       return;
     }
-
-    // setLocation(e.target.value);
   };
   const handleChangePrice = e => {
     setPrice(e.target.value);
@@ -101,7 +100,6 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
     if (nextPageOpen) {
       document.querySelector('#secondPageModal').classList.add('hidden');
     }
-    // setNextPageOpen(false);
     document.querySelector('#mainPageModal').classList.remove('hidden');
   };
 
@@ -177,7 +175,7 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
           </ParameterItem>
           <LocationListWrapper>
             {arrayLocation && isOpen && (
-              <LocationDiv>
+              <NoticeLOcation>
                 {arrayLocation?.map((locate, index) => (
                   <li key={index}>
                     <RegisterButtonLocation
@@ -190,16 +188,16 @@ export const NoticesAddModalPage2 = ({ handleBtnCLoseModal, nextPageOpen }) => {
                     </RegisterButtonLocation>
                   </li>
                 ))}
-              </LocationDiv>
+              </NoticeLOcation>
             )}
             {isOpen && notFoundCity && !arrayLocation && (
-              <LocationDiv>
+              <NoticeLOcation>
                 <li>
                   <RegisterButtonLocation type="button">
                     There is no such city, try another
                   </RegisterButtonLocation>
                 </li>
-              </LocationDiv>
+              </NoticeLOcation>
             )}
           </LocationListWrapper>
         </LOCATIONWRAPPER>
