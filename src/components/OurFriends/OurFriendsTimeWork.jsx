@@ -5,15 +5,15 @@ import {
   OurFriendsTimeWorks,
 } from './OurFriendsTimeWork.styled';
 import { OurFriendsModal } from './OurFriendsModal/OurFriendsModal';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
   let timeOfWork;
 
   function ourFriendsAdress(items) {
     if (!items) {
-      return '-------------------------------';
-    }
+      return '---------------------------';
+    }    
 
     let date = new Date();
     let dayOfWeek = date.getDay();
@@ -62,10 +62,10 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
     return s;
   };
 
-  $(window).scroll(function () {
-    setOurFriendsModalBul(false);
-    document.querySelector(`#\\3${idTime} a`).classList.remove('active');
-  });
+  // $(window).scroll(function () {
+  //   setOurFriendsModalBul(false);
+  //   document.querySelector(`#\\3${idTime} a`).classList.remove('active');
+  // });
 
   return (
     <OurFriendsTimeWorks id={`${idTime}a`}>

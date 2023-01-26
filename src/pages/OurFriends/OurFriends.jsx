@@ -32,7 +32,7 @@ const OurFriends = () => {
 
   function ourFriendsPlug(item) {
     if (!item) {
-      return '-------------------------------';
+      return '--------------------------';
     }
     return item;
   }
@@ -84,7 +84,7 @@ const OurFriends = () => {
                           {ourFriendsPlug(item.email)}
                         </OurFriendseEmailMailto>
                       ) : (
-                        <p>-------------------------------</p>
+                        <p>--------------------------</p>
                       )}
                     </OurFriendseEmail>
                     <OurFriendsPhone>
@@ -95,7 +95,7 @@ const OurFriends = () => {
                           {ourFriendsPlug(item.phone)}
                         </OurFriendsPhoneTel>
                       ) : (
-                        <p>-------------------------------</p>
+                        <p>--------------------------</p>
                       )}
                     </OurFriendsPhone>
                   </OurFriendsInfoItem>
