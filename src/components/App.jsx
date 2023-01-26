@@ -12,6 +12,7 @@ import { LoaderBox } from './Loader/Loader.styled';
 // import NewsPage from 'pages/NewsPage/NewsPage';
 // import UserPage from 'pages/UserPage/UserPage';
 
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 const Layout = lazy(() => import('./Layout/Layout'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 const UserPage = lazy(() => import('pages/UserPage/UserPage'));
@@ -45,6 +46,7 @@ export const App = () => {
     >
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path="*" element={<NotFoundPage />} />
           <Route index element={<Home />} />
           <Route path="news" element={<NewsPage />} />
           <Route
