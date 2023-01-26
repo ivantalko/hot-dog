@@ -16,7 +16,6 @@ import {
   OurFriendseAdressMap,
   OurFriendsInfoItem,
 } from './OurFriends.styled';
-// import { nanoid } from 'nanoid';
 import ourFriendsBaseLogo from '../../helpers/images/ourFriends/ourFriendsBaseLogo.png';
 import { OurFriendsTimeWork } from 'components/OurFriends/OurFriendsTimeWork';
 
@@ -33,7 +32,7 @@ const OurFriends = () => {
 
   function ourFriendsPlug(item) {
     if (!item) {
-      return '-----------------------------------';
+      return '---------------';
     }
     return item;
   }
@@ -44,6 +43,8 @@ const OurFriends = () => {
     }
     return item;
   }
+
+
 
   return (
     <>
@@ -80,16 +81,24 @@ const OurFriends = () => {
                     <OurFriendseEmail>
                       Email:
                       <br />
-                      <OurFriendseEmailMailto href="mailto:{ourFriendsplug(item.email)}">
-                        {ourFriendsPlug(item.email)}
-                      </OurFriendseEmailMailto>
+                      {!!item.email ? (
+                        <OurFriendseEmailMailto href={`mailto:${item.email}`}>
+                          {ourFriendsPlug(item.email)}
+                        </OurFriendseEmailMailto>
+                      ) : (
+                        <p>---------------</p>
+                      )}
                     </OurFriendseEmail>
                     <OurFriendsPhone>
                       Phone:
                       <br />
-                      <OurFriendsPhoneTel href="tel:{ourFriendsplug(item.phone)}">
-                        {ourFriendsPlug(item.phone)}
-                      </OurFriendsPhoneTel>
+                      {!!item.phone ? (
+                        <OurFriendsPhoneTel href={`tel:${item.phone}`}>
+                          {ourFriendsPlug(item.phone)}
+                        </OurFriendsPhoneTel>
+                      ) : (
+                        <p>---------------</p>
+                      )}
                     </OurFriendsPhone>
                   </OurFriendsInfoItem>
                 </OurFriendsInfo>

@@ -23,6 +23,14 @@ const status = {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
+  reducers: {
+    deleteFromFav(state, action) {
+      return {
+        ...state,
+        items: [...state.items.filter(({ _id }) => _id !== action.payload)],
+      };
+    },
+  },
   extraReducers: {
     [getNoticesData.loading](state) {
       state.status = status.loading;
@@ -98,4 +106,6 @@ const noticesSlice = createSlice({
     },
   },
 });
+
+export const { deleteFromFav } = noticesSlice.actions;
 export default noticesSlice.reducer;

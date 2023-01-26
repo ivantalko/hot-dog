@@ -4,6 +4,7 @@ import { ReactComponent as iconClosePrimal } from '../NoticesAddModal/img/closeI
 import { ReactComponent as iconPlusPrimal } from '../NoticesAddModal/img/iconPlus.svg';
 import { ReactComponent as maleIconPrimal } from '../NoticesAddModal/img/male.svg';
 import { ReactComponent as femaleIconPrimal } from '../NoticesAddModal/img/female.svg';
+import { LocationDiv } from 'components/User/UserCard/UserInfo/UserInfo.styled';
 
 export const ImageReview = styled.img`
   position: absolute;
@@ -168,6 +169,10 @@ export const SecondPageParameterInput = styled.input`
       color: #f59256;
     }
   }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
+  }
 `;
 
 export const AvatarInputBox = styled.div`
@@ -222,6 +227,10 @@ export const TextArea = styled.textarea`
     color: #f59256;
     box-shadow: inset 0px 0px 4px #f59256;
   }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
+  }
 `;
 
 export const ControlsBtnList = styled.ul`
@@ -261,5 +270,40 @@ export const ControlsBtn = styled.button`
   &:focus {
     color: #ffffff;
     background: #f59256;
+  }
+`;
+
+export const PreviewImg = styled.img`
+  width: ${props => (props.chooseAvatar ? '100%' : 'auto')};
+  height: ${props => (props.chooseAvatar ? '100%' : 'auto')};
+  object-fit: ${props => (props.chooseAvatar ? 'cover' : 'cover')};
+`;
+
+export const LocationListWrapper = styled.div`
+  position: absolute;
+  z-index: 9999999999;
+  top: 130px;
+  left: 0%;
+  @media ${breakpoints.minTablet} {
+    left: 3%;
+  }
+`;
+
+export const NoticeLOcation = styled(LocationDiv)`
+  min-width: 200px;
+
+  width: 40vw;
+  height: 65px;
+
+  @media ${breakpoints.minTablet} {
+    transform: translate(8px, -37px);
+    width: 410px;
+
+    height: 69px;
+  }
+  @media ${breakpoints.desktop} {
+    transform: translate(8px, -40px);
+    width: 408px;
+    height: 200px;
   }
 `;

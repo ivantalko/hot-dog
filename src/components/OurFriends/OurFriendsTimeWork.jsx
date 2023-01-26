@@ -1,16 +1,18 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { OurFriendsDefis, OurFriendsTimeWorks } from './OurFriendsTimeWork.styled';
+import {
+  OurFriendsDefis,
+  OurFriendsTimeWorks,
+} from './OurFriendsTimeWork.styled';
 import { OurFriendsModal } from './OurFriendsModal/OurFriendsModal';
-import $ from 'jquery';
 
 export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
   let timeOfWork;
 
   function ourFriendsAdress(items) {
     if (!items) {
-      return '-----------------------------------';
-    }
+      return '---------------';
+    }    
 
     let date = new Date();
     let dayOfWeek = date.getDay();
@@ -45,17 +47,6 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
   const [ourFriendsModalBul, setOurFriendsModalBul] = useState(false);
   const [cordinate, setCordinate] = useState({});
 
-  // function getCoords(elem) {
-  //   let box = elem.getBoundingClientRect();
-
-  //   return {
-  //     top: box.top + window.pageYOffset,
-  //     right: box.right + window.pageXOffset,
-  //     bottom: box.bottom + window.pageYOffset,
-  //     left: box.left + window.pageXOffset,
-  //   };
-  // }
-
   const OpenModal = event => {
     document.querySelector(`#\\3${idTime} a`).classList.add('active');
     setCordinate(event.target.getBoundingClientRect());
@@ -69,11 +60,6 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
     }
     return s;
   };
-  
-  $(window).scroll(function () {
-    setOurFriendsModalBul(false);
-    document.querySelector(`#\\3${idTime} a`).classList.remove('active');
-  });
 
   return (
     <OurFriendsTimeWorks id={`${idTime}a`}>
@@ -87,8 +73,8 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
             item.isOpen && (
               <div key={nanoid()}>
                 <p onClick={OpenModal}>
-                  {item.isOpen && cutFirstZero(item.from)} <OurFriendsDefis>-</OurFriendsDefis>{' '}
-                  {cutFirstZero(item.to)}
+                  {item.isOpen && cutFirstZero(item.from)}{' '}
+                  <OurFriendsDefis>-</OurFriendsDefis> {cutFirstZero(item.to)}
                 </p>
                 {ourFriendsModalBul && (
                   <OurFriendsModal

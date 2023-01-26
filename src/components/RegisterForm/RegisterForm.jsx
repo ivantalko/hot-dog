@@ -84,7 +84,6 @@ export default function RegistrationForm() {
     } else {
       setNext(true);
       setConfirmPassword(e.target.value);
-      console.log('wrong');
     }
   };
 
@@ -94,7 +93,7 @@ export default function RegistrationForm() {
         // eslint-disable-next-line
         let re = /^\w{1,}[\.-\w]*\w{1,}@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!re.test(String(e.target.value).toLocaleLowerCase())) {
-          setEmailError('Wrong email, exemple: lovepets@ukr.ua');
+          setEmailError('Wrong email, example: lovepets@ukr.ua');
           setEmailDirty(true);
         } else if (e.target.value.length < 10) {
           setEmailError('Email should be more than 10 characters');
@@ -142,7 +141,7 @@ export default function RegistrationForm() {
         let reg = /^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?[a-zA-Z])+)+$/;
         if (!reg.test(String(e.target.value))) {
           setNameError(
-            'Wrong name, only english letters. Hyphen and apostrophe are allowed'
+            'Wrong name, only English letters. Hyphen and apostrophe are allowed'
           );
           setNameDirty(true);
         } else {

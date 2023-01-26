@@ -57,8 +57,6 @@ export const PetsList = ({
     }
   };
 
-  console.log(document.querySelector('body'));
-
   return (
     <>
       <UserPetCard key={id}>

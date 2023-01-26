@@ -19,10 +19,7 @@ export const NewsSearchForm = ({
         onChange={handeInputChange}
       />
       {closeBtn && value.length > 1 ? (
-        <Button
-          type="submit"
-          // onClick={e => removeValue(e)}
-        >
+        <Button type="submit">
           <CloseBtn />
         </Button>
       ) : (

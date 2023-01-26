@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/Auth/auth-selectors';
 import { selectFavNotices } from 'redux/User/user-selectors';
+import { selectorNoticesStatus } from 'redux/Notice/notice-selector';
 import {
   ModalNoticeBackdrop,
   ModalBox,
@@ -20,6 +22,8 @@ import {
   ParametersBox,
   HeartIcon,
 } from './ModalNotice.styled';
+import { LoaderBox } from 'components/NoticesCategoriesList/NoticesCategoriesList.styled';
+import Loader from 'components/Loader/Loader';
 
 export const ModalNotice = ({
   handleBackdropClose,
@@ -32,10 +36,18 @@ export const ModalNotice = ({
     document.querySelector('body').classList.remove('modal');
   };
   const favNotices = useSelector(selectFavNotices);
+  const isLogin = useSelector(getIsLogin);
+  const noticesStatus = useSelector(selectorNoticesStatus);
+
   const favBtnRule = favNotices.find(favId => favId === noticeById._id);
 
   return (
     <ModalNoticeBackdrop onClick={handleBackdropClose}>
+      {noticesStatus !== 'success' && (
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      )}
       <ModalBox>
         <ModalCLoseBtn onClick={handleModalCloseBtn}>
           <CloseBtn />
@@ -112,11 +124,11 @@ export const ModalNotice = ({
             <li>
               <AddToBtn
                 onClick={handleClickToFavorite}
-                favBtnRule={favBtnRule}
-                data-id={noticeById._id}
+                favBtnRule={isLogin && favBtnRule}
+                data-id={isLogin ? noticeById._id : null}
                 data-favorite={favBtnRule ? 0 : 1}
               >
-                {favBtnRule ? 'Unfollow' : 'Add to'}
+                {favBtnRule && isLogin ? 'Unfollow' : 'Add to'}
                 <HeartIcon />
               </AddToBtn>
             </li>

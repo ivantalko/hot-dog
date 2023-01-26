@@ -1,13 +1,8 @@
-// ConfirmBackdrop,
-// ConfirmModal,
-// ConfirmText,
-// PetName,
-// ConfirmBtnList,
-// ConfirmBtn,
-
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
+import { selectorNoticesStatus } from 'redux/Notice/notice-selector';
 
 import {
   Section,
@@ -25,6 +20,7 @@ import {
   LearnMoreBtn,
   DeleteBtn,
   DeleteIcon,
+  LoaderBox,
 } from './NoticesCategoriesList.styled';
 
 import { ModalNotice } from '../ModalNotice/ModalNotice.jsx';
@@ -48,8 +44,10 @@ import { getIsLogin, getToken } from 'redux/Auth/auth-selectors';
 
 import { selectFavNotices, selectOwnNotices } from 'redux/User/user-selectors';
 import { ConfirmModalComponent } from './ConfirmModal/ConfirmModalComponent';
+import { toast } from 'react-toastify';
+import { deleteFromFav } from 'redux/Notice/notice-slice';
 
-export const NoticiesCategoriesList = ({ searchQuery }) => {
+const NoticiesCategoriesList = ({ searchQuery }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -61,6 +59,7 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
   const [openConfirmModalId, setOpenConfirmModalId] = useState(null);
   const ownNotices = useSelector(selectOwnNotices);
   const favNotices = useSelector(selectFavNotices);
+  const noticesStatus = useSelector(selectorNoticesStatus);
 
   let category = '';
   if (location.pathname === '/notices/lost-found') {
@@ -94,11 +93,19 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
 
   const handleClickToFavorite = async e => {
     const target = e.currentTarget;
+
+    if (!target.dataset.id) {
+      return toast.info('Please login, this is for authorized users only');
+    }
+
     target.disabled = true;
     const { payload } = await dispatch(toogleFavNotice(target.dataset));
 
     if (payload.message === 'Add to fav') target.dataset.favorite = 0;
-    if (payload.message === 'Deletete from fav') target.dataset.favorite = 1;
+    if (payload.message === 'Deletete from fav') {
+      target.dataset.favorite = 1;
+      if (category === 'favorite') dispatch(deleteFromFav(target.dataset.id));
+    }
 
     target.disabled = false;
 
@@ -163,11 +170,26 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     const date = new Date();
     const dateYear = date.getFullYear();
     const age = dateYear - birthday;
+    if (birthday > new Date().getFullYear()) {
+      return 'not yet born';
+    }
     return age;
   };
 
   return (
     <Section>
+      {noticesStatus !== 'success' && (
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      )}
+      {openConfirmModalId && (
+        <ConfirmModalComponent
+          handleOpenConfirmModal={handleOpenConfirmModal}
+          handleBackdropClose={handleBackdropClose}
+        />
+      )}
+
       <NoticesList>
         {filteredPets().map(item => {
           const deleteBtnRule =
@@ -183,16 +205,16 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
           return (
             <NoticesItem id={item.id} key={item._id}>
               <PetCategory>{item.category}</PetCategory>
-              {isLogin && (
-                <FavoriteBtn
-                  onClick={handleClickToFavorite}
-                  favBtnRule={favBtnRule}
-                  data-id={item._id}
-                  data-favorite={favBtnRule ? 0 : 1}
-                >
-                  <HeartIconPrimal />
-                </FavoriteBtn>
-              )}
+
+              <FavoriteBtn
+                onClick={handleClickToFavorite}
+                favBtnRule={isLogin && favBtnRule}
+                data-id={isLogin ? item._id : null}
+                data-favorite={favBtnRule ? 0 : 1}
+              >
+                <HeartIconPrimal />
+              </FavoriteBtn>
+
               <NoticesItemImg
                 height="288px"
                 loading="lazy"
@@ -272,3 +294,5 @@ export const NoticiesCategoriesList = ({ searchQuery }) => {
     </Section>
   );
 };
+
+export default NoticiesCategoriesList;

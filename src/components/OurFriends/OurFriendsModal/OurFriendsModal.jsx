@@ -9,6 +9,7 @@ import {
   OurFriendsModalTimes,
   OurFriendsModalTime,
 } from './OurFriendsModal.styled';
+import $ from 'jquery';
 
 export const OurFriendsModal = ({
   setOurFriendsModalBul,
@@ -18,12 +19,20 @@ export const OurFriendsModal = ({
 }) => {
   const ourFriendsModalRoot = document.getElementById('ourFriendsModal-root');
   useEffect(() => {
+    $(window).scroll(function () {
+      setOurFriendsModalBul(false);
+      document.querySelector(`#\\3${idTime} a`).classList.remove('active');
+    });
+
     document.addEventListener('keydown', ourFriendsHandleKeyDown);
     return () => {
       document.removeEventListener('keydown', ourFriendsHandleKeyDown);
+      $(window).off("scroll");
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  
 
   const ourFriendsHandleKeyDown = event => {
     if (event.code === 'Escape') setOurFriendsModalBul(false);

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getIsLogin } from 'redux/Auth/auth-selectors';
+import { getToken } from 'redux/Auth/auth-selectors';
 import {
   NoticesPageDataPublic,
   NoticesPageDataAuth,
@@ -8,7 +8,7 @@ import { NavList, NavLinkStyled, NavItem } from './NoticesCategoriesNav.styles';
 import { Outlet } from 'react-router-dom';
 
 export const NoticesCategoriesNav = ({ location }) => {
-  const isLogin = useSelector(getIsLogin);
+  const isLogin = useSelector(getToken);
   return (
     <>
       <nav>
