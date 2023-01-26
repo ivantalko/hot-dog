@@ -54,14 +54,10 @@ export const OurFriendsCards = styled.div`
   @media ${breakpoints.minTablet} {
     max-width: 704px;
     gap: 32px;
-    /* flex-direction: row; */
-    /* flex-wrap: wrap */
   }
   @media ${breakpoints.desktop} {
     max-width: 1249px;
     gap: 32px;
-    /* flex-direction: row; */
-    /* flex-wrap: wrap */
   }
 `;
 

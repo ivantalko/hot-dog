@@ -191,6 +191,10 @@ export const CategoryInput = styled.input`
     border: 1px solid #f59256;
     box-shadow: inset 0px 0px 4px #f59256;
   }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
+  }
 `;
 
 export const ControlsList = styled.ul`
@@ -236,20 +240,18 @@ export const AvatarInputBox = styled.div`
 
 export const AvatarInput = styled.input`
   cursor: pointer;
-    width: 208px;
-    height: 208px;
-    background-color: red;
-    opacity: 0;
-    border-radius: 20px;
-
-}`;
+  width: 208px;
+  height: 208px;
+  background-color: red;
+  opacity: 0;
+  border-radius: 20px;
+`;
 
 export const IconPlus = styled(iconPlusPrimal)`
   position: absolute;
-  top 50%;
-  left 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-
 `;
 
 export const TextArea = styled.textarea`
@@ -276,5 +278,9 @@ export const TextArea = styled.textarea`
     border: 1px solid #f59256;
     color: #f59256;
     box-shadow: inset 0px 0px 4px #f59256;
+  }
+  &:invalid {
+    color: Red;
+    font-weight: 700;
   }
 `;
