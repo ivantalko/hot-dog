@@ -134,6 +134,7 @@ export const ParametersList = styled.ul`
 `;
 
 export const ParametersValue = styled.span`
+  width: max-content;
   position: absolute;
   left: 118px;
   font-weight: 500;
