@@ -76,7 +76,7 @@ export const StyledFrameImage = styled('div')`
 
   @media screen and (min-width: 768px) {
     max-width: 1023px;
-    height: calc(100vh - 35px);
+    height: calc(100vh - 30px);
     background-position: bottom center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -91,7 +91,7 @@ export const StyledFrameImage = styled('div')`
   }
   @media screen and (min-width: 1024px) {
     max-width: 1439px;
-    height: calc(100vh - 167px);
+    height: calc(100vh - 130px);
     background-position: bottom center;
     background-size: contain;
     background-repeat: no-repeat;
