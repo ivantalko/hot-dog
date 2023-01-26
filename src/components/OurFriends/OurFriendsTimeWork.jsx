@@ -5,7 +5,6 @@ import {
   OurFriendsTimeWorks,
 } from './OurFriendsTimeWork.styled';
 import { OurFriendsModal } from './OurFriendsModal/OurFriendsModal';
-// import $ from 'jquery';
 
 export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
   let timeOfWork;
@@ -61,11 +60,6 @@ export const OurFriendsTimeWork = ({ timeWork, idTime }) => {
     }
     return s;
   };
-
-  // $(window).scroll(function () {
-  //   setOurFriendsModalBul(false);
-  //   document.querySelector(`#\\3${idTime} a`).classList.remove('active');
-  // });
 
   return (
     <OurFriendsTimeWorks id={`${idTime}a`}>
