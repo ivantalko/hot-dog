@@ -49,13 +49,29 @@ const LinkStyled = styled(Link)`
   }
 `;
 
+const Section = styled.section`
+  padding: 60px 20px 0px 20px;
+  @media ${breakpoints.minTablet} {
+    padding: 60px 32px 0px 32px;
+  }
+  @media ${breakpoints.desktop} {
+    padding: 60px 16px 0px 16px;
+  }
+  max-width: 1280px px;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`;
+
 const NotFoundPge = () => {
   return (
-    <section style={{ paddingTop: 60 }}>
+    <Section style={{ paddingTop: 60 }}>
       <h2>Sorry, but such a page does not exist</h2>
       <Loader />
       <LinkStyled to="/">Return to home?</LinkStyled>
-    </section>
+    </Section>
   );
 };
 
