@@ -90,7 +90,6 @@ const noticesSlice = createSlice({
       state.status = status.loading;
     },
     [getNoticesDataNew.fulfilled](state, action) {
-      console.log(action.payload);
       state.status = status.success;
       state.avatar = action.payload;
     },

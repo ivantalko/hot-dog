@@ -11,6 +11,9 @@ import {
   ControlsBtnList,
   ControlsBtn,
 } from './NoticesAddModalPage1.styled';
+import { useForm } from 'react-hook-form';
+import { schemaAddModalPage1, notify } from 'helpers/validator/yupValidation';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 export const NoticesAddModalPage1 = ({
   handleBtnCLoseModal,
@@ -18,6 +21,21 @@ export const NoticesAddModalPage1 = ({
   handleChangeParameter,
   handleNextPage,
 }) => {
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schemaAddModalPage1),
+  });
+
+  const onSubmit = data => {
+    if (data) {
+      handleNextPage();
+    }
+  };
+
+  const onError = e => {
+    const arr = ['title', 'name', 'date', 'breed'];
+    arr.map(item => notify(e[item]?.message));
+  };
+
   return (
     <Modal id="mainPageModal">
       <IconClose onClick={handleBtnCLoseModal} />
@@ -58,6 +76,7 @@ export const NoticesAddModalPage1 = ({
             Tittle of ad<span>*</span>
           </ParameterTitle>
           <ParameterInput
+            {...register('title')}
             id="titleInput"
             onChange={handleChangeParameter}
             type="text"
@@ -69,6 +88,7 @@ export const NoticesAddModalPage1 = ({
             Name pet<span>*</span>
           </ParameterTitle>
           <ParameterInput
+            {...register('name')}
             id="nameInput"
             onChange={handleChangeParameter}
             type="text"
@@ -80,6 +100,7 @@ export const NoticesAddModalPage1 = ({
             Date of birth<span>*</span>
           </ParameterTitle>
           <ParameterInput
+            {...register('date')}
             id="birthInput"
             onChange={handleChangeParameter}
             type="text"
@@ -91,6 +112,7 @@ export const NoticesAddModalPage1 = ({
             Breed<span>*</span>
           </ParameterTitle>
           <ParameterInput
+            {...register('breed')}
             id="breedInput"
             onChange={handleChangeParameter}
             type="text"
@@ -103,7 +125,9 @@ export const NoticesAddModalPage1 = ({
           <ControlsBtn onClick={handleBtnCLoseModal}>Cancel</ControlsBtn>
         </li>
         <li>
-          <ControlsBtn onClick={handleNextPage}>Next</ControlsBtn>
+          <ControlsBtn onClick={handleSubmit(onSubmit, onError)}>
+            Next
+          </ControlsBtn>
         </li>
       </ControlsBtnList>
     </Modal>

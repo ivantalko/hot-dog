@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNoticesDataNew } from 'redux/Notice/notice-operations';
+import { useForm } from 'react-hook-form';
+import {
+  schemaAddModalPage2,
+  notify,
+} from 'helpers/validator/validationInputs';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
   NextPageModal,
@@ -23,7 +30,6 @@ import {
   ControlsBtnList,
   ControlsBtn,
 } from './NoticesAddModalPage2.styled';
-
 export const NoticesAddModalPage2 = ({
   handleBtnCLoseModal,
   setIsModalOpen,
@@ -40,11 +46,13 @@ export const NoticesAddModalPage2 = ({
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
+  const [formData, setFormData] = useState('');
+
   const dispatch = useDispatch();
 
   const handleSexChoose = e => {
     if (e.target.id === 'sexInputMale') {
-      setSex(() => 'male');
+      setSex('male');
       document.querySelector('#SexMaleActive').classList.add('active');
       document.querySelector('#SexFemaleActive').classList.remove('active');
       document.querySelector('#sexInputFemale').checked = false;
@@ -57,7 +65,7 @@ export const NoticesAddModalPage2 = ({
     e.target.checked = true;
   };
 
-  const handleNoticeDone = () => {
+  useEffect(() => {
     setPet({
       title,
       name,
@@ -69,24 +77,48 @@ export const NoticesAddModalPage2 = ({
       category,
       comments,
     });
+  }, [
+    birthday,
+    breed,
+    category,
+    comments,
+    location,
+    name,
+    price,
+    setPet,
+    sex,
+    title,
+  ]);
 
-    document.querySelector('body').classList.remove('modal');
-    setIsModalOpen(false);
+  useEffect(() => {
+    setFormData(new FormData());
+  }, []);
 
-    const formData = new FormData();
-    const avatar = document.querySelector('#fileInput').files[0];
-    formData.append('avatar', avatar);
-    formData.append('notice', JSON.stringify(pet));
-    dispatch(getNoticesDataNew(formData));
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schemaAddModalPage2),
+  });
+
+  const onSubmit = data => {
+    if (data) {
+      document.querySelector('body').classList.remove('modal');
+      setIsModalOpen(false);
+
+      formData.append('avatar', data.avatar[0]);
+      formData.append('notice', JSON.stringify(pet));
+      dispatch(getNoticesDataNew(formData));
+    }
   };
 
-  console.log(pet);
+  const onError = e => {
+    const arr = ['location', 'price', 'comments', 'avatar', 'sex'];
+    arr.map(item => notify(e[item]?.message));
+  };
 
   const handleLocationSet = e => {
     setLocation(e.target.value);
   };
   const handleChangePrice = e => {
-    setPrice(() => e.target.value);
+    setPrice(e.target.value);
   };
   const handleChangeComments = e => {
     setComments(e.target.value);
@@ -96,14 +128,12 @@ export const NoticesAddModalPage2 = ({
     if (nextPageOpen) {
       document.querySelector('#secondPageModal').classList.add('hidden');
     }
-    // setNextPageOpen(false);
     document.querySelector('#mainPageModal').classList.remove('hidden');
   };
 
   function previewFile(e) {
     let preview = document.querySelector('#imagePreview');
     let file = e.target.files[0];
-
     let reader = new FileReader();
 
     reader.onloadend = function () {
@@ -130,9 +160,9 @@ export const NoticesAddModalPage2 = ({
             <SexItem>
               <MaleIcon />
               <SexInput
+                {...register('sex')}
                 onClick={handleSexChoose}
                 type="checkbox"
-                name="sexMale"
                 id="sexInputMale"
               />
               <SexText id="SexMaleActive">Male</SexText>
@@ -140,9 +170,9 @@ export const NoticesAddModalPage2 = ({
             <SexItem>
               <FemaleIcon />
               <SexInput
+                {...register('sex')}
                 onClick={handleSexChoose}
                 type="checkbox"
-                name="sexFemle"
                 id="sexInputFemale"
               />
               <SexText id="SexFemaleActive">Female</SexText>
@@ -154,11 +184,9 @@ export const NoticesAddModalPage2 = ({
             Location<span style={{ color: '#F59256' }}>*</span>:
           </ParameterTitle>
           <SecondPageParameterInput
-            value={location}
+            {...register('location')}
             onChange={handleLocationSet}
             type="text"
-            name="locationInput"
-            id="locationInput"
             placeholder="Type pet location"
           />
         </ParameterItem>
@@ -167,11 +195,9 @@ export const NoticesAddModalPage2 = ({
             Price<span style={{ color: '#F59256' }}>*</span>:
           </ParameterTitle>
           <SecondPageParameterInput
-            value={price}
+            {...register('price')}
             onChange={handleChangePrice}
             type="number"
-            name="priceInput"
-            id="priceInput"
             placeholder="Type pet price"
           />
         </ParameterItem>
@@ -180,10 +206,10 @@ export const NoticesAddModalPage2 = ({
           <AvatarInputBox>
             <IconPlus />
             <AvatarInput
+              {...register('avatar')}
               onChange={previewFile}
               type="file"
-              name="fileInput"
-              id="fileInput"
+              // id="fileInput"
             />
             <img
               style={{
@@ -203,19 +229,18 @@ export const NoticesAddModalPage2 = ({
         <ParameterItem>
           <ParameterTitle>Comments</ParameterTitle>
           <TextArea
+            {...register('comments')}
             onChange={handleChangeComments}
-            value={comments}
-            name=""
-            id=""
             cols="30"
             rows="10"
           ></TextArea>
         </ParameterItem>
       </SecondPageParameterList>
-
       <ControlsBtnList>
         <ParameterItem>
-          <ControlsBtn onClick={handleNoticeDone}>Done</ControlsBtn>
+          <ControlsBtn onClick={handleSubmit(onSubmit, onError)}>
+            Done
+          </ControlsBtn>
         </ParameterItem>
         <ParameterItem>
           <ControlsBtn onClick={handleToBackPage}>Back</ControlsBtn>

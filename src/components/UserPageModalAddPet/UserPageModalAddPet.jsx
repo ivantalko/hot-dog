@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { postUserPet } from 'redux/User/user-operation';
 import {
@@ -22,6 +22,13 @@ import {
   TextArea,
   CategoryCommentsTitle,
 } from './UserPageModalAddPet.styled';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import {
+  schemaUserPageModalAddPetFirstPage,
+  schemaUserPageModalAddPetSecondPage,
+  notify,
+} from 'helpers/validator/yupValidation';
 
 export const UserPageModalAddPet = ({
   handleBackdropClose,
@@ -29,17 +36,31 @@ export const UserPageModalAddPet = ({
 }) => {
   const dispatch = useDispatch();
   const [nextPageOpen, setNextPageOpen] = useState(false);
-
-  const formData = new FormData();
-
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [breed, setBreed] = useState('');
   const [comments, setComments] = useState('');
+  const [formData, setFormData] = useState('');
+  const [schema, setSchema] = useState('');
 
-  const handleOpenSecondPage = e => {
-    e.preventDefault();
-    if (name !== '' && birthday !== '' && breed !== '') {
+  useEffect(() => {
+    setFormData(new FormData());
+  }, []);
+
+  useEffect(() => {
+    if (!nextPageOpen) {
+      setSchema(schemaUserPageModalAddPetFirstPage);
+    } else if (nextPageOpen) {
+      setSchema(schemaUserPageModalAddPetSecondPage);
+    }
+  }, [nextPageOpen]);
+
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async data => {
+    if (data && !nextPageOpen) {
       setNextPageOpen(true);
       document
         .querySelector('#userAddOwnPetModalMainPage')
@@ -49,7 +70,29 @@ export const UserPageModalAddPet = ({
           .querySelector('#userAddOwnPetModalSecondPage')
           .classList.remove('hidden');
       }
+    } else if (data && nextPageOpen) {
+      formData.append('avatar', data.avatar[0]);
+      formData.append(
+        'data',
+        JSON.stringify({
+          name,
+          birthday,
+          breed,
+          comments,
+        })
+      );
+      const response = await dispatch(postUserPet(formData));
+      if (response.meta.requestStatus === 'fulfilled') {
+        setIsModalOpen(false);
+        document.querySelector('body').classList.remove('modal');
+      }
     }
+  };
+
+  const onError = e => {
+    console.log(e);
+    const arr = ['name', 'date', 'breed', 'avatar', 'comments'];
+    arr.map(item => notify(e[item]?.message));
   };
 
   function previewFile(e) {
@@ -69,6 +112,7 @@ export const UserPageModalAddPet = ({
   }
 
   const handleBackBtn = e => {
+    setNextPageOpen(false);
     e.preventDefault();
     document
       .querySelector('#userAddOwnPetModalSecondPage')
@@ -91,27 +135,6 @@ export const UserPageModalAddPet = ({
     setComments(e.target.value);
   };
 
-  const handleDoneAddPet = async e => {
-    e.preventDefault();
-    if (name !== '' && birthday !== '' && breed !== '' && comments !== '') {
-      formData.append('avatar', e.target.avatar.files[0]);
-      formData.append(
-        'data',
-        JSON.stringify({
-          name,
-          birthday,
-          breed,
-          comments,
-        })
-      );
-      const response = await dispatch(postUserPet(formData));
-      if (response.meta.requestStatus === 'fulfilled') {
-        setIsModalOpen(false);
-        document.querySelector('body').classList.remove('modal');
-      }
-    }
-  };
-
   return (
     <Backdrop onClick={handleBackdropClose}>
       <ModalMainPage id="userAddOwnPetModalMainPage">
@@ -128,6 +151,7 @@ export const UserPageModalAddPet = ({
             <li>
               <CategoryTitle>Name pet</CategoryTitle>
               <CategoryInput
+                {...register('name')}
                 type="text"
                 placeholder="Type name pet"
                 value={name}
@@ -137,6 +161,7 @@ export const UserPageModalAddPet = ({
             <li>
               <CategoryTitle>Date of birth</CategoryTitle>
               <CategoryInput
+                {...register('date')}
                 type="text"
                 value={birthday}
                 onChange={handleBirthdayChange}
@@ -146,6 +171,7 @@ export const UserPageModalAddPet = ({
             <li>
               <CategoryTitle>Breed</CategoryTitle>
               <CategoryInput
+                {...register('breed')}
                 type="text"
                 value={breed}
                 onChange={handleBreedChange}
@@ -155,7 +181,9 @@ export const UserPageModalAddPet = ({
           </CategoryList>
           <ControlsList>
             <li>
-              <ControlsBtn onClick={handleOpenSecondPage}>Next</ControlsBtn>
+              <ControlsBtn onClick={handleSubmit(onSubmit, onError)}>
+                Next
+              </ControlsBtn>
             </li>
             <li>
               <ControlsBtn
@@ -181,7 +209,7 @@ export const UserPageModalAddPet = ({
             <IconClose />
           </CloseBtn>
           <SecondPageModalTitle>Add pet</SecondPageModalTitle>
-          <form onSubmit={handleDoneAddPet}>
+          <form onSubmit={handleSubmit(onSubmit, onError)}>
             <CategoryListSecondPage>
               <li style={{ display: 'block', textAlign: 'center' }}>
                 <CategoryTitleSecondPage>
@@ -190,6 +218,7 @@ export const UserPageModalAddPet = ({
                 <AvatarInputBox>
                   <IconPlus />
                   <AvatarInput
+                    {...register('avatar')}
                     onChange={previewFile}
                     type="file"
                     name="avatar"
@@ -213,10 +242,8 @@ export const UserPageModalAddPet = ({
               <li>
                 <CategoryCommentsTitle>Comments</CategoryCommentsTitle>
                 <TextArea
+                  {...register('comments')}
                   onChange={handleCommentsChange}
-                  value={comments}
-                  name=""
-                  id=""
                   cols="30"
                   rows="10"
                 ></TextArea>

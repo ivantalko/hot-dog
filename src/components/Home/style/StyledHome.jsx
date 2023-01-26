@@ -45,7 +45,7 @@ export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 320px) {
     max-width: 424px;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${FrameImageM});
 
@@ -60,7 +60,7 @@ export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 425px) {
     max-width: 767px;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${FrameImageM});
 
@@ -75,7 +75,7 @@ export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 768px) {
     max-width: 1023px;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${FrameImageT});
 
@@ -89,7 +89,7 @@ export const StyledFrameImage = styled('div')`
   @media screen and (min-width: 1024px) {
     max-width: 1439px;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${FrameImage});
 
@@ -101,9 +101,9 @@ export const StyledFrameImage = styled('div')`
     }
   }
   @media screen and (min-width: 1440px) {
-    max-width: 2560px;
+    max-width: 4000px;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${FrameImage});
 

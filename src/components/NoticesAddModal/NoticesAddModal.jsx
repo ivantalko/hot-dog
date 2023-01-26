@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NoticesAddModalPage1 } from 'components/NoticesAddModalPage1/NoticesAddModalPage1';
 import { NoticesAddModalPage2 } from 'components/NoticesAddModalPage2/NoticesAddModalPage2';
 import { Backdrop } from './NoticesAddModal.styled';
+import { notify } from 'helpers/validator/validationInputs';
 
 export const NoticesAddModal = ({
   handleBackdropClose,
@@ -59,26 +60,14 @@ export const NoticesAddModal = ({
   };
 
   const handleNextPage = () => {
-    if (
-      category !== '' &&
-      title !== '' &&
-      name !== '' &&
-      birthday !== '' &&
-      breed !== ''
-    ) {
+    if (category !== '') {
       setNextPageOpen(true);
       document.querySelector('#mainPageModal').classList.add('hidden');
       if (nextPageOpen) {
         document.querySelector('#secondPageModal').classList.remove('hidden');
       }
-    } else if (
-      category === '' ||
-      title === '' ||
-      name === '' ||
-      birthday === '' ||
-      breed === ''
-    ) {
-      console.log('all parameters must be set');
+    } else if (category === '') {
+      notify('Category must be set');
     }
   };
 

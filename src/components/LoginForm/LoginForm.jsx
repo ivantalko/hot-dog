@@ -3,7 +3,7 @@ import BaseButton from 'components/BaseButton';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { loginUserOperation } from 'redux/Auth/auth-operations';
 import { getToken } from 'redux/Auth/auth-selectors';
@@ -88,7 +88,6 @@ const LoginForm = () => {
           </div>
         </FormList>
       </MobileContainer>
-      <ToastContainer autoClose={3000} />
     </Background>
   );
 };
